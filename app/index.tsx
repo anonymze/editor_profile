@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 		transform: [{ translateX: "-50%" }],
 	},
 	image: {
-		width: 130,
+		width: 125,
 		aspectRatio: 1,
 		borderRadius: 99,
 	},
