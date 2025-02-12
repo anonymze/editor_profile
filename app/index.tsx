@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { InputTextGradient } from "@/components/text-gradient";
+import { LinearGradient } from "react-native-linear-gradient";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { Pressable } from "react-native-gesture-handler";
 import LayoutBackground from "@/layout/background";
 import useTheme from "@/utils/theme-provider";
-import { router } from "expo-router";
 import { Image } from "expo-image";
 import { useRef } from "react";
 
@@ -19,29 +19,19 @@ export default function Index() {
 				inputRef.current?.focus();
 			}}
 		>
-			<View style={styles.container}>
-				{/* <Image style={styles.image} source="https://picsum.photos/seed/696/3000/2000" /> */}
+			<View id="container" style={styles.container}>
+				<Image style={styles.image} source="https://picsum.photos/seed/696/3000/2000" />
 				<InputTextGradient text={"Coucou"} style={{ fontSize: 60 }} ref={inputRef} maxLength={8} />
 			</View>
 
-			<Pressable
-				style={[styles.topButtons, styles.topLeftButton]}
-				onPress={() => {
-					router.push("/");
-				}}
-			>
-				<PlusIcon size={28} color="#fff" />
-			</Pressable>
-			<Pressable
-				style={[styles.topButtons, styles.topRightButton]}
-				onPress={() => {
-					router.push("/");
-				}}
-			>
-				<PencilIcon size={22} color="#fff" />
-			</Pressable>
 			<Pressable style={styles.bottomButton}>
 				<Text>Continuer</Text>
+			</Pressable>
+			<Pressable style={[styles.topButtons, styles.topLeftButton]}>
+				<PlusIcon size={28} color="#fff" />
+			</Pressable>
+			<Pressable style={[styles.topButtons, styles.topRightButton]}>
+				<PencilIcon size={22} color="#fff" />
 			</Pressable>
 		</LayoutBackground>
 	);
@@ -71,7 +61,7 @@ const styles = StyleSheet.create({
 		transform: [{ translateX: "-50%" }],
 	},
 	image: {
-		width: 125,
+		width: 130,
 		aspectRatio: 1,
 		borderRadius: 99,
 	},
