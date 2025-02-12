@@ -8,8 +8,8 @@ const DEFAULT_FONT_SIZE = 30;
 const getHeight = (fontSize: number) => Math.floor(fontSize * 1.3);
 
 interface InputTextGradientProps {
-	text: string; 
-	style?: StyleProp<TextStyle>; 
+	text: string;
+	style?: StyleProp<TextStyle>;
 }
 
 export function TextGradient({ text, style }: InputTextGradientProps) {
@@ -23,7 +23,7 @@ export function TextGradient({ text, style }: InputTextGradientProps) {
 		>
 			<LinearGradient
 				colors={["#fff", "#1487ff"]}
-				start={{ x: 0, y: 0.3 }}
+				start={{ x: 0, y: 0.35 }}
 				end={{ x: 0, y: 1 }}
 				style={styles.full}
 			/>
@@ -31,20 +31,26 @@ export function TextGradient({ text, style }: InputTextGradientProps) {
 	);
 }
 
-export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & { maxLength?: number }>(({ text, style, maxLength }, ref) => {
-	const [inputText, setInputText] = useState(text);
-	const fontSize = StyleSheet.flatten(style).fontSize ?? DEFAULT_FONT_SIZE;
-	const height = getHeight(fontSize);
+export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & { maxLength?: number }>(
+	({ text, style, maxLength }, ref) => {
+		const [inputText, setInputText] = useState(text);
+		const fontSize = StyleSheet.flatten(style).fontSize ?? DEFAULT_FONT_SIZE;
+		const height = getHeight(fontSize);
 
-	return (
-		<View 
-			style={[styles.view, { height }]}
-		>
-			<TextGradient text={inputText} style={{ fontSize }} />
-			<TextInput style={[styles.input, style]} onChangeText={setInputText} value={inputText} ref={ref} maxLength={10}  />
-		</View>
-	);
-});
+		return (
+			<View style={[styles.view, { height }]}>
+				<TextGradient text={inputText} style={{ fontSize }} />
+				<TextInput
+					style={[styles.input, style]}
+					onChangeText={setInputText}
+					value={inputText}
+					ref={ref}
+					maxLength={10}
+				/>
+			</View>
+		);
+	}
+);
 
 const styles = StyleSheet.create({
 	input: {

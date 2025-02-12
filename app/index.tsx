@@ -1,8 +1,8 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { InputTextGradient } from "@/components/text-gradient";
-import { LinearGradient } from "react-native-linear-gradient";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { Pressable } from "react-native-gesture-handler";
+import LayoutBackground from "@/layout/background";
 import useTheme from "@/utils/theme-provider";
 import { Image } from "expo-image";
 import { useRef } from "react";
@@ -13,9 +13,8 @@ export default function Index() {
 	const inputRef = useRef<TextInput>(null);
 
 	return (
-		<LinearGradient
-			colors={["#000dfa", "#040ac1"]}
-			style={styles.container}
+		<LayoutBackground
+			centeredContent
 			onLayout={() => {
 				inputRef.current?.focus();
 			}}
@@ -34,7 +33,7 @@ export default function Index() {
 			<Pressable style={[styles.topButtons, styles.topRightButton]}>
 				<PencilIcon size={22} color="#fff" />
 			</Pressable>
-		</LinearGradient>
+		</LayoutBackground>
 	);
 }
 
