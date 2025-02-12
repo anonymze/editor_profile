@@ -1,7 +1,7 @@
 import { StyleProp, StyleSheet, Text, TextInput, TextStyle, View, ViewStyle } from "react-native";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "react-native-linear-gradient";
-import { forwardRef, RefObject, useState } from "react";
+import { forwardRef, useState } from "react";
 
 
 const DEFAULT_FONT_SIZE = 30;
@@ -22,8 +22,8 @@ export function TextGradient({ text, style }: InputTextGradientProps) {
 			maskElement={<Text style={[styles.text, style]}>{text}</Text>}
 		>
 			<LinearGradient
-				colors={["#fff", "#79baff"]}
-				start={{ x: 0, y: 0 }}
+				colors={["#fff", "#1487ff"]}
+				start={{ x: 0, y: 0.3 }}
 				end={{ x: 0, y: 1 }}
 				style={styles.full}
 			/>
@@ -57,12 +57,10 @@ const styles = StyleSheet.create({
 		fontWeight: "900",
 		alignSelf: "center",
 		shadowOffset: { width: 0, height: 6 },
-		shadowOpacity: 0.2,
-		shadowRadius: 0.5,
+		shadowOpacity: 0.4,
 	},
 	full: {
-		width: "100%",
-		height: "100%",
+		flex: 1,
 	},
 	flexDirection: {
 		flexDirection: "row",

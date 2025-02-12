@@ -4,6 +4,7 @@ import { LinearGradient } from "react-native-linear-gradient";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { Pressable } from "react-native-gesture-handler";
 import useTheme from "@/utils/theme-provider";
+import { Image } from "expo-image";
 import { useRef } from "react";
 
 
@@ -12,18 +13,17 @@ export default function Index() {
 	const inputRef = useRef<TextInput>(null);
 
 	return (
-		<View
-			style={{
-				flex: 1,
-				justifyContent: "center",
-				alignItems: "center",
-				backgroundColor: "#0427d3",
-			}}
+		<LinearGradient
+			colors={["#000dfa", "#040ac1"]}
+			style={styles.container}
 			onLayout={() => {
 				inputRef.current?.focus();
 			}}
 		>
-			<InputTextGradient text={"Coucou"} style={{ fontSize: 60 }} ref={inputRef} maxLength={8} />
+			<View id="container" style={styles.container}>
+				<Image style={styles.image} source="https://picsum.photos/seed/696/3000/2000" />
+				<InputTextGradient text={"Coucou"} style={{ fontSize: 60 }} ref={inputRef} maxLength={8} />
+			</View>
 
 			<Pressable style={styles.bottomButton}>
 				<Text>Continuer</Text>
@@ -34,14 +34,14 @@ export default function Index() {
 			<Pressable style={[styles.topButtons, styles.topRightButton]}>
 				<PencilIcon size={22} color="#fff" />
 			</Pressable>
-		</View>
+		</LinearGradient>
 	);
 }
 
 const styles = StyleSheet.create({
 	topButtons: {
 		position: "absolute",
-		top: 25,
+		top: 35,
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
@@ -52,14 +52,19 @@ const styles = StyleSheet.create({
 		boxShadow: "inset 0 0 8px 0 #fff",
 	},
 	topLeftButton: {
-		left: 25,
+		left: 30,
 	},
 	topRightButton: {
-		right: 25,
+		right: 30,
 	},
 	topMiddleButton: {
 		left: "50%",
 		transform: [{ translateX: "-50%" }],
+	},
+	image: {
+		width: 130,
+		aspectRatio: 1,
+		borderRadius: 99,
 	},
 	bottomButton: {
 		position: "absolute",
@@ -74,6 +79,11 @@ const styles = StyleSheet.create({
 		borderTopColor: "#fff",
 		borderTopWidth: 2,
 		color: "#fff",
+		alignItems: "center",
+	},
+	container: {
+		flex: 1,
+		justifyContent: "center",
 		alignItems: "center",
 	},
 });
