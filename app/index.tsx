@@ -27,7 +27,7 @@ export default function Index() {
 				</Animated.View>
 			</View>
 
-			<Animated.View style={styles.bottomButton} entering={FadeInDown.duration(400).delay(250)}>
+			<Animated.View style={styles.bottomButton} entering={FadeInDown.duration(500).delay(250)}>
 				<Pressable>
 					<Text>Continuer</Text>
 				</Pressable>
