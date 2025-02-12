@@ -1,10 +1,9 @@
+import Animated, { FadeIn, FadeInDown, FadeInUp } from "react-native-reanimated";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { InputTextGradient } from "@/components/text-gradient";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { Pressable } from "react-native-gesture-handler";
 import LayoutBackground from "@/layout/background";
-import useTheme from "@/utils/theme-provider";
-import { router } from "expo-router";
 import { Image } from "expo-image";
 import { useRef } from "react";
 
@@ -16,33 +15,34 @@ export default function Index() {
 		<LayoutBackground
 			centeredContent
 			onLayout={() => {
-				inputRef.current?.focus();
+				// inputRef.current?.focus();
 			}}
 		>
-			<View style={styles.container}>
-				<Image style={styles.image} source="https://picsum.photos/seed/696/3000/2000" />
-				<InputTextGradient text={"Coucou"} style={{ fontSize: 60 }} ref={inputRef} maxLength={8} />
+			<View id="container" style={styles.container}>
+				<Animated.View entering={FadeInDown.duration(800).delay(200).springify()}>
+					<Image style={styles.image} source="https://picsum.photos/seed/696/3000/2000" />
+				</Animated.View>
+				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
+					<InputTextGradient text={"Coucou"} style={{ fontSize: 60 }} ref={inputRef} maxLength={8} />
+				</Animated.View>
 			</View>
 
-			<Pressable
-				style={[styles.topButtons, styles.topLeftButton]}
-				onPress={() => {
-					router.push("/");
-				}}
-			>
-				<PlusIcon size={28} color="#fff" />
-			</Pressable>
-			<Pressable
-				style={[styles.topButtons, styles.topRightButton]}
-				onPress={() => {
-					router.push("/");
-				}}
-			>
-				<PencilIcon size={22} color="#fff" />
-			</Pressable>
-			<Pressable style={styles.bottomButton}>
-				<Text>Continuer</Text>
-			</Pressable>
+			<Animated.View style={styles.bottomButton} entering={FadeInDown.duration(500).delay(250)}>
+				<Pressable>
+					<Text>Continuer</Text>
+				</Pressable>
+			</Animated.View>
+
+			<Animated.View style={[styles.topButtons, styles.topLeftButton]} entering={FadeInDown.duration(800).delay(200).springify()}>
+				<Pressable>
+					<PlusIcon size={28} color="#fff" />
+				</Pressable>
+			</Animated.View>
+			<Animated.View style={[styles.topButtons, styles.topRightButton]} entering={FadeInDown.duration(800).delay(200).springify()}>
+				<Pressable>
+					<PencilIcon size={22} color="#fff" />
+				</Pressable>
+			</Animated.View>
 		</LayoutBackground>
 	);
 }
@@ -71,15 +71,13 @@ const styles = StyleSheet.create({
 		transform: [{ translateX: "-50%" }],
 	},
 	image: {
-		width: 125,
+		width: 130,
 		aspectRatio: 1,
 		borderRadius: 99,
 	},
 	bottomButton: {
 		position: "absolute",
 		bottom: 50,
-		left: "50%",
-		transform: [{ translateX: "-50%" }],
 		width: "100%",
 		maxWidth: 300,
 		borderRadius: 99,
