@@ -1,13 +1,16 @@
+import { InputTextGradient, TextGradient } from "@/components/text-gradient";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { ButtonGradient } from "@/components/button-gradient";
 import { Pressable } from "react-native-gesture-handler";
-import { StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import useTheme from "@/utils/theme-provider";
+import { useState } from "react";
 
 
 export default function Index() {
 	const theme = useTheme();
+	const [text, setText] = useState("Coucou");
 	return (
 		<View
 			style={{
@@ -17,37 +20,13 @@ export default function Index() {
 				backgroundColor: "#0427d3",
 			}}
 		>
-			<MaskedView
-				style={{ flexDirection: "row", height: 85 }}
-				maskElement={
-					<Text
-						style={{
-							fontSize: 60,
-							color: "black",
-							fontWeight: "900",
-							alignSelf: "center",
-							shadowOffset: { width: 0, height: 6 },
-							shadowOpacity: 0.2,
-							shadowRadius: 0.3,
-						}}
-					>
-						Basic ky
-					</Text>
-				}
-			>
-				<LinearGradient
-					colors={["#fff", "#7cbcff"]}
-					start={{ x: 0, y: 0 }}
-					end={{ x: 0, y: 1 }}
-					style={{ flex: 1 }}
-				/>
-			</MaskedView>
+			<InputTextGradient text={text} style={{ fontSize: 60 }} />
 
 			<Pressable style={styles.bottomButton}>
 				<Text>Continuer</Text>
 			</Pressable>
 			<Pressable style={[styles.topButtons, styles.topLeftButton]}>
-				<Text>+</Text>
+				<LinearGradient colors={["#fff", "#79baff"]} style={{ flex: 1, borderRadius: 12 }} />
 			</Pressable>
 			<ButtonGradient style={[styles.topButtons, styles.topRightButton]}>+</ButtonGradient>
 			<Pressable style={[styles.topButtons, styles.topMiddleButton]}>
@@ -66,7 +45,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		width: 45,
 		aspectRatio: 1,
-		borderRadius: 5,
+		borderRadius: 12,
 		borderWidth: 1,
 		borderColor: "red",
 	},
