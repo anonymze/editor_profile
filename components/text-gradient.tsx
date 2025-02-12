@@ -1,13 +1,18 @@
 import { StyleProp, StyleSheet, Text, TextInput, TextStyle, View, ViewStyle } from "react-native";
 import MaskedView from "@react-native-masked-view/masked-view";
-import { LinearGradient } from "expo-linear-gradient";
-import { useState } from "react";
+import { LinearGradient } from "react-native-linear-gradient";
+import { forwardRef, RefObject, useState } from "react";
 
 
 const DEFAULT_FONT_SIZE = 30;
 const getHeight = (fontSize: number) => Math.floor(fontSize * 1.3);
 
-export function TextGradient({ text, style }: { text: string; style?: StyleProp<TextStyle> }) {
+interface InputTextGradientProps {
+	text: string; 
+	style?: StyleProp<TextStyle>; 
+}
+
+export function TextGradient({ text, style }: InputTextGradientProps) {
 	const fontSize = StyleSheet.flatten(style).fontSize ?? DEFAULT_FONT_SIZE;
 	const height = getHeight(fontSize);
 
@@ -20,24 +25,26 @@ export function TextGradient({ text, style }: { text: string; style?: StyleProp<
 				colors={["#fff", "#79baff"]}
 				start={{ x: 0, y: 0 }}
 				end={{ x: 0, y: 1 }}
-				style={styles.flex}
+				style={styles.full}
 			/>
 		</MaskedView>
 	);
 }
 
-export function InputTextGradient({ text, style }: { text: string; style?: StyleProp<TextStyle> }) {
+export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & { maxLength?: number }>(({ text, style, maxLength }, ref) => {
 	const [inputText, setInputText] = useState(text);
 	const fontSize = StyleSheet.flatten(style).fontSize ?? DEFAULT_FONT_SIZE;
 	const height = getHeight(fontSize);
 
 	return (
-		<View style={[styles.view, { height }]}>
+		<View 
+			style={[styles.view, { height }]}
+		>
 			<TextGradient text={inputText} style={{ fontSize }} />
-			<TextInput style={[styles.input, style]} onChangeText={setInputText} value={inputText} />
+			<TextInput style={[styles.input, style]} onChangeText={setInputText} value={inputText} ref={ref} maxLength={10}  />
 		</View>
 	);
-}
+});
 
 const styles = StyleSheet.create({
 	input: {
@@ -53,8 +60,9 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.2,
 		shadowRadius: 0.5,
 	},
-	flex: {
-		flex: 1,
+	full: {
+		width: "100%",
+		height: "100%",
 	},
 	flexDirection: {
 		flexDirection: "row",

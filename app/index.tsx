@@ -1,16 +1,16 @@
-import { InputTextGradient, TextGradient } from "@/components/text-gradient";
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import MaskedView from "@react-native-masked-view/masked-view";
-import { ButtonGradient } from "@/components/button-gradient";
+import { InputTextGradient } from "@/components/text-gradient";
+import { LinearGradient } from "react-native-linear-gradient";
+import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { Pressable } from "react-native-gesture-handler";
-import { LinearGradient } from "expo-linear-gradient";
 import useTheme from "@/utils/theme-provider";
-import { useState } from "react";
+import { useRef } from "react";
 
 
 export default function Index() {
 	const theme = useTheme();
-	const [text, setText] = useState("Coucou");
+	const inputRef = useRef<TextInput>(null);
+
 	return (
 		<View
 			style={{
@@ -19,18 +19,20 @@ export default function Index() {
 				alignItems: "center",
 				backgroundColor: "#0427d3",
 			}}
+			onLayout={() => {
+				inputRef.current?.focus();
+			}}
 		>
-			<InputTextGradient text={text} style={{ fontSize: 60 }} />
+			<InputTextGradient text={"Coucou"} style={{ fontSize: 60 }} ref={inputRef} maxLength={8} />
 
 			<Pressable style={styles.bottomButton}>
 				<Text>Continuer</Text>
 			</Pressable>
 			<Pressable style={[styles.topButtons, styles.topLeftButton]}>
-				<LinearGradient colors={["#fff", "#79baff"]} style={{ flex: 1, borderRadius: 12 }} />
+				<PlusIcon size={28} color="#fff" />
 			</Pressable>
-			<ButtonGradient style={[styles.topButtons, styles.topRightButton]}>+</ButtonGradient>
-			<Pressable style={[styles.topButtons, styles.topMiddleButton]}>
-				<Text>+</Text>
+			<Pressable style={[styles.topButtons, styles.topRightButton]}>
+				<PencilIcon size={22} color="#fff" />
 			</Pressable>
 		</View>
 	);
@@ -46,8 +48,8 @@ const styles = StyleSheet.create({
 		width: 45,
 		aspectRatio: 1,
 		borderRadius: 12,
-		borderWidth: 1,
-		borderColor: "red",
+		backgroundColor: "#1487ff",
+		boxShadow: "inset 0 0 8px 0 #fff",
 	},
 	topLeftButton: {
 		left: 25,
