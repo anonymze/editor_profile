@@ -9,7 +9,6 @@ import { useRef } from "react";
 
 
 export default function Index() {
-	const theme = useTheme();
 	const inputRef = useRef<TextInput>(null);
 
 	return (
