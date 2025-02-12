@@ -1,9 +1,10 @@
 import Animated, { FadeIn, FadeInDown, FadeInUp } from "react-native-reanimated";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { InputTextGradient } from "@/components/text-gradient";
-import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { Pressable } from "react-native-gesture-handler";
+import { XIcon, CheckIcon } from "lucide-react-native";
 import LayoutBackground from "@/layout/background";
+import { router } from "expo-router";
 import { Image } from "expo-image";
 import { useRef } from "react";
 
@@ -15,7 +16,7 @@ export default function Index() {
 		<LayoutBackground
 			centeredContent
 			onLayout={() => {
-				// inputRef.current?.focus();
+				inputRef.current?.focus();
 			}}
 		>
 			<View id="container" style={styles.container}>
@@ -26,21 +27,25 @@ export default function Index() {
 					<InputTextGradient text={"Coucou"} style={{ fontSize: 60 }} ref={inputRef} maxLength={8} />
 				</Animated.View>
 			</View>
-
-			<Animated.View style={styles.bottomButton} entering={FadeInDown.duration(500).delay(250)}>
-				<Pressable>
-					<Text>Continuer</Text>
+			<Animated.View
+				style={[styles.topButtons, styles.topLeftButton]}
+				entering={FadeInDown.duration(800).delay(200).springify()}
+			>
+				<Pressable
+					style={[styles.container, styles.paddingTopButtons]}
+					onPress={() => {
+						router.push("/");
+					}}
+				>
+					<XIcon size={28} color="#fff" />
 				</Pressable>
 			</Animated.View>
-
-			<Animated.View style={[styles.topButtons, styles.topLeftButton]} entering={FadeInDown.duration(800).delay(200).springify()}>
+			<Animated.View
+				style={[styles.topButtons, styles.topRightButton]}
+				entering={FadeInDown.duration(800).delay(200).springify()}
+			>
 				<Pressable>
-					<PlusIcon size={28} color="#fff" />
-				</Pressable>
-			</Animated.View>
-			<Animated.View style={[styles.topButtons, styles.topRightButton]} entering={FadeInDown.duration(800).delay(200).springify()}>
-				<Pressable>
-					<PencilIcon size={22} color="#fff" />
+					<CheckIcon size={28} color="#fff" />
 				</Pressable>
 			</Animated.View>
 		</LayoutBackground>
@@ -74,6 +79,7 @@ const styles = StyleSheet.create({
 		width: 130,
 		aspectRatio: 1,
 		borderRadius: 99,
+		marginBottom: 3,
 	},
 	bottomButton: {
 		position: "absolute",
@@ -92,5 +98,9 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
+	},
+	paddingTopButtons: {
+		paddingBlock: 30,
+		paddingHorizontal: 20,
 	},
 });

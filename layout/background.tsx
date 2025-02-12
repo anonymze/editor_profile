@@ -5,8 +5,8 @@ import useTheme from "@/utils/theme-provider";
 
 export default function LayoutBackground(props: {
 	centeredContent: boolean;
-	onLayout: () => void;
 	children: React.ReactNode;
+	onLayout?: () => void;
 	style?: StyleProp<ViewStyle>;
 }) {
 	const theme = useTheme();

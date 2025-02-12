@@ -17,17 +17,19 @@ export function TextGradient({ text, style }: InputTextGradientProps) {
 	const height = getHeight(fontSize);
 
 	return (
-		<MaskedView
-			style={[styles.flexDirection, { height }]}
-			maskElement={<Text style={[styles.text, style]}>{text}</Text>}
-		>
-			<LinearGradient
-				colors={["#fff", "#1487ff"]}
-				start={{ x: 0, y: 0.35 }}
-				end={{ x: 0, y: 1 }}
-				style={styles.full}
-			/>
-		</MaskedView>
+		<View style={[styles.view]}>
+			<MaskedView
+				style={[styles.flexDirection, { height }]}
+				maskElement={<Text style={[styles.text, style]}>{text}</Text>}
+			>
+				<LinearGradient
+					colors={["#fff", "#1487ff"]}
+					start={{ x: 0, y: 0.35 }}
+					end={{ x: 0, y: 1 }}
+					style={styles.full}
+				/>
+			</MaskedView>
+		</View>
 	);
 }
 
@@ -67,13 +69,6 @@ const styles = StyleSheet.create({
 	},
 	full: {
 		flex: 1,
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "center",
-		width: "100%",
-		height: "100%",
-		alignSelf: "center",
-		alignContent: "center",
 	},
 	flexDirection: {
 		flexDirection: "row",
