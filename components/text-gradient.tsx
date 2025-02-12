@@ -67,6 +67,13 @@ const styles = StyleSheet.create({
 	},
 	full: {
 		flex: 1,
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "center",
+		width: "100%",
+		height: "100%",
+		alignSelf: "center",
+		alignContent: "center",
 	},
 	flexDirection: {
 		flexDirection: "row",

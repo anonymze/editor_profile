@@ -2218,7 +2218,7 @@ SPEC CHECKSUMS:
   hermes-engine: 1949ca944b195a8bde7cbf6316b9068e19cf53c6
   libavif: 84bbb62fb232c3018d6f1bab79beea87e35de7b7
   libdav1d: 23581a4d8ec811ff171ed5e2e05cd27bad64c39f
-  RCT-Folly: bf5c0376ffe4dd2cf438dcf86db385df9fdce648
+  RCT-Folly: 84578c8756030547307e4572ab1947de1685c599
   RCTDeprecation: 063fc281b30b7dc944c98fe53a7e266dab1a8706
   RCTRequired: 8eda2a5a745f6081157a4f34baac40b65fe02b31
   RCTTypeSafety: 0f96bf6c99efc33eb43352212703854933f22930

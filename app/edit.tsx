@@ -20,7 +20,7 @@ export default function Index() {
 			}}
 		>
 			<View style={styles.container}>
-				{/* <Image style={styles.image} source="https://picsum.photos/seed/696/3000/2000" /> */}
+				<Image style={styles.image} source="https://picsum.photos/seed/696/3000/2000" />
 				<InputTextGradient text={"Coucou"} style={{ fontSize: 60 }} ref={inputRef} maxLength={8} />
 			</View>
 
