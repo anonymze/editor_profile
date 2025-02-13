@@ -75,15 +75,17 @@ export const stylesLayout = StyleSheet.create({
 		borderTopColor: "#fff",
 		borderTopWidth: 1,
 	},
+	bottomButtonText: {
+		color: "#fff",
+		fontSize: 18,
+		fontWeight: "bold",
+	},
 	container: {
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
 	},
 	paddingTopButtons: {
-		// flex: 1,
-		// justifyContent: "center",
-		// alignItems: "center",
 		padding: 20,
 	},
 });

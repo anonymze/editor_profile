@@ -73,7 +73,7 @@ export default function Page() {
 				backgroundColor: themeColors[theme.color].secondary,
 			}])} entering={enteringAnimation()}>
 				<Pressable onPress={() => router.push("/frigo")}>
-					<Text>Continuer</Text>
+					<Text style={stylesLayout.bottomButtonText}>Continuer</Text>
 				</Pressable>
 			</Animated.View>
 		</LayoutBackground>
