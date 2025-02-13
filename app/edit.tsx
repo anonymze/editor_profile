@@ -3,6 +3,7 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 import { InputTextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { XIcon, CheckIcon } from "lucide-react-native";
+import { themeColors } from "@/utils/theme-provider";
 import LayoutBackground from "@/layout/background";
 import { stylesLayout } from "@/layout/background";
 import { router } from "expo-router";
@@ -57,11 +58,9 @@ export default function Index() {
 				style={[stylesLayout.bottomButton, styles.buttons]}
 				entering={FadeInDown.duration(500).delay(300)}
 			>
-				<Pressable style={styles.buttonColor}></Pressable>
-				<Pressable style={styles.buttonColor}></Pressable>
-				<Pressable style={styles.buttonColor}></Pressable>
-				<Pressable style={styles.buttonColor}></Pressable>
-				<Pressable style={styles.buttonColor}></Pressable>
+				{Object.keys(themeColors).map((color) => (
+					<Pressable style={[styles.buttonColor, { backgroundColor: themeColors[color].primary }]} key={color}></Pressable>
+				))}
 			</Animated.View>
 		</LayoutBackground>
 	);
@@ -91,8 +90,8 @@ const styles = StyleSheet.create({
 			width: -1,
 			height: 1,
 		},
-		shadowOpacity: 1,
-		shadowRadius: 3,
+		shadowOpacity: 0.1,
+		shadowRadius: 2,
 	},
 	shadowImage: {
 		shadowColor: "#000",
