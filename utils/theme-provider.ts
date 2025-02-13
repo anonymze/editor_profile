@@ -18,7 +18,7 @@ const themeColors = {
 		primary: "#e89150",
 		primaryLight: "#e1bf8e",
 		primaryDark: "#ef7c2e",
-		secondary: "#8ec947",
+		secondary: "#c2c443",
 	},
 	green: {
 		primary: "#009e8a",
