@@ -1,10 +1,10 @@
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import { InputTextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { XIcon, CheckIcon } from "lucide-react-native";
 import LayoutBackground from "@/layout/background";
 import { stylesLayout } from "@/layout/background";
-import { TextInput, View } from "react-native";
 import { router } from "expo-router";
 import { Image } from "expo-image";
 import { useRef } from "react";
@@ -22,7 +22,7 @@ export default function Index() {
 		>
 			<View id="container" style={stylesLayout.container}>
 				<Animated.View entering={FadeInDown.duration(800).delay(200).springify()}>
-					<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+					<Image style={[stylesLayout.image]} source="https://picsum.photos/seed/696/3000/2000" />
 				</Animated.View>
 				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
 					<InputTextGradient text={"Coucou"} style={{ fontSize: 60 }} ref={inputRef} maxLength={8} />
@@ -49,6 +49,62 @@ export default function Index() {
 					<CheckIcon size={28} color="#fff" />
 				</Pressable>
 			</Animated.View>
+
+			<Animated.View style={[stylesLayout.bottomButton, styles.buttons]} entering={FadeInDown.duration(500).delay(300)}>
+				<Pressable style={styles.buttonColor}>
+					<View style={styles.buttonInsetShadow} />
+				</Pressable>
+				<Pressable style={styles.buttonColor}>
+					<View style={styles.buttonInsetShadow} />
+				</Pressable>
+				<Pressable style={styles.buttonColor}>
+					<View style={styles.buttonInsetShadow} />
+				</Pressable>
+				<Pressable style={styles.buttonColor}>
+					<View style={styles.buttonInsetShadow} />
+				</Pressable>
+				<Pressable style={styles.buttonColor}>
+					<View style={styles.buttonInsetShadow} />
+				</Pressable>
+			</Animated.View>
 		</LayoutBackground>
 	);
 }
+
+const styles = StyleSheet.create({
+	buttons: {
+		flexDirection: "row",
+		gap: 15,
+		padding: 8,
+		borderWidth: 1,
+		borderColor: "#fff",
+		maxWidth: "auto",
+		width: "auto",
+		backgroundColor: "rgba(255, 255, 255, 0.4)",
+	},
+	buttonColor: {
+		justifyContent: "center",
+		alignItems: "center",
+		width: 40,
+		aspectRatio: 1,
+		borderWidth: 1,
+		borderColor: "#fff",
+		borderRadius: 99,
+		overflow: "hidden",
+	},
+	buttonInsetShadow: {
+		position: "absolute",
+		top: -10,
+		left: -10,
+		right: -10,
+		bottom: -10,
+		borderRadius: 99,
+		shadowColor: "#000",
+		shadowOffset: {
+			width: 0,
+			height: 0,
+		},
+		shadowOpacity: 0.5,
+		shadowRadius: 10,
+	},
+});

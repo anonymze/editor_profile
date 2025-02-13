@@ -43,7 +43,7 @@ export const stylesLayout = StyleSheet.create({
 		aspectRatio: 1,
 		borderRadius: 12,
 		backgroundColor: "#1487ff",
-		boxShadow: "inset 0 0 8px 0 #fff",
+		boxShadow: "inset 0 0 9px 0 #fff",
 	},
 	topLeftButton: {
 		left: 30,

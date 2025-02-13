@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
 		alignSelf: "center",
 		shadowOffset: { width: 0, height: 6 },
 		shadowOpacity: 0.4,
+		shadowRadius: 0,
 	},
 	full: {
 		flex: 1,
