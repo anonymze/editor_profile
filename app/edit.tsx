@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
 	shadowImage: {
 		shadowColor: "#000",
 		shadowOffset: { width: -1, height: 1 },
-		shadowOpacity: 0.3,
+		shadowOpacity: 0.2,
 		shadowRadius: 2,
 	},
 });
