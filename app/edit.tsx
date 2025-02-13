@@ -52,19 +52,19 @@ export default function Index() {
 
 			<Animated.View style={[stylesLayout.bottomButton, styles.buttons]} entering={FadeInDown.duration(500).delay(300)}>
 				<Pressable style={styles.buttonColor}>
-					<View style={styles.buttonInsetShadow} />
+
 				</Pressable>
 				<Pressable style={styles.buttonColor}>
-					<View style={styles.buttonInsetShadow} />
+					
 				</Pressable>
 				<Pressable style={styles.buttonColor}>
-					<View style={styles.buttonInsetShadow} />
+					
 				</Pressable>
 				<Pressable style={styles.buttonColor}>
-					<View style={styles.buttonInsetShadow} />
+		
 				</Pressable>
 				<Pressable style={styles.buttonColor}>
-					<View style={styles.buttonInsetShadow} />
+			
 				</Pressable>
 			</Animated.View>
 		</LayoutBackground>
@@ -90,21 +90,12 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: "#fff",
 		borderRadius: 99,
-		overflow: "hidden",
-	},
-	buttonInsetShadow: {
-		position: "absolute",
-		top: -10,
-		left: -10,
-		right: -10,
-		bottom: -10,
-		borderRadius: 99,
 		shadowColor: "#000",
 		shadowOffset: {
-			width: 0,
-			height: 0,
+			width: -1,
+			height: 1,
 		},
-		shadowOpacity: 0.5,
-		shadowRadius: 10,
+		shadowOpacity: 1,
+		shadowRadius: 3,
 	},
 });
