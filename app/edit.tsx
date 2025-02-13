@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
 		borderColor: "#fff",
 		maxWidth: "auto",
 		width: "auto",
-		backgroundColor: "rgba(255, 255, 255, 0.4)",
+		backgroundColor: "rgba(195, 172, 171, 0.5)",
 	},
 	buttonColor: {
 		justifyContent: "center",
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
 			height: 1,
 		},
 		shadowOpacity: 0.2,
-		shadowRadius: 1,
+		shadowRadius: 2,
 	},
 	shadowImage: {
 		shadowColor: "#000",
