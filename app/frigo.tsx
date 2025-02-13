@@ -28,7 +28,7 @@ export default function Page() {
 							fy="0%"
 							// gradientUnits="userSpaceOnUse"
 						>
-							<Stop offset="15%" stopColor="#fff" stopOpacity="0.8" />
+							<Stop offset="18%" stopColor="#fff" stopOpacity="0.8" />
 							<Stop offset="100%" stopColor="#00ff00" stopOpacity="0.9" />
 						</RadialGradient>
 					</Defs>
