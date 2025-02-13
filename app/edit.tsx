@@ -1,7 +1,7 @@
-import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
+import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import LayoutBackground, { stylesLayoutDynamic } from "@/layout/background";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import { useTheme, themeColors } from "@/utils/theme-provider";
 import { InputTextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
@@ -11,24 +11,24 @@ import { router } from "expo-router";
 import { Image } from "expo-image";
 
 
-export default function Index() {
+export default function Page() {
 	const inputRef = useRef<TextInput>(null);
 	const [animating, setAnimating] = useState(true);
 	const theme = useTheme();
-	const stylesLayout = stylesLayoutDynamic(themeColors[theme.color].secondary);
+	const stylesLayout = useMemo(() => stylesLayoutDynamic(themeColors[theme.color].secondary), [theme.color]);
 	const bottomButtonRef = useRef<Animated.View>(null);
 
-	const enteringAnimation = useCallback(
+	const enteringAnimation = useMemo(
 		() =>
 			FadeInDown.duration(600)
 				.delay(300)
-				.easing(Easing.inOut(Easing.ease)) // Smooth ease-out animation
+				.easing(Easing.inOut(Easing.ease))
 				.springify()
 				.stiffness(100)
 				.damping(16)
 				.withInitialValues({
 					opacity: 0,
-					transform: [{ translateY: 100 }], // Start from 100 units below
+					transform: [{ translateY: 100 }],
 				})
 				.withCallback((_) => {
 					"worklet";
@@ -38,21 +38,34 @@ export default function Index() {
 	);
 
 	useEffect(() => {
-		setTimeout(() => {
-			inputRef.current?.focus();
+		// dunno why... if i focus on the main thread it will not work
+		const timer = setTimeout(() => {
+			if (inputRef.current) {
+				inputRef.current.focus();
+			}
 		}, 1);
+
+		return () => {
+			clearTimeout(timer);
+		};
 	}, []);
+
+	const handleThemeChange = useCallback(
+		(color: keyof typeof themeColors) => {
+			if (animating) return;
+			theme.setTheme(color);
+		},
+		[animating, theme]
+	);
 
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
 			style={{ flex: 1, backgroundColor: themeColors[theme.color].primaryDark }}
 			keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 20}
+			enabled
 		>
-			<LayoutBackground
-				color={theme.color}
-				centeredContent
-			>
+			<LayoutBackground color={theme.color} centeredContent>
 				<View style={stylesLayout.container}>
 					<Animated.View
 						style={styles.shadowImage}
@@ -96,17 +109,14 @@ export default function Index() {
 				<Animated.View
 					ref={bottomButtonRef}
 					style={StyleSheet.flatten([stylesLayout.bottomButton, styles.buttons])}
-					entering={enteringAnimation()}
+					entering={enteringAnimation}
 					exiting={FadeOut.duration(600)}
 				>
 					{getKeysTypedObject(themeColors).map((color) => (
 						<Pressable
 							style={[styles.buttonColor, { backgroundColor: themeColors[color].primary }]}
 							key={color}
-							onPress={() => {
-								if (animating) return;
-								theme.setTheme(color);
-							}}
+							onPress={() => handleThemeChange(color)}
 						>
 							{theme.color === color && (
 								<Animated.View entering={FadeIn.duration(600)}>
@@ -124,11 +134,11 @@ export default function Index() {
 const styles = StyleSheet.create({
 	buttons: {
 		flexDirection: "row",
-		gap: 16,
+		gap: 17,
 		padding: 8,
 		borderWidth: 1,
 		borderColor: "#fff",
-		maxWidth: "auto",
+		maxWidth: "100%",
 		width: "auto",
 		backgroundColor: "rgba(195, 176, 180, 0.7)",
 	},

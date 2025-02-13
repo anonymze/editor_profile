@@ -10,7 +10,7 @@ import { useCallback } from "react";
 import { Image } from "expo-image";
 
 
-export default function Index() {
+export default function Page() {
 	const theme = useTheme();
 	const stylesLayout = stylesLayoutDynamic(themeColors[theme.color].secondary);
 
@@ -61,7 +61,7 @@ export default function Index() {
 			</Animated.View>
 
 			<Animated.View style={stylesLayout.bottomButton} entering={enteringAnimation()}>
-				<Pressable>
+				<Pressable onPress={() => router.push("/frigo")}>
 					<Text>Continuer</Text>
 				</Pressable>
 			</Animated.View>

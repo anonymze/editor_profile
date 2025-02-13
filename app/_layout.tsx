@@ -15,7 +15,8 @@ export default function RootLayout() {
 							headerShown: false,
 							animation: "none",
 						}}
-					/>
+					>
+					</Stack>
 				</SafeAreaView>
 			</SafeAreaProvider>
 		</GestureHandlerRootView>

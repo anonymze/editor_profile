@@ -12,7 +12,7 @@ const themeColors = {
 		primary: "#ff6538",
 		primaryLight: "#fc987f",
 		primaryDark: "#f44a12",
-	secondary: "#efc069",
+		secondary: "#efc069",
 	},
 	yellow: {
 		primary: "#e89150",
@@ -24,7 +24,7 @@ const themeColors = {
 		primary: "#009e8a",
 		primaryLight: "#00b397",
 		primaryDark: "#00787e",
-	secondary: "#56b3cb",
+		secondary: "#56b3cb",
 	},
 	purple: {
 		primary: "#a31bce",
