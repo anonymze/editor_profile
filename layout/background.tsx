@@ -36,56 +36,52 @@ const styles = StyleSheet.create({
 	},
 });
 
-export const stylesLayoutDynamic = (backgroundColor: string) => {
-	return StyleSheet.create({
-		topButtons: {
-			position: "absolute",
-			top: 35,
-			display: "flex",
-			justifyContent: "center",
-			alignItems: "center",
-			width: 45,
-			aspectRatio: 1,
-			borderRadius: 12,
-			backgroundColor,
-			boxShadow: "inset 0 0 9px 0 #fff",
-		},
-		topLeftButton: {
-			left: 30,
-		},
-		topRightButton: {
-			right: 30,
-		},
-		topMiddleButton: {
-			left: "50%",
-			transform: [{ translateX: "-50%" }],
-		},
-		image: {
-			width: 130,
-			aspectRatio: 1,
-			borderRadius: 99,
-			marginBottom: 3,
-		},
-		bottomButton: {
-			position: "absolute",
-			bottom: 50,
-			width: "100%",
-			maxWidth: 300,
-			alignItems: "center",
-			borderRadius: 99,
-			padding: 16,
-			backgroundColor: "red",
-			borderTopColor: "#fff",
-			borderTopWidth: 1,
-		},
-		container: {
-			flex: 1,
-			justifyContent: "center",
-			alignItems: "center",
-		},
-		paddingTopButtons: {
-			padding: 25,
-		},
-	});
-}
+export const stylesLayout = StyleSheet.create({
+	topButtons: {
+		position: "absolute",
+		top: 35,
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+		width: 45,
+		aspectRatio: 1,
+		borderRadius: 12,
+		boxShadow: "inset 0 0 9px 0 #fff",
+	},
+	topLeftButton: {
+		left: 30,
+	},
+	topRightButton: {
+		right: 30,
+	},
+	topMiddleButton: {
+		left: "50%",
+		transform: [{ translateX: "-50%" }],
+	},
+	image: {
+		width: 130,
+		aspectRatio: 1,
+		borderRadius: 99,
+		marginBottom: 3,
+	},
+	bottomButton: {
+		position: "absolute",
+		bottom: 50,
+		width: "100%",
+		maxWidth: 300,
+		alignItems: "center",
+		borderRadius: 99,
+		padding: 16,
+		borderTopColor: "#fff",
+		borderTopWidth: 1,
+	},
+	container: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
+	},
+	paddingTopButtons: {
+		padding: 25,
+	},
+});
 

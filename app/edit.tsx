@@ -1,7 +1,7 @@
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
 import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
-import LayoutBackground, { stylesLayoutDynamic } from "@/layout/background";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
+import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { useTheme, themeColors } from "@/utils/theme-provider";
 import { InputTextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
@@ -15,7 +15,6 @@ export default function Page() {
 	const inputRef = useRef<TextInput>(null);
 	const [animating, setAnimating] = useState(true);
 	const theme = useTheme();
-	const stylesLayout = useMemo(() => stylesLayoutDynamic(themeColors[theme.color].secondary), [theme.color]);
 	const bottomButtonRef = useRef<Animated.View>(null);
 
 	const enteringAnimation = useMemo(
@@ -85,7 +84,13 @@ export default function Page() {
 				</View>
 
 				<Animated.View
-					style={StyleSheet.flatten([stylesLayout.topButtons, stylesLayout.topLeftButton])}
+					style={StyleSheet.flatten([
+						stylesLayout.topButtons,
+						stylesLayout.topLeftButton,
+						{
+							backgroundColor: themeColors[theme.color].secondary,
+						},
+					])}
 					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
 					<Pressable
@@ -97,8 +102,15 @@ export default function Page() {
 						<XIcon size={28} color="#fff" />
 					</Pressable>
 				</Animated.View>
+
 				<Animated.View
-					style={StyleSheet.flatten([stylesLayout.topButtons, stylesLayout.topRightButton])}
+					style={StyleSheet.flatten([
+						stylesLayout.topButtons,
+						stylesLayout.topRightButton,
+						{
+							backgroundColor: themeColors[theme.color].secondary,
+						},
+					])}
 					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
 					<Pressable style={stylesLayout.paddingTopButtons}>

@@ -1,5 +1,5 @@
-import LayoutBackground, { stylesLayoutDynamic } from "@/layout/background";
 import Animated, { Easing, FadeInDown } from "react-native-reanimated";
+import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { themeColors, useTheme } from "@/utils/theme-provider";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
@@ -12,14 +12,10 @@ import { Image } from "expo-image";
 
 export default function Page() {
 	const theme = useTheme();
-	const stylesLayout = stylesLayoutDynamic(themeColors[theme.color].secondary);
-
-	
 
 	const enteringAnimation = useCallback(
 		() =>
-			FadeInDown
-				.duration(600)
+			FadeInDown.duration(600)
 				.delay(300)
 				.easing(Easing.inOut(Easing.ease))
 				.springify()
@@ -27,7 +23,7 @@ export default function Page() {
 				.damping(16)
 				.withInitialValues({
 					opacity: 0,
-					transform: [{ translateY: 100 }]  
+					transform: [{ translateY: 100 }],
 				}),
 		[]
 	);
@@ -44,15 +40,28 @@ export default function Page() {
 			</View>
 
 			<Animated.View
-				style={StyleSheet.flatten([stylesLayout.topButtons, stylesLayout.topLeftButton])}
+				style={StyleSheet.flatten([
+					stylesLayout.topButtons,
+					stylesLayout.topLeftButton,
+					{
+						backgroundColor: themeColors[theme.color].secondary,
+					},
+				])}
 				entering={FadeInDown.duration(800).delay(200).springify()}
 			>
 				<Pressable style={stylesLayout.paddingTopButtons}>
 					<PlusIcon size={28} color="#fff" />
 				</Pressable>
 			</Animated.View>
+
 			<Animated.View
-				style={StyleSheet.flatten([stylesLayout.topButtons, stylesLayout.topRightButton])}
+				style={StyleSheet.flatten([
+					stylesLayout.topButtons,
+					stylesLayout.topRightButton,
+					{
+						backgroundColor: themeColors[theme.color].secondary,
+					},
+				])}
 				entering={FadeInDown.duration(800).delay(200).springify()}
 			>
 				<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/edit")}>
@@ -60,7 +69,9 @@ export default function Page() {
 				</Pressable>
 			</Animated.View>
 
-			<Animated.View style={stylesLayout.bottomButton} entering={enteringAnimation()}>
+			<Animated.View style={StyleSheet.flatten([stylesLayout.bottomButton, {
+				backgroundColor: themeColors[theme.color].secondary,
+			}])} entering={enteringAnimation()}>
 				<Pressable onPress={() => router.push("/frigo")}>
 					<Text>Continuer</Text>
 				</Pressable>
