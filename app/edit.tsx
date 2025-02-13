@@ -1,8 +1,8 @@
-import Animated, { FadeIn, FadeInDown, runOnJS } from "react-native-reanimated";
+import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
 import LayoutBackground, { stylesLayoutDynamic } from "@/layout/background";
-import { StyleSheet, Text, TextInput, View } from "react-native";
 import { useTheme, themeColors } from "@/utils/theme-provider";
 import { InputTextGradient } from "@/components/text-gradient";
+import { StyleSheet, TextInput, View } from "react-native";
 import { Pressable } from "react-native-gesture-handler";
 import { XIcon, CheckIcon } from "lucide-react-native";
 import { useCallback, useRef, useState } from "react";
@@ -17,6 +17,26 @@ export default function Index() {
 	const theme = useTheme();
 	const stylesLayout = stylesLayoutDynamic(themeColors[theme.color].secondary);
 	const bottomButtonRef = useRef<Animated.View>(null);
+
+	const enteringAnimation = useCallback(
+		() =>
+			FadeInDown
+				.duration(600)
+				.delay(300)
+				.easing(Easing.inOut(Easing.ease))  // Smooth ease-out animation
+				.springify()
+				.stiffness(100)
+				.damping(16)
+				.withInitialValues({
+					opacity: 0,
+					transform: [{ translateY: 100 }]  // Start from 100 units below
+				})
+				.withCallback((finished: boolean) => {
+					'worklet';
+					runOnJS(setAnimating)(false);
+				}),
+		[]
+	);
 
 	return (
 		<LayoutBackground
@@ -67,22 +87,21 @@ export default function Index() {
 			<Animated.View
 				ref={bottomButtonRef}
 				style={StyleSheet.flatten([stylesLayout.bottomButton, styles.buttons])}
-				entering={FadeInDown.duration(600).delay(300).withCallback(() => {
-					"worklet";
-					runOnJS(setAnimating)(false);
-				})}
+				entering={enteringAnimation()}
+				exiting={FadeOut.duration(600)}
 			>
 				{getKeysTypedObject(themeColors).map((color) => (
 					<Pressable
 						style={[styles.buttonColor, { backgroundColor: themeColors[color].primary }]}
 						key={color}
-						onTouchStart={() => {
+						onPress={() => {
+							console.log('hihi')
 							if (animating) return;
 							theme.setTheme(color);
 						}}
 					>
 						{theme.color === color && (
-							<Animated.View entering={FadeIn.duration(500)}>
+							<Animated.View entering={FadeIn.duration(600)}>
 								<CheckIcon size={28} color="#fff" />
 							</Animated.View>
 						)}
