@@ -26,7 +26,7 @@ export default function Page() {
 							ry="100%"
 							fx="50%"
 							fy="0%"
-							gradientUnits="userSpaceOnUse"
+							// gradientUnits="userSpaceOnUse"
 						>
 							<Stop offset="20%" stopColor="#fff" stopOpacity="0.75" />
 							<Stop offset="100%" stopColor="#00ff00" stopOpacity="0.8" />
