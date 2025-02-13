@@ -46,7 +46,7 @@ export default function Index() {
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
-			style={{ flex: 1 }}
+			style={{ flex: 1, backgroundColor: themeColors[theme.color].primaryDark }}
 			keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 20}
 		>
 			<LayoutBackground

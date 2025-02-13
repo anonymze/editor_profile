@@ -1,7 +1,6 @@
-import { interpolateColor, useAnimatedStyle, useDerivedValue, withTiming } from "react-native-reanimated";
 import { Animated, StyleProp, StyleSheet, ViewStyle } from "react-native";
-import { useTheme, themeColors } from "@/utils/theme-provider";
 import { LinearGradient } from "react-native-linear-gradient";
+import { themeColors } from "@/utils/theme-provider";
 
 
 // Create an animated version of LinearGradient
