@@ -1,5 +1,5 @@
 import { StyleProp, StyleSheet, ViewStyle } from "react-native";
-import useTheme, { themeColors } from "@/utils/theme-provider";
+import { useTheme, themeColors } from "@/utils/theme-provider";
 import { LinearGradient } from "react-native-linear-gradient";
 
 

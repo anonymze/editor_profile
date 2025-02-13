@@ -1,6 +1,6 @@
 import { StyleProp, StyleSheet, Text, TextInput, TextStyle, View, ViewStyle } from "react-native";
-import useTheme, { themeColors } from "@/utils/theme-provider";
 import MaskedView from "@react-native-masked-view/masked-view";
+import { useTheme, themeColors } from "@/utils/theme-provider";
 import { LinearGradient } from "react-native-linear-gradient";
 import { forwardRef, useState } from "react";
 

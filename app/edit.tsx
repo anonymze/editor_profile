@@ -1,7 +1,7 @@
 import LayoutBackground, { stylesLayoutDynamic } from "@/layout/background";
 import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import useTheme, { themeColors } from "@/utils/theme-provider";
+import { useTheme, themeColors } from "@/utils/theme-provider";
 import { InputTextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { XIcon, CheckIcon } from "lucide-react-native";
@@ -14,7 +14,7 @@ import { useRef } from "react";
 export default function Index() {
 	const inputRef = useRef<TextInput>(null);
 	const theme = useTheme();
-	const stylesLayout = stylesLayoutDynamic(themeColors[theme.color].primary);
+	const stylesLayout = stylesLayoutDynamic(themeColors[theme.color].secondary);
 
 	return (
 		<LayoutBackground
@@ -32,7 +32,7 @@ export default function Index() {
 				</Animated.View>
 			</View>
 			<Animated.View
-				style={[stylesLayout.topButtons, stylesLayout.topLeftButton]}
+				style={StyleSheet.flatten([stylesLayout.topButtons, stylesLayout.topLeftButton])}
 				entering={FadeInDown.duration(800).delay(200).springify()}
 			>
 				<Pressable
@@ -45,7 +45,7 @@ export default function Index() {
 				</Pressable>
 			</Animated.View>
 			<Animated.View
-				style={[stylesLayout.topButtons, stylesLayout.topRightButton]}
+				style={StyleSheet.flatten([stylesLayout.topButtons, stylesLayout.topRightButton])}
 				entering={FadeInDown.duration(800).delay(200).springify()}
 			>
 				<Pressable style={stylesLayout.paddingTopButtons}>
@@ -54,7 +54,7 @@ export default function Index() {
 			</Animated.View>
 
 			<Animated.View
-				style={[stylesLayout.bottomButton, styles.buttons]}
+				style={StyleSheet.flatten([stylesLayout.bottomButton, styles.buttons])}
 				entering={FadeInDown.duration(500).delay(300)}
 			>
 				{getKeysTypedObject(themeColors).map((color, idx) => (
@@ -80,7 +80,7 @@ export default function Index() {
 const styles = StyleSheet.create({
 	buttons: {
 		flexDirection: "row",
-		gap: 15,
+		gap: 16,
 		padding: 8,
 		borderWidth: 1,
 		borderColor: "#fff",
