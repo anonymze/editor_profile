@@ -1,18 +1,22 @@
-import { StyleProp, StyleSheet, ViewStyle } from "react-native";
+import { interpolateColor, useAnimatedStyle, useDerivedValue, withTiming } from "react-native-reanimated";
+import { Animated, StyleProp, StyleSheet, ViewStyle } from "react-native";
 import { useTheme, themeColors } from "@/utils/theme-provider";
 import { LinearGradient } from "react-native-linear-gradient";
 
 
+// Create an animated version of LinearGradient
+const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
+
 export default function LayoutBackground(props: {
 	centeredContent: boolean;
 	children: React.ReactNode;
+	color: keyof typeof themeColors;
 	onLayout?: () => void;
 	style?: StyleProp<ViewStyle>;
 }) {
-	const theme = useTheme();
 	return (
-		<LinearGradient
-			colors={[themeColors[theme.color].primaryLight, themeColors[theme.color].primaryDark]}
+		<LinearGradient			
+			colors={[themeColors[props.color].primaryLight, themeColors[props.color].primaryDark]}
 			style={[props.centeredContent ? styles.containerCentered : styles.container, props.style]}
 			onLayout={props.onLayout}
 		>
@@ -20,6 +24,7 @@ export default function LayoutBackground(props: {
 		</LinearGradient>
 	);
 }
+
 
 const styles = StyleSheet.create({
 	containerCentered: {
@@ -71,7 +76,7 @@ export const stylesLayoutDynamic = (backgroundColor: string) => {
 			padding: 16,
 			backgroundColor: "red",
 			borderTopColor: "#fff",
-			borderTopWidth: 2,
+			borderTopWidth: 1,
 			color: "#fff",
 			alignItems: "center",
 		},

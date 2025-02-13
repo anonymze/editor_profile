@@ -11,12 +11,12 @@ const getHeight = (fontSize: number) => Math.floor(fontSize * 1.3);
 interface InputTextGradientProps {
 	text: string;
 	style?: StyleProp<TextStyle>;
+	color: keyof typeof themeColors;
 }
 
-export function TextGradient({ text, style }: InputTextGradientProps) {
+export function TextGradient({ text, style, color }: InputTextGradientProps) {
 	const fontSize = StyleSheet.flatten(style).fontSize ?? DEFAULT_FONT_SIZE;
 	const height = getHeight(fontSize);
-	const theme = useTheme();
 	return (
 		<View style={[styles.view]}>
 			<MaskedView
@@ -24,7 +24,7 @@ export function TextGradient({ text, style }: InputTextGradientProps) {
 				maskElement={<Text style={[styles.text, style]}>{text}</Text>}
 			>
 				<LinearGradient
-					colors={["#fff", themeColors[theme.color].primary]}
+					colors={["#fff", themeColors[color].primary]}
 					start={{ x: 0, y: 0.35 }}
 					end={{ x: 0, y: 1 }}
 					style={styles.full}
@@ -35,20 +35,22 @@ export function TextGradient({ text, style }: InputTextGradientProps) {
 }
 
 export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & { maxLength?: number }>(
-	({ text, style, maxLength }, ref) => {
+	({ text, style, maxLength, color }, ref) => {
 		const [inputText, setInputText] = useState(text);
 		const fontSize = StyleSheet.flatten(style).fontSize ?? DEFAULT_FONT_SIZE;
 		const height = getHeight(fontSize);
 
 		return (
 			<View style={[styles.view, { height }]}>
-				<TextGradient text={inputText} style={{ fontSize }} />
+				<TextGradient text={inputText} style={{ fontSize }} color={color} />
 				<TextInput
 					style={[styles.input, style]}
 					onChangeText={setInputText}
 					value={inputText}
 					ref={ref}
 					maxLength={maxLength ?? 10}
+					// TODO: Remove this
+					editable={false}
 				/>
 			</View>
 		);

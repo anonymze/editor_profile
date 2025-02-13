@@ -34,7 +34,7 @@ const themeColors = {
 	},
 } as const;
 
-type ThemeType = keyof typeof themeColors;
+export type ThemeType = keyof typeof themeColors;
 
 interface Theme {
 	color: ThemeType;

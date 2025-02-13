@@ -14,13 +14,13 @@ export default function Index() {
 	const stylesLayout = stylesLayoutDynamic(themeColors[theme.color].secondary);
 
 	return (
-		<LayoutBackground centeredContent>
+		<LayoutBackground centeredContent color={theme.color}>
 			<View id="container" style={stylesLayout.container}>
 				<Animated.View entering={FadeInDown.duration(800).delay(200).springify()}>
 					<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
 				</Animated.View>
 				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
-					<TextGradient text={"Coufefcou"} style={{ fontSize: 60 }} />
+					<TextGradient color={theme.color} text={"Coufefcou"} style={{ fontSize: 60 }} />
 				</Animated.View>
 			</View>
 
