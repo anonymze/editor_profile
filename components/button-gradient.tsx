@@ -1,5 +1,6 @@
-import { Pressable, PressableProps, StyleSheet, Text } from "react-native";
+import { Pressable, PressableProps } from "react-native-gesture-handler";
 import { LinearGradient } from "react-native-linear-gradient";
+import { StyleSheet, Text } from "react-native";
 
 
 export function ButtonGradient(props: PressableProps & { children: React.ReactNode }) {

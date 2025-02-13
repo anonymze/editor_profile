@@ -81,7 +81,10 @@ export const stylesLayout = StyleSheet.create({
 		alignItems: "center",
 	},
 	paddingTopButtons: {
-		padding: 25,
+		// flex: 1,
+		// justifyContent: "center",
+		// alignItems: "center",
+		padding: 20,
 	},
 });
 
