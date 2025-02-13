@@ -23,11 +23,8 @@ export default function Index() {
 			}}
 		>
 			<View id="container" style={stylesLayout.container}>
-				<Animated.View
-					style={styles.shadowImage}
-					entering={FadeInDown.duration(800).delay(200).springify()}
-				>
-						<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+				<Animated.View style={styles.shadowImage} entering={FadeInDown.duration(800).delay(200).springify()}>
+					<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
 				</Animated.View>
 				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
 					<InputTextGradient text={"Coucou"} style={{ fontSize: 60 }} ref={inputRef} maxLength={8} />
@@ -60,7 +57,10 @@ export default function Index() {
 				entering={FadeInDown.duration(500).delay(300)}
 			>
 				{getKeysTypedObject(themeColors).map((color) => (
-					<Pressable style={[styles.buttonColor, { backgroundColor: themeColors[color].primary }]} key={color}></Pressable>
+					<Pressable
+						style={[styles.buttonColor, { backgroundColor: themeColors[color].primary }]}
+						key={color}
+					></Pressable>
 				))}
 			</Animated.View>
 		</LayoutBackground>
@@ -87,8 +87,12 @@ const styles = StyleSheet.create({
 		borderColor: "#fff",
 		borderRadius: 99,
 		shadowColor: "#000",
-		shadowOpacity: 0.2,
-		shadowRadius: 2,
+		shadowOpacity: 0.3,
+		shadowOffset: {
+			width: 0,
+			height: 0,
+		},
+		shadowRadius: 1,
 	},
 	shadowImage: {
 		shadowColor: "#000",
