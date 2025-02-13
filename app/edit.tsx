@@ -4,6 +4,7 @@ import { InputTextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { XIcon, CheckIcon } from "lucide-react-native";
 import { themeColors } from "@/utils/theme-provider";
+import { getKeysTypedObject } from "@/utils/helper";
 import LayoutBackground from "@/layout/background";
 import { stylesLayout } from "@/layout/background";
 import { router } from "expo-router";
@@ -23,10 +24,10 @@ export default function Index() {
 		>
 			<View id="container" style={stylesLayout.container}>
 				<Animated.View
-					style={[styles.shadowImage]}
+					style={styles.shadowImage}
 					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
-					<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+						<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
 				</Animated.View>
 				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
 					<InputTextGradient text={"Coucou"} style={{ fontSize: 60 }} ref={inputRef} maxLength={8} />
@@ -58,7 +59,7 @@ export default function Index() {
 				style={[stylesLayout.bottomButton, styles.buttons]}
 				entering={FadeInDown.duration(500).delay(300)}
 			>
-				{Object.keys(themeColors).map((color) => (
+				{getKeysTypedObject(themeColors).map((color) => (
 					<Pressable style={[styles.buttonColor, { backgroundColor: themeColors[color].primary }]} key={color}></Pressable>
 				))}
 			</Animated.View>
@@ -75,21 +76,17 @@ const styles = StyleSheet.create({
 		borderColor: "#fff",
 		maxWidth: "auto",
 		width: "auto",
-		backgroundColor: "rgba(195, 172, 171, 0.5)",
+		backgroundColor: "rgba(195, 176, 180, 0.8)",
 	},
 	buttonColor: {
 		justifyContent: "center",
 		alignItems: "center",
-		width: 40,
+		width: 45,
 		aspectRatio: 1,
 		borderWidth: 1,
 		borderColor: "#fff",
 		borderRadius: 99,
 		shadowColor: "#000",
-		shadowOffset: {
-			width: -1,
-			height: 1,
-		},
 		shadowOpacity: 0.2,
 		shadowRadius: 2,
 	},

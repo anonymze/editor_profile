@@ -18,7 +18,7 @@ const useTheme = create<Theme>((set) => ({
 
 export default useTheme;
 
-export const themeColors = Object.freeze({
+export const themeColors = {
 	blue: {
 		primary: "#001ddf",
 		primaryLight: "#000efd",
@@ -49,4 +49,4 @@ export const themeColors = Object.freeze({
 		primaryDark: "#8815b4",
 		secondary: "#800080",
 	},
-});
+} as const;
