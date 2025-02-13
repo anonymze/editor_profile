@@ -8,41 +8,40 @@ export default function Page() {
 	return (
 		<LayoutBackground centeredContent color="green">
 			<Pressable
-				onPress={() => console.log('Button pressed')}
-				style={({ pressed }) => ({
-					opacity: pressed ? 0.8 : 1,
-					transform: [{ scale: pressed ? 0.98 : 1 }],
-				})}
+				onPress={() => console.log("Button pressed")}
+				style={{
+					width: 325,
+					height: 55,
+					alignItems: "center",
+					justifyContent: "center",
+				}}
 			>
-				<Svg width="300" height="300" >
+				<Svg style={{ position: "absolute", width: "100%", height: "100%" }}>
 					<Defs>
 						<RadialGradient
 							id="grad"
 							cx="50%"
-							cy="50%"
-							rx="50%"
-							ry="50%"
+							cy="0%"
+							rx="100%"
+							ry="100%"
 							fx="50%"
-							fy="0"
-							// gradientUnits="userSpaceOnUse"
-							gradientUnits="objectBoundingBox"
+							fy="0%"
+							gradientUnits="userSpaceOnUse"
 						>
-							<Stop offset="0%" stopColor="#fff" stopOpacity="1" />
-							<Stop offset="100%" stopColor="#00ff00" stopOpacity="1" />
+							<Stop offset="20%" stopColor="#fff" stopOpacity="0.75" />
+							<Stop offset="100%" stopColor="#00ff00" stopOpacity="0.8" />
 						</RadialGradient>
 					</Defs>
-					<Rect x="0" y="0" width="300" height="50" fill="url(#grad)" rx="20" ry="20" />
+					<Rect x="0" y="0" width="100%" height="100%" fill="url(#grad)" rx="27.5" ry="27.5" />
 				</Svg>
-				<Text style={{
-					position: 'absolute',
-					top: '50%',
-					left: '50%',
-					transform: [{ translateX: -40 }],
-					color: 'white',
-					fontSize: 18,
-					fontWeight: 'bold',
-				}}>
-					Click Me
+				<Text
+					style={{
+						color: "#fff",
+						fontSize: 18,
+						fontWeight: "bold",
+					}}
+				>
+					Continuer
 				</Text>
 			</Pressable>
 		</LayoutBackground>
