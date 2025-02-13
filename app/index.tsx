@@ -1,7 +1,7 @@
 import Animated, { Easing, FadeInDown } from "react-native-reanimated";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
+import { ButtonRadialGradient } from "@/components/radial-gradient";
 import { themeColors, useTheme } from "@/utils/theme-provider";
-import { ButtonGradient } from "@/components/button-gradient";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
@@ -71,7 +71,7 @@ export default function Page() {
 			</Animated.View>
 
 			<Animated.View style={stylesLayout.bottomButton} entering={enteringAnimation()}>
-				<ButtonGradient text="Continuer" color={themeColors[theme.color].primaryLight} />
+				<ButtonRadialGradient text="Continuer" color={themeColors[theme.color].primaryLight} />
 			</Animated.View>
 		</LayoutBackground>
 	);
