@@ -90,8 +90,8 @@ const styles = StyleSheet.create({
 			width: -1,
 			height: 1,
 		},
-		shadowOpacity: 0.1,
-		shadowRadius: 2,
+		shadowOpacity: 0.2,
+		shadowRadius: 1,
 	},
 	shadowImage: {
 		shadowColor: "#000",
