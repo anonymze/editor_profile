@@ -20,19 +20,18 @@ export default function Index() {
 
 	const enteringAnimation = useCallback(
 		() =>
-			FadeInDown
-				.duration(600)
+			FadeInDown.duration(600)
 				.delay(300)
-				.easing(Easing.inOut(Easing.ease))  // Smooth ease-out animation
+				.easing(Easing.inOut(Easing.ease)) // Smooth ease-out animation
 				.springify()
 				.stiffness(100)
 				.damping(16)
 				.withInitialValues({
 					opacity: 0,
-					transform: [{ translateY: 100 }]  // Start from 100 units below
+					transform: [{ translateY: 100 }], // Start from 100 units below
 				})
-				.withCallback((finished: boolean) => {
-					'worklet';
+				.withCallback((_) => {
+					"worklet";
 					runOnJS(setAnimating)(false);
 				}),
 		[]
@@ -79,9 +78,7 @@ export default function Index() {
 				style={StyleSheet.flatten([stylesLayout.topButtons, stylesLayout.topRightButton])}
 				entering={FadeInDown.duration(800).delay(200).springify()}
 			>
-				<Pressable style={stylesLayout.paddingTopButtons}>
-					<CheckIcon size={28} color="#fff" />
-				</Pressable>
+				<Pressable style={stylesLayout.paddingTopButtons}></Pressable>
 			</Animated.View>
 
 			<Animated.View
@@ -95,7 +92,6 @@ export default function Index() {
 						style={[styles.buttonColor, { backgroundColor: themeColors[color].primary }]}
 						key={color}
 						onPress={() => {
-							console.log('hihi')
 							if (animating) return;
 							theme.setTheme(color);
 						}}

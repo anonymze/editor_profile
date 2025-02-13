@@ -1,5 +1,5 @@
-import Animated, { Easing, FadeInDown, runOnJS } from "react-native-reanimated";
 import LayoutBackground, { stylesLayoutDynamic } from "@/layout/background";
+import Animated, { Easing, FadeInDown } from "react-native-reanimated";
 import { themeColors, useTheme } from "@/utils/theme-provider";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
@@ -14,18 +14,20 @@ export default function Index() {
 	const theme = useTheme();
 	const stylesLayout = stylesLayoutDynamic(themeColors[theme.color].secondary);
 
+	
+
 	const enteringAnimation = useCallback(
 		() =>
 			FadeInDown
 				.duration(600)
 				.delay(300)
-				.easing(Easing.inOut(Easing.ease))  // Smooth ease-out animation
+				.easing(Easing.inOut(Easing.ease))
 				.springify()
 				.stiffness(100)
 				.damping(16)
 				.withInitialValues({
 					opacity: 0,
-					transform: [{ translateY: 100 }]  // Start from 100 units below
+					transform: [{ translateY: 100 }]  
 				}),
 		[]
 	);
