@@ -87,12 +87,12 @@ const styles = StyleSheet.create({
 		borderColor: "#fff",
 		borderRadius: 99,
 		shadowColor: "#000",
-		shadowOpacity: 0.3,
+		shadowOpacity: 0.2,
 		shadowOffset: {
 			width: 0,
 			height: 0,
 		},
-		shadowRadius: 1,
+		shadowRadius: 3,
 	},
 	shadowImage: {
 		shadowColor: "#000",
