@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 
-type ThemeType = string;
+type ThemeType = keyof typeof themeColors;
 
 interface Theme {
 	color: ThemeType;
@@ -9,7 +9,7 @@ interface Theme {
 }
 
 const useTheme = create<Theme>((set) => ({
-	color: "#999999",
+	color: "blue",
 	setTheme: (val) =>
 		set({
 			color: val,

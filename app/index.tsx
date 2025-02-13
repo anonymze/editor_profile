@@ -1,15 +1,21 @@
-import Animated, { FadeIn, FadeInDown, FadeInUp } from "react-native-reanimated";
-import { InputTextGradient, TextGradient } from "@/components/text-gradient";
+import LayoutBackground, { stylesLayoutDynamic } from "@/layout/background";
+import Animated, { FadeInDown } from "react-native-reanimated";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
+import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
-import LayoutBackground from "@/layout/background";
-import { stylesLayout } from "@/layout/background";
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { themeColors } from "@/utils/theme-provider";
+import useTheme from "@/utils/theme-provider";
 import { router } from "expo-router";
 import { Image } from "expo-image";
 
 
 export default function Index() {
+	const theme = useTheme();
+	const stylesLayout = stylesLayoutDynamic(themeColors[theme.color].primary);
+
+	console.log(stylesLayout.topButtons);
+
 	return (
 		<LayoutBackground centeredContent>
 			<View id="container" style={stylesLayout.container}>
@@ -33,10 +39,7 @@ export default function Index() {
 				style={[stylesLayout.topButtons, stylesLayout.topRightButton]}
 				entering={FadeInDown.duration(800).delay(200).springify()}
 			>
-				<Pressable
-					style={stylesLayout.paddingTopButtons}
-					onPress={() => router.push("/edit")}
-				>
+				<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/edit")}>
 					<PencilIcon size={22} color="#fff" />
 				</Pressable>
 			</Animated.View>

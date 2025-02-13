@@ -1,12 +1,11 @@
+import LayoutBackground, { stylesLayoutDynamic } from "@/layout/background";
+import Animated, { FadeIn, FadeInDown } from "react-native-reanimated";
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import Animated, { FadeInDown } from "react-native-reanimated";
+import useTheme, { themeColors } from "@/utils/theme-provider";
 import { InputTextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { XIcon, CheckIcon } from "lucide-react-native";
-import { themeColors } from "@/utils/theme-provider";
 import { getKeysTypedObject } from "@/utils/helper";
-import LayoutBackground from "@/layout/background";
-import { stylesLayout } from "@/layout/background";
 import { router } from "expo-router";
 import { Image } from "expo-image";
 import { useRef } from "react";
@@ -14,6 +13,8 @@ import { useRef } from "react";
 
 export default function Index() {
 	const inputRef = useRef<TextInput>(null);
+	const theme = useTheme();
+	const stylesLayout = stylesLayoutDynamic(themeColors[theme.color].primary);
 
 	return (
 		<LayoutBackground
@@ -56,11 +57,20 @@ export default function Index() {
 				style={[stylesLayout.bottomButton, styles.buttons]}
 				entering={FadeInDown.duration(500).delay(300)}
 			>
-				{getKeysTypedObject(themeColors).map((color) => (
+				{getKeysTypedObject(themeColors).map((color, idx) => (
 					<Pressable
 						style={[styles.buttonColor, { backgroundColor: themeColors[color].primary }]}
 						key={color}
-					></Pressable>
+						onPress={() => {
+							theme.setTheme(color);
+						}}
+					>
+						{theme.color === color && (
+							<Animated.View entering={FadeIn.duration(500)}>
+								<CheckIcon size={28} color="#fff" />
+							</Animated.View>
+						)}
+					</Pressable>
 				))}
 			</Animated.View>
 		</LayoutBackground>
@@ -76,7 +86,7 @@ const styles = StyleSheet.create({
 		borderColor: "#fff",
 		maxWidth: "auto",
 		width: "auto",
-		backgroundColor: "rgba(195, 176, 180, 0.8)",
+		backgroundColor: "rgba(195, 176, 180, 0.7)",
 	},
 	buttonColor: {
 		justifyContent: "center",
