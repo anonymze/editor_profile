@@ -1,11 +1,11 @@
+import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
 import LayoutBackground, { stylesLayoutDynamic } from "@/layout/background";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTheme, themeColors } from "@/utils/theme-provider";
 import { InputTextGradient } from "@/components/text-gradient";
-import { StyleSheet, TextInput, View } from "react-native";
 import { Pressable } from "react-native-gesture-handler";
 import { XIcon, CheckIcon } from "lucide-react-native";
-import { useCallback, useRef, useState } from "react";
 import { getKeysTypedObject } from "@/utils/helper";
 import { router } from "expo-router";
 import { Image } from "expo-image";
@@ -37,74 +37,87 @@ export default function Index() {
 		[]
 	);
 
+	useEffect(() => {
+		setTimeout(() => {
+			inputRef.current?.focus();
+		}, 1);
+	}, []);
+
 	return (
-		<LayoutBackground
-			color={theme.color}
-			centeredContent
-			onLayout={() => {
-				// TODO: Remove this
-				// inputRef.current?.focus();
-			}}
+		<KeyboardAvoidingView
+			behavior={Platform.OS === "ios" ? "padding" : "height"}
+			style={{ flex: 1 }}
+			keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 20}
 		>
-			<View style={stylesLayout.container}>
-				<Animated.View style={styles.shadowImage} entering={FadeInDown.duration(800).delay(200).springify()}>
-					<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
-				</Animated.View>
-				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
-					<InputTextGradient
-						color={theme.color}
-						text={"Coucou"}
-						style={{ fontSize: 60 }}
-						ref={inputRef}
-						maxLength={8}
-					/>
-				</Animated.View>
-			</View>
-
-			<Animated.View
-				style={StyleSheet.flatten([stylesLayout.topButtons, stylesLayout.topLeftButton])}
-				entering={FadeInDown.duration(800).delay(200).springify()}
+			<LayoutBackground
+				color={theme.color}
+				centeredContent
 			>
-				<Pressable
-					style={stylesLayout.paddingTopButtons}
-					onPress={() => {
-						router.push("/");
-					}}
+				<View style={stylesLayout.container}>
+					<Animated.View
+						style={styles.shadowImage}
+						entering={FadeInDown.duration(800).delay(200).springify()}
+					>
+						<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+					</Animated.View>
+					<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
+						<InputTextGradient
+							color={theme.color}
+							text={"Coucou"}
+							style={{ fontSize: 60 }}
+							ref={inputRef}
+							maxLength={8}
+						/>
+					</Animated.View>
+				</View>
+
+				<Animated.View
+					style={StyleSheet.flatten([stylesLayout.topButtons, stylesLayout.topLeftButton])}
+					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
-					<XIcon size={28} color="#fff" />
-				</Pressable>
-			</Animated.View>
-			<Animated.View
-				style={StyleSheet.flatten([stylesLayout.topButtons, stylesLayout.topRightButton])}
-				entering={FadeInDown.duration(800).delay(200).springify()}
-			>
-				<Pressable style={stylesLayout.paddingTopButtons}></Pressable>
-			</Animated.View>
-
-			<Animated.View
-				ref={bottomButtonRef}
-				style={StyleSheet.flatten([stylesLayout.bottomButton, styles.buttons])}
-				entering={enteringAnimation()}
-				exiting={FadeOut.duration(600)}
-			>
-				{getKeysTypedObject(themeColors).map((color) => (
 					<Pressable
-						style={[styles.buttonColor, { backgroundColor: themeColors[color].primary }]}
-						key={color}
+						style={stylesLayout.paddingTopButtons}
 						onPress={() => {
-							if (animating) return;
-							theme.setTheme(color);
+							router.push("/");
 						}}
 					>
-						{theme.color === color && (
-							<Animated.View entering={FadeIn.duration(600)}>
-								<CheckIcon size={28} color="#fff" />
-							</Animated.View>
-						)}
+						<XIcon size={28} color="#fff" />
 					</Pressable>
-				))}
-			</Animated.View>
-		</LayoutBackground>
+				</Animated.View>
+				<Animated.View
+					style={StyleSheet.flatten([stylesLayout.topButtons, stylesLayout.topRightButton])}
+					entering={FadeInDown.duration(800).delay(200).springify()}
+				>
+					<Pressable style={stylesLayout.paddingTopButtons}>
+						<CheckIcon size={28} color="#fff" />
+					</Pressable>
+				</Animated.View>
+
+				<Animated.View
+					ref={bottomButtonRef}
+					style={StyleSheet.flatten([stylesLayout.bottomButton, styles.buttons])}
+					entering={enteringAnimation()}
+					exiting={FadeOut.duration(600)}
+				>
+					{getKeysTypedObject(themeColors).map((color) => (
+						<Pressable
+							style={[styles.buttonColor, { backgroundColor: themeColors[color].primary }]}
+							key={color}
+							onPress={() => {
+								if (animating) return;
+								theme.setTheme(color);
+							}}
+						>
+							{theme.color === color && (
+								<Animated.View entering={FadeIn.duration(600)}>
+									<CheckIcon size={28} color="#fff" />
+								</Animated.View>
+							)}
+						</Pressable>
+					))}
+				</Animated.View>
+			</LayoutBackground>
+		</KeyboardAvoidingView>
 	);
 }
 

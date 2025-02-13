@@ -49,8 +49,9 @@ export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & 
 					value={inputText}
 					ref={ref}
 					maxLength={maxLength ?? 10}
-					// TODO: Remove this
-					editable={false}
+					editable={true}
+					cursorColor={"#fff"}
+					selectionColor={"#fff"}
 				/>
 			</View>
 		);
