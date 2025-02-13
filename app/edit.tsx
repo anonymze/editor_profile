@@ -21,8 +21,11 @@ export default function Index() {
 			}}
 		>
 			<View id="container" style={stylesLayout.container}>
-				<Animated.View entering={FadeInDown.duration(800).delay(200).springify()}>
-					<Image style={[stylesLayout.image]} source="https://picsum.photos/seed/696/3000/2000" />
+				<Animated.View
+					style={[styles.shadowImage]}
+					entering={FadeInDown.duration(800).delay(200).springify()}
+				>
+					<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
 				</Animated.View>
 				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
 					<InputTextGradient text={"Coucou"} style={{ fontSize: 60 }} ref={inputRef} maxLength={8} />
@@ -50,22 +53,15 @@ export default function Index() {
 				</Pressable>
 			</Animated.View>
 
-			<Animated.View style={[stylesLayout.bottomButton, styles.buttons]} entering={FadeInDown.duration(500).delay(300)}>
-				<Pressable style={styles.buttonColor}>
-
-				</Pressable>
-				<Pressable style={styles.buttonColor}>
-					
-				</Pressable>
-				<Pressable style={styles.buttonColor}>
-					
-				</Pressable>
-				<Pressable style={styles.buttonColor}>
-		
-				</Pressable>
-				<Pressable style={styles.buttonColor}>
-			
-				</Pressable>
+			<Animated.View
+				style={[stylesLayout.bottomButton, styles.buttons]}
+				entering={FadeInDown.duration(500).delay(300)}
+			>
+				<Pressable style={styles.buttonColor}></Pressable>
+				<Pressable style={styles.buttonColor}></Pressable>
+				<Pressable style={styles.buttonColor}></Pressable>
+				<Pressable style={styles.buttonColor}></Pressable>
+				<Pressable style={styles.buttonColor}></Pressable>
 			</Animated.View>
 		</LayoutBackground>
 	);
@@ -97,5 +93,11 @@ const styles = StyleSheet.create({
 		},
 		shadowOpacity: 1,
 		shadowRadius: 3,
+	},
+	shadowImage: {
+		shadowColor: "#000",
+		shadowOffset: { width: -1, height: 1 },
+		shadowOpacity: 0.3,
+		shadowRadius: 2,
 	},
 });
