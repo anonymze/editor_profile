@@ -1,49 +1,49 @@
-import Svg, { Defs, RadialGradient, Stop, Rect } from "react-native-svg";
+import Animated, { Easing, FadeInDown } from "react-native-reanimated";
+import LayoutBackground, { stylesLayout } from "@/layout/background";
+import { ButtonRadialGradient } from "@/components/radial-gradient";
+import { themeColors, useTheme } from "@/utils/theme-provider";
+import { PlusIcon, PencilIcon } from "lucide-react-native";
+import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
-import LayoutBackground from "@/layout/background";
-import { Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+import { router } from "expo-router";
+import { useCallback } from "react";
+import { Image } from "expo-image";
 
 
 export default function Page() {
+	const theme = useTheme();
 	return (
-		<LayoutBackground centeredContent color="green">
-			<Pressable
-				onPress={() => console.log("Button pressed")}
-				style={{
-					width: 325,
-					height: 55,
-					alignItems: "center",
-					justifyContent: "center",
-				}}
+		<LayoutBackground centeredContent color={theme.color}>
+			<Animated.View
+				style={StyleSheet.flatten([
+					stylesLayout.topButtons,
+					stylesLayout.topLeftButton,
+					{
+						backgroundColor: themeColors[theme.color].secondary,
+					},
+				])}
+				entering={FadeInDown.duration(800).delay(200).springify()}
 			>
-				<Svg style={{ position: "absolute", width: "100%", height: "100%" }}>
-					<Defs>
-						<RadialGradient
-							id="grad"
-							cx="50%"
-							cy="0%"
-							rx="100%"
-							ry="100%"
-							fx="50%"
-							fy="0%"
-							// gradientUnits="userSpaceOnUse"
-						>
-							<Stop offset="18%" stopColor="#fff" stopOpacity="0.8" />
-							<Stop offset="100%" stopColor="#00ff00" stopOpacity="0.9" />
-						</RadialGradient>
-					</Defs>
-					<Rect x="0" y="0" width="100%" height="100%" fill="url(#grad)" rx="27.5" ry="27.5" />
-				</Svg>
-				<Text
-					style={{
-						color: "#fff",
-						fontSize: 18,
-						fontWeight: "bold",
-					}}
-				>
-					Continuer
-				</Text>
-			</Pressable>
+				<Pressable style={stylesLayout.paddingTopButtons}>
+					<PlusIcon size={28} color="#fff" />
+				</Pressable>
+			</Animated.View>
+
+			<Animated.View
+				style={StyleSheet.flatten([
+					stylesLayout.topButtons,
+					stylesLayout.topRightButton,
+					{
+						backgroundColor: themeColors[theme.color].secondary,
+					},
+				])}
+				entering={FadeInDown.duration(800).delay(200).springify()}
+			>
+				<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/edit")}>
+					<PencilIcon size={22} color="#fff" />
+				</Pressable>
+			</Animated.View>
 		</LayoutBackground>
 	);
 }

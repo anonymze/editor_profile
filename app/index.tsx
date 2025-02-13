@@ -31,7 +31,7 @@ export default function Page() {
 
 	return (
 		<LayoutBackground centeredContent color={theme.color}>
-			<View id="container" style={stylesLayout.container}>
+			<View style={stylesLayout.container}>
 				<Animated.View entering={FadeInDown.duration(800).delay(200).springify()}>
 					<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
 				</Animated.View>
@@ -71,7 +71,7 @@ export default function Page() {
 			</Animated.View>
 
 			<Animated.View style={stylesLayout.bottomButton} entering={enteringAnimation()}>
-				<ButtonRadialGradient text="Continuer" color={themeColors[theme.color].primaryLight} />
+				<ButtonRadialGradient onPress={() => router.push("/frigo")} text="Continuer" color={themeColors[theme.color].primaryLight} />
 			</Animated.View>
 		</LayoutBackground>
 	);
