@@ -18,11 +18,11 @@ export function ButtonGradient({ text, color, ...props }: PressableProps & { tex
 						fy="0%"
 						// gradientUnits="userSpaceOnUse"
 					>
-						<Stop offset="20%" stopColor="#fff" stopOpacity="0.8" />
-						<Stop offset="100%" stopColor={color} stopOpacity="0.9" />
+						<Stop offset="0%" stopColor="#fff" stopOpacity="0.7" />
+						<Stop offset="60%" stopColor={color} stopOpacity="0.8" />
 					</RadialGradient>
 				</Defs>
-				<Rect x="0" y="0" width="100%" height="100%" fill="url(#grad)" rx="27.5" ry="27.5" />
+				<Rect x="0" y="0" width="100%" height="100%" fill="url(#grad)" />
 			</Svg>
 			<Text style={styles.text}>{text}</Text>
 		</Pressable>
@@ -35,6 +35,9 @@ const styles = StyleSheet.create({
 		height: 55,
 		alignItems: "center",
 		justifyContent: "center",
+		borderColor: "rgba(255, 255, 255, 0.1)",
+		borderRadius: 99,
+		overflow: "hidden",
 	},
 	text: {
 		color: "#fff",

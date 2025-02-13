@@ -71,9 +71,6 @@ export const stylesLayout = StyleSheet.create({
 		maxWidth: 300,
 		alignItems: "center",
 		borderRadius: 99,
-		padding: 16,
-		borderTopColor: "#fff",
-		borderTopWidth: 1,
 	},
 	bottomButtonText: {
 		color: "#fff",

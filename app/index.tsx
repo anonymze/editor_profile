@@ -1,6 +1,7 @@
 import Animated, { Easing, FadeInDown } from "react-native-reanimated";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { themeColors, useTheme } from "@/utils/theme-provider";
+import { ButtonGradient } from "@/components/button-gradient";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
@@ -69,12 +70,8 @@ export default function Page() {
 				</Pressable>
 			</Animated.View>
 
-			<Animated.View style={StyleSheet.flatten([stylesLayout.bottomButton, {
-				backgroundColor: themeColors[theme.color].secondary,
-			}])} entering={enteringAnimation()}>
-				<Pressable onPress={() => router.push("/frigo")}>
-					<Text style={stylesLayout.bottomButtonText}>Continuer</Text>
-				</Pressable>
+			<Animated.View style={stylesLayout.bottomButton} entering={enteringAnimation()}>
+				<ButtonGradient text="Continuer" color={themeColors[theme.color].primaryLight} />
 			</Animated.View>
 		</LayoutBackground>
 	);
