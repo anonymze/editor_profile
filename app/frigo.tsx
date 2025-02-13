@@ -1,6 +1,6 @@
+import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
 import Animated, { Easing, FadeInDown } from "react-native-reanimated";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
-import { ButtonRadialGradient } from "@/components/radial-gradient";
 import { themeColors, useTheme } from "@/utils/theme-provider";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
@@ -44,6 +44,8 @@ export default function Page() {
 					<PencilIcon size={22} color="#fff" />
 				</Pressable>
 			</Animated.View>
+
+			<CircleRadialGradient text="Coucou" color={themeColors[theme.color].primaryLight} />
 		</LayoutBackground>
 	);
 }
