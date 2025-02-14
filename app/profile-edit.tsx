@@ -1,5 +1,5 @@
+import { InteractionManager, KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
-import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { CircleRadialGradient } from "@/components/radial-gradient";
@@ -17,8 +17,6 @@ export default function Page() {
 	const [animating, setAnimating] = useState(true);
 	const theme = useTheme();
 	const bottomButtonRef = useRef<Animated.View>(null);
-
-	
 
 	const enteringAnimation = useMemo(
 		() =>
@@ -40,16 +38,15 @@ export default function Page() {
 	);
 
 	useEffect(() => {
-		// dunno why... if i focus on the main thread it will not work
-		const timer = setTimeout(() => {
-			if (inputRef.current) {
-				inputRef.current.focus();
-			}
-		}, 1);
-
-		return () => {
-			clearTimeout(timer);
-		};
+			const interactionPromise = InteractionManager.runAfterInteractions(() => {
+				if (inputRef.current) {
+					inputRef.current.focus();
+				}
+			});
+	
+			return () => {
+				interactionPromise.cancel();
+			};
 	}, []);
 
 	const handleThemeChange = useCallback(
@@ -63,7 +60,7 @@ export default function Page() {
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
-			style={{ backgroundColor: themeColors[theme.color].primaryDark }}
+			style={{ flex: 1, backgroundColor: themeColors[theme.color].primaryDark }}
 			keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 0}
 		>
 			<LayoutBackground color={theme.color} centeredContent>
