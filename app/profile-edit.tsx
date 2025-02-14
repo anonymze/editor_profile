@@ -1,5 +1,5 @@
-import { InteractionManager, KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
+import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { CircleRadialGradient } from "@/components/radial-gradient";
@@ -38,15 +38,13 @@ export default function Page() {
 	);
 
 	useEffect(() => {
-			const interactionPromise = InteractionManager.runAfterInteractions(() => {
-				if (inputRef.current) {
-					inputRef.current.focus();
-				}
-			});
-	
-			return () => {
-				interactionPromise.cancel();
-			};
+		const timeout = setTimeout(() => {
+			inputRef.current?.focus();
+		}, 1);
+
+		return () => {
+			clearTimeout(timeout);
+		};
 	}, []);
 
 	const handleThemeChange = useCallback(
