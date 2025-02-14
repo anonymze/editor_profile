@@ -1,5 +1,5 @@
+import { InteractionManager, KeyboardAvoidingView, Platform, StyleSheet, TextInput, View, } from "react-native";
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
-import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { CircleRadialGradient } from "@/components/radial-gradient";
@@ -155,7 +155,7 @@ export default function Page() {
 					{getKeysTypedObject(themeColors).map((color) => (
 						<CircleRadialGradient
 							onPress={() => {
-								handleThemeChange(color)
+								handleThemeChange(color);
 							}}
 							key={color}
 							icon={
