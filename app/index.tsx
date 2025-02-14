@@ -68,7 +68,7 @@ export default function Page() {
 							justifyContent: "center",
 							alignItems: "center",
 							width: 240,
-							aspectRatio: 1,
+							aspectRatio: 1, 
 							zIndex: -99,
 							opacity: 0.2,
 							borderWidth: 0,

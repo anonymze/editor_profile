@@ -3,10 +3,10 @@ import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "rea
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { CircleRadialGradient } from "@/components/radial-gradient";
+import { XIcon, CheckIcon, CameraIcon } from "lucide-react-native";
 import { useTheme, themeColors } from "@/utils/theme-provider";
 import { InputTextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
-import { XIcon, CheckIcon } from "lucide-react-native";
 import { getKeysTypedObject } from "@/utils/helper";
 import { router } from "expo-router";
 import { Image } from "expo-image";
@@ -71,8 +71,29 @@ export default function Page() {
 						style={stylesLayout.centerContent}
 						entering={FadeInDown.duration(800).delay(200).springify()}
 					>
-						<View style={stylesLayout.shadowImage}>
+						<View style={[stylesLayout.shadowImage, { justifyContent: "center", alignItems: "center" }]}>
 							<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+							<Pressable
+								onPress={() => {
+									console.log("pressed");
+								}}
+								style={{
+									borderWidth: 1,
+									borderColor: "#fff",
+									width: 40,
+									aspectRatio: 1,
+									position: "absolute",
+									right: 2,
+									top: 2,
+									borderRadius: 99,
+									backgroundColor: "rgba(255, 255, 255, 0.5)",
+									boxShadow: "inset 0 0 9px 0 #fff",
+									justifyContent: "center",
+									alignItems: "center",
+								}}
+							>
+								<CameraIcon fill={themeColors[theme.color].primary} color="#fff" size={26} />
+							</Pressable>
 						</View>
 
 						<CircleRadialGradient
