@@ -18,8 +18,6 @@ export default function Page() {
 	const theme = useTheme();
 	const bottomButtonRef = useRef<Animated.View>(null);
 
-	
-
 	const enteringAnimation = useMemo(
 		() =>
 			FadeInDown.duration(600)
@@ -40,16 +38,7 @@ export default function Page() {
 	);
 
 	useEffect(() => {
-		// dunno why... if i focus on the main thread it will not work
-		const timer = setTimeout(() => {
-			if (inputRef.current) {
-				inputRef.current.focus();
-			}
-		}, 1);
-
-		return () => {
-			clearTimeout(timer);
-		};
+		inputRef.current?.focus();
 	}, []);
 
 	const handleThemeChange = useCallback(
