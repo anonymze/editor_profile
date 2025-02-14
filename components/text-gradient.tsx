@@ -34,8 +34,8 @@ export function TextGradient({ text, style, color }: InputTextGradientProps) {
 	);
 }
 
-export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & { maxLength?: number }>(
-	({ text, style, maxLength, color }, ref) => {
+export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & { maxLength?: number, setName: (name: string) => void }>(
+	({ text, style, maxLength, color, setName }, ref) => {
 		const [inputText, setInputText] = useState(text);
 		const fontSize = StyleSheet.flatten(style).fontSize ?? DEFAULT_FONT_SIZE;
 		const height = getHeight(fontSize);
@@ -46,12 +46,15 @@ export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & 
 				<TextInput
 					style={[styles.input, style]}
 					onChangeText={setInputText}
-					value={inputText}
+					defaultValue={inputText}
 					ref={ref}
 					maxLength={maxLength ?? 10}
 					editable={true}
 					cursorColor={"#fff"}
 					selectionColor={"#fff"}
+					onBlur={() => {
+						setName(inputText);
+					}}
 				/>
 			</View>
 		);
