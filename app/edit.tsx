@@ -110,7 +110,7 @@ export default function Page() {
 							text={"Coucou"}
 							style={{ fontSize: 60 }}
 							ref={inputRef}
-							maxLength={8}
+							maxLength={9}
 						/>
 					</Animated.View>
 				</View>
