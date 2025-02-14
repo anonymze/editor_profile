@@ -18,6 +18,8 @@ export default function Page() {
 	const theme = useTheme();
 	const bottomButtonRef = useRef<Animated.View>(null);
 
+	
+
 	const enteringAnimation = useMemo(
 		() =>
 			FadeInDown.duration(600)

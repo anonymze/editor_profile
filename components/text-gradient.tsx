@@ -10,7 +10,7 @@ const getHeight = (fontSize: number) => Math.floor(fontSize * 1.3);
 
 interface InputTextGradientProps {
 	text: string;
-	style?: StyleProp<TextStyle>;
+	style: StyleProp<TextStyle>;
 	color: keyof typeof themeColors;
 }
 

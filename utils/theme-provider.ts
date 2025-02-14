@@ -1,3 +1,5 @@
+import { setStatusBarBackgroundColor } from "expo-status-bar";
+import { Platform } from "react-native";
 import { create } from "zustand";
 
 
@@ -43,12 +45,13 @@ interface Theme {
 
 const useTheme = create<Theme>((set) => ({
 	color: "blue",
-	setTheme: (val) =>
+	setTheme: (val) => {
 		set({
 			color: val,
-		}),
+		});
+
+		if (Platform.OS === "android") setStatusBarBackgroundColor(themeColors[val].primaryLight);
+	},
 }));
 
 export { useTheme, themeColors };
-
-

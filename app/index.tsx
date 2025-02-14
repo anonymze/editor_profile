@@ -100,7 +100,7 @@ export default function Page() {
 				])}
 				entering={FadeInDown.duration(800).delay(200).springify()}
 			>
-				<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/edit")}>
+				<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/profile-edit")}>
 					<PencilIcon size={22} color="#fff" />
 				</Pressable>
 			</Animated.View>
