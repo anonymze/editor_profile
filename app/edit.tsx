@@ -68,11 +68,38 @@ export default function Page() {
 			<LayoutBackground color={theme.color} centeredContent>
 				<View style={stylesLayout.container}>
 					<Animated.View
-						style={styles.shadowImage}
+						style={stylesLayout.centerContent}
 						entering={FadeInDown.duration(800).delay(200).springify()}
 					>
 						<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+						<View
+						style={{
+							position: "absolute",
+							justifyContent: "center",
+							alignItems: "center",
+							width: 240,
+							aspectRatio: 1,
+							zIndex: 100,
+							opacity: 0.2,
+							borderRadius: 999,
+							backgroundColor: "rgba(255, 255, 255, 0.2)",
+						}}
+					/>
+					<View
+						style={{
+							position: "absolute",
+							justifyContent: "center",
+							alignItems: "center",
+							width: 350,
+							aspectRatio: 1,
+							zIndex: 100,
+							opacity: 0.2,
+							borderRadius: 999,
+							backgroundColor: "rgba(255, 255, 255, 0.2)",
+						}}
+					/>
 					</Animated.View>
+
 					<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
 						<InputTextGradient
 							color={theme.color}

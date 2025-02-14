@@ -32,8 +32,37 @@ export default function Page() {
 	return (
 		<LayoutBackground centeredContent color={theme.color}>
 			<View style={stylesLayout.container}>
-				<Animated.View entering={FadeInDown.duration(800).delay(200).springify()}>
+				<Animated.View
+					style={stylesLayout.centerContent}
+					entering={FadeInDown.duration(800).delay(200).springify()}
+				>
 					<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+					<View
+						style={{
+							position: "absolute",
+							justifyContent: "center",
+							alignItems: "center",
+							width: 240,
+							aspectRatio: 1,
+							zIndex: 100,
+							opacity: 0.2,
+							borderRadius: 999,
+							backgroundColor: "rgba(255, 255, 255, 0.2)",
+						}}
+					/>
+					<View
+						style={{
+							position: "absolute",
+							justifyContent: "center",
+							alignItems: "center",
+							width: 350,
+							aspectRatio: 1,
+							zIndex: 100,
+							opacity: 0.2,
+							borderRadius: 999,
+							backgroundColor: "rgba(255, 255, 255, 0.2)",
+						}}
+					/>
 				</Animated.View>
 				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
 					<TextGradient color={theme.color} text={"Coufefcou"} style={{ fontSize: 60 }} />
@@ -71,7 +100,11 @@ export default function Page() {
 			</Animated.View>
 
 			<Animated.View style={stylesLayout.bottomButton} entering={enteringAnimation()}>
-				<ButtonRadialGradient onPress={() => router.push("/frigo")} text="Continuer" color={themeColors[theme.color].primaryLight} />
+				<ButtonRadialGradient
+					onPress={() => router.push("/frigo")}
+					text="Continuer"
+					color={themeColors[theme.color].primaryLight}
+				/>
 			</Animated.View>
 		</LayoutBackground>
 	);
