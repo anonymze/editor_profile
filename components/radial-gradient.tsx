@@ -52,8 +52,8 @@ export function CircleRadialGradient({
 						fy="0%"
 						// gradientUnits="userSpaceOnUse"
 					>
-						<Stop offset="0%" stopColor="#fff" stopOpacity="1" />
-						<Stop offset="70%" stopColor={color} stopOpacity="1" />
+						<Stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
+						<Stop offset="65%" stopColor={color} stopOpacity="1" />
 					</RadialGradient>
 				</Defs>
 				<Circle cx="50%" cy="50%" r="50%" fill="url(#grad)" />
@@ -79,10 +79,16 @@ const styles = StyleSheet.create({
 		aspectRatio: 1,
 		alignItems: "center",
 		justifyContent: "center",
+		borderRadius: 99,
 		borderWidth: 1,
 		borderColor: "#fff",
-		borderRadius: 99,
-		overflow: "hidden",
+		shadowColor: "#000",
+		shadowOpacity: 0.2,
+		shadowOffset: {
+			width: -1,
+			height: 1,
+		},
+		shadowRadius: 2,
 	},
 	text: {
 		color: "#fff",
