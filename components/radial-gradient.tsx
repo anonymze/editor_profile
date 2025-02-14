@@ -1,8 +1,11 @@
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSequence, withTiming, } from "react-native-reanimated";
 import Svg, { Defs, RadialGradient, Stop, Rect, Circle } from "react-native-svg";
-// import { Pressable, PressableProps } from "react-native-gesture-handler";
-import { StyleSheet, Text, Pressable, PressableProps } from "react-native";
-import Animated from "react-native-reanimated";
+import { Pressable, PressableProps } from "react-native-gesture-handler";
+import { StyleSheet, Text, View } from "react-native";
+import { useEffect } from "react";
 
+
+const AnimatedSvg = Animated.createAnimatedComponent(Svg);
 
 export function ButtonRadialGradient({
 	text,
@@ -12,7 +15,7 @@ export function ButtonRadialGradient({
 }: PressableProps & { text: string; color: string }) {
 	return (
 		<Pressable {...props} style={StyleSheet.flatten([styles.containerButton, style])}>
-			<Svg style={{ position: "absolute", width: "100%", height: "100%" }}>
+			<Svg style={styles.absoluteFull}>
 				<Defs>
 					<RadialGradient
 						id="grad"
@@ -44,7 +47,7 @@ export function CircleRadialGradient({
 }: PressableProps & { icon: React.ReactNode | null; color: string; offset?: `${number}%` }) {
 	return (
 		<Pressable {...props} style={StyleSheet.flatten([styles.containerCircle, style])}>
-			<Svg style={{ position: "absolute", width: "100%", height: "100%",  }}>
+			<Svg style={styles.absoluteFull}>
 				<Defs>
 					<RadialGradient
 						id="grad"
@@ -63,6 +66,74 @@ export function CircleRadialGradient({
 				<Circle cx="50%" cy="50%" r="50%" fill="url(#grad)" />
 			</Svg>
 			{icon}
+		</Pressable>
+	);
+}
+
+export function AnimatedCircleRadialGradient({
+	icon,
+	color,
+	style,
+	offset = "65%",
+	...props
+}: PressableProps & { icon: React.ReactNode | null; color: string; offset?: `${number}%` }) {
+	const scale = useSharedValue(0.4);
+	const opacity = useSharedValue(1);
+
+	const rStyle = useAnimatedStyle(() => {
+		return {
+			transform: [{ scale: scale.value }],
+			opacity: opacity.value,
+		};
+	});
+
+	useEffect(() => {
+		scale.value = withRepeat(
+			withSequence(
+				withTiming(1, {
+					duration: 3500,
+					easing: Easing.linear,
+				})
+			),
+			-1,
+			false
+		);
+
+		opacity.value = withRepeat(
+			withDelay(
+				3250,
+				withTiming(0, {
+					duration: 250,
+					easing: Easing.linear,
+				})
+			),
+
+			-1,
+			false
+		);
+	}, []);
+
+	return (
+		<Pressable {...props} style={StyleSheet.flatten([styles.containerCircle, style])}>
+				<AnimatedSvg style={StyleSheet.flatten([styles.absoluteFull, rStyle])}>
+					<Defs>
+						<RadialGradient
+							id="grad"
+							cx="50%"
+							cy="0%"
+							rx="100%"
+							ry="100%"
+							fx="50%"
+							fy="0%"
+							// gradientUnits="userSpaceOnUse"
+						>
+							<Stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
+							<Stop offset={offset} stopColor={color} stopOpacity="0.9" />
+						</RadialGradient>
+					</Defs>
+					<Circle cx="50%" cy="50%" r="50%" fill="url(#grad)" />
+				</AnimatedSvg>
+				{icon}
 		</Pressable>
 	);
 }
@@ -98,5 +169,15 @@ const styles = StyleSheet.create({
 		color: "#fff",
 		fontSize: 18,
 		fontWeight: "bold",
+	},
+	container: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
+	},
+	absoluteFull: {
+		position: "absolute",
+		width: "100%",
+		height: "100%",
 	},
 });

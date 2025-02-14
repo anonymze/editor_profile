@@ -119,8 +119,6 @@ export const stylesLayout = StyleSheet.create({
 		alignItems: "center",
 		aspectRatio: 1,
 		borderWidth: 0,
-		borderRadius: 999,
-		backgroundColor: "rgba(255, 255, 255, 0.1)",
 		shadowOpacity: 0,
 	},
 	smallHalo: {
