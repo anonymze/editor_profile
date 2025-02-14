@@ -123,4 +123,14 @@ export const stylesLayout = StyleSheet.create({
 		backgroundColor: "rgba(255, 255, 255, 0.1)",
 		shadowOpacity: 0,
 	},
+	smallHalo: {
+		width: 240,
+		zIndex: -9,
+		opacity: 0.2,
+	},
+	bigHalo: {
+		width: 350,
+		zIndex: -10,
+		opacity: 0.1,
+	},
 });

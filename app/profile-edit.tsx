@@ -65,7 +65,6 @@ export default function Page() {
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
 			style={{ flex: 1, backgroundColor: themeColors[theme.color].primaryDark }}
 			keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 0}
-			enabled
 		>
 			<LayoutBackground color={theme.color} centeredContent>
 				<View style={stylesLayout.container}>

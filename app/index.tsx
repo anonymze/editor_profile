@@ -59,7 +59,7 @@ export default function Page() {
 						color={themeColors[theme.color].primary}
 						style={StyleSheet.flatten([
 							stylesLayout.gradientHalo,
-							{ width: 350, zIndex: -10, opacity: 0.1 },
+							stylesLayout.bigHalo,
 						])}
 					/>
 
@@ -67,7 +67,7 @@ export default function Page() {
 						offset="80%"
 						icon={null}
 						color={themeColors[theme.color].primary}
-						style={StyleSheet.flatten([stylesLayout.gradientHalo, { width: 240, zIndex: -9, opacity: 0.2 }])}
+						style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.smallHalo])}
 					/>
 				</Animated.View>
 				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
