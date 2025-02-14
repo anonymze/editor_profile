@@ -36,7 +36,9 @@ export default function Page() {
 					style={stylesLayout.centerContent}
 					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
-					<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+					<View style={stylesLayout.shadowImage}>
+						<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+					</View>
 					<CircleRadialGradient
 						offset="80%"
 						icon={null}
@@ -52,6 +54,7 @@ export default function Page() {
 							borderWidth: 0,
 							borderRadius: 999,
 							backgroundColor: "rgba(255, 255, 255, 0.1)",
+							shadowOpacity: 0,
 						}}
 					/>
 
@@ -70,6 +73,7 @@ export default function Page() {
 							borderWidth: 0,
 							borderRadius: 999,
 							backgroundColor: "rgba(255, 255, 255, 0.1)",
+							shadowOpacity: 0,
 						}}
 					/>
 				</Animated.View>

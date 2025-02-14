@@ -14,7 +14,7 @@ export default function LayoutBackground(props: {
 	style?: StyleProp<ViewStyle>;
 }) {
 	return (
-		<LinearGradient			
+		<LinearGradient
 			colors={[themeColors[props.color].primaryLight, themeColors[props.color].primaryDark]}
 			style={[props.centeredContent ? styles.containerCentered : styles.container, props.style]}
 			onLayout={props.onLayout}
@@ -23,7 +23,6 @@ export default function LayoutBackground(props: {
 		</LinearGradient>
 	);
 }
-
 
 const styles = StyleSheet.create({
 	containerCentered: {
@@ -89,5 +88,10 @@ export const stylesLayout = StyleSheet.create({
 	paddingTopButtons: {
 		padding: 20,
 	},
+	shadowImage: {
+		shadowColor: "#000",
+		shadowOffset: { width: -1, height: 1 },
+		shadowOpacity: 0.2,
+		shadowRadius: 2,
+	},
 });
-

@@ -71,9 +71,12 @@ export default function Page() {
 						style={stylesLayout.centerContent}
 						entering={FadeInDown.duration(800).delay(200).springify()}
 					>
-						<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+						<View style={stylesLayout.shadowImage}>
+							<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+						</View>
 
 						<CircleRadialGradient
+							offset="80%"
 							icon={null}
 							color={themeColors[theme.color].primary}
 							style={{
@@ -82,15 +85,16 @@ export default function Page() {
 								alignItems: "center",
 								width: 350,
 								aspectRatio: 1,
-								zIndex: -1,
+								zIndex: -100,
 								opacity: 0.2,
 								borderWidth: 0,
 								borderRadius: 999,
-								backgroundColor: "rgba(255, 255, 255, 0.1)",
+								shadowOpacity: 0,
 							}}
 						/>
 
-<CircleRadialGradient
+						<CircleRadialGradient
+							offset="80%"
 							icon={null}
 							color={themeColors[theme.color].primary}
 							style={{
@@ -99,11 +103,12 @@ export default function Page() {
 								alignItems: "center",
 								width: 240,
 								aspectRatio: 1,
-								zIndex: -1,
-								opacity: 0.2,
+								zIndex: -99,
+								opacity: 0.1,
 								borderWidth: 0,
 								borderRadius: 999,
 								backgroundColor: "rgba(255, 255, 255, 0.1)",
+								shadowOpacity: 0,
 							}}
 						/>
 					</Animated.View>
@@ -190,11 +195,5 @@ const styles = StyleSheet.create({
 		maxWidth: "100%",
 		width: "auto",
 		backgroundColor: "rgba(195, 176, 180, 0.7)",
-	},
-	shadowImage: {
-		shadowColor: "#000",
-		shadowOffset: { width: -1, height: 1 },
-		shadowOpacity: 0.2,
-		shadowRadius: 2,
 	},
 });
