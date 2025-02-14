@@ -126,17 +126,6 @@ export default function Page() {
 					exiting={FadeOut.duration(600)}
 				>
 					{getKeysTypedObject(themeColors).map((color) => (
-						// <Pressable
-						// 	style={[styles.buttonColor, { backgroundColor: themeColors[color].primary }]}
-						// 	key={color}
-						// 	onPress={() => handleThemeChange(color)}
-						// >
-						// 	{theme.color === color && (
-						// 		<Animated.View entering={FadeIn.duration(600)}>
-						// 			<CheckIcon size={28} color="#fff" />
-						// 		</Animated.View>
-						// 	)}
-						// </Pressable>
 						<CircleRadialGradient
 							onPress={() => handleThemeChange(color)}
 							key={color}
@@ -147,7 +136,7 @@ export default function Page() {
 									</Animated.View>
 								) : null
 							}
-							color={themeColors[color].primaryLight}
+							color={themeColors[color].primary}
 						/>
 					))}
 				</Animated.View>
@@ -166,22 +155,6 @@ const styles = StyleSheet.create({
 		maxWidth: "100%",
 		width: "auto",
 		backgroundColor: "rgba(195, 176, 180, 0.7)",
-	},
-	buttonColor: {
-		justifyContent: "center",
-		alignItems: "center",
-		width: 45,
-		aspectRatio: 1,
-		borderWidth: 1,
-		borderColor: "#fff",
-		borderRadius: 99,
-		shadowColor: "#000",
-		shadowOpacity: 0.1,
-		shadowOffset: {
-			width: 0,
-			height: 0,
-		},
-		shadowRadius: 3,
 	},
 	shadowImage: {
 		shadowColor: "#000",
