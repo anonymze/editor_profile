@@ -94,7 +94,7 @@ export default function Page() {
 			<Animated.View style={stylesLayout.bottomButton} entering={enteringAnimation()}>
 				<ButtonRadialGradient
 					onPress={() => router.push("/frigo")}
-					text="Continuer"
+					text="Continuer	a"
 					color={themeColors[theme.color].primaryLight}
 				/>
 			</Animated.View>

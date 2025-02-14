@@ -65,7 +65,7 @@ export const stylesLayout = StyleSheet.create({
 	},
 	bottomButton: {
 		position: "absolute",
-		bottom: 50,
+		bottom: 45,
 		width: "100%",
 		maxWidth: 300,
 		alignItems: "center",

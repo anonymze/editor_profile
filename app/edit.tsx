@@ -62,7 +62,7 @@ export default function Page() {
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
 			style={{ flex: 1, backgroundColor: themeColors[theme.color].primaryDark }}
-			keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 20}
+			keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 0}
 			enabled
 		>
 			<LayoutBackground color={theme.color} centeredContent>
