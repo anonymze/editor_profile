@@ -61,7 +61,7 @@ export const stylesLayout = StyleSheet.create({
 		width: 140,
 		aspectRatio: 1,
 		borderRadius: 99,
-		marginBottom: 3,
+		marginBottom: 4,
 	},
 	bottomButton: {
 		position: "absolute",
