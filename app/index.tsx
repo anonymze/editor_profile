@@ -57,7 +57,7 @@ export default function Page() {
 					/>
 				</Animated.View>
 				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
-					<TextGradient color={theme.color} text={"Coufefcou"} style={{ fontSize: 60 }} />
+					<TextGradient color={theme.color} text={"Coufefcou"} style={{ fontSize: 58 }} />
 				</Animated.View>
 			</View>
 

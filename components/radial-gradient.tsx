@@ -56,7 +56,7 @@ export function CircleRadialGradient({
 						// gradientUnits="userSpaceOnUse"
 					>
 						<Stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
-						<Stop offset={offset} stopColor={color} stopOpacity="0.8" />
+						<Stop offset={offset} stopColor={color} stopOpacity="0.9" />
 					</RadialGradient>
 				</Defs>
 				<Circle cx="50%" cy="50%" r="50%" fill="url(#grad)" />
