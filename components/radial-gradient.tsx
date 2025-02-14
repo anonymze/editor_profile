@@ -90,7 +90,7 @@ export function AnimatedCircleRadialGradient({
 	useEffect(() => {
 		scale.value = withRepeat(
 			withSequence(
-				withTiming(1.1, {
+				withTiming(1, {
 					duration: 3500,
 					easing: Easing.linear,
 				})

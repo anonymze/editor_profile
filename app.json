@@ -34,7 +34,15 @@
 					"resizeMode": "contain",
 					"backgroundColor": "#ffffff"
 				}
-			]
+			],
+			[
+        "expo-image-picker",
+        {
+          "photosPermission": "Autoriser l'accès à vos photos",
+          "cameraPermission": "Autoriser l'accès à votre caméra",
+          "microphonePermission": false
+        }
+      ]
 		],
 		"experiments": {
 			"typedRoutes": true
