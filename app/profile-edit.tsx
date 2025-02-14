@@ -154,7 +154,9 @@ export default function Page() {
 				>
 					{getKeysTypedObject(themeColors).map((color) => (
 						<CircleRadialGradient
-							onPress={() => handleThemeChange(color)}
+							onPress={() => {
+								handleThemeChange(color)
+							}}
 							key={color}
 							icon={
 								theme.color === color ? (
