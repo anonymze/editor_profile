@@ -27,7 +27,7 @@ export function ButtonRadialGradient({
 						<Stop offset="60%" stopColor={color} stopOpacity="0.8" />
 					</RadialGradient>
 				</Defs>
-				<Rect x="0" y="0" width="100%" height="100%" fill="url(#grad)" />
+				<Rect x="0" y="0" width="100%" height="100%" fill="url(#grad)" rx={27.5} ry={27.5} />
 			</Svg>
 			<Text style={styles.text}>{text}</Text>
 		</Pressable>

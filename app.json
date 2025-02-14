@@ -17,7 +17,7 @@
 				"foregroundImage": "./assets/images/adaptive-icon.png",
 				"backgroundColor": "#ffffff"
 			},
-			"package": "com.anonymze.profile_editor"
+			"package": "com.anonymze.profile_editor",
 		},
 		"web": {
 			"bundler": "metro",
