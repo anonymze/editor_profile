@@ -1,4 +1,4 @@
-import Animated, { Easing, FadeInDown, useSharedValue, withTiming, useAnimatedStyle, interpolate, withSpring } from "react-native-reanimated";
+import Animated, { Easing, FadeInDown, useSharedValue, withTiming, useAnimatedStyle, interpolate, withSpring, withDelay, } from "react-native-reanimated";
 import { PencilIcon, CameraIcon, CheckIcon } from "lucide-react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { themeColors, useTheme } from "@/utils/theme-provider";
@@ -15,19 +15,21 @@ export default function Page() {
 	const animation = useSharedValue(0);
 
 	useEffect(() => {
-		animation.value = withSpring(1, {
-			damping: 50,     // Lower = more bouncy (default is 10)
-			stiffness: 100,  // Higher = faster animation (default is 100)
-			mass: 1,         // Higher = more inertia (default is 1)
-		});
+		animation.value = withTiming(1, { duration: 500 });
 	}, []);
 
 	const animatedStyle = useAnimatedStyle(() => ({
 		opacity: animation.value,
 		transform: [
-			{ translateY: interpolate(animation.value, [0, 1], [-50, 0]) },
-			{ translateX: interpolate(animation.value, [0, 1], [-50, 0]) },
-			{ scale: interpolate(animation.value, [0, 1], [0.4, 1]) },
+			{
+				translateY: withSpring(interpolate(animation.value, [0, 1], [-180, 0]), { damping: 13 }),
+			},
+			{
+				translateX: interpolate(animation.value, [0, 1], [50, 0]),
+			},
+			{
+				scale: interpolate(animation.value, [0, 1], [0, 1]),
+			},
 		],
 	}));
 
@@ -49,38 +51,23 @@ export default function Page() {
 			</Animated.View>
 
 			<View style={styles.containerProfiles}>
-				<View style={styles.grid}>
-					{[1, 2, 3, 4].map((_, index) => (
-						<Animated.View 
-							key={index} 
-							style={[styles.gridItem, animatedStyle]}
-							entering={FadeInDown
-								.delay(index * 100)
-								.springify({
-									damping: 10,
-									stiffness: 100,
-									mass: 1,
-								})
-							}
-						>
-							<Pressable
-								style={StyleSheet.flatten([stylesLayout.shadowImage, styles.smallGap])}
-								onPress={() => {
-									console.log("pressed");
-								}}
-							>
-								<View>
-									<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
-									<View style={styles.checkmark}>
-										<CameraIcon fill={themeColors[theme.color].primary} color="#fff" size={26} />
-									</View>
-								</View>
+				<Animated.View style={[styles.gridItem, animatedStyle]}>
+					<Pressable
+						style={StyleSheet.flatten([stylesLayout.shadowImage, styles.smallGap])}
+						onPress={() => {
+							console.log("pressed");
+						}}
+					>
+						<View>
+							<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+							<View style={styles.checkmark}>
+								<CameraIcon fill={themeColors[theme.color].primary} color="#fff" size={26} />
+							</View>
+						</View>
 
-								<TextGradient style={{ fontSize: 20 }} color={theme.color} text="Nom du profil" />
-							</Pressable>
-						</Animated.View>
-					))}
-				</View>
+						<TextGradient style={{ fontSize: 20 }} color={theme.color} text="Nom du profil" />
+					</Pressable>
+				</Animated.View>
 			</View>
 		</LayoutBackground>
 	);
