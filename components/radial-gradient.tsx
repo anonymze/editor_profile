@@ -101,9 +101,9 @@ export function AnimatedCircleRadialGradient({
 
 		opacity.value = withRepeat(
 			withDelay(
-				3250,
+				3200,
 				withTiming(0, {
-					duration: 250,
+					duration: 300,
 					easing: Easing.linear,
 				})
 			),
