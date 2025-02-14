@@ -77,20 +77,7 @@ export default function Page() {
 								onPress={() => {
 									console.log("pressed");
 								}}
-								style={{
-									borderWidth: 1,
-									borderColor: "#fff",
-									width: 40,
-									aspectRatio: 1,
-									position: "absolute",
-									right: 2,
-									top: 2,
-									borderRadius: 99,
-									backgroundColor: "rgba(255, 255, 255, 0.4)",
-									boxShadow: "inset 0 0 9px 0 #fff",
-									justifyContent: "center",
-									alignItems: "center",
-								}}
+								style={styles.cameraButton}
 							>
 								<CameraIcon fill={themeColors[theme.color].primary} color="#fff" size={26} />
 							</Pressable>
@@ -100,37 +87,14 @@ export default function Page() {
 							offset="80%"
 							icon={null}
 							color={themeColors[theme.color].primary}
-							style={{
-								position: "absolute",
-								justifyContent: "center",
-								alignItems: "center",
-								width: 350,
-								aspectRatio: 1,
-								zIndex: -100,
-								opacity: 0.2,
-								borderWidth: 0,
-								borderRadius: 999,
-								shadowOpacity: 0,
-							}}
+							style={StyleSheet.flatten([styles.gradientHalo, { width: 350 }])}
 						/>
 
 						<CircleRadialGradient
 							offset="80%"
 							icon={null}
 							color={themeColors[theme.color].primary}
-							style={{
-								position: "absolute",
-								justifyContent: "center",
-								alignItems: "center",
-								width: 240,
-								aspectRatio: 1,
-								zIndex: -99,
-								opacity: 0.1,
-								borderWidth: 0,
-								borderRadius: 999,
-								backgroundColor: "rgba(255, 255, 255, 0.1)",
-								shadowOpacity: 0,
-							}}
+							style={StyleSheet.flatten([styles.gradientHalo, { width: 240 }])}
 						/>
 					</Animated.View>
 
@@ -216,5 +180,32 @@ const styles = StyleSheet.create({
 		maxWidth: "100%",
 		width: "auto",
 		backgroundColor: "rgba(195, 176, 180, 0.7)",
+	},
+	cameraButton: {
+		borderWidth: 1,
+		borderColor: "#fff",
+		width: 40,
+		aspectRatio: 1,
+		position: "absolute",
+		right: 2,
+		top: 2,
+		borderRadius: 99,
+		backgroundColor: "rgba(255, 255, 255, 0.4)",
+		boxShadow: "inset 0 0 9px 0 #fff",
+		justifyContent: "center",
+		alignItems: "center",
+	},
+	gradientHalo: {
+		position: "absolute",
+		justifyContent: "center",
+		alignItems: "center",
+		width: 240,
+		aspectRatio: 1,
+		zIndex: -99,
+		opacity: 0.1,
+		borderWidth: 0,
+		borderRadius: 999,
+		backgroundColor: "rgba(255, 255, 255, 0.1)",
+		shadowOpacity: 0,
 	},
 });
