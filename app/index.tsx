@@ -38,6 +38,7 @@ export default function Page() {
 				>
 					<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
 					<CircleRadialGradient
+						offset="80%"
 						icon={null}
 						color={themeColors[theme.color].primary}
 						style={{
@@ -55,6 +56,7 @@ export default function Page() {
 					/>
 
 					<CircleRadialGradient
+						offset="80%"
 						icon={null}
 						color={themeColors[theme.color].primary}
 						style={{

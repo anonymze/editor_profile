@@ -38,8 +38,9 @@ export function CircleRadialGradient({
 	icon,
 	color,
 	style,
+	offset = "65%",
 	...props
-}: PressableProps & { icon: React.ReactNode | null; color: string }) {
+}: PressableProps & { icon: React.ReactNode | null; color: string; offset?: `${number}%` }) {
 	return (
 		<Pressable {...props} style={StyleSheet.flatten([styles.containerCircle, style])}>
 			<Svg style={{ position: "absolute", width: "100%", height: "100%" }}>
@@ -55,7 +56,7 @@ export function CircleRadialGradient({
 						// gradientUnits="userSpaceOnUse"
 					>
 						<Stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
-						<Stop offset="65%" stopColor={color} stopOpacity="1" />
+						<Stop offset={offset} stopColor={color} stopOpacity="1" />
 					</RadialGradient>
 				</Defs>
 				<Circle cx="50%" cy="50%" r="50%" fill="url(#grad)" />
