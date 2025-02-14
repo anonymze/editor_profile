@@ -6,9 +6,23 @@ import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { StyleSheet, Text, View } from "react-native";
+import { useCallback, useMemo } from "react";
 import { router } from "expo-router";
-import { useCallback } from "react";
 import { Image } from "expo-image";
+
+
+const Star = ({ style }: { style: any }) => (
+	<View
+		style={[{
+			width: 3,
+			height: 3,
+			backgroundColor: 'white',
+			borderRadius: 2,
+			position: 'absolute',
+			opacity: 0.4,
+		}, style]}
+	/>
+);
 
 
 export default function Page() {
@@ -45,7 +59,7 @@ export default function Page() {
 						color={themeColors[theme.color].primary}
 						style={StyleSheet.flatten([
 							stylesLayout.gradientHalo,
-							{ width: 350, zIndex: -100, opacity: 0.1 },
+							{ width: 350, zIndex: -10, opacity: 0.1 },
 						])}
 					/>
 
@@ -53,7 +67,7 @@ export default function Page() {
 						offset="80%"
 						icon={null}
 						color={themeColors[theme.color].primary}
-						style={StyleSheet.flatten([stylesLayout.gradientHalo, { width: 240, zIndex: -99, opacity: 0.2 }])}
+						style={StyleSheet.flatten([stylesLayout.gradientHalo, { width: 240, zIndex: -9, opacity: 0.2 }])}
 					/>
 				</Animated.View>
 				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>

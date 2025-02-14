@@ -89,7 +89,7 @@ export default function Page() {
 							color={themeColors[theme.color].primary}
 							style={StyleSheet.flatten([
 								stylesLayout.gradientHalo,
-								{ width: 350, zIndex: -100, opacity: 0.1 },
+								{ width: 350, zIndex: -10, opacity: 0.1 },
 							])}
 						/>
 
@@ -99,7 +99,7 @@ export default function Page() {
 							color={themeColors[theme.color].primary}
 							style={StyleSheet.flatten([
 								stylesLayout.gradientHalo,
-								{ width: 240, zIndex: -99, opacity: 0.2 },
+								{ width: 240, zIndex: -9, opacity: 0.2 },
 							])}
 						/>
 					</Animated.View>

@@ -1,6 +1,10 @@
-import { Animated, StyleProp, StyleSheet, ViewStyle } from "react-native";
+import { Animated, StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 import { LinearGradient } from "react-native-linear-gradient";
 import { themeColors } from "@/utils/theme-provider";
+import { starPositions } from "@/utils/stars";
+import { Fragment, useMemo } from "react";
+import { Circle } from "react-native-svg";
+import { Svg } from "react-native-svg";
 
 
 // Create an animated version of LinearGradient
@@ -19,6 +23,19 @@ export default function LayoutBackground(props: {
 			style={[props.centeredContent ? styles.containerCentered : styles.container, props.style]}
 			onLayout={props.onLayout}
 		>
+			<Svg
+				style={{
+					position: "absolute",
+					width: "100%",
+					height: "100%",
+					zIndex: -20,
+				}}
+			>
+				{starPositions.map((star) => (
+					<Circle key={star.id} cx={star.left} cy={star.top} r="1.5" fill="white" opacity={star.opacity} />
+				))}
+			</Svg>
+
 			{props.children}
 		</LinearGradient>
 	);
