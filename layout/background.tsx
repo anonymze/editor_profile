@@ -94,4 +94,14 @@ export const stylesLayout = StyleSheet.create({
 		shadowOpacity: 0.2,
 		shadowRadius: 2,
 	},
+	gradientHalo: {
+		position: "absolute",
+		justifyContent: "center",
+		alignItems: "center",
+		aspectRatio: 1,
+		borderWidth: 0,
+		borderRadius: 999,
+		backgroundColor: "rgba(255, 255, 255, 0.1)",
+		shadowOpacity: 0,
+	},
 });

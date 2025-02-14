@@ -87,14 +87,20 @@ export default function Page() {
 							offset="80%"
 							icon={null}
 							color={themeColors[theme.color].primary}
-							style={StyleSheet.flatten([styles.gradientHalo, { width: 350 }])}
+							style={StyleSheet.flatten([
+								stylesLayout.gradientHalo,
+								{ width: 350, zIndex: -100, opacity: 0.1 },
+							])}
 						/>
 
 						<CircleRadialGradient
 							offset="80%"
 							icon={null}
 							color={themeColors[theme.color].primary}
-							style={StyleSheet.flatten([styles.gradientHalo, { width: 240 }])}
+							style={StyleSheet.flatten([
+								stylesLayout.gradientHalo,
+								{ width: 240, zIndex: -99, opacity: 0.2 },
+							])}
 						/>
 					</Animated.View>
 
@@ -194,18 +200,5 @@ const styles = StyleSheet.create({
 		boxShadow: "inset 0 0 9px 0 #fff",
 		justifyContent: "center",
 		alignItems: "center",
-	},
-	gradientHalo: {
-		position: "absolute",
-		justifyContent: "center",
-		alignItems: "center",
-		width: 240,
-		aspectRatio: 1,
-		zIndex: -99,
-		opacity: 0.1,
-		borderWidth: 0,
-		borderRadius: 999,
-		backgroundColor: "rgba(255, 255, 255, 0.1)",
-		shadowOpacity: 0,
 	},
 });

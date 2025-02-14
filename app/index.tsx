@@ -43,39 +43,17 @@ export default function Page() {
 						offset="80%"
 						icon={null}
 						color={themeColors[theme.color].primary}
-						style={{
-							position: "absolute",
-							justifyContent: "center",
-							alignItems: "center",
-							width: 350,
-							aspectRatio: 1,
-							zIndex: -100,
-							opacity: 0.1,
-							borderWidth: 0,
-							borderRadius: 999,
-							backgroundColor: "rgba(255, 255, 255, 0.1)",
-							shadowOpacity: 0,
-							borderTopColor: "#fff",
-						}}
+						style={StyleSheet.flatten([
+							stylesLayout.gradientHalo,
+							{ width: 350, zIndex: -100, opacity: 0.1 },
+						])}
 					/>
 
 					<CircleRadialGradient
 						offset="80%"
 						icon={null}
 						color={themeColors[theme.color].primary}
-						style={{
-							position: "absolute",
-							justifyContent: "center",
-							alignItems: "center",
-							width: 240,
-							aspectRatio: 1, 
-							zIndex: -99,
-							opacity: 0.2,
-							borderWidth: 0,
-							borderRadius: 999,
-							backgroundColor: "rgba(255, 255, 255, 0.1)",
-							shadowOpacity: 0,
-						}}
+						style={StyleSheet.flatten([stylesLayout.gradientHalo, { width: 240, zIndex: -99, opacity: 0.2 }])}
 					/>
 				</Animated.View>
 				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
