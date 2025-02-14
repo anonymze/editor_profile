@@ -40,17 +40,25 @@ export type ThemeType = keyof typeof themeColors;
 
 interface Theme {
 	color: ThemeType;
+	name: string;
 	setTheme: (val: ThemeType) => void;
+	setName: (val: string) => void;
 }
 
 const useTheme = create<Theme>((set) => ({
 	color: "blue",
+	name: "Mega kitchen",
 	setTheme: (val) => {
 		set({
 			color: val,
 		});
 
 		if (Platform.OS === "android") setStatusBarBackgroundColor(themeColors[val].primaryLight);
+	},
+	setName: (val) => {
+		set({
+			name: val,
+		});
 	},
 }));
 
