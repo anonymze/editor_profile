@@ -74,7 +74,7 @@ export default function Page() {
 						entering={FadeInDown.duration(800).delay(200).springify()}
 					>
 						<Pressable
-							style={[stylesLayout.shadowImage, { justifyContent: "center", alignItems: "center" }]}
+							style={stylesLayout.shadowImage}
 							onPress={() => {
 								console.log("pressed");
 							}}

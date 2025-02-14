@@ -106,6 +106,8 @@ export const stylesLayout = StyleSheet.create({
 		padding: 20,
 	},
 	shadowImage: {
+		justifyContent: "center",
+		alignItems: "center",
 		shadowColor: "#000",
 		shadowOffset: { width: -1, height: 1 },
 		shadowOpacity: 0.2,
