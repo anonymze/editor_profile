@@ -55,6 +55,7 @@ export default function Page() {
 							borderRadius: 999,
 							backgroundColor: "rgba(255, 255, 255, 0.1)",
 							shadowOpacity: 0,
+							borderTopColor: "#fff",
 						}}
 					/>
 
