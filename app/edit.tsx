@@ -108,9 +108,9 @@ export default function Page() {
 						<InputTextGradient
 							color={theme.color}
 							text={"Coucou"}
-							style={{ fontSize: 60 }}
+							style={{ fontSize: 58 }}
 							ref={inputRef}
-							maxLength={9}
+							maxLength={12}
 						/>
 					</Animated.View>
 				</View>
