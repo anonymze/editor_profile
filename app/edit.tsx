@@ -71,17 +71,17 @@ export default function Page() {
 						style={stylesLayout.centerContent}
 						entering={FadeInDown.duration(800).delay(200).springify()}
 					>
-						<View style={[stylesLayout.shadowImage, { justifyContent: "center", alignItems: "center" }]}>
+						<Pressable
+							style={[stylesLayout.shadowImage, { justifyContent: "center", alignItems: "center" }]}
+							onPress={() => {
+								console.log("pressed");
+							}}
+						>
 							<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
-							<Pressable
-								onPress={() => {
-									console.log("pressed");
-								}}
-								style={styles.cameraButton}
-							>
+							<View style={styles.cameraButton}>
 								<CameraIcon fill={themeColors[theme.color].primary} color="#fff" size={26} />
-							</Pressable>
-						</View>
+							</View>
+						</Pressable>
 
 						<CircleRadialGradient
 							offset="80%"
