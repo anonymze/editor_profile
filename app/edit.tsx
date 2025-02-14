@@ -2,6 +2,7 @@ import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-na
 import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
+import { CircleRadialGradient } from "@/components/radial-gradient";
 import { useTheme, themeColors } from "@/utils/theme-provider";
 import { InputTextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
@@ -125,17 +126,29 @@ export default function Page() {
 					exiting={FadeOut.duration(600)}
 				>
 					{getKeysTypedObject(themeColors).map((color) => (
-						<Pressable
-							style={[styles.buttonColor, { backgroundColor: themeColors[color].primary }]}
-							key={color}
+						// <Pressable
+						// 	style={[styles.buttonColor, { backgroundColor: themeColors[color].primary }]}
+						// 	key={color}
+						// 	onPress={() => handleThemeChange(color)}
+						// >
+						// 	{theme.color === color && (
+						// 		<Animated.View entering={FadeIn.duration(600)}>
+						// 			<CheckIcon size={28} color="#fff" />
+						// 		</Animated.View>
+						// 	)}
+						// </Pressable>
+						<CircleRadialGradient
 							onPress={() => handleThemeChange(color)}
-						>
-							{theme.color === color && (
-								<Animated.View entering={FadeIn.duration(600)}>
-									<CheckIcon size={28} color="#fff" />
-								</Animated.View>
-							)}
-						</Pressable>
+							key={color}
+							icon={
+								theme.color === color ? (
+									<Animated.View entering={FadeIn.duration(600)}>
+										<CheckIcon size={28} color="#fff" />
+									</Animated.View>
+								) : null
+							}
+							color={themeColors[color].primaryLight}
+						/>
 					))}
 				</Animated.View>
 			</LayoutBackground>

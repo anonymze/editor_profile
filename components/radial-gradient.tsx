@@ -3,7 +3,11 @@ import { Pressable, PressableProps } from "react-native-gesture-handler";
 import { StyleSheet, Text } from "react-native";
 
 
-export function ButtonRadialGradient({ text, color, ...props }: PressableProps & { text: string, color: string }) {
+export function ButtonRadialGradient({
+	text,
+	color,
+	...props
+}: PressableProps & { text: string; color: string }) {
 	return (
 		<Pressable {...props} style={styles.containerButton}>
 			<Svg style={{ position: "absolute", width: "100%", height: "100%" }}>
@@ -29,7 +33,11 @@ export function ButtonRadialGradient({ text, color, ...props }: PressableProps &
 	);
 }
 
-export function CircleRadialGradient({ text, color, ...props }: PressableProps & { text: string, color: string }) {
+export function CircleRadialGradient({
+	icon,
+	color,
+	...props
+}: PressableProps & { icon: React.ReactNode | null; color: string }) {
 	return (
 		<Pressable {...props} style={styles.containerCircle}>
 			<Svg style={{ position: "absolute", width: "100%", height: "100%" }}>
@@ -44,12 +52,13 @@ export function CircleRadialGradient({ text, color, ...props }: PressableProps &
 						fy="0%"
 						// gradientUnits="userSpaceOnUse"
 					>
-						<Stop offset="0%" stopColor="#fff" stopOpacity="0.7" />
-						<Stop offset="60%" stopColor={color} stopOpacity="0.8" />
+						<Stop offset="0%" stopColor="#fff" stopOpacity="1" />
+						<Stop offset="70%" stopColor={color} stopOpacity="1" />
 					</RadialGradient>
 				</Defs>
 				<Circle cx="50%" cy="50%" r="50%" fill="url(#grad)" />
 			</Svg>
+			{icon}
 		</Pressable>
 	);
 }
@@ -66,8 +75,8 @@ const styles = StyleSheet.create({
 		overflow: "hidden",
 	},
 	containerCircle: {
-		width: 100,
-		height: 100,
+		width: 45,
+		aspectRatio: 1,
 		alignItems: "center",
 		justifyContent: "center",
 		borderWidth: 1,
