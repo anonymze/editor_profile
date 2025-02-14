@@ -86,7 +86,7 @@ export default function Page() {
 									right: 2,
 									top: 2,
 									borderRadius: 99,
-									backgroundColor: "rgba(255, 255, 255, 0.5)",
+									backgroundColor: "rgba(255, 255, 255, 0.4)",
 									boxShadow: "inset 0 0 9px 0 #fff",
 									justifyContent: "center",
 									alignItems: "center",
