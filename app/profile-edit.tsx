@@ -17,11 +17,6 @@ export default function Page() {
 	const [animating, setAnimating] = useState(true);
 	const theme = useTheme();
 	const bottomButtonRef = useRef<Animated.View>(null);
-	const scale = useSharedValue(0);
-
-	const rStyle = useAnimatedStyle(() => ({
-		transform: [{ scale: scale.value }],
-	}));
 
 	const enteringAnimation = useMemo(
 		() =>
@@ -43,7 +38,6 @@ export default function Page() {
 	);
 
 	useEffect(() => {
-		scale.value = withTiming(1, { duration: 1000 });
 		const timeout = setTimeout(() => {
 			inputRef.current?.focus();
 		}, 1);
@@ -89,14 +83,14 @@ export default function Page() {
 							offset="80%"
 							icon={null}
 							color={themeColors[theme.color].primary}
-							style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.bigHalo, rStyle])}
+							style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.bigHalo])}
 						/>
 
 						<CircleRadialGradient
 							offset="80%"
 							icon={null}
 							color={themeColors[theme.color].primary}
-							style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.smallHalo, rStyle])}
+							style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.smallHalo])}
 						/>
 					</Animated.View>
 
