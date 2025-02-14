@@ -72,32 +72,40 @@ export default function Page() {
 						entering={FadeInDown.duration(800).delay(200).springify()}
 					>
 						<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
-						<View
-						style={{
-							position: "absolute",
-							justifyContent: "center",
-							alignItems: "center",
-							width: 240,
-							aspectRatio: 1,
-							zIndex: 100,
-							opacity: 0.2,
-							borderRadius: 999,
-							backgroundColor: "rgba(255, 255, 255, 0.2)",
-						}}
-					/>
-					<View
-						style={{
-							position: "absolute",
-							justifyContent: "center",
-							alignItems: "center",
-							width: 350,
-							aspectRatio: 1,
-							zIndex: 100,
-							opacity: 0.2,
-							borderRadius: 999,
-							backgroundColor: "rgba(255, 255, 255, 0.2)",
-						}}
-					/>
+
+						<CircleRadialGradient
+							icon={null}
+							color={themeColors[theme.color].primary}
+							style={{
+								position: "absolute",
+								justifyContent: "center",
+								alignItems: "center",
+								width: 350,
+								aspectRatio: 1,
+								zIndex: -1,
+								opacity: 0.2,
+								borderWidth: 0,
+								borderRadius: 999,
+								backgroundColor: "rgba(255, 255, 255, 0.1)",
+							}}
+						/>
+
+<CircleRadialGradient
+							icon={null}
+							color={themeColors[theme.color].primary}
+							style={{
+								position: "absolute",
+								justifyContent: "center",
+								alignItems: "center",
+								width: 240,
+								aspectRatio: 1,
+								zIndex: -1,
+								opacity: 0.2,
+								borderWidth: 0,
+								borderRadius: 999,
+								backgroundColor: "rgba(255, 255, 255, 0.1)",
+							}}
+						/>
 					</Animated.View>
 
 					<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>

@@ -6,10 +6,11 @@ import { StyleSheet, Text } from "react-native";
 export function ButtonRadialGradient({
 	text,
 	color,
+	style,
 	...props
 }: PressableProps & { text: string; color: string }) {
 	return (
-		<Pressable {...props} style={styles.containerButton}>
+		<Pressable {...props} style={StyleSheet.flatten([styles.containerButton, style])}>
 			<Svg style={{ position: "absolute", width: "100%", height: "100%" }}>
 				<Defs>
 					<RadialGradient
@@ -36,10 +37,11 @@ export function ButtonRadialGradient({
 export function CircleRadialGradient({
 	icon,
 	color,
+	style,
 	...props
 }: PressableProps & { icon: React.ReactNode | null; color: string }) {
 	return (
-		<Pressable {...props} style={styles.containerCircle}>
+		<Pressable {...props} style={StyleSheet.flatten([styles.containerCircle, style])}>
 			<Svg style={{ position: "absolute", width: "100%", height: "100%" }}>
 				<Defs>
 					<RadialGradient

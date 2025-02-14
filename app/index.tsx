@@ -1,6 +1,6 @@
+import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
 import Animated, { Easing, FadeInDown } from "react-native-reanimated";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
-import { ButtonRadialGradient } from "@/components/radial-gradient";
 import { themeColors, useTheme } from "@/utils/theme-provider";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
@@ -37,30 +37,37 @@ export default function Page() {
 					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
 					<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
-					<View
-						style={{
-							position: "absolute",
-							justifyContent: "center",
-							alignItems: "center",
-							width: 240,
-							aspectRatio: 1,
-							zIndex: 100,
-							opacity: 0.2,
-							borderRadius: 999,
-							backgroundColor: "rgba(255, 255, 255, 0.2)",
-						}}
-					/>
-					<View
+					<CircleRadialGradient
+						icon={null}
+						color={themeColors[theme.color].primary}
 						style={{
 							position: "absolute",
 							justifyContent: "center",
 							alignItems: "center",
 							width: 350,
 							aspectRatio: 1,
-							zIndex: 100,
+							zIndex: -100,
 							opacity: 0.2,
+							borderWidth: 0,
 							borderRadius: 999,
-							backgroundColor: "rgba(255, 255, 255, 0.2)",
+							backgroundColor: "rgba(255, 255, 255, 0.1)",
+						}}
+					/>
+
+					<CircleRadialGradient
+						icon={null}
+						color={themeColors[theme.color].primary}
+						style={{
+							position: "absolute",
+							justifyContent: "center",
+							alignItems: "center",
+							width: 240,
+							aspectRatio: 1,
+							zIndex: -99,
+							opacity: 0.1,
+							borderWidth: 0,
+							borderRadius: 999,
+							backgroundColor: "rgba(255, 255, 255, 0.1)",
 						}}
 					/>
 				</Animated.View>
