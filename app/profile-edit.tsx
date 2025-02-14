@@ -1,4 +1,4 @@
-import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing, useSharedValue, withTiming, withRepeat } from "react-native-reanimated";
+import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing, useSharedValue, withTiming, withRepeat, useAnimatedStyle, } from "react-native-reanimated";
 import { InteractionManager, KeyboardAvoidingView, Platform, StyleSheet, TextInput, View, } from "react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
@@ -18,6 +18,10 @@ export default function Page() {
 	const theme = useTheme();
 	const bottomButtonRef = useRef<Animated.View>(null);
 	const scale = useSharedValue(0);
+
+	const rStyle = useAnimatedStyle(() => ({
+		transform: [{ scale: scale.value }],
+	}));
 
 	const enteringAnimation = useMemo(
 		() =>
@@ -39,7 +43,7 @@ export default function Page() {
 	);
 
 	useEffect(() => {
-		scale.value = withRepeat(withTiming(1, { duration: 1000 }), -1, true);
+		scale.value = withTiming(1, { duration: 1000 });
 		const timeout = setTimeout(() => {
 			inputRef.current?.focus();
 		}, 1);
@@ -85,20 +89,14 @@ export default function Page() {
 							offset="80%"
 							icon={null}
 							color={themeColors[theme.color].primary}
-							style={StyleSheet.flatten([
-								stylesLayout.gradientHalo,
-								stylesLayout.bigHalo,
-							])}
+							style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.bigHalo, rStyle])}
 						/>
 
 						<CircleRadialGradient
 							offset="80%"
 							icon={null}
 							color={themeColors[theme.color].primary}
-							style={StyleSheet.flatten([
-								stylesLayout.gradientHalo,
-								stylesLayout.smallHalo,
-							])}
+							style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.smallHalo, rStyle])}
 						/>
 					</Animated.View>
 
