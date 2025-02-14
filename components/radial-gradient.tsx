@@ -1,11 +1,8 @@
-import Animated, { useAnimatedStyle, withSequence, withRepeat, withTiming, useSharedValue, withDelay, Easing, } from "react-native-reanimated";
 import Svg, { Defs, RadialGradient, Stop, Rect, Circle } from "react-native-svg";
 // import { Pressable, PressableProps } from "react-native-gesture-handler";
 import { StyleSheet, Text, Pressable, PressableProps } from "react-native";
-import React from "react";
+import Animated from "react-native-reanimated";
 
-
-const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 export function ButtonRadialGradient({
 	text,
@@ -45,32 +42,9 @@ export function CircleRadialGradient({
 	offset = "65%",
 	...props
 }: PressableProps & { icon: React.ReactNode | null; color: string; offset?: `${number}%` }) {
-	const scale = useSharedValue(0);
-	const opacity = useSharedValue(1);
-
-	React.useEffect(() => {
-		scale.value = withRepeat(
-			withSequence(
-				withTiming(1, {
-					duration: 3500,
-					easing: Easing.linear,
-				}),
-			),
-			0,
-			false
-		);
-	}, []);
-
-	const animatedStyle = useAnimatedStyle(() => {
-		return {
-			transform: [{ scale: scale.value }],
-			opacity: opacity.value,
-		};
-	});
-
 	return (
-		<AnimatedPressable {...props} style={[styles.containerCircle, style, animatedStyle]}>
-			<Svg style={{ position: "absolute", width: "100%", height: "100%" }}>
+		<Pressable {...props} style={StyleSheet.flatten([styles.containerCircle, style])}>
+			<Svg style={{ position: "absolute", width: "100%", height: "100%",  }}>
 				<Defs>
 					<RadialGradient
 						id="grad"
@@ -89,7 +63,7 @@ export function CircleRadialGradient({
 				<Circle cx="50%" cy="50%" r="50%" fill="url(#grad)" />
 			</Svg>
 			{icon}
-		</AnimatedPressable>
+		</Pressable>
 	);
 }
 

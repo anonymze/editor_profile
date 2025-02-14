@@ -1,5 +1,5 @@
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing, useSharedValue, withTiming, withRepeat, useAnimatedStyle, } from "react-native-reanimated";
-import { InteractionManager, KeyboardAvoidingView, Platform, StyleSheet, TextInput, View, } from "react-native";
+import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View, } from "react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { CircleRadialGradient } from "@/components/radial-gradient";
@@ -17,7 +17,7 @@ export default function Page() {
 	const [animating, setAnimating] = useState(true);
 	const theme = useTheme();
 	const bottomButtonRef = useRef<Animated.View>(null);
-
+	
 	const enteringAnimation = useMemo(
 		() =>
 			FadeInDown.duration(600)
