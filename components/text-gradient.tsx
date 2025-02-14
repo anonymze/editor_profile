@@ -25,7 +25,7 @@ export function TextGradient({ text, style, color }: InputTextGradientProps) {
 			>
 				<LinearGradient
 					colors={["#fff", themeColors[color].primary]}
-					start={{ x: 0, y: 0.35 }}
+					start={{ x: 0, y: 0.4 }}
 					end={{ x: 0, y: 1 }}
 					style={styles.full}
 				/>
