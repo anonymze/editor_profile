@@ -5,14 +5,16 @@ import { themeColors, useTheme } from "@/utils/theme-provider";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
+import { useCallback, useMemo, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { useCallback, useMemo } from "react";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
+import { storage } from "@/utils/theme-storage";
 import { Image } from "expo-image";
 
 
 export default function Page() {
 	const theme = useTheme();
+	const [name, setName] = useState(storage.getString("name") ?? "Default");
 
 	const enteringAnimation = useCallback(
 		() =>
@@ -57,7 +59,7 @@ export default function Page() {
 					/>
 				</Animated.View>
 				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
-					<TextGradient color={theme.color} text={theme.name} style={{ fontSize: 58 }} />
+					<TextGradient color={theme.color} text={storage.getString("name") ?? "Default"} style={{ fontSize: 55 }} />
 				</Animated.View>
 			</View>
 

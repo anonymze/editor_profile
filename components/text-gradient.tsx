@@ -45,7 +45,10 @@ export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & 
 				<TextGradient text={inputText} style={{ fontSize }} color={color} />
 				<TextInput
 					style={[styles.input, style]}
-					onChangeText={setInputText}
+					onChangeText={(text) => {
+						setInputText(text);
+						setName(text);
+					}}
 					defaultValue={inputText}
 					ref={ref}
 					maxLength={maxLength ?? 10}
@@ -53,9 +56,6 @@ export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & 
 					cursorColor={"#fff"}
 					selectionColor={"#fff"}
 					returnKeyType="done"
-					onBlur={() => {
-						setName(inputText);
-					}}
 				/>
 			</View>
 		);
