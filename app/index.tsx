@@ -1,6 +1,7 @@
 import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
 import Animated, { Easing, FadeInDown } from "react-native-reanimated";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
+import { getStorageImageUri, storage } from "@/utils/theme-storage";
 import { themeColors, useTheme } from "@/utils/theme-provider";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
@@ -8,7 +9,6 @@ import { Pressable } from "react-native-gesture-handler";
 import { useCallback, useMemo, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { router, useFocusEffect } from "expo-router";
-import { storage } from "@/utils/theme-storage";
 import { Image } from "expo-image";
 
 
@@ -39,7 +39,7 @@ export default function Page() {
 					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
 					<View style={stylesLayout.shadowImage}>
-						<Image style={stylesLayout.image} source={theme.imageUri ? { uri: theme.imageUri } : "https://picsum.photos/seed/696/3000/2000"} />
+						<Image style={stylesLayout.image} source={getStorageImageUri()} />
 					</View>
 					<CircleRadialGradient
 						offset="80%"
