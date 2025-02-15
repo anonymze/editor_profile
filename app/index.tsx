@@ -1,8 +1,7 @@
-import { getStorageColor, getStorageImageUri, getStorageName, storage } from "@/utils/theme-storage";
+import { getStorageColor, getStorageImageUri, getStorageName, storage, themeColors } from "@/utils/theme-storage";
 import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
 import Animated, { Easing, FadeInDown } from "react-native-reanimated";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
-import { themeColors, useTheme } from "@/utils/theme-provider";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";

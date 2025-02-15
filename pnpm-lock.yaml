@@ -77,9 +77,6 @@ importers:
       react-native-gesture-handler:
         specifier: ~2.20.2
         version: 2.20.2(react-native@0.76.7(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)
-      react-native-image-picker:
-        specifier: ^8.0.0
-        version: 8.0.0(react-native@0.76.7(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)
       react-native-linear-gradient:
         specifier: ^2.8.3
         version: 2.8.3(react-native@0.76.7(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)
@@ -3486,12 +3483,6 @@ packages:
     resolution: {integrity: sha512-m3CkXWss6B1dd6mCMleLpzDCJJGGaHOLQsUzZv8kAASJmMfmVT4d2fx375iXKTRWT25ThBfae3dECuX5cq/8hg==}
     peerDependencies:
       react: ^16.6.0 || ^17.0.0 || ^18.0.0
-
-  react-native-image-picker@8.0.0:
-    resolution: {integrity: sha512-yPhUG8p3xld+hgMUqBkOCLpGcxwm7Rp4UbnWJJsBbSi6fTfK6/YQXf0LpEEhNHUrCJh4Frk4il9OeRAJBCzCCg==}
-    peerDependencies:
-      react: '*'
-      react-native: '*'
 
   react-native-is-edge-to-edge@1.1.6:
     resolution: {integrity: sha512-1pHnFTlBahins6UAajXUqeCOHew9l9C2C8tErnpGC3IyLJzvxD+TpYAixnCbrVS52f7+NvMttbiSI290XfwN0w==}
@@ -8643,11 +8634,6 @@ snapshots:
       react: 18.3.1
       react-fast-compare: 3.2.2
       shallowequal: 1.1.0
-
-  react-native-image-picker@8.0.0(react-native@0.76.7(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1):
-    dependencies:
-      react: 18.3.1
-      react-native: 0.76.7(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@18.3.18)(react@18.3.1)
 
   react-native-is-edge-to-edge@1.1.6(react-native@0.76.7(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1):
     dependencies:

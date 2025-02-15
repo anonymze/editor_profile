@@ -1,7 +1,7 @@
 import { MMKV, useMMKVString } from "react-native-mmkv";
 
 
-const themeColors = {
+export const themeColors = {
 	blue: {
 		primary: "#001ddf",
 		primaryLight: "#000efd",

@@ -1,16 +1,15 @@
-import { DEFAULT_COLOR, DEFAULT_IMAGE_URI, DEFAULT_KEY_COLOR, DEFAULT_KEY_IMAGE_URI, getStorageName, setStorageColor, setStorageImageUri, setStorageName } from "@/utils/theme-storage";
+import { DEFAULT_COLOR, DEFAULT_IMAGE_URI, DEFAULT_KEY_COLOR, DEFAULT_KEY_IMAGE_URI, setStorageImageUri, themeColors } from "@/utils/theme-storage";
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
 import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { CircleRadialGradient } from "@/components/radial-gradient";
 import { XIcon, CheckIcon, CameraIcon } from "lucide-react-native";
-import { useTheme, themeColors } from "@/utils/theme-provider";
-import { launchImageLibrary } from "react-native-image-picker";
 import { InputTextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { getKeysTypedObject } from "@/utils/helper";
 import { useMMKVString } from "react-native-mmkv";
+import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
 import { Image } from "expo-image";
 
@@ -64,17 +63,14 @@ export default function Page() {
 	);
 
 	const pickImage = async () => {
-		const result = await launchImageLibrary({
-			mediaType: "photo",
-			selectionLimit: 1,
-			includeBase64: false,
-			includeExtra: false,
-			presentationStyle: "pageSheet",
-			quality: 0.4,
+		let result = await ImagePicker.launchImageLibraryAsync({
+			mediaTypes: ["images"],
+			allowsEditing: true,
+			aspect: [1, 1],
+			quality: 1,
 		});
 
-		if (result.didCancel || !result.assets?.[0].uri) return;
-
+		if (result.canceled || result.assets[0].type !== "image") return;
 		setStorageImageUri(result.assets[0].uri);
 	};
 
