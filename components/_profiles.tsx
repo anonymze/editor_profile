@@ -1,7 +1,7 @@
 import Animated, { FadeInDown, useSharedValue, withTiming, useAnimatedStyle, interpolate, withSpring } from "react-native-reanimated";
-import { PencilIcon, CameraIcon, CheckIcon } from "lucide-react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
-import { themeColors, useTheme } from "@/utils/theme-provider";
+import { getStorageColor, themeColors } from "@/utils/theme-storage";
+import { PencilIcon, CameraIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { StyleSheet, View } from "react-native";
@@ -11,7 +11,7 @@ import { useEffect } from "react";
 
 
 export default function Page() {
-	const theme = useTheme();
+	const themeColor = getStorageColor();
 	const animation = useSharedValue(0);
 
 	useEffect(() => {
@@ -34,13 +34,13 @@ export default function Page() {
 	}));
 
 	return (
-		<LayoutBackground color={theme.color} centeredContent={false}>
+		<LayoutBackground color={themeColor} centeredContent={false}>
 			<Animated.View
 				style={StyleSheet.flatten([
 					stylesLayout.topButtons,
 					stylesLayout.topRightButton,
 					{
-						backgroundColor: themeColors[theme.color].secondary,
+						backgroundColor: themeColors[themeColor].secondary,
 					},
 				])}
 				entering={FadeInDown.duration(800).delay(200).springify()}
@@ -61,11 +61,11 @@ export default function Page() {
 						<View>
 							<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
 							<View style={styles.checkmark}>
-								<CameraIcon fill={themeColors[theme.color].primary} color="#fff" size={26} />
+								<CameraIcon fill={themeColors[themeColor].primary} color="#fff" size={26} />
 							</View>
 						</View>
 
-						<TextGradient style={{ fontSize: 20 }} color={theme.color} text="Nom du profil" />
+						<TextGradient style={{ fontSize: 20 }} color={themeColor} text="Nom du profil" />
 					</Pressable>
 				</Animated.View>
 			</View>
