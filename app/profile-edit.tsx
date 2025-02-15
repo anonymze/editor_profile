@@ -37,14 +37,6 @@ export default function Page() {
 		opacity: oldImageOpacity.value
 	}));
 
-	useEffect(() => {
-		setTimeout(() => {
-			setStorageName("MEGA KITCHEN!!!!!!");
-			console.log("setStorageName", getStorageName());
-		}, 3000);
-	}, []);
-
-	console.log("render ????");
 
 	const enteringAnimation = useMemo(
 		() =>

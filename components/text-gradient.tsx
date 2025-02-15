@@ -10,12 +10,12 @@ const getHeight = (fontSize: number) => Math.floor(fontSize * 1.3);
 
 interface InputTextGradientProps {
 	text: string;
-	style: StyleProp<TextStyle>;
 	color: keyof typeof themeColors;
+	style?: StyleProp<TextStyle>;
 }
 
 export function TextGradient({ text, style, color }: InputTextGradientProps) {
-	const fontSize = StyleSheet.flatten(style).fontSize ?? DEFAULT_FONT_SIZE;
+	const fontSize = StyleSheet.flatten(style)?.fontSize ?? DEFAULT_FONT_SIZE;
 	const height = getHeight(fontSize);
 	return (
 		<View style={[styles.view]}>
@@ -37,7 +37,7 @@ export function TextGradient({ text, style, color }: InputTextGradientProps) {
 export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & { maxLength?: number, setName: (name: string) => void }>(
 	({ text, style, maxLength, color, setName }, ref) => {
 		const [inputText, setInputText] = useState(text);
-		const fontSize = StyleSheet.flatten(style).fontSize ?? DEFAULT_FONT_SIZE;
+		const fontSize = StyleSheet.flatten(style)?.fontSize ?? DEFAULT_FONT_SIZE;
 		const height = getHeight(fontSize);
 
 		return (
@@ -49,7 +49,7 @@ export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & 
 						setInputText(text);
 						setName(text);
 					}}
-					defaultValue={inputText}
+					value={inputText}
 					ref={ref}
 					maxLength={maxLength ?? 10}
 					editable={true}
