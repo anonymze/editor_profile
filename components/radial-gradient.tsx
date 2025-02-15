@@ -1,7 +1,7 @@
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSequence, withTiming, } from "react-native-reanimated";
 import Svg, { Defs, RadialGradient, Stop, Rect, Circle } from "react-native-svg";
 import { Pressable, PressableProps } from "react-native-gesture-handler";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { useEffect } from "react";
 
 

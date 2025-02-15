@@ -1,10 +1,8 @@
-import { Dimensions, StyleProp, StyleSheet, Text, TextInput, TextStyle, View, ViewStyle } from "react-native";
-import { DEFAULT_KEY_NAME, DEFAULT_NAME } from "@/utils/theme-storage";
+import { Dimensions, StyleProp, StyleSheet, Text, TextInput, TextStyle, View } from "react-native";
+import { DEFAULT_KEY_NAME, DEFAULT_NAME, themeColors } from "@/utils/theme-storage";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "react-native-linear-gradient";
-import { themeColors } from "@/utils/theme-provider";
 import { useMMKVString } from "react-native-mmkv";
-import { storage } from "@/utils/theme-storage";
 import { forwardRef } from "react";
 
 
