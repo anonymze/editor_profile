@@ -6,8 +6,6 @@ import { useEffect } from "react";
 
 
 const AnimatedSvg = Animated.createAnimatedComponent(Svg);
-const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
-
 
 export function ButtonRadialGradient({
 	text,
@@ -90,28 +88,40 @@ export function AnimatedCircleRadialGradient({
 	});
 
 	useEffect(() => {
-		scale.value = withRepeat(
-			withTiming(1, {
-				duration: 5000,
-				easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-			}),
-			-1,
-			true
+		scale.value = withDelay(
+			5000,
+			withRepeat(
+				withSequence(
+					withTiming(1, {
+						duration: 3500,
+						easing: Easing.linear,
+					})
+				),
+				-1,
+				false
+			)
 		);
 
-		opacity.value = withRepeat(
-			withTiming(0, {
-				duration: 5000,
-				easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-			}),
-			-1,
-			true
+		opacity.value = withDelay(
+			5000,
+			withRepeat(
+				withDelay(
+					3200,
+					withTiming(0, {
+						duration: 300,
+						easing: Easing.linear,
+					})
+				),
+
+				-1,
+				false
+			)
 		);
 	}, []);
 
 	return (
-		<View style={[styles.containerCircle, style as any]}>
-			<Svg style={styles.absoluteFull}>
+		<Pressable {...props} style={StyleSheet.flatten([styles.containerCircle, style])}>
+			<AnimatedSvg style={StyleSheet.flatten([styles.absoluteFull, rStyle])}>
 				<Defs>
 					<RadialGradient
 						id="grad"
@@ -121,20 +131,16 @@ export function AnimatedCircleRadialGradient({
 						ry="100%"
 						fx="50%"
 						fy="0%"
+						// gradientUnits="userSpaceOnUse"
 					>
 						<Stop offset="0%" stopColor="#fff" stopOpacity="0.9" />
 						<Stop offset={offset} stopColor={color} stopOpacity="0.9" />
 					</RadialGradient>
 				</Defs>
 				<Circle cx="50%" cy="50%" r="50%" fill="url(#grad)" />
-			</Svg>
-			<AnimatedPressable 
-				{...props} 
-				style={[styles.animatedContainer, rStyle]}
-			>
-				{icon}
-			</AnimatedPressable>
-		</View>
+			</AnimatedSvg>
+			{icon}
+		</Pressable>
 	);
 }
 
@@ -179,12 +185,5 @@ const styles = StyleSheet.create({
 		position: "absolute",
 		width: "100%",
 		height: "100%",
-	},
-	animatedContainer: {
-		position: 'absolute',
-		width: '100%',
-		height: '100%',
-		alignItems: 'center',
-		justifyContent: 'center',
 	},
 });

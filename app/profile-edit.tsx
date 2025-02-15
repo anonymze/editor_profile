@@ -1,12 +1,11 @@
-import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing, useSharedValue, withTiming, withRepeat, useAnimatedStyle, } from "react-native-reanimated";
-import { AnimatedCircleRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
+import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
 import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View, } from "react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
+import { CircleRadialGradient } from "@/components/radial-gradient";
 import { XIcon, CheckIcon, CameraIcon } from "lucide-react-native";
 import { useTheme, themeColors } from "@/utils/theme-provider";
 import { InputTextGradient } from "@/components/text-gradient";
-import ImagePickerExample from "@/components/image-picker";
 import { Pressable } from "react-native-gesture-handler";
 import { getKeysTypedObject } from "@/utils/helper";
 import { router } from "expo-router";
@@ -83,8 +82,19 @@ export default function Page() {
 							</View>
 						</Pressable>
 
+						<CircleRadialGradient
+							offset="80%"
+							icon={null}
+							color={themeColors[theme.color].primary}
+							style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.bigHalo])}
+						/>
 
-
+						<CircleRadialGradient
+							offset="80%"
+							icon={null}
+							color={themeColors[theme.color].primary}
+							style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.smallHalo])}
+						/>
 					</Animated.View>
 
 					<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
