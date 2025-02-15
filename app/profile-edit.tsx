@@ -1,5 +1,5 @@
-import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
-import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View, } from "react-native";
+import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing, useSharedValue, withTiming, } from "react-native-reanimated";
+import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { CircleRadialGradient } from "@/components/radial-gradient";
@@ -8,18 +8,19 @@ import { useTheme, themeColors } from "@/utils/theme-provider";
 import { InputTextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { getKeysTypedObject } from "@/utils/helper";
-import * as ImagePicker from 'expo-image-picker';
-import * as FileSystem from 'expo-file-system';
+import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
 import { Image } from "expo-image";
 
+
+const blurhash =
+	"|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 
 export default function Page() {
 	const theme = useTheme();
 	const bottomButtonRef = useRef<Animated.View>(null);
 	const inputRef = useRef<TextInput>(null);
 	const [animating, setAnimating] = useState(true);
-	
 	const enteringAnimation = useMemo(
 		() =>
 			FadeInDown.duration(600)
@@ -57,20 +58,19 @@ export default function Page() {
 		[animating, theme]
 	);
 
+	const pickImage = async () => {
+		let result = await ImagePicker.launchImageLibraryAsync({
+			mediaTypes: ["images"],
+			allowsEditing: true,
+			aspect: [1, 1],
+			quality: 1,
+		});
 
+		if (!result.canceled && result.assets[0].type === "image") {
+			theme.setImageUri(result.assets[0].uri);
+		}
+	};
 
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images', 'videos'],
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 1,
-    });
-
-    if (!result.canceled) {
-			theme.setImageUri(result.assets[0].uri);	
-    }
-  };
 
 	return (
 		<KeyboardAvoidingView
@@ -84,11 +84,16 @@ export default function Page() {
 						style={stylesLayout.centerContent}
 						entering={FadeInDown.duration(800).delay(200).springify()}
 					>
-						<Pressable
-							style={stylesLayout.shadowImage}
-							onPress={pickImage}
-						>
-							<Image style={stylesLayout.image} source={theme.imageUri ? { uri: theme.imageUri } : "https://picsum.photos/seed/696/3000/2000"} />
+						<Pressable style={stylesLayout.shadowImage} onPress={pickImage}>
+							<View>
+								<Image
+									style={stylesLayout.image}
+									placeholder={"https://picsum.photos/seed/696/3000/2000" }
+									placeholderContentFit="cover"
+									contentFit="cover"
+									source={theme.imageUri ? { uri: theme.imageUri } : "https://picsum.photos/seed/696/3000/2000"}
+								/>
+							</View>
 							<View style={styles.cameraButton}>
 								<CameraIcon fill={themeColors[theme.color].primary} color="#fff" size={26} />
 							</View>
@@ -151,9 +156,12 @@ export default function Page() {
 					])}
 					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
-					<Pressable onPress={() => {
-						router.push("/");
-					}} style={stylesLayout.paddingTopButtons}>
+					<Pressable
+						onPress={() => {
+							router.push("/");
+						}}
+						style={stylesLayout.paddingTopButtons}
+					>
 						<CheckIcon size={28} color="#fff" />
 					</Pressable>
 				</Animated.View>
@@ -203,6 +211,7 @@ const styles = StyleSheet.create({
 		width: 40,
 		aspectRatio: 1,
 		position: "absolute",
+		zIndex: 9,
 		right: 2,
 		top: 2,
 		borderRadius: 99,
