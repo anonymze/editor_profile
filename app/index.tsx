@@ -11,22 +11,11 @@ import { router } from "expo-router";
 import { Image } from "expo-image";
 
 
-const Star = ({ style }: { style: any }) => (
-	<View
-		style={[{
-			width: 3,
-			height: 3,
-			backgroundColor: 'white',
-			borderRadius: 2,
-			position: 'absolute',
-			opacity: 0.4,
-		}, style]}
-	/>
-);
-
-
 export default function Page() {
 	const theme = useTheme();
+
+	console.log("\n");
+	console.log("index");
 
 	const enteringAnimation = useCallback(
 		() =>

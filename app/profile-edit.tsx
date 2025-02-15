@@ -19,8 +19,45 @@ export default function Page() {
 	const theme = useTheme();
 	const bottomButtonRef = useRef<Animated.View>(null);
 
-	console.log(theme.name);
+	console.log("\n");
+	console.log("editable");
 	
+	const enteringAnimation = useMemo(
+		() =>
+			FadeInDown.duration(600)
+				.delay(300)
+				.easing(Easing.inOut(Easing.ease))
+				.springify()
+				.stiffness(100)
+				.damping(16)
+				.withInitialValues({
+					opacity: 0,
+					transform: [{ translateY: 100 }],
+				})
+				.withCallback((_) => {
+					"worklet";
+					runOnJS(setAnimating)(false);
+				}),
+		[]
+	);
+
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			inputRef.current?.focus();
+		}, 1);
+
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, []);
+
+	const handleThemeChange = useCallback(
+		(color: keyof typeof themeColors) => {
+			if (animating) return;
+			theme.setTheme(color);
+		},
+		[animating, theme]
+	);
 
 	return (
 		<KeyboardAvoidingView
@@ -28,7 +65,112 @@ export default function Page() {
 			style={{ flex: 1, backgroundColor: themeColors[theme.color].primaryDark }}
 			keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 0}
 		>
+			<LayoutBackground color={theme.color} centeredContent>
+				<View style={stylesLayout.container}>
+					<Animated.View
+						style={stylesLayout.centerContent}
+						entering={FadeInDown.duration(800).delay(200).springify()}
+					>
+						<Pressable
+							style={stylesLayout.shadowImage}
+							onPress={() => {
+								console.log("pressed");
+							}}
+						>
+							<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+							<View style={styles.cameraButton}>
+								<CameraIcon fill={themeColors[theme.color].primary} color="#fff" size={26} />
+							</View>
+						</Pressable>
 
+						<AnimatedCircleRadialGradient
+							offset="80%"
+							icon={null}
+							color={themeColors[theme.color].primary}
+							style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.bigHalo])}
+						/>
+
+						<AnimatedCircleRadialGradient
+							offset="80%"
+							icon={null}
+							color={themeColors[theme.color].primary}
+							style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.smallHalo])}
+						/>
+					</Animated.View>
+
+					<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
+						<InputTextGradient
+							color={theme.color}
+							text={theme.name}
+							style={{ fontSize: 58 }}
+							ref={inputRef}
+							maxLength={12}
+							setName={theme.setName}
+						/>
+					</Animated.View>
+				</View>
+
+				<Animated.View
+					style={StyleSheet.flatten([
+						stylesLayout.topButtons,
+						stylesLayout.topLeftButton,
+						{
+							backgroundColor: themeColors[theme.color].secondary,
+						},
+					])}
+					entering={FadeInDown.duration(800).delay(200).springify()}
+				>
+					<Pressable
+						style={stylesLayout.paddingTopButtons}
+						onPress={() => {
+							router.push("/");
+						}}
+					>
+						<XIcon size={28} color="#fff" />
+					</Pressable>
+				</Animated.View>
+
+				<Animated.View
+					style={StyleSheet.flatten([
+						stylesLayout.topButtons,
+						stylesLayout.topRightButton,
+						{
+							backgroundColor: themeColors[theme.color].secondary,
+						},
+					])}
+					entering={FadeInDown.duration(800).delay(200).springify()}
+				>
+					<Pressable onPress={() => {
+						router.push("/");
+					}} style={stylesLayout.paddingTopButtons}>
+						<CheckIcon size={28} color="#fff" />
+					</Pressable>
+				</Animated.View>
+
+				<Animated.View
+					ref={bottomButtonRef}
+					style={StyleSheet.flatten([stylesLayout.bottomButton, styles.buttons])}
+					entering={enteringAnimation}
+					exiting={FadeOut.duration(600)}
+				>
+					{getKeysTypedObject(themeColors).map((color) => (
+						<CircleRadialGradient
+							onPress={() => {
+								handleThemeChange(color);
+							}}
+							key={color}
+							icon={
+								theme.color === color ? (
+									<Animated.View entering={FadeIn.duration(600)}>
+										<CheckIcon size={28} color="#fff" />
+									</Animated.View>
+								) : null
+							}
+							color={themeColors[color].primary}
+						/>
+					))}
+				</Animated.View>
+			</LayoutBackground>
 		</KeyboardAvoidingView>
 	);
 }
