@@ -1,5 +1,5 @@
+import { getStorageColor, getStorageImageUri, getStorageName, storage } from "@/utils/theme-storage";
 import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
-import { getStorageImageUri, getStorageName, storage } from "@/utils/theme-storage";
 import Animated, { Easing, FadeInDown } from "react-native-reanimated";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { themeColors, useTheme } from "@/utils/theme-provider";
@@ -13,8 +13,7 @@ import { Image } from "expo-image";
 
 
 export default function Page() {
-	const theme = useTheme();
-	const [name, setName] = useState(storage.getString("name") ?? "Default");
+	const themeColor = getStorageColor();
 
 	const enteringAnimation = useCallback(
 		() =>
@@ -32,7 +31,7 @@ export default function Page() {
 	);
 
 	return (
-		<LayoutBackground centeredContent color={theme.color}>
+		<LayoutBackground centeredContent color={themeColor}>
 			<View style={stylesLayout.container}>
 				<Animated.View
 					style={stylesLayout.centerContent}
@@ -44,7 +43,7 @@ export default function Page() {
 					<CircleRadialGradient
 						offset="80%"
 						icon={null}
-						color={themeColors[theme.color].primary}
+						color={themeColors[themeColor].primary}
 						style={StyleSheet.flatten([
 							stylesLayout.gradientHalo,
 							stylesLayout.bigHalo,
@@ -54,12 +53,12 @@ export default function Page() {
 					<CircleRadialGradient
 						offset="80%"
 						icon={null}
-						color={themeColors[theme.color].primary}
+						color={themeColors[themeColor].primary}
 						style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.smallHalo])}
 					/>
 				</Animated.View>
 				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
-					<TextGradient color={theme.color} text={getStorageName()} style={{ fontSize: 55 }} />
+					<TextGradient color={themeColor} text={getStorageName()} style={{ fontSize: 55 }} />
 				</Animated.View>
 			</View>
 
@@ -68,7 +67,7 @@ export default function Page() {
 					stylesLayout.topButtons,
 					stylesLayout.topLeftButton,
 					{
-						backgroundColor: themeColors[theme.color].secondary,
+						backgroundColor: themeColors[themeColor].secondary,
 					},
 				])}
 				entering={FadeInDown.duration(800).delay(200).springify()}
@@ -83,7 +82,7 @@ export default function Page() {
 					stylesLayout.topButtons,
 					stylesLayout.topRightButton,
 					{
-						backgroundColor: themeColors[theme.color].secondary,
+						backgroundColor: themeColors[themeColor].secondary,
 					},
 				])}
 				entering={FadeInDown.duration(800).delay(200).springify()}
@@ -97,7 +96,7 @@ export default function Page() {
 				<ButtonRadialGradient
 					onPress={() => router.push("/frigo")}
 					text="Continuer"
-					color={themeColors[theme.color].primaryLight}
+					color={themeColors[themeColor].primaryLight}
 				/>
 			</Animated.View>
 		</LayoutBackground>

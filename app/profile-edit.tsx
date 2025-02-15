@@ -1,4 +1,4 @@
-import { DEFAULT_IMAGE_URI, DEFAULT_KEY_COLOR, DEFAULT_KEY_IMAGE_URI, getStorageName, setStorageColor, setStorageImageUri, setStorageName } from "@/utils/theme-storage";
+import { DEFAULT_COLOR, DEFAULT_IMAGE_URI, DEFAULT_KEY_COLOR, DEFAULT_KEY_IMAGE_URI, getStorageName, setStorageColor, setStorageImageUri, setStorageName } from "@/utils/theme-storage";
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
 import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
@@ -19,12 +19,12 @@ const blurhash =
 	"|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 
 export default function Page() {
-	const theme = useTheme();
 	const bottomButtonRef = useRef<Animated.View>(null);
 	const inputRef = useRef<TextInput>(null);
 	const [animating, setAnimating] = useState(true);
 	const [imageUri, setImageUri] = useMMKVString(DEFAULT_KEY_IMAGE_URI);
-	const [color, setColor] = useMMKVString(DEFAULT_KEY_COLOR);
+	const [themeColor, setThemeColor] = useMMKVString(DEFAULT_KEY_COLOR);
+	const themeColorFinal = (themeColor as keyof typeof themeColors) ?? DEFAULT_COLOR;
 
 	const enteringAnimation = useMemo(
 		() =>
@@ -58,10 +58,9 @@ export default function Page() {
 	const handleThemeChange = useCallback(
 		(color: keyof typeof themeColors) => {
 			if (animating) return;
-			// theme.setTheme(color);
-			setStorageColor(color);
+			setThemeColor(color);
 		},
-		[animating, theme]
+		[animating]
 	);
 
 	const pickImage = async () => {
@@ -82,10 +81,10 @@ export default function Page() {
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
-			style={{ flex: 1, backgroundColor: themeColors[theme.color].primaryDark }}
+			style={{ flex: 1, backgroundColor: themeColors[themeColorFinal].primaryDark }}
 			keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 0}
 		>
-			<LayoutBackground color={theme.color} centeredContent>
+			<LayoutBackground color={themeColorFinal} centeredContent>
 				<View style={stylesLayout.container}>
 					<Animated.View
 						style={stylesLayout.centerContent}
@@ -94,28 +93,28 @@ export default function Page() {
 						<Pressable style={stylesLayout.shadowImage} onPress={pickImage}>
 							<Image style={[stylesLayout.image]} contentFit="cover" source={imageUri ?? DEFAULT_IMAGE_URI} />
 							<View style={styles.cameraButton}>
-								<CameraIcon fill={themeColors[theme.color].primary} color="#fff" size={26} />
+								<CameraIcon fill={themeColors[themeColorFinal].primary} color="#fff" size={26} />
 							</View>
 						</Pressable>
 
 						<CircleRadialGradient
 							offset="80%"
 							icon={null}
-							color={themeColors[theme.color].primary}
+							color={themeColors[themeColorFinal].primary}
 							style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.bigHalo])}
 						/>
 
 						<CircleRadialGradient
 							offset="80%"
 							icon={null}
-							color={themeColors[theme.color].primary}
+							color={themeColors[themeColorFinal].primary}
 							style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.smallHalo])}
 						/>
 					</Animated.View>
 
 					<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
 						<InputTextGradient
-							color={theme.color}
+							color={themeColorFinal}
 							style={{ fontSize: 55 }}
 							ref={inputRef}
 						/>
@@ -127,7 +126,7 @@ export default function Page() {
 						stylesLayout.topButtons,
 						stylesLayout.topLeftButton,
 						{
-							backgroundColor: themeColors[theme.color].secondary,
+							backgroundColor: themeColors[themeColorFinal].secondary,
 						},
 					])}
 					entering={FadeInDown.duration(800).delay(200).springify()}
@@ -147,7 +146,7 @@ export default function Page() {
 						stylesLayout.topButtons,
 						stylesLayout.topRightButton,
 						{
-							backgroundColor: themeColors[theme.color].secondary,
+							backgroundColor: themeColors[themeColorFinal].secondary,
 						},
 					])}
 					entering={FadeInDown.duration(800).delay(200).springify()}
@@ -175,7 +174,7 @@ export default function Page() {
 							}}
 							key={color}
 							icon={
-								theme.color === color ? (
+								themeColorFinal === color ? (
 									<Animated.View entering={FadeIn.duration(600)}>
 										<CheckIcon size={28} color="#fff" />
 									</Animated.View>
