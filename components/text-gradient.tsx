@@ -1,12 +1,24 @@
-import { StyleProp, StyleSheet, Text, TextInput, TextStyle, View, ViewStyle } from "react-native";
+import { Dimensions, StyleProp, StyleSheet, Text, TextInput, TextStyle, View, ViewStyle } from "react-native";
 import MaskedView from "@react-native-masked-view/masked-view";
-import { useTheme, themeColors } from "@/utils/theme-provider";
 import { LinearGradient } from "react-native-linear-gradient";
+import { themeColors } from "@/utils/theme-provider";
 import { forwardRef, useState } from "react";
+
+
+const width = Dimensions.get("window").width;
+
 
 
 const DEFAULT_FONT_SIZE = 30;
 const getHeight = (fontSize: number) => Math.floor(fontSize * 1.3);
+const getMaxLength = () => {
+	if (width > 400) return 11;
+	if (width > 360) return 10;
+	if (width > 320) return 9;
+	return 8;
+};
+
+console.log(width);
 
 interface InputTextGradientProps {
 	text: string;
@@ -51,7 +63,7 @@ export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & 
 					}}
 					value={inputText}
 					ref={ref}
-					maxLength={maxLength ?? 10}
+					maxLength={maxLength ?? 11}
 					editable={true}
 					cursorColor={"#fff"}
 					selectionColor={"#fff"}

@@ -158,7 +158,6 @@ export default function Page() {
 							text={getStorageName()}
 							style={{ fontSize: 55 }}
 							ref={inputRef}
-							maxLength={12}
 							setName={(name) => setStorageName(name)}
 						/>
 					</Animated.View>
