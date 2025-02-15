@@ -1,4 +1,4 @@
-import { MMKV } from 'react-native-mmkv';
+import { MMKV, useMMKVString } from "react-native-mmkv";
 
 
 const themeColors = {
@@ -34,16 +34,14 @@ const themeColors = {
 	},
 } as const;
 
-
 const DEFAULT_NAME = "MEGA";
 const DEFAULT_KEY_NAME = "name";
 
 const DEFAULT_COLOR = "blue";
 const DEFAULT_KEY_COLOR = "color";
 
-const DEFAULT_IMAGE_URI = "https://i.ibb.co/0r00000/image.png";
-const DEFAULT_KEY_IMAGE_URI = "imageUri";
-
+export const DEFAULT_IMAGE_URI = "https://picsum.photos/seed/696/3000/2000";
+export const DEFAULT_KEY_IMAGE_URI = "imageUri";
 
 export const storage = new MMKV();
 

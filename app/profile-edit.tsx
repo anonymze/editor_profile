@@ -1,15 +1,16 @@
-import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing, useSharedValue, withTiming, useAnimatedStyle } from "react-native-reanimated";
-import { getStorageImageUri, getStorageName, setStorageImageUri, setStorageName } from "@/utils/theme-storage";
+import { DEFAULT_IMAGE_URI, DEFAULT_KEY_IMAGE_URI, getStorageName, setStorageImageUri, setStorageName } from "@/utils/theme-storage";
+import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
 import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { CircleRadialGradient } from "@/components/radial-gradient";
 import { XIcon, CheckIcon, CameraIcon } from "lucide-react-native";
 import { useTheme, themeColors } from "@/utils/theme-provider";
-import { launchImageLibrary } from 'react-native-image-picker';
+import { launchImageLibrary } from "react-native-image-picker";
 import { InputTextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { getKeysTypedObject } from "@/utils/helper";
+import { useMMKVString } from "react-native-mmkv";
 import { router } from "expo-router";
 import { Image } from "expo-image";
 
@@ -24,7 +25,7 @@ export default function Page() {
 	const bottomButtonRef = useRef<Animated.View>(null);
 	const inputRef = useRef<TextInput>(null);
 	const [animating, setAnimating] = useState(true);
-	const [imageLoading, setImageLoading] = useState(false);
+	const [imageUri, setImageUri] = useMMKVString(DEFAULT_KEY_IMAGE_URI);
 
 	const enteringAnimation = useMemo(
 		() =>
@@ -65,19 +66,16 @@ export default function Page() {
 
 	const pickImage = async () => {
 		const result = await launchImageLibrary({
-			mediaType: 'photo',
+			mediaType: "photo",
 			selectionLimit: 1,
 			includeBase64: false,
 			includeExtra: false,
-			presentationStyle: 'pageSheet',
+			presentationStyle: "pageSheet",
 			quality: 0.4,
 		});
 
 		if (result.didCancel || !result.assets?.[0].uri) return;
 
-		// setImageLoading(true);
-		// oldImageUri.current = theme.imageUri;
-		// theme.setImageUri(result.assets[0].uri);
 		setStorageImageUri(result.assets[0].uri);
 	};
 
@@ -94,22 +92,10 @@ export default function Page() {
 						entering={FadeInDown.duration(800).delay(200).springify()}
 					>
 						<Pressable style={stylesLayout.shadowImage} onPress={pickImage}>
-							<Image								
-								style={[stylesLayout.image]}
-								// placeholder={{ blurhash }}
-								// placeholderContentFit="cover"
-								contentFit="cover"
-								source={"https://i.ibb.co/0r00000/image.png"}
-							/>
+							<Image style={[stylesLayout.image]} contentFit="cover" source={imageUri ?? DEFAULT_IMAGE_URI} />
 							<View style={styles.cameraButton}>
 								<CameraIcon fill={themeColors[theme.color].primary} color="#fff" size={26} />
 							</View>
-
-							{/* {oldImageUri.current && <AnimatedImage 
-								style={[styles.blurImage, oldImageAnimatedStyle]} 
-								source={{ uri: oldImageUri.current }}
-								contentFit="cover"
-							/>} */}
 						</Pressable>
 
 						<CircleRadialGradient
