@@ -35,7 +35,7 @@ const themeColors = {
 } as const;
 
 
-const DEFAULT_NAME = "MEGA KITCHEN";
+const DEFAULT_NAME = "MEGA KITC";
 const DEFAULT_KEY_NAME = "name";
 
 const DEFAULT_COLOR = "blue";
