@@ -8,18 +8,17 @@ import { useTheme, themeColors } from "@/utils/theme-provider";
 import { InputTextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { getKeysTypedObject } from "@/utils/helper";
+import * as ImagePicker from 'expo-image-picker';
+import * as FileSystem from 'expo-file-system';
 import { router } from "expo-router";
 import { Image } from "expo-image";
 
 
 export default function Page() {
-	const inputRef = useRef<TextInput>(null);
-	const [animating, setAnimating] = useState(true);
 	const theme = useTheme();
 	const bottomButtonRef = useRef<Animated.View>(null);
-
-	console.log("\n");
-	console.log("editable");
+	const inputRef = useRef<TextInput>(null);
+	const [animating, setAnimating] = useState(true);
 	
 	const enteringAnimation = useMemo(
 		() =>
@@ -58,6 +57,21 @@ export default function Page() {
 		[animating, theme]
 	);
 
+
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ['images', 'videos'],
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+			theme.setImageUri(result.assets[0].uri);	
+    }
+  };
+
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -72,11 +86,9 @@ export default function Page() {
 					>
 						<Pressable
 							style={stylesLayout.shadowImage}
-							onPress={() => {
-								console.log("pressed");
-							}}
+							onPress={pickImage}
 						>
-							<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+							<Image style={stylesLayout.image} source={theme.imageUri ? { uri: theme.imageUri } : "https://picsum.photos/seed/696/3000/2000"} />
 							<View style={styles.cameraButton}>
 								<CameraIcon fill={themeColors[theme.color].primary} color="#fff" size={26} />
 							</View>

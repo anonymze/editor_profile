@@ -41,13 +41,16 @@ export type ThemeType = keyof typeof themeColors;
 interface Theme {
 	color: ThemeType;
 	name: string;
+	imageUri: string | null;
 	setTheme: (val: ThemeType) => void;
 	setName: (val: string) => void;
+	setImageUri: (val: string | null) => void;
 }
 
 const useTheme = create<Theme>((set) => ({
 	color: "blue",
 	name: "Mega kitchen",
+	imageUri: null,
 	setTheme: (val) => {
 		set({
 			color: val,
@@ -58,6 +61,11 @@ const useTheme = create<Theme>((set) => ({
 	setName: (val) => {
 		set({
 			name: val,
+		});
+	},
+	setImageUri: (val) => {
+		set({
+			imageUri: val,
 		});
 	},
 }));

@@ -14,9 +14,6 @@ import { Image } from "expo-image";
 export default function Page() {
 	const theme = useTheme();
 
-	console.log("\n");
-	console.log("index");
-
 	const enteringAnimation = useCallback(
 		() =>
 			FadeInDown.duration(600)
@@ -40,7 +37,7 @@ export default function Page() {
 					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
 					<View style={stylesLayout.shadowImage}>
-						<Image style={stylesLayout.image} source="https://picsum.photos/seed/696/3000/2000" />
+						<Image style={stylesLayout.image} source={theme.imageUri ? { uri: theme.imageUri } : "https://picsum.photos/seed/696/3000/2000"} />
 					</View>
 					<CircleRadialGradient
 						offset="80%"
