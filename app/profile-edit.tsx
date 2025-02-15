@@ -1,4 +1,4 @@
-import { DEFAULT_IMAGE_URI, DEFAULT_KEY_IMAGE_URI, getStorageName, setStorageImageUri, setStorageName } from "@/utils/theme-storage";
+import { DEFAULT_IMAGE_URI, DEFAULT_KEY_COLOR, DEFAULT_KEY_IMAGE_URI, getStorageName, setStorageColor, setStorageImageUri, setStorageName } from "@/utils/theme-storage";
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
 import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
@@ -24,6 +24,7 @@ export default function Page() {
 	const inputRef = useRef<TextInput>(null);
 	const [animating, setAnimating] = useState(true);
 	const [imageUri, setImageUri] = useMMKVString(DEFAULT_KEY_IMAGE_URI);
+	const [color, setColor] = useMMKVString(DEFAULT_KEY_COLOR);
 
 	const enteringAnimation = useMemo(
 		() =>
@@ -57,7 +58,8 @@ export default function Page() {
 	const handleThemeChange = useCallback(
 		(color: keyof typeof themeColors) => {
 			if (animating) return;
-			theme.setTheme(color);
+			// theme.setTheme(color);
+			setStorageColor(color);
 		},
 		[animating, theme]
 	);
@@ -114,10 +116,8 @@ export default function Page() {
 					<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
 						<InputTextGradient
 							color={theme.color}
-							text={getStorageName()}
 							style={{ fontSize: 55 }}
 							ref={inputRef}
-							setName={(name) => setStorageName(name)}
 						/>
 					</Animated.View>
 				</View>

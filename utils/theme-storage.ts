@@ -34,11 +34,11 @@ const themeColors = {
 	},
 } as const;
 
-const DEFAULT_NAME = "MEGA";
-const DEFAULT_KEY_NAME = "name";
+export const DEFAULT_NAME = "MEGA";
+export const DEFAULT_KEY_NAME = "name";
 
-const DEFAULT_COLOR = "blue";
-const DEFAULT_KEY_COLOR = "color";
+export const DEFAULT_COLOR = "blue";
+export const DEFAULT_KEY_COLOR = "color";
 
 export const DEFAULT_IMAGE_URI = "https://picsum.photos/seed/696/3000/2000";
 export const DEFAULT_KEY_IMAGE_URI = "imageUri";
@@ -57,7 +57,7 @@ export const getStorageColor = () => {
 	return storage.getString(DEFAULT_KEY_COLOR) ?? DEFAULT_COLOR;
 };
 
-export const setStorageColor = (color: string) => {
+export const setStorageColor = (color: keyof typeof themeColors) => {
 	storage.set(DEFAULT_KEY_COLOR, color);
 };
 

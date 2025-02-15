@@ -1,13 +1,13 @@
 import { Dimensions, StyleProp, StyleSheet, Text, TextInput, TextStyle, View, ViewStyle } from "react-native";
+import { DEFAULT_KEY_NAME, DEFAULT_NAME } from "@/utils/theme-storage";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "react-native-linear-gradient";
 import { themeColors } from "@/utils/theme-provider";
-import { forwardRef, useState } from "react";
+import { useMMKVString } from "react-native-mmkv";
+import { forwardRef } from "react";
 
 
 const width = Dimensions.get("window").width;
-
-
 
 const DEFAULT_FONT_SIZE = 30;
 const getHeight = (fontSize: number) => Math.floor(fontSize * 1.3);
@@ -19,8 +19,8 @@ const getMaxLength = () => {
 };
 
 interface InputTextGradientProps {
-	text: string;
 	color: keyof typeof themeColors;
+	text?: string;
 	style?: StyleProp<TextStyle>;
 }
 
@@ -44,22 +44,21 @@ export function TextGradient({ text, style, color }: InputTextGradientProps) {
 	);
 }
 
-export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & { maxLength?: number, setName: (name: string) => void }>(
-	({ text, style, maxLength, color, setName }, ref) => {
-		const [inputText, setInputText] = useState(text);
+export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & { maxLength?: number }>(
+	({ style, maxLength, color }, ref) => {
+		const [name, setName] = useMMKVString(DEFAULT_KEY_NAME);
 		const fontSize = StyleSheet.flatten(style)?.fontSize ?? DEFAULT_FONT_SIZE;
 		const height = getHeight(fontSize);
 
 		return (
 			<View style={[styles.view, { height }]}>
-				<TextGradient text={inputText} style={{ fontSize }} color={color} />
+				<TextGradient text={name ?? DEFAULT_NAME} style={{ fontSize }} color={color} />
 				<TextInput
 					style={[styles.input, style]}
 					onChangeText={(text) => {
-						setInputText(text);
 						setName(text);
 					}}
-					value={inputText}
+					value={name}
 					ref={ref}
 					maxLength={maxLength ?? 11}
 					editable={true}
