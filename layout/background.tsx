@@ -1,14 +1,10 @@
-import { Animated, StyleProp, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, StyleProp, StyleSheet, ViewStyle } from "react-native";
 import { LinearGradient } from "react-native-linear-gradient";
-import { themeColors } from "@/utils/theme-provider";
+import { themeColors } from "@/utils/theme-storage";
 import { starPositions } from "@/utils/stars";
-import { Fragment, useMemo } from "react";
 import { Circle } from "react-native-svg";
 import { Svg } from "react-native-svg";
 
-
-// Create an animated version of LinearGradient
-const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
 
 export default function LayoutBackground(props: {
 	centeredContent: boolean;
