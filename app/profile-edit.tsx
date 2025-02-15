@@ -1,10 +1,10 @@
-import { DEFAULT_COLOR, DEFAULT_IMAGE_URI, DEFAULT_KEY_COLOR, DEFAULT_KEY_IMAGE_URI, setStorageImageUri, themeColors } from "@/utils/theme-storage";
+import { DEFAULT_COLOR, DEFAULT_IMAGE_URI, DEFAULT_KEY_COLOR, DEFAULT_KEY_IMAGE_URI, setStorageImageUri, themeColors, } from "@/utils/theme-storage";
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
 import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
+import { XIcon, CheckIcon, CameraIcon, ArrowLeftIcon } from "lucide-react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { CircleRadialGradient } from "@/components/radial-gradient";
-import { XIcon, CheckIcon, CameraIcon } from "lucide-react-native";
 import { InputTextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { getKeysTypedObject } from "@/utils/helper";
@@ -69,7 +69,6 @@ export default function Page() {
 			aspect: [1, 1],
 			quality: 0.4,
 			selectionLimit: 1,
-	
 		});
 
 		if (result.canceled || result.assets[0].type !== "image") return;
@@ -111,11 +110,7 @@ export default function Page() {
 					</Animated.View>
 
 					<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
-						<InputTextGradient
-							color={themeColorFinal}
-							style={{ fontSize: 55 }}
-							ref={inputRef}
-						/>
+						<InputTextGradient color={themeColorFinal} style={{ fontSize: 55 }} ref={inputRef} />
 					</Animated.View>
 				</View>
 
@@ -135,27 +130,7 @@ export default function Page() {
 							router.push("/");
 						}}
 					>
-						<XIcon size={28} color="#fff" />
-					</Pressable>
-				</Animated.View>
-
-				<Animated.View
-					style={StyleSheet.flatten([
-						stylesLayout.topButtons,
-						stylesLayout.topRightButton,
-						{
-							backgroundColor: themeColors[themeColorFinal].secondary,
-						},
-					])}
-					entering={FadeInDown.duration(800).delay(200).springify()}
-				>
-					<Pressable
-						onPress={() => {
-							router.push("/");
-						}}
-						style={stylesLayout.paddingTopButtons}
-					>
-						<CheckIcon size={28} color="#fff" />
+						<ArrowLeftIcon size={28} color="#fff" />
 					</Pressable>
 				</Animated.View>
 
