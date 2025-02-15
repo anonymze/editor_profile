@@ -67,7 +67,9 @@ export default function Page() {
 			mediaTypes: ["images"],
 			allowsEditing: true,
 			aspect: [1, 1],
-			quality: 1,
+			quality: 0.4,
+			selectionLimit: 1,
+	
 		});
 
 		if (result.canceled || result.assets[0].type !== "image") return;
