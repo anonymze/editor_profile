@@ -1,7 +1,7 @@
 import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
+import { getStorageImageUri, getStorageName, storage } from "@/utils/theme-storage";
 import Animated, { Easing, FadeInDown } from "react-native-reanimated";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
-import { getStorageImageUri, storage } from "@/utils/theme-storage";
 import { themeColors, useTheme } from "@/utils/theme-provider";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
@@ -59,7 +59,7 @@ export default function Page() {
 					/>
 				</Animated.View>
 				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
-					<TextGradient color={theme.color} text={storage.getString("name") ?? "Default"} style={{ fontSize: 55 }} />
+					<TextGradient color={theme.color} text={getStorageName()} style={{ fontSize: 55 }} />
 				</Animated.View>
 			</View>
 

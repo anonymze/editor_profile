@@ -4,6 +4,7 @@ import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "react-native-linear-gradient";
 import { themeColors } from "@/utils/theme-provider";
 import { useMMKVString } from "react-native-mmkv";
+import { storage } from "@/utils/theme-storage";
 import { forwardRef } from "react";
 
 
@@ -46,19 +47,20 @@ export function TextGradient({ text, style, color }: InputTextGradientProps) {
 
 export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & { maxLength?: number }>(
 	({ style, maxLength, color }, ref) => {
-		const [name, setName] = useMMKVString(DEFAULT_KEY_NAME);
+		const [nameStore, setNameStore] = useMMKVString(DEFAULT_KEY_NAME);
 		const fontSize = StyleSheet.flatten(style)?.fontSize ?? DEFAULT_FONT_SIZE;
 		const height = getHeight(fontSize);
+		const name = nameStore ?? DEFAULT_NAME;
 
 		return (
 			<View style={[styles.view, { height }]}>
-				<TextGradient text={name ?? DEFAULT_NAME} style={{ fontSize }} color={color} />
+				<TextGradient text={name} style={{ fontSize }} color={color} />
 				<TextInput
 					style={[styles.input, style]}
 					onChangeText={(text) => {
-						setName(text);
+						setNameStore(text);
 					}}
-					value={name}
+					defaultValue={name}
 					ref={ref}
 					maxLength={maxLength ?? 11}
 					editable={true}
