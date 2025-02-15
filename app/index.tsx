@@ -1,13 +1,13 @@
-import { getStorageColor, getStorageImageUri, getStorageName, storage, themeColors } from "@/utils/theme-storage";
+import { getStorageColor, getStorageImageUri, getStorageName, themeColors } from "@/utils/theme-storage";
 import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
 import Animated, { Easing, FadeInDown } from "react-native-reanimated";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { PlusIcon, PencilIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
-import { useCallback, useMemo, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { router, useFocusEffect } from "expo-router";
+import { StyleSheet, View } from "react-native";
+import { router } from "expo-router";
+import { useCallback } from "react";
 import { Image } from "expo-image";
 
 
