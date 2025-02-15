@@ -18,8 +18,6 @@ const getMaxLength = () => {
 	return 8;
 };
 
-console.log(width);
-
 interface InputTextGradientProps {
 	text: string;
 	color: keyof typeof themeColors;

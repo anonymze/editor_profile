@@ -35,7 +35,7 @@ const themeColors = {
 } as const;
 
 
-const DEFAULT_NAME = "MEGA KITC";
+const DEFAULT_NAME = "MEGA";
 const DEFAULT_KEY_NAME = "name";
 
 const DEFAULT_COLOR = "blue";
