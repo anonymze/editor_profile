@@ -1,7 +1,7 @@
-import Animated, { FadeInDown, useSharedValue, withTiming, useAnimatedStyle, interpolate, withSpring } from "react-native-reanimated";
+import Animated, { Easing, FadeInDown, useSharedValue, withTiming, useAnimatedStyle, interpolate, withSpring, withDelay, } from "react-native-reanimated";
+import { PencilIcon, CameraIcon, CheckIcon } from "lucide-react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { getStorageColor, themeColors } from "@/utils/theme-storage";
-import { PencilIcon, CameraIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { StyleSheet, View } from "react-native";
@@ -11,8 +11,8 @@ import { useEffect } from "react";
 
 
 export default function Page() {
-	const themeColor = getStorageColor();
 	const animation = useSharedValue(0);
+	const themeColor = getStorageColor();
 
 	useEffect(() => {
 		animation.value = withTiming(1, { duration: 500 });

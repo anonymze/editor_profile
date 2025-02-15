@@ -8,7 +8,7 @@ import { forwardRef } from "react";
 
 const width = Dimensions.get("window").width;
 
-const DEFAULT_FONT_SIZE = 30;
+const DEFAULT_FONT_SIZE = 60;
 const getHeight = (fontSize: number) => Math.floor(fontSize * 1.3);
 const getMaxLength = () => {
 	if (width > 400) return 11;
@@ -26,11 +26,12 @@ interface InputTextGradientProps {
 export function TextGradient({ text, style, color }: InputTextGradientProps) {
 	const fontSize = StyleSheet.flatten(style)?.fontSize ?? DEFAULT_FONT_SIZE;
 	const height = getHeight(fontSize);
+
 	return (
 		<View style={[styles.view]}>
 			<MaskedView
 				style={[styles.flexDirection, { height }]}
-				maskElement={<Text style={[styles.text, style]}>{text}</Text>}
+				maskElement={<Text style={StyleSheet.flatten([styles.text, { fontSize }, style])}>{text}</Text>}
 			>
 				<LinearGradient
 					colors={["#fff", themeColors[color].primary]}
