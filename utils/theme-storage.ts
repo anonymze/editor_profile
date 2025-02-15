@@ -40,6 +40,11 @@ const DEFAULT_KEY_NAME = "name";
 
 const DEFAULT_COLOR = "blue";
 const DEFAULT_KEY_COLOR = "color";
+
+const DEFAULT_IMAGE_URI = "https://i.ibb.co/0r00000/image.png";
+const DEFAULT_KEY_IMAGE_URI = "imageUri";
+
+
 export const storage = new MMKV();
 
 export const getStorageName = () => {
@@ -58,3 +63,10 @@ export const setStorageColor = (color: string) => {
 	storage.set(DEFAULT_KEY_COLOR, color);
 };
 
+export const getStorageImageUri = () => {
+	return storage.getString(DEFAULT_KEY_IMAGE_URI) ?? DEFAULT_IMAGE_URI;
+};
+
+export const setStorageImageUri = (imageUri: string) => {
+	storage.set(DEFAULT_KEY_IMAGE_URI, imageUri);
+};

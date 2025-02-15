@@ -1,7 +1,7 @@
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing, useSharedValue, withTiming, useAnimatedStyle } from "react-native-reanimated";
+import { getStorageImageUri, getStorageName, setStorageImageUri, setStorageName } from "@/utils/theme-storage";
 import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
-import { getStorageName, setStorageName } from "@/utils/theme-storage";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { CircleRadialGradient } from "@/components/radial-gradient";
 import { XIcon, CheckIcon, CameraIcon } from "lucide-react-native";
@@ -25,18 +25,6 @@ export default function Page() {
 	const inputRef = useRef<TextInput>(null);
 	const [animating, setAnimating] = useState(true);
 	const [imageLoading, setImageLoading] = useState(false);
-	const oldImageUri = useRef(theme.imageUri);
-	const newImageOpacity = useSharedValue(1);
-	const oldImageOpacity = useSharedValue(0);
-
-	const newImageAnimatedStyle = useAnimatedStyle(() => ({
-		opacity: newImageOpacity.value
-	}));
-
-	const oldImageAnimatedStyle = useAnimatedStyle(() => ({
-		opacity: oldImageOpacity.value
-	}));
-
 
 	const enteringAnimation = useMemo(
 		() =>
@@ -67,13 +55,6 @@ export default function Page() {
 		};
 	}, []);
 
-	useEffect(() => {
-		if (imageLoading) {
-			oldImageOpacity.value = 1;
-			newImageOpacity.value = 0;
-		}
-	}, [imageLoading]);
-
 	const handleThemeChange = useCallback(
 		(color: keyof typeof themeColors) => {
 			if (animating) return;
@@ -94,9 +75,10 @@ export default function Page() {
 
 		if (result.didCancel || !result.assets?.[0].uri) return;
 
-		setImageLoading(true);
-		oldImageUri.current = theme.imageUri;
-		theme.setImageUri(result.assets[0].uri);
+		// setImageLoading(true);
+		// oldImageUri.current = theme.imageUri;
+		// theme.setImageUri(result.assets[0].uri);
+		setStorageImageUri(result.assets[0].uri);
 	};
 
 	return (
@@ -112,29 +94,22 @@ export default function Page() {
 						entering={FadeInDown.duration(800).delay(200).springify()}
 					>
 						<Pressable style={stylesLayout.shadowImage} onPress={pickImage}>
-							<AnimatedImage								
-								onLoad={() => {
-									if (imageLoading) {
-										oldImageOpacity.value = withTiming(0, { duration: 1000 });
-										newImageOpacity.value = withTiming(1, { duration: 1000 });
-										setImageLoading(false);
-									}
-								}}
-								style={[stylesLayout.image, newImageAnimatedStyle]}
-								placeholder={{ blurhash }}
-								placeholderContentFit="cover"
+							<Image								
+								style={[stylesLayout.image]}
+								// placeholder={{ blurhash }}
+								// placeholderContentFit="cover"
 								contentFit="cover"
-								source={theme.imageUri ? { uri: theme.imageUri } : undefined}
+								source={"https://i.ibb.co/0r00000/image.png"}
 							/>
 							<View style={styles.cameraButton}>
 								<CameraIcon fill={themeColors[theme.color].primary} color="#fff" size={26} />
 							</View>
 
-							{oldImageUri.current && <AnimatedImage 
+							{/* {oldImageUri.current && <AnimatedImage 
 								style={[styles.blurImage, oldImageAnimatedStyle]} 
 								source={{ uri: oldImageUri.current }}
 								contentFit="cover"
-							/>}
+							/>} */}
 						</Pressable>
 
 						<CircleRadialGradient
