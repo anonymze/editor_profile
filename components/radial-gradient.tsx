@@ -5,8 +5,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { useEffect } from "react";
 
 
-const AnimatedSvg = Animated.createAnimatedComponent(Svg);
-
 export function ButtonRadialGradient({
 	text,
 	color,
@@ -115,7 +113,7 @@ export function AnimatedCircleRadialGradient({
 
 	return (
 		<Pressable {...props} style={StyleSheet.flatten([styles.containerCircle, style])}>
-				<AnimatedSvg style={StyleSheet.flatten([styles.absoluteFull, rStyle])}>
+				<Svg style={StyleSheet.flatten([styles.absoluteFull])}>
 					<Defs>
 						<RadialGradient
 							id="grad"
@@ -132,7 +130,7 @@ export function AnimatedCircleRadialGradient({
 						</RadialGradient>
 					</Defs>
 					<Circle cx="50%" cy="50%" r="50%" fill="url(#grad)" />
-				</AnimatedSvg>
+				</Svg>
 				{icon}
 		</Pressable>
 	);

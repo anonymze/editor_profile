@@ -52,6 +52,7 @@ export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & 
 					editable={true}
 					cursorColor={"#fff"}
 					selectionColor={"#fff"}
+					returnKeyType="done"
 					onBlur={() => {
 						setName(inputText);
 					}}
