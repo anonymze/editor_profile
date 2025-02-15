@@ -83,19 +83,8 @@ export default function Page() {
 							</View>
 						</Pressable>
 
-						<AnimatedCircleRadialGradient
-							offset="80%"
-							icon={null}
-							color={themeColors[theme.color].primary}
-							style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.bigHalo])}
-						/>
 
-						<AnimatedCircleRadialGradient
-							offset="80%"
-							icon={null}
-							color={themeColors[theme.color].primary}
-							style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.smallHalo])}
-						/>
+
 					</Animated.View>
 
 					<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
