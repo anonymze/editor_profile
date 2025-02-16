@@ -32,7 +32,7 @@ export default function Page() {
 				.onEnd((event) => {
 					// swipe left only
 					if (event.translationX > 50) {
-						runOnJS(router.push)("/");
+						runOnJS(router.push)("/profile");
 					}
 				}),
 		[]

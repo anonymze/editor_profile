@@ -75,21 +75,6 @@ export default function Page() {
 				<Animated.View
 					style={StyleSheet.flatten([
 						stylesLayout.topButtons,
-						stylesLayout.topLeftButton,
-						{
-							backgroundColor: themeColors[themeColor].secondary,
-						},
-					])}
-					entering={FadeInDown.duration(800).delay(200).springify()}
-				>
-					<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/")}>
-						<ArrowLeftIcon size={27} color="#fff" />
-					</Pressable>
-				</Animated.View>
-
-				<Animated.View
-					style={StyleSheet.flatten([
-						stylesLayout.topButtons,
 						stylesLayout.topRightButton,
 						{
 							backgroundColor: themeColors[themeColor].secondary,
