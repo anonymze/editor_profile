@@ -89,13 +89,17 @@ export default function Page() {
 					<View style={stylesLayout.shadowImage}>
 						<Image style={stylesLayout.image} source={getStorageImageUri()} />
 					</View>
-
 				</Animated.View>
 			</View>
 
 			{!showIngredients ? (
 				<Animated.View entering={enteringAnimationLeft()} style={{ paddingTop: 40 }}>
-					<TextGradient color={themeColor} text={"Vos ingrédients :"} style={{ fontSize: 30 }} />
+					<TextGradient
+						lowShadow
+						color={themeColor}
+						text={"Vos ingrédients :"}
+						style={{ fontSize: 32, alignSelf: "flex-start", paddingLeft: 20 }}
+					/>
 				</Animated.View>
 			) : null}
 

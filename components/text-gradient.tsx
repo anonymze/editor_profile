@@ -22,9 +22,10 @@ interface InputTextGradientProps {
 	home?: boolean;
 	text?: string;
 	style?: StyleProp<TextStyle>;
+	lowShadow?: boolean;
 }
 
-export function TextGradient({ text, style, color, home }: InputTextGradientProps) {
+export function TextGradient({ text, style, color, home, lowShadow }: InputTextGradientProps) {
 	const fontSize = StyleSheet.flatten(style)?.fontSize ?? DEFAULT_FONT_SIZE;
 	const height = getHeight(fontSize);
 
@@ -32,7 +33,18 @@ export function TextGradient({ text, style, color, home }: InputTextGradientProp
 		<View style={[styles.view]}>
 			<MaskedView
 				style={[styles.flexDirection, { height: home ? 85 : height }]}
-				maskElement={<Text style={StyleSheet.flatten([styles.text, { fontSize }, style])}>{text}</Text>}
+				maskElement={
+					<Text
+						style={StyleSheet.flatten([
+							styles.text,
+							{ fontSize },
+							style,
+							lowShadow ? { shadowOffset: { width: 0, height: 3 } } : null,
+						])}
+					>
+						{text}
+					</Text>
+				}
 			>
 				<LinearGradient
 					colors={["#fff", themeColors[color].primary]}
