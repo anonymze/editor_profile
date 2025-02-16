@@ -30,7 +30,7 @@ export default function Page() {
 			Gesture.Pan()
 				.activeOffsetX([-20, 20])
 				.onEnd((event) => {
-					// swipe right
+					// swipe left only
 					if (event.translationX > 50) {
 						runOnJS(router.push)("/");
 					}
@@ -96,7 +96,7 @@ export default function Page() {
 				keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 0}
 			>
 				<LayoutBackground color={themeColorFinal} centeredContent>
-					<View style={stylesLayout.container}>
+					<View style={stylesLayout.containerWithGap}>
 						<Animated.View
 							style={stylesLayout.centerContent}
 							entering={FadeInDown.duration(800).delay(200).springify()}

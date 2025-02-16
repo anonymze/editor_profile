@@ -31,7 +31,7 @@ export default function Page() {
 
 	return (
 		<LayoutBackground centeredContent color={themeColor}>
-			<View style={stylesLayout.container}>
+			<View style={stylesLayout.containerWithGap}>
 				<Animated.View
 					style={stylesLayout.centerContent}
 					entering={FadeInDown.duration(800).delay(200).springify()}

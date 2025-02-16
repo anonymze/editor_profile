@@ -74,7 +74,6 @@ export const stylesLayout = StyleSheet.create({
 		width: 140,
 		aspectRatio: 1,
 		borderRadius: 99,
-		marginBottom: 4,
 	},
 	bottomButton: {
 		position: "absolute",
@@ -93,6 +92,12 @@ export const stylesLayout = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
+	},
+	containerWithGap: {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
+		gap: 5,
 	},
 	centerContent: {
 		justifyContent: "center",
