@@ -187,6 +187,6 @@ const styles = StyleSheet.create({
 		aspectRatio: 1,
 		borderRadius: 99,
 		borderWidth: 2,
-		borderColor: "rgba(255, 255, 255, 0.6)",
+		borderColor: "rgba(255, 255, 255, 0.7)",
 	},
 });
