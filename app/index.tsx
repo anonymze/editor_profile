@@ -93,12 +93,12 @@ export default function Page() {
 			</View>
 
 			{!showIngredients ? (
-				<Animated.View entering={enteringAnimationLeft()} style={{ paddingTop: 40 }}>
+				<Animated.View entering={enteringAnimationLeft()} style={styles.highPaddingTop}>
 					<TextGradient
 						lowShadow
 						color={themeColor}
 						text={"Vos ingrédients :"}
-						style={{ fontSize: 32, alignSelf: "flex-start", paddingLeft: 20 }}
+						style={styles.ingredientsText}
 					/>
 				</Animated.View>
 			) : null}
@@ -118,3 +118,15 @@ export default function Page() {
 		</LayoutBackground>
 	);
 }
+
+const styles = StyleSheet.create({
+	ingredientsText: {
+		fontSize: 32,
+		alignSelf: "flex-start",
+		paddingLeft: 20,
+		marginBottom: 20,
+	},
+	highPaddingTop: {
+		paddingTop: 40,
+	},
+});
