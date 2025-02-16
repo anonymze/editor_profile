@@ -14,6 +14,7 @@ import { Image } from "expo-image";
 export default function Page() {
 	const themeColor = getStorageColor();
 	const [canSearch, setCanSearch] = useState(false);
+	const [showIngredients, setShowIngredients] = useState(false);
 
 	const enteringAnimation = useCallback(
 		() =>
@@ -30,8 +31,7 @@ export default function Page() {
 	);
 	const enteringAnimationLeft = useCallback(
 		() =>
-			FadeInLeft
-				.delay(150)
+			FadeInLeft.delay(150)
 				.easing(Easing.in(Easing.ease))
 				.springify()
 				.damping(17)
@@ -45,8 +45,7 @@ export default function Page() {
 
 	const enteringAnimationRight = useCallback(
 		() =>
-			FadeInRight
-				.delay(150)
+			FadeInRight.delay(150)
 				.easing(Easing.in(Easing.ease))
 				.springify()
 				.damping(17)
@@ -75,39 +74,36 @@ export default function Page() {
 				</Pressable>
 			</Animated.View>
 
-			<View style={{paddingTop: 100}}>
+			<View style={{ paddingTop: 85 }}>
 				<Animated.View entering={enteringAnimationLeft()}>
-					<TextGradient color={themeColor} text={"FRIGO "} style={{ fontSize: 75 }} />
+					<TextGradient color={themeColor} text={"FRIGO"} home style={{ fontSize: 75 }} />
 				</Animated.View>
 				<Animated.View entering={enteringAnimationRight()}>
-					<TextGradient color={themeColor} text={"CHEF ! "} style={{ fontSize: 75, marginTop: -15 }} />
+					<TextGradient color={themeColor} text={"CHEF !"} home style={{ fontSize: 75, marginTop: -15 }} />
 				</Animated.View>
 
-				<Animated.View      
+				<Animated.View
 					style={stylesLayout.centerContent}
 					entering={FadeInDown.duration(800).delay(400).springify()}
 				>
 					<View style={stylesLayout.shadowImage}>
 						<Image style={stylesLayout.image} source={getStorageImageUri()} />
 					</View>
-					<CircleRadialGradient
-						offset="80%"
-						icon={null}
-						color={themeColors[themeColor].primary}
-						style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.bigHalo])}
-					/>
 
-					<CircleRadialGradient
-						offset="80%"
-						icon={null}
-						color={themeColors[themeColor].primary}
-						style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.smallHalo])}
-					/>
 				</Animated.View>
 			</View>
 
+			{!showIngredients ? (
+				<Animated.View entering={enteringAnimationLeft()} style={{ paddingTop: 40 }}>
+					<TextGradient color={themeColor} text={"Vos ingrédients :"} style={{ fontSize: 30 }} />
+				</Animated.View>
+			) : null}
+
 			{canSearch && (
-				<Animated.View style={stylesLayout.bottomButton} entering={enteringAnimation()}>
+				<Animated.View
+					style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
+					entering={enteringAnimation()}
+				>
 					<ButtonRadialGradient
 						onPress={() => router.push("/recipe")}
 						text="Continuer"

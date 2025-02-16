@@ -19,23 +19,24 @@ const getMaxLength = () => {
 
 interface InputTextGradientProps {
 	color: keyof typeof themeColors;
+	home?: boolean;
 	text?: string;
 	style?: StyleProp<TextStyle>;
 }
 
-export function TextGradient({ text, style, color }: InputTextGradientProps) {
+export function TextGradient({ text, style, color, home }: InputTextGradientProps) {
 	const fontSize = StyleSheet.flatten(style)?.fontSize ?? DEFAULT_FONT_SIZE;
 	const height = getHeight(fontSize);
 
 	return (
 		<View style={[styles.view]}>
 			<MaskedView
-				style={[styles.flexDirection, { height }]}
+				style={[styles.flexDirection, { height: home ? 85 : height }]}
 				maskElement={<Text style={StyleSheet.flatten([styles.text, { fontSize }, style])}>{text}</Text>}
 			>
 				<LinearGradient
 					colors={["#fff", themeColors[color].primary]}
-					start={{ x: 0, y: 0.4 }}
+					start={{ x: 0, y: home ? 0.9 : 0.4 }}
 					end={{ x: 0, y: 1 }}
 					style={styles.full}
 				/>
@@ -61,7 +62,7 @@ export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & 
 					}}
 					defaultValue={name}
 					ref={ref}
-					maxLength={maxLength ?? 11}
+					maxLength={maxLength ?? getMaxLength()}
 					editable={true}
 					cursorColor={"#fff"}
 					selectionColor={"#fff"}
