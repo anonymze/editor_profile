@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
 		fontSize: 32,
 		alignSelf: "flex-start",
 		paddingLeft: 20,
-		marginBottom: 20,
 	},
 	highPaddingTop: {
 		paddingTop: 40,
