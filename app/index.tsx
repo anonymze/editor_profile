@@ -30,6 +30,17 @@ export default function Page() {
 	const bottomSheetRef = useRef<BottomSheetModal>(null);
 	const [selectedValues, setSelectedValues] = useState<FoodItem[]>([]);
 	const latestBatchRef = useRef<FoodItem[]>([]);
+	const themeColor = getStorageColor();
+	const {
+		enteringAnimationLeft,
+		enteringAnimationRight,
+		enteringAnimation,
+		scale1,
+		scale2,
+		opacity,
+		pulseStyle1,
+		pulseStyle2,
+	} = useAnimations();
 
 	const getSelectecValues = (values: FoodItem[] | null) => {
 		if (values === null) {
@@ -40,23 +51,6 @@ export default function Page() {
 		latestBatchRef.current = values;
 		setSelectedValues((prev) => [...new Set([...prev, ...values])]);
 	};
-
-	const themeColor = getStorageColor();
-	const [canSearch, setCanSearch] = useState(false);
-	const [showIngredients, setShowIngredients] = useState(false);
-	const scale1 = useSharedValue(0.9);
-	const scale2 = useSharedValue(0.7);
-	const opacity = useSharedValue(0.4);
-
-	const pulseStyle1 = useAnimatedStyle(() => ({
-		transform: [{ scale: scale1.value }],
-		opacity: opacity.value,
-	}));
-
-	const pulseStyle2 = useAnimatedStyle(() => ({
-		transform: [{ scale: scale2.value }],
-		opacity: opacity.value,
-	}));
 
 	useEffect(() => {
 		scale1.value = withRepeat(
@@ -86,47 +80,6 @@ export default function Page() {
 			false
 		);
 	}, []);
-
-	const enteringAnimation = useCallback(
-		() =>
-			FadeInDown.duration(600)
-				.delay(300)
-				.easing(Easing.inOut(Easing.ease))
-				.springify()
-				.damping(16)
-				.withInitialValues({
-					opacity: 0,
-					transform: [{ translateY: 100 }],
-				}),
-		[]
-	);
-	const enteringAnimationLeft = useCallback(
-		() =>
-			FadeInLeft.delay(150)
-				.easing(Easing.in(Easing.ease))
-				.springify()
-				.damping(17)
-				.stiffness(160)
-				.withInitialValues({
-					opacity: 0,
-					transform: [{ translateX: -100 }],
-				}),
-		[]
-	);
-
-	const enteringAnimationRight = useCallback(
-		() =>
-			FadeInRight.delay(150)
-				.easing(Easing.in(Easing.ease))
-				.springify()
-				.damping(17)
-				.stiffness(160)
-				.withInitialValues({
-					opacity: 0,
-					transform: [{ translateX: 100 }],
-				}),
-		[]
-	);
 
 	return (
 		<BottomSheetModalProvider>
@@ -185,7 +138,7 @@ export default function Page() {
 						<View style={styles.containerFruits}>
 							{selectedValues.map((value) => (
 								<Animated.View
-										key={value.id}
+									key={value.id}
 									entering={FadeInDown.duration(300)
 										.delay(latestBatchRef.current.indexOf(value) * 100)
 										.springify()}
@@ -220,6 +173,74 @@ export default function Page() {
 		</BottomSheetModalProvider>
 	);
 }
+
+const useAnimations = () => {
+	const scale1 = useSharedValue(0.9);
+	const scale2 = useSharedValue(0.7);
+	const opacity = useSharedValue(0.4);
+
+	const enteringAnimation = useCallback(
+		() =>
+			FadeInDown.duration(600)
+				.delay(300)
+				.easing(Easing.inOut(Easing.ease))
+				.springify()
+				.damping(16)
+				.withInitialValues({
+					opacity: 0,
+					transform: [{ translateY: 100 }],
+				}),
+		[]
+	);
+	const enteringAnimationLeft = useCallback(
+		() =>
+			FadeInLeft.delay(150)
+				.easing(Easing.in(Easing.ease))
+				.springify()
+				.damping(17)
+				.stiffness(160)
+				.withInitialValues({
+					opacity: 0,
+					transform: [{ translateX: -100 }],
+				}),
+		[]
+	);
+
+	const enteringAnimationRight = useCallback(
+		() =>
+			FadeInRight.delay(150)
+				.easing(Easing.in(Easing.ease))
+				.springify()
+				.damping(17)
+				.stiffness(160)
+				.withInitialValues({
+					opacity: 0,
+					transform: [{ translateX: 100 }],
+				}),
+		[]
+	);
+
+	const pulseStyle1 = useAnimatedStyle(() => ({
+		transform: [{ scale: scale1.value }],
+		opacity: opacity.value,
+	}));
+
+	const pulseStyle2 = useAnimatedStyle(() => ({
+		transform: [{ scale: scale2.value }],
+		opacity: opacity.value,
+	}));
+
+	return {
+		enteringAnimationRight,
+		enteringAnimationLeft,
+		enteringAnimation,
+		pulseStyle1,
+		pulseStyle2,
+		scale1,
+		scale2,
+		opacity,
+	};
+};
 
 const styles = StyleSheet.create({
 	ingredientsText: {
