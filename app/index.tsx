@@ -1,5 +1,6 @@
 import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, } from "react-native-reanimated";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { BadgeInfoIcon, InfoIcon, UserRoundPenIcon } from "lucide-react-native";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
@@ -7,7 +8,6 @@ import { getStorageColor, themeColors } from "@/utils/theme-storage";
 import { ButtonRadialGradient } from "@/components/radial-gradient";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
-import { UserRoundPenIcon } from "lucide-react-native";
 import { StyleSheet, View } from "react-native";
 import vegetables from "@/data/vegetables";
 import { router } from "expo-router";
@@ -85,7 +85,7 @@ export default function Page() {
 		);
 
 		translateY.value = withDelay(
-			500,
+			600,
 			withRepeat(
 				withTiming(8, {
 					duration: 1200,
@@ -115,6 +115,22 @@ export default function Page() {
 					</Pressable>
 				</Animated.View>
 
+				<Animated.View
+					style={StyleSheet.flatten([
+						stylesLayout.topButtons,
+						stylesLayout.topLeftButton,
+						{
+							backgroundColor: themeColors[themeColor].secondary,
+							borderRadius: 99,
+						},
+					])}
+					entering={FadeInDown.duration(800).delay(200).springify()}
+				>
+					<Pressable style={stylesLayout.paddingTopButtons} onPress={() => {}}>
+						<BadgeInfoIcon size={28} color="#fff" />
+					</Pressable>
+				</Animated.View>
+
 				<View style={styles.highPaddingTop}>
 					<Animated.View entering={enteringAnimationLeft()}>
 						<TextGradient color={themeColor} text={"FRIGO"} home style={{ fontSize: 75 }} />
@@ -131,7 +147,7 @@ export default function Page() {
 							style={[stylesLayout.shadowImage, styles.imageContainer]}
 							onPress={() => {
 								bottomSheetRef.current?.present();
-							}}
+							}}r
 						>
 							<Animated.View style={StyleSheet.flatten([stylesLayout.centerContent, bounceStyle])}>
 								<Animated.View style={[styles.halo, pulseStyle1]} />
