@@ -1,12 +1,12 @@
+import Animated, { Easing, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSequence, withTiming, } from "react-native-reanimated";
 import { getStorageColor, getStorageImageUri, getStorageName, themeColors } from "@/utils/theme-storage";
-import Animated, { Easing, FadeInDown, FadeInLeft, FadeInRight } from "react-native-reanimated";
 import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { PencilIcon, UserRoundPenIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
+import { useCallback, useEffect, useState } from "react";
 import { Pressable } from "react-native-gesture-handler";
 import { StyleSheet, Text, View } from "react-native";
-import { useCallback, useState } from "react";
 import { router } from "expo-router";
 import { Image } from "expo-image";
 
@@ -15,6 +15,61 @@ export default function Page() {
 	const themeColor = getStorageColor();
 	const [canSearch, setCanSearch] = useState(false);
 	const [showIngredients, setShowIngredients] = useState(false);
+	const scale1 = useSharedValue(0.9);
+	const scale2 = useSharedValue(0.7);
+	const opacity = useSharedValue(0.2);
+
+	useEffect(() => {
+		scale1.value = withDelay(
+			800,
+			withRepeat(
+				withSequence(
+					withTiming(1.6, {
+						duration: 3500,
+						easing: Easing.out(Easing.ease),
+					})
+				),
+				-1,
+				false
+			)
+		);
+
+		scale2.value = withDelay(
+			800,
+			withRepeat(
+				withSequence(
+					withTiming(1.3, {
+						duration: 3500,
+						easing: Easing.out(Easing.ease),
+					})
+				),
+				-1,
+				false
+			)
+		);
+
+		opacity.value = withRepeat(
+			withDelay(
+				2300,
+				withTiming(0, {
+					duration: 2000,
+					easing: Easing.out(Easing.ease),
+				})
+			),
+			-1,
+			false
+		);
+	}, []);
+
+	const pulseStyle1 = useAnimatedStyle(() => ({
+		transform: [{ scale: scale1.value }],
+		opacity: opacity.value,
+	}));
+
+	const pulseStyle2 = useAnimatedStyle(() => ({
+		transform: [{ scale: scale2.value }],
+		opacity: opacity.value,
+	}));
 
 	const enteringAnimation = useCallback(
 		() =>
@@ -86,7 +141,9 @@ export default function Page() {
 					style={StyleSheet.flatten([stylesLayout.centerContent, styles.lowPaddingTop])}
 					entering={FadeInDown.duration(800).delay(400).springify()}
 				>
-					<View style={stylesLayout.shadowImage}>
+					<View style={[stylesLayout.shadowImage, styles.imageContainer]}>
+						<Animated.View style={[styles.halo, pulseStyle1]} />
+						<Animated.View style={[styles.halo, pulseStyle2]} />
 						<Image style={stylesLayout.image} source={getStorageImageUri()} />
 					</View>
 				</Animated.View>
@@ -133,5 +190,16 @@ const styles = StyleSheet.create({
 	},
 	lowPaddingTop: {
 		paddingTop: 10,
+	},
+	imageContainer: {
+		position: "relative",
+	},
+	halo: {
+		position: "absolute",
+		width: 140,
+		aspectRatio: 1,
+		borderRadius: 99,
+		borderWidth: 2,
+		borderColor: "#fff",
 	},
 });
