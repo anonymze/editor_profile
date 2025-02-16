@@ -1,11 +1,11 @@
-import Animated, { Easing, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSequence, withTiming, } from "react-native-reanimated";
+import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSequence, withTiming, } from "react-native-reanimated";
 import { getStorageColor, getStorageImageUri, getStorageName, themeColors } from "@/utils/theme-storage";
 import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { PencilIcon, UserRoundPenIcon } from "lucide-react-native";
-import { useCallback, useEffect, useRef, useState } from "react";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { StyleSheet, Text, View } from "react-native";
@@ -26,17 +26,21 @@ const initialSections = [
 	},
 ];
 
-
 export default function Page() {
 	const bottomSheetRef = useRef<BottomSheetModal>(null);
 	const [selectedValues, setSelectedValues] = useState<FoodItem[]>([]);
 	const latestBatchRef = useRef<FoodItem[]>([]);
 
-	const getSelectecValues = (values: FoodItem[]) => {
+	const getSelectecValues = (values: FoodItem[] | null) => {
+		if (values === null) {
+			latestBatchRef.current = [];
+			setSelectedValues([]);
+			return;
+		}
 		latestBatchRef.current = values;
 		setSelectedValues((prev) => [...new Set([...prev, ...values])]);
 	};
-	
+
 	const themeColor = getStorageColor();
 	const [canSearch, setCanSearch] = useState(false);
 	const [showIngredients, setShowIngredients] = useState(false);
@@ -154,9 +158,12 @@ export default function Page() {
 						style={StyleSheet.flatten([stylesLayout.centerContent, styles.lowPaddingTop])}
 						entering={FadeInDown.duration(800).delay(400).springify()}
 					>
-						<Pressable style={[stylesLayout.shadowImage, styles.imageContainer]} onPress={() => {
-							bottomSheetRef.current?.present();
-						}}>
+						<Pressable
+							style={[stylesLayout.shadowImage, styles.imageContainer]}
+							onPress={() => {
+								bottomSheetRef.current?.present();
+							}}
+						>
 							<Animated.View style={[styles.halo, pulseStyle1]} />
 							<Animated.View style={[styles.halo, pulseStyle2]} />
 							<Image style={stylesLayout.image} source={getStorageImageUri()} />
@@ -164,15 +171,30 @@ export default function Page() {
 					</Animated.View>
 				</View>
 
-				{showIngredients ? (
-					<Animated.View entering={enteringAnimationLeft()} style={styles.mediumPaddingTop}>
-						<TextGradient
-							lowShadow
-							color={themeColor}
-							text={"Vos ingrédients :"}
-							style={styles.ingredientsText}
-						/>
-					</Animated.View>
+				{selectedValues.length > 0 ? (
+					<Fragment>
+						<Animated.View entering={FadeIn} style={styles.mediumPaddingTop}>
+							<TextGradient
+								lowShadow
+								color={themeColor}
+								text={"Vos ingrédients :"}
+								style={styles.ingredientsText}
+							/>
+						</Animated.View>
+
+						<View style={styles.containerFruits}>
+							{selectedValues.map((value) => (
+								<Animated.View
+									key={value.id}
+									entering={FadeInDown.duration(300)
+										.delay(latestBatchRef.current.indexOf(value) * 100)
+										.springify()}
+								>
+									<Image source={value.image} style={{ width: 50, height: 50 }} />
+								</Animated.View>
+							))}
+						</View>
+					</Fragment>
 				) : null}
 
 				{canSearch && (
@@ -190,9 +212,8 @@ export default function Page() {
 
 				<BottomSheetSelect
 					onSelect={getSelectecValues}
-					titleModal="Ouvrir le frigo"
 					data={initialSections}
-					placeholderSearch="Chercher un aliment"
+					placeholderSearch="Chercher un ingrédient"
 					ref={bottomSheetRef}
 				/>
 			</LayoutBackground>
@@ -225,5 +246,13 @@ const styles = StyleSheet.create({
 		borderRadius: 99,
 		borderWidth: 2,
 		borderColor: "rgba(255, 255, 255, 0.7)",
+	},
+	containerFruits: {
+		flex: 1,
+		flexDirection: "row",
+		flexWrap: "wrap",
+		gap: 6,
+		paddingLeft: 14,
+		paddingTop: 10,
 	},
 });

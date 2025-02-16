@@ -11,13 +11,12 @@ import { Image } from "expo-image";
 export type FoodItem = (typeof fruits)[number] | (typeof vegetables)[number];
 
 interface Props {
-	titleModal: string;
 	placeholderSearch: string;
 	data: {
 		title: string;
 		data: FoodItem[];
 	}[];
-	onSelect: (values: FoodItem[]) => void;
+	onSelect: (values: FoodItem[] | null) => void;
 }
 
 const snapPoints = ["75%"];
@@ -56,19 +55,23 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 						<Button
 							title="Effacer"
 							onPress={() => {
+								onSelect(null);
 								setSelectedIds([]);
 								setSearchQuery("");
+								if (ref && "current" in ref) {
+									ref?.current?.close();
+								}
 							}}
 						/>
 						<Button
 							title="Ajouter"
 							onPress={() => {
 								onSelect(selectedIds);
+								setSelectedIds([]);
+								setSearchQuery("");
 								if (ref && "current" in ref) {
 									ref?.current?.close();
 								}
-								setSelectedIds([]);
-								setSearchQuery("");
 							}}
 						/>
 					</View>
@@ -201,9 +204,10 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 	},
 	searchInput: {
-		marginBottom: 10,
-		padding: 12,
-		borderRadius: 10,
+		marginBottom: 15,
+		marginTop: 15,
+		padding: 14,
+		borderRadius: 15,
 		fontSize: 16,
 		backgroundColor: "rgba(151, 151, 151, 0.25)",
 	},
