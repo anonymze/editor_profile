@@ -197,7 +197,7 @@ export default function Page() {
 					</Fragment>
 				) : null}
 
-				{canSearch && (
+				{selectedValues.length > 2 && (
 					<Animated.View
 						style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
 						entering={enteringAnimation()}
@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: "row",
 		flexWrap: "wrap",
-		rowGap: 10,
+		rowGap: 8,
 		columnGap: 20,
 		paddingLeft: 15,
 		paddingTop: 10,
