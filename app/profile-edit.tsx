@@ -144,7 +144,7 @@ export default function Page() {
 					>
 						<Pressable
 							onPress={() => {
-								router.push("/");
+								router.push("/profile");
 							}}
 							style={stylesLayout.paddingTopButtons}
 						>

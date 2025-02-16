@@ -1,11 +1,11 @@
 import { getStorageColor, getStorageImageUri, getStorageName, themeColors } from "@/utils/theme-storage";
+import Animated, { Easing, FadeInDown, FadeInLeft, FadeInRight } from "react-native-reanimated";
 import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
-import Animated, { Easing, FadeInDown } from "react-native-reanimated";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
+import { PencilIcon, UserRoundPenIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { StyleSheet, Text, View } from "react-native";
-import { PencilIcon } from "lucide-react-native";
 import { useCallback, useState } from "react";
 import { router } from "expo-router";
 import { Image } from "expo-image";
@@ -21,7 +21,6 @@ export default function Page() {
 				.delay(300)
 				.easing(Easing.inOut(Easing.ease))
 				.springify()
-				.stiffness(100)
 				.damping(16)
 				.withInitialValues({
 					opacity: 0,
@@ -29,9 +28,38 @@ export default function Page() {
 				}),
 		[]
 	);
+	const enteringAnimationLeft = useCallback(
+		() =>
+			FadeInLeft
+				.delay(150)
+				.easing(Easing.in(Easing.ease))
+				.springify()
+				.damping(16)
+				.stiffness(150)
+				.withInitialValues({
+					opacity: 0,
+					transform: [{ translateX: -100 }],
+				}),
+		[]
+	);
+
+	const enteringAnimationRight = useCallback(
+		() =>
+			FadeInRight
+				.delay(150)
+				.easing(Easing.in(Easing.ease))
+				.springify()
+				.damping(14)
+				.stiffness(150)
+				.withInitialValues({
+					opacity: 0,
+					transform: [{ translateX: 100 }],
+				}),
+		[]
+	);
 
 	return (
-		<LayoutBackground color={themeColor} centeredContent>
+		<LayoutBackground color={themeColor} centeredContent={false}>
 			<Animated.View
 				style={StyleSheet.flatten([
 					stylesLayout.topButtons,
@@ -42,16 +70,19 @@ export default function Page() {
 				])}
 				entering={FadeInDown.duration(800).delay(200).springify()}
 			>
-				<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/profile-edit")}>
-					<PencilIcon size={22} color="#fff" />
+				<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/profile")}>
+					<UserRoundPenIcon size={24} color="#fff" />
 				</Pressable>
 			</Animated.View>
 
-			<View style={StyleSheet.flatten([stylesLayout.container])}>
-				<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
+			<View style={{paddingTop: 100}}>
+				<Animated.View entering={enteringAnimationLeft()}>
 					<TextGradient color={themeColor} text={"FRIGO "} style={{ fontSize: 75 }} />
-					<TextGradient color={themeColor} text={"CHEF"} style={{ fontSize: 75, marginTop: -15 }} />
 				</Animated.View>
+				<Animated.View entering={enteringAnimationRight()}>
+					<TextGradient color={themeColor} text={"CHEF ! "} style={{ fontSize: 75, marginTop: -15 }} />
+				</Animated.View>
+
 				<Animated.View      
 					style={stylesLayout.centerContent}
 					entering={FadeInDown.duration(800).delay(400).springify()}
@@ -78,7 +109,7 @@ export default function Page() {
 			{canSearch && (
 				<Animated.View style={stylesLayout.bottomButton} entering={enteringAnimation()}>
 					<ButtonRadialGradient
-						onPress={() => router.push("/frigo")}
+						onPress={() => router.push("/recipe")}
 						text="Continuer"
 						color={themeColors[themeColor].primaryLight}
 					/>
