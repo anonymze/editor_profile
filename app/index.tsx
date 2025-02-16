@@ -26,7 +26,9 @@ export default function Page() {
 				withSequence(
 					withTiming(1.6, {
 						duration: 3500,
-						easing: Easing.out(Easing.ease),
+					}),
+					withTiming(0, {
+						duration: 500,
 					})
 				),
 				-1,
@@ -40,7 +42,9 @@ export default function Page() {
 				withSequence(
 					withTiming(1.3, {
 						duration: 3500,
-						easing: Easing.out(Easing.ease),
+					}),
+					withTiming(0, {
+						duration: 500,
 					})
 				),
 				-1,
@@ -51,10 +55,15 @@ export default function Page() {
 		opacity.value = withRepeat(
 			withDelay(
 				2300,
-				withTiming(0, {
-					duration: 2000,
-					easing: Easing.out(Easing.ease),
-				})
+				withSequence(
+					withTiming(0, {
+						duration: 2000,
+						easing: Easing.out(Easing.ease),
+					}),
+					withTiming(0, {
+						duration: 500,
+					})
+				)
 			),
 			-1,
 			false
@@ -200,6 +209,6 @@ const styles = StyleSheet.create({
 		aspectRatio: 1,
 		borderRadius: 99,
 		borderWidth: 2,
-		borderColor: "#fff",
+		borderColor: "rgba(255, 255, 255, 0.4)",
 	},
 });
