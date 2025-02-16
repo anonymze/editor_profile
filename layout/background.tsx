@@ -75,6 +75,10 @@ export const stylesLayout = StyleSheet.create({
 		aspectRatio: 1,
 		borderRadius: 99,
 	},
+	imageHome: {
+		width: 160,
+		aspectRatio: 1,
+	},
 	bottomButton: {
 		position: "absolute",
 		bottom: 45,

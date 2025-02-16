@@ -1,14 +1,15 @@
-import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSequence, withTiming, } from "react-native-reanimated";
-import { getStorageColor, getStorageImageUri, getStorageName, themeColors } from "@/utils/theme-storage";
-import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
+import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withRepeat, withTiming, } from "react-native-reanimated";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
-import { PencilIcon, UserRoundPenIcon } from "lucide-react-native";
+import { getStorageColor, themeColors } from "@/utils/theme-storage";
+import { ButtonRadialGradient } from "@/components/radial-gradient";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
-import { StyleSheet, Text, View } from "react-native";
+import { UserRoundPenIcon } from "lucide-react-native";
+import fridgeImage from "@/assets/images/fridge.png";
+import { StyleSheet, View } from "react-native";
 import vegetables from "@/data/vegetables";
 import { router } from "expo-router";
 import fruits from "@/data/fruits";
@@ -54,7 +55,7 @@ export default function Page() {
 
 	useEffect(() => {
 		scale1.value = withRepeat(
-			withTiming(1.7, {
+			withTiming(1.5, {
 				duration: 5000,
 				easing: Easing.linear,
 			}),
@@ -63,7 +64,7 @@ export default function Page() {
 		);
 
 		scale2.value = withRepeat(
-			withTiming(1.3, {
+			withTiming(1.1, {
 				duration: 5000,
 				easing: Easing.linear,
 			}),
@@ -119,7 +120,12 @@ export default function Page() {
 						>
 							<Animated.View style={[styles.halo, pulseStyle1]} />
 							<Animated.View style={[styles.halo, pulseStyle2]} />
-							<Image style={stylesLayout.image} source={getStorageImageUri()} />
+							<Image
+								style={stylesLayout.imageHome}
+								source={fridgeImage}
+								cachePolicy="memory-disk"
+								contentFit="contain"
+							/>
 						</Pressable>
 					</Animated.View>
 				</View>
@@ -143,7 +149,7 @@ export default function Page() {
 										.delay(latestBatchRef.current.indexOf(value) * 100)
 										.springify()}
 								>
-									<Image source={value.image} style={{ width: 55, height: 55 }} />
+									<Image source={value.image} style={{ width: 50, height: 50 }} />
 								</Animated.View>
 							))}
 						</View>
@@ -175,8 +181,8 @@ export default function Page() {
 }
 
 const useAnimations = () => {
-	const scale1 = useSharedValue(0.9);
-	const scale2 = useSharedValue(0.7);
+	const scale1 = useSharedValue(0.7);
+	const scale2 = useSharedValue(0.5);
 	const opacity = useSharedValue(0.4);
 
 	const enteringAnimation = useCallback(

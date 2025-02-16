@@ -1,4 +1,4 @@
-import { getStorageColor, getStorageImageUri, getStorageName, themeColors } from "@/utils/theme-storage";
+import { DEFAULT_IMAGE_URI, getStorageColor, getStorageImageUri, getStorageName, themeColors, } from "@/utils/theme-storage";
 import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
 import { Gesture, GestureDetector, Pressable } from "react-native-gesture-handler";
 import Animated, { Easing, FadeInDown, runOnJS } from "react-native-reanimated";
@@ -51,7 +51,17 @@ export default function Page() {
 						entering={FadeInDown.duration(800).delay(200).springify()}
 					>
 						<View style={stylesLayout.shadowImage}>
-							<Image style={stylesLayout.image} source={getStorageImageUri()} />
+							<Image
+								style={stylesLayout.image}
+								source={getStorageImageUri()}
+								contentFit="cover"
+								placeholder={{ uri: DEFAULT_IMAGE_URI }}
+								placeholderContentFit="cover"
+								transition={{
+									duration: 100,
+									effect: "cross-dissolve",
+								}}
+							/>
 						</View>
 						<CircleRadialGradient
 							offset="80%"

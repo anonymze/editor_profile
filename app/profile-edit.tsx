@@ -14,8 +14,8 @@ import { router } from "expo-router";
 import { Image } from "expo-image";
 
 
-const blurhash =
-	"|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
+// const blurhash =
+// 	"|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 
 export default function Page() {
 	const bottomButtonRef = useRef<Animated.View>(null);
@@ -106,6 +106,12 @@ export default function Page() {
 									style={[stylesLayout.image]}
 									contentFit="cover"
 									source={imageUri ?? DEFAULT_IMAGE_URI}
+									placeholderContentFit="cover"
+									placeholder={{ uri: DEFAULT_IMAGE_URI }}
+									transition={{
+										duration: 200,
+										effect: "flip-from-top",
+									}}
 								/>
 								<View style={styles.cameraButton}>
 									<CameraIcon fill={themeColors[themeColorFinal].primary} color="#fff" size={26} />
