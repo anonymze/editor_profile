@@ -34,8 +34,8 @@ export default function Page() {
 				.delay(150)
 				.easing(Easing.in(Easing.ease))
 				.springify()
-				.damping(16)
-				.stiffness(150)
+				.damping(17)
+				.stiffness(160)
 				.withInitialValues({
 					opacity: 0,
 					transform: [{ translateX: -100 }],
@@ -49,8 +49,8 @@ export default function Page() {
 				.delay(150)
 				.easing(Easing.in(Easing.ease))
 				.springify()
-				.damping(14)
-				.stiffness(150)
+				.damping(17)
+				.stiffness(160)
 				.withInitialValues({
 					opacity: 0,
 					transform: [{ translateX: 100 }],
