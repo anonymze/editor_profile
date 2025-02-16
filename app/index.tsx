@@ -21,14 +21,14 @@ export default function Page() {
 
 	useEffect(() => {
 		scale1.value = withDelay(
-			800,
+			400,
 			withRepeat(
 				withSequence(
-					withTiming(1.6, {
+					withTiming(1.7, {
 						duration: 3500,
 					}),
-					withTiming(0, {
-						duration: 500,
+					withTiming(1.7, {
+						duration: 300,
 					})
 				),
 				-1,
@@ -37,14 +37,14 @@ export default function Page() {
 		);
 
 		scale2.value = withDelay(
-			800,
+			400,
 			withRepeat(
 				withSequence(
 					withTiming(1.3, {
 						duration: 3500,
 					}),
-					withTiming(0, {
-						duration: 500,
+					withTiming(1.3, {
+						duration: 300,
 					})
 				),
 				-1,
