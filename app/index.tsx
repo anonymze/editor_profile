@@ -8,7 +8,6 @@ import { ButtonRadialGradient } from "@/components/radial-gradient";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { UserRoundPenIcon } from "lucide-react-native";
-import fridgeImage from "@/assets/images/fridge.png";
 import { StyleSheet, View } from "react-native";
 import vegetables from "@/data/vegetables";
 import { router } from "expo-router";
@@ -139,7 +138,7 @@ export default function Page() {
 								<Animated.View style={[styles.halo, pulseStyle2]} />
 								<Image
 									style={[stylesLayout.imageHome]}
-									source={fridgeImage}
+									source={require("@/assets/images/fridge.png")}
 									cachePolicy="memory-disk"
 									contentFit="contain"
 								/>
