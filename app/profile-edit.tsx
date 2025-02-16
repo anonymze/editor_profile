@@ -109,7 +109,7 @@ export default function Page() {
 									placeholderContentFit="cover"
 									placeholder={{ uri: DEFAULT_IMAGE_URI }}
 									transition={{
-										duration: 300,
+										duration: 350,
 										effect: "flip-from-top",
 									}}
 								/>
