@@ -185,12 +185,12 @@ export default function Page() {
 						<View style={styles.containerFruits}>
 							{selectedValues.map((value) => (
 								<Animated.View
-									key={value.id}
+										key={value.id}
 									entering={FadeInDown.duration(300)
 										.delay(latestBatchRef.current.indexOf(value) * 100)
 										.springify()}
 								>
-									<Image source={value.image} style={{ width: 50, height: 50 }} />
+									<Image source={value.image} style={{ width: 55, height: 55 }} />
 								</Animated.View>
 							))}
 						</View>
@@ -251,8 +251,9 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: "row",
 		flexWrap: "wrap",
-		gap: 6,
-		paddingLeft: 14,
+		rowGap: 10,
+		columnGap: 20,
+		paddingLeft: 15,
 		paddingTop: 10,
 	},
 });
