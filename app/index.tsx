@@ -1,17 +1,42 @@
 import Animated, { Easing, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSequence, withTiming, } from "react-native-reanimated";
 import { getStorageColor, getStorageImageUri, getStorageName, themeColors } from "@/utils/theme-storage";
 import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
+import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { PencilIcon, UserRoundPenIcon } from "lucide-react-native";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { TextGradient } from "@/components/text-gradient";
-import { useCallback, useEffect, useState } from "react";
 import { Pressable } from "react-native-gesture-handler";
 import { StyleSheet, Text, View } from "react-native";
+import vegetables from "@/data/vegetables";
 import { router } from "expo-router";
+import fruits from "@/data/fruits";
 import { Image } from "expo-image";
 
 
+const initialSections = [
+	{
+		title: "Fruits",
+		data: fruits,
+	},
+	{
+		title: "Légumes",
+		data: vegetables,
+	},
+];
+
+
 export default function Page() {
+	const bottomSheetRef = useRef<BottomSheetModal>(null);
+	const [selectedValues, setSelectedValues] = useState<FoodItem[]>([]);
+	const latestBatchRef = useRef<FoodItem[]>([]);
+
+	const getSelectecValues = (values: FoodItem[]) => {
+		latestBatchRef.current = values;
+		setSelectedValues((prev) => [...new Set([...prev, ...values])]);
+	};
+	
 	const themeColor = getStorageColor();
 	const [canSearch, setCanSearch] = useState(false);
 	const [showIngredients, setShowIngredients] = useState(false);
@@ -100,66 +125,79 @@ export default function Page() {
 	);
 
 	return (
-		<LayoutBackground color={themeColor} centeredContent={false}>
-			<Animated.View
-				style={StyleSheet.flatten([
-					stylesLayout.topButtons,
-					stylesLayout.topRightButton,
-					{
-						backgroundColor: themeColors[themeColor].secondary,
-					},
-				])}
-				entering={FadeInDown.duration(800).delay(200).springify()}
-			>
-				<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/profile")}>
-					<UserRoundPenIcon size={24} color="#fff" />
-				</Pressable>
-			</Animated.View>
-
-			<View style={styles.highPaddingTop}>
-				<Animated.View entering={enteringAnimationLeft()}>
-					<TextGradient color={themeColor} text={"FRIGO"} home style={{ fontSize: 75 }} />
-				</Animated.View>
-				<Animated.View entering={enteringAnimationRight()}>
-					<TextGradient color={themeColor} text={"CHEF !"} home style={{ fontSize: 75, marginTop: -15 }} />
-				</Animated.View>
-
+		<BottomSheetModalProvider>
+			<LayoutBackground color={themeColor} centeredContent={false}>
 				<Animated.View
-					style={StyleSheet.flatten([stylesLayout.centerContent, styles.lowPaddingTop])}
-					entering={FadeInDown.duration(800).delay(400).springify()}
+					style={StyleSheet.flatten([
+						stylesLayout.topButtons,
+						stylesLayout.topRightButton,
+						{
+							backgroundColor: themeColors[themeColor].secondary,
+						},
+					])}
+					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
-					<View style={[stylesLayout.shadowImage, styles.imageContainer]}>
-						<Animated.View style={[styles.halo, pulseStyle1]} />
-						<Animated.View style={[styles.halo, pulseStyle2]} />
-						<Image style={stylesLayout.image} source={getStorageImageUri()} />
-					</View>
+					<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/profile")}>
+						<UserRoundPenIcon size={24} color="#fff" />
+					</Pressable>
 				</Animated.View>
-			</View>
 
-			{showIngredients ? (
-				<Animated.View entering={enteringAnimationLeft()} style={styles.mediumPaddingTop}>
-					<TextGradient
-						lowShadow
-						color={themeColor}
-						text={"Vos ingrédients :"}
-						style={styles.ingredientsText}
-					/>
-				</Animated.View>
-			) : null}
+				<View style={styles.highPaddingTop}>
+					<Animated.View entering={enteringAnimationLeft()}>
+						<TextGradient color={themeColor} text={"FRIGO"} home style={{ fontSize: 75 }} />
+					</Animated.View>
+					<Animated.View entering={enteringAnimationRight()}>
+						<TextGradient color={themeColor} text={"CHEF !"} home style={{ fontSize: 75, marginTop: -15 }} />
+					</Animated.View>
 
-			{canSearch && (
-				<Animated.View
-					style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
-					entering={enteringAnimation()}
-				>
-					<ButtonRadialGradient
-						onPress={() => router.push("/recipe")}
-						text="Trouver ma recette"
-						color={themeColors[themeColor].primaryLight}
-					/>
-				</Animated.View>
-			)}
-		</LayoutBackground>
+					<Animated.View
+						style={StyleSheet.flatten([stylesLayout.centerContent, styles.lowPaddingTop])}
+						entering={FadeInDown.duration(800).delay(400).springify()}
+					>
+						<Pressable style={[stylesLayout.shadowImage, styles.imageContainer]} onPress={() => {
+							bottomSheetRef.current?.present();
+							console.log("present");
+						}}>
+							<Animated.View style={[styles.halo, pulseStyle1]} />
+							<Animated.View style={[styles.halo, pulseStyle2]} />
+							<Image style={stylesLayout.image} source={getStorageImageUri()} />
+						</Pressable>
+					</Animated.View>
+				</View>
+
+				{showIngredients ? (
+					<Animated.View entering={enteringAnimationLeft()} style={styles.mediumPaddingTop}>
+						<TextGradient
+							lowShadow
+							color={themeColor}
+							text={"Vos ingrédients :"}
+							style={styles.ingredientsText}
+						/>
+					</Animated.View>
+				) : null}
+
+				{canSearch && (
+					<Animated.View
+						style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
+						entering={enteringAnimation()}
+					>
+						<ButtonRadialGradient
+							onPress={() => router.push("/recipe")}
+							text="Trouver ma recette"
+							color={themeColors[themeColor].primaryLight}
+						/>
+					</Animated.View>
+				)}
+
+				<BottomSheetSelect
+					onSelect={getSelectecValues}
+					titleModal="Ouvrir le frigo"
+					data={initialSections}
+					placeholderSearch="Chercher un aliment"
+					ref={bottomSheetRef}
+				/>
+			</LayoutBackground>
+		</BottomSheetModalProvider>
 	);
 }
 
