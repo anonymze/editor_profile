@@ -19,16 +19,23 @@ export default function Page() {
 	const scale2 = useSharedValue(0.7);
 	const opacity = useSharedValue(0.2);
 
+	const pulseStyle1 = useAnimatedStyle(() => ({
+		transform: [{ scale: scale1.value }],
+		opacity: opacity.value,
+	}));
+
+	const pulseStyle2 = useAnimatedStyle(() => ({
+		transform: [{ scale: scale2.value }],
+		opacity: opacity.value,
+	}));
+
 	useEffect(() => {
 		scale1.value = withDelay(
 			400,
 			withRepeat(
 				withSequence(
 					withTiming(1.7, {
-						duration: 3500,
-					}),
-					withTiming(1.7, {
-						duration: 300,
+						duration: 6000,
 					})
 				),
 				-1,
@@ -41,10 +48,7 @@ export default function Page() {
 			withRepeat(
 				withSequence(
 					withTiming(1.3, {
-						duration: 3500,
-					}),
-					withTiming(1.3, {
-						duration: 300,
+						duration: 6000,
 					})
 				),
 				-1,
@@ -52,33 +56,23 @@ export default function Page() {
 			)
 		);
 
-		opacity.value = withRepeat(
-			withDelay(
-				2300,
-				withSequence(
-					withTiming(0, {
-						duration: 2000,
-						easing: Easing.out(Easing.ease),
-					}),
-					withTiming(0, {
-						duration: 500,
-					})
-				)
-			),
-			-1,
-			false
+		opacity.value = withDelay(
+			400,
+			withRepeat(
+				withDelay(
+					2000,
+					withSequence(
+						withTiming(0, {
+							duration: 4400,
+							easing: Easing.out(Easing.ease),
+						})
+					)
+				),
+				-1,
+				false
+			)
 		);
 	}, []);
-
-	const pulseStyle1 = useAnimatedStyle(() => ({
-		transform: [{ scale: scale1.value }],
-		opacity: opacity.value,
-	}));
-
-	const pulseStyle2 = useAnimatedStyle(() => ({
-		transform: [{ scale: scale2.value }],
-		opacity: opacity.value,
-	}));
 
 	const enteringAnimation = useCallback(
 		() =>
