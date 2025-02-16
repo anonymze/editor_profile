@@ -1,4 +1,4 @@
-import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withRepeat, withTiming, } from "react-native-reanimated";
+import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, } from "react-native-reanimated";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
@@ -15,6 +15,8 @@ import { router } from "expo-router";
 import fruits from "@/data/fruits";
 import { Image } from "expo-image";
 
+
+const AnimatedImage = Animated.createAnimatedComponent(Image);
 
 const initialSections = [
 	{
@@ -41,6 +43,8 @@ export default function Page() {
 		opacity,
 		pulseStyle1,
 		pulseStyle2,
+		bounceStyle,
+		translateY,
 	} = useAnimations();
 
 	const getSelectecValues = (values: FoodItem[] | null) => {
@@ -80,6 +84,18 @@ export default function Page() {
 			-1,
 			false
 		);
+
+		translateY.value = withDelay(
+			500,
+			withRepeat(
+				withTiming(8, {
+					duration: 1200,
+					easing: Easing.inOut(Easing.ease),
+				}),
+				-1,
+				true
+			)
+		);
 	}, []);
 
 	return (
@@ -118,14 +134,16 @@ export default function Page() {
 								bottomSheetRef.current?.present();
 							}}
 						>
-							<Animated.View style={[styles.halo, pulseStyle1]} />
-							<Animated.View style={[styles.halo, pulseStyle2]} />
-							<Image
-								style={stylesLayout.imageHome}
-								source={fridgeImage}
-								cachePolicy="memory-disk"
-								contentFit="contain"
-							/>
+							<Animated.View style={StyleSheet.flatten([stylesLayout.centerContent, bounceStyle])}>
+								<Animated.View style={[styles.halo, pulseStyle1]} />
+								<Animated.View style={[styles.halo, pulseStyle2]} />
+								<Image
+									style={[stylesLayout.imageHome]}
+									source={fridgeImage}
+									cachePolicy="memory-disk"
+									contentFit="contain"
+								/>
+							</Animated.View>
 						</Pressable>
 					</Animated.View>
 				</View>
@@ -174,6 +192,7 @@ export default function Page() {
 					data={initialSections}
 					placeholderSearch="Chercher un ingrédient"
 					ref={bottomSheetRef}
+					themeColor={themeColor}
 				/>
 			</LayoutBackground>
 		</BottomSheetModalProvider>
@@ -184,6 +203,7 @@ const useAnimations = () => {
 	const scale1 = useSharedValue(0.7);
 	const scale2 = useSharedValue(0.5);
 	const opacity = useSharedValue(0.4);
+	const translateY = useSharedValue(0);
 
 	const enteringAnimation = useCallback(
 		() =>
@@ -236,15 +256,21 @@ const useAnimations = () => {
 		opacity: opacity.value,
 	}));
 
+	const bounceStyle = useAnimatedStyle(() => ({
+		transform: [{ translateY: translateY.value }],
+	}));
+
 	return {
 		enteringAnimationRight,
 		enteringAnimationLeft,
 		enteringAnimation,
 		pulseStyle1,
 		pulseStyle2,
+		bounceStyle,
 		scale1,
 		scale2,
 		opacity,
+		translateY,
 	};
 };
 
@@ -269,6 +295,8 @@ const styles = StyleSheet.create({
 	halo: {
 		position: "absolute",
 		width: 140,
+		left: 8,
+		top: 10,
 		aspectRatio: 1,
 		borderRadius: 99,
 		borderWidth: 2,

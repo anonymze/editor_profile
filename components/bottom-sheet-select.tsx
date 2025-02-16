@@ -1,7 +1,8 @@
-import { BottomSheetFooter, BottomSheetSectionList, BottomSheetFooterProps, BottomSheetModal, BottomSheetScrollView, } from "@gorhom/bottom-sheet";
+import { BottomSheetFooter, BottomSheetFooterProps, BottomSheetModal, BottomSheetScrollView, } from "@gorhom/bottom-sheet";
 import { View, Button, Text, StyleSheet } from "react-native";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { Pressable } from "react-native-gesture-handler";
+import { themeColors } from "@/utils/theme-storage";
 import vegetables from "@/data/vegetables";
 import React, { forwardRef } from "react";
 import fruits from "@/data/fruits";
@@ -17,12 +18,13 @@ interface Props {
 		data: FoodItem[];
 	}[];
 	onSelect: (values: FoodItem[] | null) => void;
+	themeColor: keyof typeof themeColors;
 }
 
 const snapPoints = ["75%"];
 
 export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
-	({ onSelect, placeholderSearch, data }, ref) => {
+	({ onSelect, placeholderSearch, data, themeColor }, ref) => {
 		const [searchQuery, setSearchQuery] = React.useState("");
 		const [selectedIds, setSelectedIds] = React.useState<FoodItem[]>([]);
 
@@ -81,14 +83,14 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 		);
 
 		return (
-			<>
+			<View style={{flex:1,  }}>
 				<BottomSheetModal
 					ref={ref}
 					enablePanDownToClose={true}
 					enableDynamicSizing={false}
 					snapPoints={snapPoints}
 					footerComponent={renderFooter}
-					containerStyle={styles.bottomSheetContainer}
+					style={styles.paddingSheet}
 				>
 					<BottomSheetTextInput
 						placeholder={placeholderSearch}
@@ -98,6 +100,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 
 					<BottomSheetScrollView style={styles.bottomSheetContent}>
 						<MemoizedSections
+							themeColor={themeColor}
 							sections={filteredSections}
 							selectedIds={selectedIds}
 							onItemPress={(item) => {
@@ -110,7 +113,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 						/>
 					</BottomSheetScrollView>
 				</BottomSheetModal>
-			</>
+			</View>
 		);
 	}
 );
@@ -119,17 +122,19 @@ const MemoizedSections = React.memo(
 	({
 		sections,
 		selectedIds,
+		themeColor,
 		onItemPress,
 	}: {
 		sections: Props["data"];
 		selectedIds: FoodItem[];
+		themeColor: keyof typeof themeColors;
 		onItemPress: (item: FoodItem) => void;
 	}) => (
 		<>
 			{sections.map((section) => (
 				<View key={section.title} style={styles.bottomSheetListContent}>
 					<View style={styles.sectionHeaderContainer}>
-						<View style={styles.sectionHeader}>
+						<View style={StyleSheet.flatten([styles.sectionHeader, { backgroundColor: themeColors[themeColor].primary }])}>
 							<Text style={styles.sectionHeaderText}>{section.title}</Text>
 						</View>
 					</View>
@@ -138,7 +143,7 @@ const MemoizedSections = React.memo(
 							key={item.id}
 							style={[
 								styles.itemContainer,
-								selectedIds.find((id) => id.id === item.id) && styles.selectedItemBackground,
+								selectedIds.find((id) => id.id === item.id) && { backgroundColor: themeColors[themeColor].primaryLight },
 							]}
 							onPress={() => onItemPress(item)}
 						>
@@ -159,7 +164,7 @@ const MemoizedSections = React.memo(
 	),
 	(prevProps, nextProps) => {
 		// optional: custom comparison function
-		return prevProps.sections === nextProps.sections && prevProps.selectedIds === nextProps.selectedIds;
+		return prevProps.sections === nextProps.sections && prevProps.selectedIds === nextProps.selectedIds && prevProps.themeColor === nextProps.themeColor;
 	}
 );
 
@@ -171,7 +176,6 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 	},
 	sectionHeader: {
-		backgroundColor: "red",
 		borderRadius: 8,
 		paddingHorizontal: 12,
 		paddingVertical: 4,
@@ -194,9 +198,7 @@ const styles = StyleSheet.create({
 		width: 30,
 		height: 30,
 	},
-	selectedItemBackground: {
-		backgroundColor: "red",
-	},
+
 	selectedItemText: {
 		color: "#ffffff",
 	},
@@ -226,5 +228,8 @@ const styles = StyleSheet.create({
 		justifyContent: "space-around",
 		paddingVertical: 8,
 		backgroundColor: "#ffffff",
+	},
+	paddingSheet: {
+		paddingHorizontal: 15,
 	},
 });
