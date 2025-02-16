@@ -156,7 +156,6 @@ export default function Page() {
 					>
 						<Pressable style={[stylesLayout.shadowImage, styles.imageContainer]} onPress={() => {
 							bottomSheetRef.current?.present();
-							console.log("present");
 						}}>
 							<Animated.View style={[styles.halo, pulseStyle1]} />
 							<Animated.View style={[styles.halo, pulseStyle2]} />
