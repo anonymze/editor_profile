@@ -17,7 +17,7 @@ export default function Page() {
 	const [showIngredients, setShowIngredients] = useState(false);
 	const scale1 = useSharedValue(0.9);
 	const scale2 = useSharedValue(0.7);
-	const opacity = useSharedValue(0.2);
+	const opacity = useSharedValue(0.4);
 
 	const pulseStyle1 = useAnimatedStyle(() => ({
 		transform: [{ scale: scale1.value }],
@@ -30,47 +30,31 @@ export default function Page() {
 	}));
 
 	useEffect(() => {
-		scale1.value = withDelay(
-			400,
-			withRepeat(
-				withSequence(
-					withTiming(1.7, {
-						duration: 6000,
-					})
-				),
-				-1,
-				false
-			)
+		scale1.value = withRepeat(
+			withTiming(1.7, {
+				duration: 5000,
+				easing: Easing.linear,
+			}),
+			-1,
+			false
 		);
 
-		scale2.value = withDelay(
-			400,
-			withRepeat(
-				withSequence(
-					withTiming(1.3, {
-						duration: 6000,
-					})
-				),
-				-1,
-				false
-			)
+		scale2.value = withRepeat(
+			withTiming(1.3, {
+				duration: 5000,
+				easing: Easing.linear,
+			}),
+			-1,
+			false
 		);
 
-		opacity.value = withDelay(
-			400,
-			withRepeat(
-				withDelay(
-					2000,
-					withSequence(
-						withTiming(0, {
-							duration: 4400,
-							easing: Easing.out(Easing.ease),
-						})
-					)
-				),
-				-1,
-				false
-			)
+		opacity.value = withRepeat(
+			withTiming(0, {
+				duration: 5000,
+				easing: Easing.linear,
+			}),
+			-1,
+			false
 		);
 	}, []);
 
@@ -152,7 +136,7 @@ export default function Page() {
 				</Animated.View>
 			</View>
 
-			{!showIngredients ? (
+			{showIngredients ? (
 				<Animated.View entering={enteringAnimationLeft()} style={styles.mediumPaddingTop}>
 					<TextGradient
 						lowShadow
@@ -163,7 +147,7 @@ export default function Page() {
 				</Animated.View>
 			) : null}
 
-			{!canSearch && (
+			{canSearch && (
 				<Animated.View
 					style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
 					entering={enteringAnimation()}
@@ -203,6 +187,6 @@ const styles = StyleSheet.create({
 		aspectRatio: 1,
 		borderRadius: 99,
 		borderWidth: 2,
-		borderColor: "rgba(255, 255, 255, 0.4)",
+		borderColor: "rgba(255, 255, 255, 0.6)",
 	},
 });
