@@ -74,7 +74,7 @@ export default function Page() {
 				</Pressable>
 			</Animated.View>
 
-			<View style={{ paddingTop: 85 }}>
+			<View style={styles.highPaddingTop}>
 				<Animated.View entering={enteringAnimationLeft()}>
 					<TextGradient color={themeColor} text={"FRIGO"} home style={{ fontSize: 75 }} />
 				</Animated.View>
@@ -83,7 +83,7 @@ export default function Page() {
 				</Animated.View>
 
 				<Animated.View
-					style={stylesLayout.centerContent}
+					style={StyleSheet.flatten([stylesLayout.centerContent, styles.lowPaddingTop])}
 					entering={FadeInDown.duration(800).delay(400).springify()}
 				>
 					<View style={stylesLayout.shadowImage}>
@@ -93,7 +93,7 @@ export default function Page() {
 			</View>
 
 			{!showIngredients ? (
-				<Animated.View entering={enteringAnimationLeft()} style={styles.highPaddingTop}>
+				<Animated.View entering={enteringAnimationLeft()} style={styles.mediumPaddingTop}>
 					<TextGradient
 						lowShadow
 						color={themeColor}
@@ -103,14 +103,14 @@ export default function Page() {
 				</Animated.View>
 			) : null}
 
-			{canSearch && (
+			{!canSearch && (
 				<Animated.View
 					style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
 					entering={enteringAnimation()}
 				>
 					<ButtonRadialGradient
 						onPress={() => router.push("/recipe")}
-						text="Continuer"
+						text="Trouver ma recette"
 						color={themeColors[themeColor].primaryLight}
 					/>
 				</Animated.View>
@@ -125,7 +125,13 @@ const styles = StyleSheet.create({
 		alignSelf: "flex-start",
 		paddingLeft: 20,
 	},
+	mediumPaddingTop: {
+		paddingTop: 45,
+	},
 	highPaddingTop: {
-		paddingTop: 40,
+		paddingTop: 85,
+	},
+	lowPaddingTop: {
+		paddingTop: 10,
 	},
 });
