@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
 	halo: {
 		position: "absolute",
 		width: 140,
-		left: 8,
+		left: 10,
 		top: 10,
 		aspectRatio: 1,
 		borderRadius: 99,
