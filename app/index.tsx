@@ -141,6 +141,7 @@ export default function Page() {
 								zIndex: 100,
 								width: width - 80
 							},
+							
 						]}
 					>
 						<Text style={styles.tooltipTextTitle}>Bienvenue sur Fridgy.</Text>
