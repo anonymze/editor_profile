@@ -132,27 +132,56 @@ export default function Page() {
 					])}
 				>
 					<View style={styles.tooltipTextContainer}>
-						<Animated.Text style={styles.tooltipTextTitle}>Bienvenue sur Fridgy !</Animated.Text>
-						<Animated.Text style={styles.tooltipText}>
+						<Text style={styles.tooltipTextTitle}>Bienvenue sur Fridgy !</Text>
+						<Text style={styles.tooltipText}>
 							En appuyant sur le{" "}
 							<Text style={{ fontWeight: "bold", textDecorationLine: "underline" }}>frigo</Text> vous pouvez
 							ajoutez des ingrédients pour trouver votre recette.
-						</Animated.Text>
+						</Text>
 
-						<Animated.Text style={styles.tooltipText}>
+						<Text style={styles.tooltipText}>
 							Un{" "}
 							<Text style={{ fontWeight: "bold", textDecorationLine: "underline" }}>
 								minimum de 3 ingrédients
 							</Text>{" "}
-							est requis.
-						</Animated.Text>
+							est requis par recette.
+						</Text>
 
-						<Animated.Text style={styles.tooltipText}>
+						<Text style={styles.tooltipText}>
 							En version gratuite vous avez un maximum de requêtes, il vous en reste :
-						</Animated.Text>
+						</Text>
 					</View>
-					<TextGradient color={themeColor} text={"5"} home style={{ fontSize: 60, marginTop: -8 }} />
 
+					<Animated.View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+						<TextGradient color={themeColor} text={"5"} home style={{ fontSize: 60, marginTop: -8 }} />
+					</Animated.View>
+
+					<View style={{ flexDirection: "row", justifyContent: "space-between", gap: 20 }}>
+						<Pressable
+							style={{
+								justifyContent: "center",
+								alignItems: "center",
+								backgroundColor: "#fff",
+								padding: 10,
+								borderRadius: 8,
+								flex: 1,
+							}}
+						>
+							<Text>Je paye</Text>
+						</Pressable>
+						<Pressable
+							style={{
+								justifyContent: "center",
+								alignItems: "center",
+								backgroundColor: "#fff",
+								padding: 10,
+								borderRadius: 8,
+								flex: 1,
+							}}
+						>
+							<Text>Compris !</Text>
+						</Pressable>
+					</View>
 				</Animated.View>
 
 				<Animated.View
@@ -423,7 +452,7 @@ const styles = StyleSheet.create({
 		top: 98,
 		left: 20,
 		zIndex: 99,
-		backgroundColor: "rgba(203, 105, 243, 0.96)",
+		backgroundColor: "rgba(225, 191, 142, 0.96)",
 		borderRadius: 25,
 		padding: 26,
 	},
