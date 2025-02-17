@@ -1,9 +1,9 @@
 import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, } from "react-native-reanimated";
+import { getStorageColor, getStorageLimitedAction, themeColors } from "@/utils/theme-storage";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
-import { getStorageColor, themeColors } from "@/utils/theme-storage";
 import { ButtonRadialGradient } from "@/components/radial-gradient";
 import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
@@ -141,7 +141,7 @@ export default function Page() {
 								zIndex: 100,
 								width: width - 80
 							},
-							
+
 						]}
 					>
 						<Text style={styles.tooltipTextTitle}>Bienvenue sur Fridgy.</Text>
@@ -159,10 +159,10 @@ export default function Page() {
 							est requis pour trouver une recette.
 						</Text>
 
-						<Text style={styles.lastToolTipText}>
+						<Text style={styles.tooltipText}>
 							En version gratuite, vous êtes limité sur vos recettes. Il vous en reste :
 						</Text>
-						<TextGradient color={themeColor} text={"5"} home style={{ fontSize: 60 }} />
+						<TextGradient color={themeColor} text={getStorageLimitedAction()} home style={{ fontSize: 60, marginTop: -12 }} />
 					</View>
 
 					<View
@@ -178,26 +178,12 @@ export default function Page() {
 						}}
 					>
 						<Pressable
-							style={{
-								justifyContent: "center",
-								alignItems: "center",
-								backgroundColor: "#fff",
-								padding: 10,
-								borderRadius: 8,
-								flex: 1,
-							}}
+							style={styles.tooltipActionButton}
 						>
 							<Text>Je m'abonne</Text>
 						</Pressable>
 						<Pressable
-							style={{
-								justifyContent: "center",
-								alignItems: "center",
-								backgroundColor: "#fff",
-								padding: 10,
-								borderRadius: 8,
-								flex: 1,
-							}}
+							style={styles.tooltipActionButton}
 							onPress={() => {
 								setShowTooltip(false);
 								hideTooltip();
@@ -465,7 +451,7 @@ const styles = StyleSheet.create({
 		flexWrap: "wrap",
 		rowGap: 8,
 		columnGap: 20,
-		paddingLeft: 15,
+		paddingLeft: 20,
 		paddingTop: 10,
 	},
 	tooltip: {
@@ -485,14 +471,6 @@ const styles = StyleSheet.create({
 		textShadowRadius: 1,
 		paddingBottom: 20
 	},
-	lastToolTipText: {
-		color: "#fff",
-		fontSize: 17,
-		fontWeight: "600",
-		textShadowColor: "rgba(0, 0, 0, 0.5)",
-		textShadowOffset: { width: -1, height: 1 },
-		textShadowRadius: 1,
-	},
 	tooltipTextTitle: {
 		color: "#fff",
 		fontSize: 22,
@@ -502,4 +480,12 @@ const styles = StyleSheet.create({
 		textShadowRadius: 1,
 		paddingBottom: 24
 	},
+	tooltipActionButton : {
+		flex: 1,
+		justifyContent: "center",
+		alignItems: "center",
+		backgroundColor: "#fff",
+		padding: 10,
+		borderRadius: 8,
+	} 
 });

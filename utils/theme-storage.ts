@@ -51,6 +51,9 @@ export const DEFAULT_KEY_IMAGE_URI = "user.image_uri";
 const DEFAULT_LIMITED_ACTION = 10;
 const DEFAULT_KEY_LIMITED_ACTION = "user.limited_action";
 
+const DEFAULT_TRIGGER_TOOLTIP_ACTION = false;
+const DEFAULT_KEY_TRIGGER_TOOLTIP_ACTION = ".user.trigger_tooltip_action";
+
 export const storage = new MMKV();
 
 export const getStorageName = () => {
@@ -78,9 +81,17 @@ export const setStorageImageUri = (imageUri: string) => {
 };
 
 export const getStorageLimitedAction = () => {
-	return storage.getString(DEFAULT_KEY_LIMITED_ACTION) ?? DEFAULT_LIMITED_ACTION;
+	return storage.getNumber(DEFAULT_KEY_LIMITED_ACTION) ?? DEFAULT_LIMITED_ACTION;
 }
 
 export const setStorageLimitedAction = (action: number) => {
 	storage.set(DEFAULT_KEY_LIMITED_ACTION, action);
+}   
+
+export const getStorageTriggerTooltipAction = () => {
+	return storage.getNumber(DEFAULT_KEY_TRIGGER_TOOLTIP_ACTION) ?? DEFAULT_TRIGGER_TOOLTIP_ACTION;
+}
+
+export const setStorageTriggerTooltipAction = () => {
+	storage.set(DEFAULT_KEY_TRIGGER_TOOLTIP_ACTION, true);
 }   

@@ -20,7 +20,7 @@ const getMaxLength = () => {
 interface InputTextGradientProps {
 	color: keyof typeof themeColors;
 	home?: boolean;
-	text?: string;
+	text?: string | number;
 	style?: StyleProp<TextStyle>;
 	lowShadow?: boolean;
 }
