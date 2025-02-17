@@ -132,8 +132,14 @@ export default function Page() {
 					])}
 				>
 					<View style={styles.tooltipTextContainer}>
-						<Text style={styles.tooltipText}>Bienvenue sur Fridgy !</Text>
-						<Text style={styles.tooltipText}>Bienvenue sur Fridgy !</Text>
+						<Animated.Text style={[styles.tooltipText, {  }]}>
+							Bienvenue sur Fridgy !
+						</Animated.Text>
+						<Animated.Text style={[styles.tooltipText, { fontSize: 16 }]}>
+							Vous possédez la version gratuite de l'application, voici combien de recettes vous pouvez encore
+							découvrir :
+						</Animated.Text>
+						<TextGradient color={themeColor} text={"5"} home style={{ fontSize: 70 }} />
 					</View>
 				</Animated.View>
 
@@ -405,13 +411,13 @@ const styles = StyleSheet.create({
 		top: 98,
 		left: 20,
 		zIndex: 99,
-		backgroundColor: "rgba(203, 105, 243, 0.9)",
+		backgroundColor: "rgba(203, 105, 243, 0.93)",
 		borderRadius: 25,
 		padding: 26,
 	},
 	tooltipText: {
 		color: "#fff",
-		fontSize: 20,
+		fontSize: 22,
 		fontWeight: "bold",
 		textShadowColor: "rgba(0, 0, 0, 0.5)",
 		textShadowOffset: { width: -1, height: 1 },
