@@ -135,9 +135,9 @@ export default function Page() {
 						<Animated.Text style={[styles.tooltipText, {  }]}>
 							Bienvenue sur Fridgy !
 						</Animated.Text>
-						<Animated.Text style={[styles.tooltipText, { fontSize: 16 }]}>
-							Vous possédez la version gratuite de l'application, voici combien de recettes vous pouvez encore
-							découvrir :
+						<Animated.Text style={[styles.tooltipText, { fontSize: 17 }]}>
+							En appuyant sur le <Text style={{ fontWeight: "bold", textDecorationLine: "underline" }}>frigo</Text> vous pouvez ajoutez des
+							ingrédients pour votre recette.
 						</Animated.Text>
 						<TextGradient color={themeColor} text={"5"} home style={{ fontSize: 70 }} />
 					</View>
@@ -411,14 +411,14 @@ const styles = StyleSheet.create({
 		top: 98,
 		left: 20,
 		zIndex: 99,
-		backgroundColor: "rgba(203, 105, 243, 0.96)",
+		backgroundColor: "rgba(203, 105, 243, 0.95)",
 		borderRadius: 25,
 		padding: 26,
 	},
 	tooltipText: {
 		color: "#fff",
 		fontSize: 22,
-		fontWeight: "bold",
+		fontWeight: "600",
 		textShadowColor: "rgba(0, 0, 0, 0.5)",
 		textShadowOffset: { width: -1, height: 1 },
 		textShadowRadius: 1,
