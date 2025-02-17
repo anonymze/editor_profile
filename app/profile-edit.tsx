@@ -154,7 +154,7 @@ export default function Page() {
 							}}
 							style={stylesLayout.paddingTopButtons}
 						>
-							<ArrowLeftIcon size={28} color="#fff" />
+							<ArrowLeftIcon size={26} color="#fff" />
 						</Pressable>
 					</Animated.View>
 

@@ -1,8 +1,8 @@
 import { DEFAULT_IMAGE_URI, getStorageColor, getStorageImageUri, getStorageName, themeColors, } from "@/utils/theme-storage";
+import { PlusIcon, PencilIcon, ArrowLeftIcon, UserRoundPenIcon } from "lucide-react-native";
 import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
 import { Gesture, GestureDetector, Pressable } from "react-native-gesture-handler";
 import Animated, { Easing, FadeInDown, runOnJS } from "react-native-reanimated";
-import { PlusIcon, PencilIcon, ArrowLeftIcon } from "lucide-react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { TextGradient } from "@/components/text-gradient";
 import { StyleSheet, View } from "react-native";
@@ -93,7 +93,7 @@ export default function Page() {
 					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
 					<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/profile-edit")}>
-						<PencilIcon size={22} color="#fff" />
+						<UserRoundPenIcon size={24} color="#fff" />
 					</Pressable>
 				</Animated.View>
 

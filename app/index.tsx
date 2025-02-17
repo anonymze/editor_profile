@@ -1,11 +1,11 @@
-import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, withSpring, } from "react-native-reanimated";
+import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, } from "react-native-reanimated";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
-import { BadgeInfoIcon, UserRoundPenIcon } from "lucide-react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { getStorageColor, themeColors } from "@/utils/theme-storage";
 import { ButtonRadialGradient } from "@/components/radial-gradient";
+import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
@@ -117,7 +117,7 @@ export default function Page() {
 					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
 					<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/profile")}>
-						<UserRoundPenIcon size={24} color="#fff" />
+						<UserRoundIcon size={24} color="#fff" />
 					</Pressable>
 				</Animated.View>
 
@@ -125,19 +125,19 @@ export default function Page() {
 					style={StyleSheet.flatten([
 						styles.tooltip,
 						{
-							backgroundColor: "rgba(20, 135, 255, 0.96)",
+							backgroundColor: themeColors[themeColor].secondaryRgba(0.96),
 							width: widthTooltip,
 							height: heightTooltip,
 							opacity: opacityTooltip,
 						},
 					])}
 				>
-					<View style={styles.tooltipTextContainer}>
-						<Text style={styles.tooltipTextTitle}>Bienvenue sur Fridgy !</Text>
+					{/* <View style={styles.tooltipTextContainer}>
+						<Text style={styles.tooltipTextTitle}>Bienvenue sur Fridgy.</Text>
 						<Text style={styles.tooltipText}>
 							En appuyant sur le{" "}
 							<Text style={{ fontWeight: "bold", textDecorationLine: "underline" }}>frigo</Text> vous pouvez
-							ajoutez des ingrédients pour trouver votre recette.
+							ajoutez des ingrédients.
 						</Text>
 
 						<Text style={styles.tooltipText}>
@@ -145,17 +145,15 @@ export default function Page() {
 							<Text style={{ fontWeight: "bold", textDecorationLine: "underline" }}>
 								minimum de 3 ingrédients
 							</Text>{" "}
-							est requis par recette.
+							est requis pour trouver une recette.
 						</Text>
 
 						<Text style={styles.tooltipText}>
-							En version gratuite vous avez un maximum de requêtes, il vous en reste :
+							En version gratuite, vous êtes limité sur vos recettes. Il vous en reste :
 						</Text>
 					</View>
 
-					<Animated.View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-						<TextGradient color={themeColor} text={"5"} home style={{ fontSize: 60, marginTop: -8 }} />
-					</Animated.View>
+					<TextGradient color={themeColor} text={"5"} home style={{ fontSize: 60 }} />
 
 					<View style={{ flexDirection: "row", justifyContent: "space-between", gap: 20 }}>
 						<Pressable
@@ -168,7 +166,7 @@ export default function Page() {
 								flex: 1,
 							}}
 						>
-							<Text>Je paye</Text>
+							<Text>Je m'abonne</Text>
 						</Pressable>
 						<Pressable
 							style={{
@@ -179,10 +177,14 @@ export default function Page() {
 								borderRadius: 8,
 								flex: 1,
 							}}
+							onPress={() => {
+								setShowTooltip(false);
+								hideTooltip();
+							}}
 						>
 							<Text>Compris !</Text>
 						</Pressable>
-					</View>
+					</View> */}
 				</Animated.View>
 
 				<Animated.View
@@ -207,7 +209,7 @@ export default function Page() {
 							setShowTooltip(!showTooltip);
 						}}
 					>
-						<BadgeInfoIcon size={28} color="#fff" />
+						<BadgeInfoIcon size={26} color="#fff" />
 					</Pressable>
 				</Animated.View>
 
@@ -269,7 +271,7 @@ export default function Page() {
 					</Fragment>
 				) : null}
 
-				{selectedValues.length > -1 && (
+				{selectedValues.length >= 3 && (
 					<Animated.View
 						style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
 						entering={enteringAnimation()}
@@ -322,17 +324,17 @@ const useAnimations = () => {
 
 	const hideTooltip = () => {
 		opacityTooltip.value = withTiming(0, {
-			duration: 125,
+			duration: 0,
 			easing: Easing.linear,
 		});
 
 		widthTooltip.value = withTiming(30, {
-			duration: 125,
+			duration: 0,
 			easing: Easing.linear,
 		});
 
 		heightTooltip.value = withTiming(30, {
-			duration: 125,
+			duration: 0,
 			easing: Easing.linear,
 		});
 	};
@@ -453,7 +455,7 @@ const styles = StyleSheet.create({
 		top: 98,
 		left: 20,
 		zIndex: 99,
-		borderRadius: 25,
+		borderRadius: 20,
 		padding: 26,
 	},
 	tooltipText: {

@@ -1,4 +1,4 @@
-import { MMKV, useMMKVString } from "react-native-mmkv";
+import { MMKV } from "react-native-mmkv";
 
 
 export const themeColors = {
@@ -7,30 +7,35 @@ export const themeColors = {
 		primaryLight: "#000efd",
 		primaryDark: "#000dc8",
 		secondary: "#1487ff",
+		secondaryRgba: (opacity: number = 1) => `rgba(20, 135, 255, ${opacity})`
 	},
 	orange: {
 		primary: "#ff6538",
 		primaryLight: "#fc987f",
 		primaryDark: "#f44a12",
 		secondary: "#efc069",
+		secondaryRgba: (opacity: number = 1) => `rgba(239, 192, 105, ${opacity})`
 	},
 	yellow: {
 		primary: "#e89150",
 		primaryLight: "#e1bf8e",
 		primaryDark: "#ef7c2e",
 		secondary: "#c2c443",
+		secondaryRgba: (opacity: number = 1) => `rgba(194, 196, 67, ${opacity})`
 	},
 	green: {
 		primary: "#009e8a",
 		primaryLight: "#00b397",
 		primaryDark: "#00787e",
 		secondary: "#56b3cb",
+		secondaryRgba: (opacity: number = 1) => `rgba(86, 179, 203, ${opacity})`
 	},
 	purple: {
 		primary: "#a31bce",
 		primaryLight: "#cb69f3",
 		primaryDark: "#8815b4",
 		secondary: "#e574d2",
+		secondaryRgba: (opacity: number = 1) => `rgba(229, 116, 210, ${opacity})`
 	},
 } as const;
 
