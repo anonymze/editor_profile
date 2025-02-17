@@ -125,7 +125,7 @@ export default function Page() {
 					style={StyleSheet.flatten([
 						styles.tooltip,
 						{
-							backgroundColor: themeColors[themeColor].secondary + "EE",
+							backgroundColor: "rgba(20, 135, 255, 0.96)",
 							width: widthTooltip,
 							height: heightTooltip,
 							opacity: opacityTooltip,
