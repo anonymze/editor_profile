@@ -125,6 +125,7 @@ export default function Page() {
 					style={StyleSheet.flatten([
 						styles.tooltip,
 						{
+							backgroundColor: themeColors[themeColor].secondary + "EE",
 							width: widthTooltip,
 							height: heightTooltip,
 							opacity: opacityTooltip,
@@ -452,7 +453,6 @@ const styles = StyleSheet.create({
 		top: 98,
 		left: 20,
 		zIndex: 99,
-		backgroundColor: "rgba(225, 191, 142, 0.96)",
 		borderRadius: 25,
 		padding: 26,
 	},
