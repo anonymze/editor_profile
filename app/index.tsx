@@ -15,8 +15,6 @@ import fruits from "@/data/fruits";
 import { Image } from "expo-image";
 
 
-const AnimatedImage = Animated.createAnimatedComponent(Image);
-
 const initialSections = [
 	{
 		title: "Fruits",
@@ -98,7 +96,7 @@ export default function Page() {
 	}, []);
 
 	return (
-		<BottomSheetModalProvider>
+<		<BottomSheetModalProvider>
 			<LayoutBackground color={themeColor} centeredContent={false}>
 				<Animated.View
 					style={StyleSheet.flatten([
@@ -147,7 +145,7 @@ export default function Page() {
 							style={[stylesLayout.shadowImage, styles.imageContainer]}
 							onPress={() => {
 								bottomSheetRef.current?.present();
-							}}r
+							}}
 						>
 							<Animated.View style={StyleSheet.flatten([stylesLayout.centerContent, bounceStyle])}>
 								<Animated.View style={[styles.halo, pulseStyle1]} />
@@ -189,7 +187,7 @@ export default function Page() {
 					</Fragment>
 				) : null}
 
-				{selectedValues.length > 2 && (
+				{selectedValues.length > -1 && (
 					<Animated.View
 						style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
 						entering={enteringAnimation()}
@@ -210,7 +208,7 @@ export default function Page() {
 					themeColor={themeColor}
 				/>
 			</LayoutBackground>
-		</BottomSheetModalProvider>
+		</BottomSheetModalProvider>>
 	);
 }
 
