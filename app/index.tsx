@@ -132,7 +132,7 @@ export default function Page() {
 						},
 					])}
 				>
-					{/* <View style={styles.tooltipTextContainer}>
+					<View style={styles.tooltipTextContainer}>
 						<Text style={styles.tooltipTextTitle}>Bienvenue sur Fridgy.</Text>
 						<Text style={styles.tooltipText}>
 							En appuyant sur le{" "}
@@ -184,7 +184,7 @@ export default function Page() {
 						>
 							<Text>Compris !</Text>
 						</Pressable>
-					</View> */}
+					</View>
 				</Animated.View>
 
 				<Animated.View
