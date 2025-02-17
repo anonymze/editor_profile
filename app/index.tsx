@@ -1,19 +1,21 @@
-import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, } from "react-native-reanimated";
+import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, withSpring } from "react-native-reanimated";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
-import { BadgeInfoIcon, InfoIcon, UserRoundPenIcon } from "lucide-react-native";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import { BadgeInfoIcon, UserRoundPenIcon } from "lucide-react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { getStorageColor, themeColors } from "@/utils/theme-storage";
 import { ButtonRadialGradient } from "@/components/radial-gradient";
+import { Dimensions, StyleSheet, View } from "react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
-import { StyleSheet, View } from "react-native";
 import vegetables from "@/data/vegetables";
 import { router } from "expo-router";
 import fruits from "@/data/fruits";
 import { Image } from "expo-image";
 
+
+const width = Dimensions.get("window").width;
 
 const initialSections = [
 	{
@@ -29,6 +31,7 @@ const initialSections = [
 export default function Page() {
 	const bottomSheetRef = useRef<BottomSheetModal>(null);
 	const [selectedValues, setSelectedValues] = useState<FoodItem[]>([]);
+	const [showTooltip, setShowTooltip] = useState(false);
 	const latestBatchRef = useRef<FoodItem[]>([]);
 	const themeColor = getStorageColor();
 	const {
@@ -42,6 +45,11 @@ export default function Page() {
 		pulseStyle2,
 		bounceStyle,
 		translateY,
+		opacityTooltip,
+		widthTooltip,
+		heightTooltip,
+		animateTooltip,
+		hideTooltip,
 	} = useAnimations();
 
 	const getSelectecValues = (values: FoodItem[] | null) => {
@@ -53,6 +61,14 @@ export default function Page() {
 		latestBatchRef.current = values;
 		setSelectedValues((prev) => [...new Set([...prev, ...values])]);
 	};
+
+	useEffect(() => {
+		if (showTooltip) {
+			animateTooltip();
+		} else {
+			hideTooltip();
+		}
+	}, [showTooltip]);
 
 	useEffect(() => {
 		scale1.value = withRepeat(
@@ -114,6 +130,14 @@ export default function Page() {
 				</Animated.View>
 
 				<Animated.View
+					style={StyleSheet.flatten([styles.tooltip, {
+						width: widthTooltip,
+						height: heightTooltip,
+						opacity: opacityTooltip,
+					}])}
+				></Animated.View>
+
+				<Animated.View
 					style={StyleSheet.flatten([
 						stylesLayout.topButtons,
 						stylesLayout.topLeftButton,
@@ -124,7 +148,7 @@ export default function Page() {
 					])}
 					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
-					<Pressable style={stylesLayout.paddingTopButtons} onPress={() => {}}>
+					<Pressable style={stylesLayout.paddingTopButtons} onPress={() => setShowTooltip(!showTooltip)}>
 						<BadgeInfoIcon size={28} color="#fff" />
 					</Pressable>
 				</Animated.View>
@@ -217,6 +241,43 @@ const useAnimations = () => {
 	const scale2 = useSharedValue(0.5);
 	const opacity = useSharedValue(0.4);
 	const translateY = useSharedValue(0);
+	const opacityTooltip = useSharedValue(0);
+	const widthTooltip = useSharedValue(30);
+	const heightTooltip = useSharedValue(30);
+
+	const animateTooltip = () => {
+		opacityTooltip.value = withTiming(1, {
+			duration: 280,
+			easing: Easing.linear,
+		});
+
+		widthTooltip.value = withTiming(width - 40, {
+			duration: 280,
+			easing: Easing.elastic(),
+		});
+
+		heightTooltip.value = withTiming(500, {
+			duration: 280,
+			easing: Easing.elastic(),
+		});
+	};
+
+	const hideTooltip = () => {
+		opacityTooltip.value = withTiming(0, {
+			duration: 150,
+			easing: Easing.linear,
+		});
+
+		widthTooltip.value = withTiming(30, {
+			duration: 150,
+			easing: Easing.linear,
+		});
+
+		heightTooltip.value = withTiming(30, {
+			duration: 150,
+			easing: Easing.linear,
+		});
+	};
 
 	const enteringAnimation = useCallback(
 		() =>
@@ -284,6 +345,11 @@ const useAnimations = () => {
 		scale2,
 		opacity,
 		translateY,
+		opacityTooltip,
+		widthTooltip,
+		heightTooltip,
+		animateTooltip,
+		hideTooltip,
 	};
 };
 
@@ -323,5 +389,13 @@ const styles = StyleSheet.create({
 		columnGap: 20,
 		paddingLeft: 15,
 		paddingTop: 10,
+	},
+	tooltip: {
+		position: "absolute",
+		top: 98,
+		left: 20,
+		zIndex: 99,
+		backgroundColor: "rgba(0, 0, 0, 0.9)",
+		borderRadius: 20,
 	},
 });
