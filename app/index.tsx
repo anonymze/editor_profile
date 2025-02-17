@@ -132,7 +132,17 @@ export default function Page() {
 						},
 					])}
 				>
-					<View style={styles.tooltipTextContainer}>
+					<View
+						style={[
+							{
+								position: "absolute",
+								top: 20,
+								left: 20,
+								zIndex: 100,
+								width: width - 80
+							},
+						]}
+					>
 						<Text style={styles.tooltipTextTitle}>Bienvenue sur Fridgy.</Text>
 						<Text style={styles.tooltipText}>
 							En appuyant sur le{" "}
@@ -148,14 +158,24 @@ export default function Page() {
 							est requis pour trouver une recette.
 						</Text>
 
-						<Text style={styles.tooltipText}>
+						<Text style={styles.lastToolTipText}>
 							En version gratuite, vous êtes limité sur vos recettes. Il vous en reste :
 						</Text>
+						<TextGradient color={themeColor} text={"5"} home style={{ fontSize: 60 }} />
 					</View>
 
-					<TextGradient color={themeColor} text={"5"} home style={{ fontSize: 60 }} />
-
-					<View style={{ flexDirection: "row", justifyContent: "space-between", gap: 20 }}>
+					<View
+						style={{
+							flexDirection: "row",
+							justifyContent: "space-between",
+							gap: 20,
+							position: "absolute",
+							bottom: 20,
+							left: 20,
+							zIndex: 100,
+							width: width - 80
+						}}
+					>
 						<Pressable
 							style={{
 								justifyContent: "center",
@@ -226,7 +246,7 @@ export default function Page() {
 						entering={FadeInDown.duration(800).delay(400).springify()}
 					>
 						<Pressable
-							style={[stylesLayout.shadowImage, styles.imageContainer]}
+							style={stylesLayout.shadowImage}
 							onPress={() => {
 								bottomSheetRef.current?.present();
 							}}
@@ -428,9 +448,6 @@ const styles = StyleSheet.create({
 	lowPaddingTop: {
 		paddingTop: 10,
 	},
-	imageContainer: {
-		position: "relative",
-	},
 	halo: {
 		position: "absolute",
 		width: 140,
@@ -465,6 +482,15 @@ const styles = StyleSheet.create({
 		textShadowColor: "rgba(0, 0, 0, 0.5)",
 		textShadowOffset: { width: -1, height: 1 },
 		textShadowRadius: 1,
+		paddingBottom: 20
+	},
+	lastToolTipText: {
+		color: "#fff",
+		fontSize: 17,
+		fontWeight: "600",
+		textShadowColor: "rgba(0, 0, 0, 0.5)",
+		textShadowOffset: { width: -1, height: 1 },
+		textShadowRadius: 1,
 	},
 	tooltipTextTitle: {
 		color: "#fff",
@@ -473,8 +499,6 @@ const styles = StyleSheet.create({
 		textShadowColor: "rgba(0, 0, 0, 0.5)",
 		textShadowOffset: { width: -1, height: 1 },
 		textShadowRadius: 1,
-	},
-	tooltipTextContainer: {
-		gap: 18,
+		paddingBottom: 24
 	},
 });
