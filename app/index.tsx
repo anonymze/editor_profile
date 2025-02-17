@@ -1,4 +1,4 @@
-import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, withSpring } from "react-native-reanimated";
+import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, withSpring, } from "react-native-reanimated";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
@@ -6,7 +6,7 @@ import { BadgeInfoIcon, UserRoundPenIcon } from "lucide-react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { getStorageColor, themeColors } from "@/utils/theme-storage";
 import { ButtonRadialGradient } from "@/components/radial-gradient";
-import { Dimensions, StyleSheet, View } from "react-native";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import vegetables from "@/data/vegetables";
@@ -61,14 +61,6 @@ export default function Page() {
 		latestBatchRef.current = values;
 		setSelectedValues((prev) => [...new Set([...prev, ...values])]);
 	};
-
-	useEffect(() => {
-		if (showTooltip) {
-			animateTooltip();
-		} else {
-			hideTooltip();
-		}
-	}, [showTooltip]);
 
 	useEffect(() => {
 		scale1.value = withRepeat(
@@ -130,12 +122,20 @@ export default function Page() {
 				</Animated.View>
 
 				<Animated.View
-					style={StyleSheet.flatten([styles.tooltip, {
-						width: widthTooltip,
-						height: heightTooltip,
-						opacity: opacityTooltip,
-					}])}
-				></Animated.View>
+					style={StyleSheet.flatten([
+						styles.tooltip,
+						{
+							width: widthTooltip,
+							height: heightTooltip,
+							opacity: opacityTooltip,
+						},
+					])}
+				>
+					<View style={styles.tooltipTextContainer}>
+						<Text style={styles.tooltipText}>Bienvenue sur Fridgy !</Text>
+						<Text style={styles.tooltipText}>Bienvenue sur Fridgy !</Text>
+					</View>
+				</Animated.View>
 
 				<Animated.View
 					style={StyleSheet.flatten([
@@ -148,7 +148,17 @@ export default function Page() {
 					])}
 					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
-					<Pressable style={stylesLayout.paddingTopButtons} onPress={() => setShowTooltip(!showTooltip)}>
+					<Pressable
+						style={stylesLayout.paddingTopButtons}
+						onPress={() => {
+							if (showTooltip) {
+								hideTooltip();
+							} else {
+								animateTooltip();
+							}
+							setShowTooltip(!showTooltip);
+						}}
+					>
 						<BadgeInfoIcon size={28} color="#fff" />
 					</Pressable>
 				</Animated.View>
@@ -256,7 +266,7 @@ const useAnimations = () => {
 			easing: Easing.elastic(),
 		});
 
-		heightTooltip.value = withTiming(500, {
+		heightTooltip.value = withTiming(400, {
 			duration: 280,
 			easing: Easing.elastic(),
 		});
@@ -264,17 +274,17 @@ const useAnimations = () => {
 
 	const hideTooltip = () => {
 		opacityTooltip.value = withTiming(0, {
-			duration: 150,
+			duration: 125,
 			easing: Easing.linear,
 		});
 
 		widthTooltip.value = withTiming(30, {
-			duration: 150,
+			duration: 125,
 			easing: Easing.linear,
 		});
 
 		heightTooltip.value = withTiming(30, {
-			duration: 150,
+			duration: 125,
 			easing: Easing.linear,
 		});
 	};
@@ -395,7 +405,19 @@ const styles = StyleSheet.create({
 		top: 98,
 		left: 20,
 		zIndex: 99,
-		backgroundColor: "rgba(0, 0, 0, 0.9)",
-		borderRadius: 20,
+		backgroundColor: "rgba(203, 105, 243, 0.9)",
+		borderRadius: 25,
+		padding: 26,
+	},
+	tooltipText: {
+		color: "#fff",
+		fontSize: 20,
+		fontWeight: "bold",
+		textShadowColor: "rgba(0, 0, 0, 0.5)",
+		textShadowOffset: { width: -1, height: 1 },
+		textShadowRadius: 1,
+	},
+	tooltipTextContainer: {
+		gap: 15,
 	},
 });
