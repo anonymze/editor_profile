@@ -132,15 +132,27 @@ export default function Page() {
 					])}
 				>
 					<View style={styles.tooltipTextContainer}>
-						<Animated.Text style={[styles.tooltipText, {  }]}>
-							Bienvenue sur Fridgy !
-						</Animated.Text>
+						<Animated.Text style={styles.tooltipTextTitle}>Bienvenue sur Fridgy !</Animated.Text>
 						<Animated.Text style={[styles.tooltipText, { fontSize: 17 }]}>
-							En appuyant sur le <Text style={{ fontWeight: "bold", textDecorationLine: "underline" }}>frigo</Text> vous pouvez ajoutez des
-							ingrédients pour votre recette.
+							En appuyant sur le{" "}
+							<Text style={{ fontWeight: "bold", textDecorationLine: "underline" }}>frigo</Text> vous pouvez
+							ajoutez des ingrédients pour trouver votre recette.
 						</Animated.Text>
-						<TextGradient color={themeColor} text={"5"} home style={{ fontSize: 70 }} />
+
+						<Animated.Text style={[styles.tooltipText, { fontSize: 17 }]}>
+							Un{" "}
+							<Text style={{ fontWeight: "bold", textDecorationLine: "underline" }}>
+								minimum de 3 ingrédients
+							</Text>{" "}
+							est requis.
+						</Animated.Text>
+
+						<Animated.Text style={[styles.tooltipText, { fontSize: 17 }]}>
+							En version gratuite vous avez un maximum de requêtes, il vous en reste :
+						</Animated.Text>
 					</View>
+					<TextGradient color={themeColor} text={"5"} home style={{ fontSize: 70 }} />
+
 				</Animated.View>
 
 				<Animated.View
@@ -423,7 +435,15 @@ const styles = StyleSheet.create({
 		textShadowOffset: { width: -1, height: 1 },
 		textShadowRadius: 1,
 	},
+	tooltipTextTitle: {
+		color: "#fff",
+		fontSize: 23,
+		fontWeight: "700",
+		textShadowColor: "rgba(0, 0, 0, 0.5)",
+		textShadowOffset: { width: -1, height: 1 },
+		textShadowRadius: 1,
+	},
 	tooltipTextContainer: {
-		gap: 15,
+		gap: 18,
 	},
 });
