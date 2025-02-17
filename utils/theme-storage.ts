@@ -40,13 +40,16 @@ export const themeColors = {
 } as const;
 
 export const DEFAULT_NAME = "MEGA";
-export const DEFAULT_KEY_NAME = "name";
+export const DEFAULT_KEY_NAME = "user.name";
 
 export const DEFAULT_COLOR = "blue" as const;
-export const DEFAULT_KEY_COLOR = "color";
+export const DEFAULT_KEY_COLOR = "user.color";
 
 export const DEFAULT_IMAGE_URI = "https://picsum.photos/seed/696/3000/2000";
-export const DEFAULT_KEY_IMAGE_URI = "imageUri";
+export const DEFAULT_KEY_IMAGE_URI = "user.image_uri";
+
+const DEFAULT_LIMITED_ACTION = 10;
+const DEFAULT_KEY_LIMITED_ACTION = "user.limited_action";
 
 export const storage = new MMKV();
 
@@ -73,3 +76,11 @@ export const getStorageImageUri = () => {
 export const setStorageImageUri = (imageUri: string) => {
 	storage.set(DEFAULT_KEY_IMAGE_URI, imageUri);
 };
+
+export const getStorageLimitedAction = () => {
+	return storage.getString(DEFAULT_KEY_LIMITED_ACTION) ?? DEFAULT_LIMITED_ACTION;
+}
+
+export const setStorageLimitedAction = (action: number) => {
+	storage.set(DEFAULT_KEY_LIMITED_ACTION, action);
+}   
