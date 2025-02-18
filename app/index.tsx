@@ -211,7 +211,7 @@ export default function Page() {
 									{
 										backgroundColor: themeColors[themeColor].primary,
 										shadowColor: "#fff",
-										shadowOffset: { width: -4 , height: 4 },
+										shadowOffset: { width: -4, height: 4 },
 										shadowOpacity: 0.9,
 										shadowRadius: 0,
 										borderRadius: 5,
@@ -327,12 +327,18 @@ export default function Page() {
 					>
 						<ButtonRadialGradient
 							onPress={() => {
+								if (getStorageLimitedAction() <= 0) {
+									if (!showTooltip) animateTooltip();
+									setShowTooltip(true);
+									return;
+								}
+
 								router.push({
 									pathname: "/recipe",
 									params: {
 										// prompt: selectedValues.map((value) => value.label.FR).join(','),
 										prompt: ["ail", "carotte", "poivron"],
-									}
+									},
 								});
 							}}
 							text="Trouver ma recette"
@@ -511,7 +517,6 @@ const styles = StyleSheet.create({
 		zIndex: 99,
 		borderRadius: 20,
 		padding: 26,
-
 	},
 	tooltipText: {
 		color: "#fff",
