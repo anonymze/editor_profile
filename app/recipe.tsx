@@ -21,7 +21,6 @@ export default function Page() {
 	});
 
 	console.log(prompt);
-	console.log(complete);
 	console.log(completion);
 	console.log(isLoading);
 
@@ -49,5 +48,3 @@ export default function Page() {
 		</LayoutBackground>
 	);
 }
-
-const styles = StyleSheet.create({});

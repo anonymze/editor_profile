@@ -326,7 +326,15 @@ export default function Page() {
 						entering={enteringAnimation()}
 					>
 						<ButtonRadialGradient
-							onPress={() => router.push("/recipe")}
+							onPress={() => {
+								router.push({
+									pathname: "/recipe",
+									params: {
+										// prompt: selectedValues.map((value) => value.label.FR).join(','),
+										prompt: ["ail", "carotte", "poivron"],
+									}
+								});
+							}}
 							text="Trouver ma recette"
 							color={themeColors[themeColor].primaryLight}
 						/>
