@@ -17,7 +17,7 @@ export default function Page() {
 	const { complete, completion, isLoading } = useCompletion({
 		fetch: expoFetch as unknown as typeof globalThis.fetch,
 		api: process.env.EXPO_PUBLIC_API_RECIPE_URL || "",
-		onError: (error) => {
+		onError: (_) => {
 			setTimeout(() => {
 				setSplashScreen(false);
 				router.push("/");
