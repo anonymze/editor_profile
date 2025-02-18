@@ -82,7 +82,6 @@ export const stylesLayout = StyleSheet.create({
 	imageRecipe: {
 		width: 70,
 		aspectRatio: 1,
-		opacity: 0.8,
 	},
 	bottomButton: {
 		position: "absolute",
