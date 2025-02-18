@@ -1,9 +1,9 @@
 import SplashScreenAnimation from "@/components/splashscreen-animation";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import Animated, { FadeOut } from "react-native-reanimated";
+import { router, useLocalSearchParams } from "expo-router";
 import { ScrollView } from "react-native-gesture-handler";
 import { getStorageColor } from "@/utils/theme-storage";
-import { useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text } from "react-native";
 import { fetch as expoFetch } from "expo/fetch";
 import { useCompletion } from "@ai-sdk/react";
@@ -17,7 +17,10 @@ export default function Page() {
 	const { complete, completion, isLoading } = useCompletion({
 		fetch: expoFetch as unknown as typeof globalThis.fetch,
 		api: process.env.EXPO_PUBLIC_API_RECIPE_URL || "",
-		onError: (error) => console.error(error, "ERROR"),
+		onError: (error) => {
+			setSplashScreen(false);
+			router.push("/");
+		},
 	});
 
 	console.log(prompt);
@@ -34,10 +37,7 @@ export default function Page() {
 	return (
 		<LayoutBackground color={themeColor} centeredContent={false}>
 			{splashScreen ? (
-				<Animated.View
-					style={stylesLayout.container}
-					exiting={FadeOut.duration(400)}
-				>
+				<Animated.View style={stylesLayout.container} exiting={FadeOut.duration(400)}>
 					<SplashScreenAnimation />
 				</Animated.View>
 			) : (
