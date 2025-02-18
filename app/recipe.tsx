@@ -21,7 +21,7 @@ export default function Page() {
 			setTimeout(() => {
 				setSplashScreen(false);
 				router.push("/");
-			}, 500);
+			}, 900);
 		},
 	});
 
