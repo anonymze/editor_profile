@@ -1,42 +1,51 @@
-import Animated, { useAnimatedStyle, useSharedValue, withRepeat, withTiming, Easing, withSequence, withDelay, withSpring } from "react-native-reanimated";
-import LayoutBackground, { stylesLayout } from "@/layout/background";
+import SplashScreenAnimation from "@/components/splashscreen-animation";
+import Animated, { FadeOut } from "react-native-reanimated";
+import { ScrollView } from "react-native-gesture-handler";
 import { getStorageColor } from "@/utils/theme-storage";
-import { StyleSheet } from "react-native";
-import { Image } from "expo-image";
-import { useEffect } from "react";
+import LayoutBackground from "@/layout/background";
+import { useLocalSearchParams } from "expo-router";
+import { StyleSheet, Text } from "react-native";
+import { fetch as expoFetch } from "expo/fetch";
+import { useCompletion } from "@ai-sdk/react";
+import { useEffect, useState } from "react";
 
 
 export default function Page() {
 	const themeColor = getStorageColor();
-	const rotation = useSharedValue(0);
+	const [splashScreen, setSplashScreen] = useState(true);
+	const { prompt } = useLocalSearchParams();
+	const { complete, completion, isLoading } = useCompletion({
+		fetch: expoFetch as unknown as typeof globalThis.fetch,
+		api: process.env.EXPO_PUBLIC_API_RECIPE_URL,
+		onError: (error) => console.error(error, "ERROR"),
+	});
+
+	console.log(prompt);
+	console.log(complete);
+	console.log(completion);
+	console.log(isLoading);
 
 	useEffect(() => {
-		rotation.value = withRepeat(
-			withSequence(
-				withTiming(-30, { duration: 120, easing: Easing.out(Easing.ease) }),
-				withSpring(360, { damping: 7, stiffness: 60, mass: 0.4 }),
-			),
-			-1,
-			false
-		);
+		complete(prompt.toString());
+		setTimeout(() => {
+			setSplashScreen(false);
+		}, 3500);
 	}, []);
-
-	const rStyle = useAnimatedStyle(() => {
-		return {
-			transform: [{ rotate: `${rotation.value}deg` }],
-		};
-	});
 
 	return (
 		<LayoutBackground color={themeColor} centeredContent={false}>
-			<Animated.View style={[stylesLayout.container, rStyle]}>
-				<Image
-					style={[stylesLayout.imageRecipe]}
-					source={require("@/assets/images/fridge.png")}
-					cachePolicy="memory-disk"
-					contentFit="contain"
-				/>
-			</Animated.View>
+			{splashScreen ? (
+				<Animated.View
+					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+					exiting={FadeOut.duration(1000)}
+				>
+					<SplashScreenAnimation />
+				</Animated.View>
+			) : (
+				<ScrollView style={{ flex: 1 }}>
+					<Text>{completion}</Text>
+				</ScrollView>
+			)}
 		</LayoutBackground>
 	);
 }

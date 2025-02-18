@@ -1,4 +1,4 @@
-import { Animated, StyleProp, StyleSheet, ViewStyle } from "react-native";
+import { StyleProp, StyleSheet, ViewStyle } from "react-native";
 import { LinearGradient } from "react-native-linear-gradient";
 import { themeColors } from "@/utils/theme-storage";
 import { starPositions } from "@/utils/stars";
