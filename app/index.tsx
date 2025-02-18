@@ -165,7 +165,7 @@ export default function Page() {
 							color={themeColor}
 							text={getStorageLimitedAction()}
 							home
-							style={{ fontSize: 60, marginTop: -12 }}
+							style={{ fontSize: 60, marginTop: -13 }}
 						/>
 					</View>
 

@@ -169,7 +169,7 @@ export default function Page() {
 						style={[stylesLayout.bottomButton, styles.buttons]}
 						entering={enteringAnimation}
 						exiting={FadeOut.duration(600)}
-						intensity={70}
+						intensity={70}						
 					>
 						{getKeysTypedObject(themeColors).map((color) => (
 							<CircleRadialGradient
