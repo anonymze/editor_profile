@@ -181,20 +181,60 @@ export default function Page() {
 							width: width - 80,
 						}}
 					>
-						<Pressable style={styles.tooltipActionButton}>
-							<Text>Je m'abonne</Text>
+						<Pressable
+							style={[
+								styles.tooltipActionButton,
+								{
+									borderRadius: 5,
+									backgroundColor: themeColors[themeColor].primary,
+									shadowColor: "#fff",
+									shadowOffset: { width: -4, height: 4 },
+									shadowOpacity: 0.9,
+									shadowRadius: 0,
+								},
+							]}
+						>
+							<Text
+								style={{
+									color: "#fff",
+									fontSize: 16,
+									fontWeight: "bold",
+								}}
+							>
+								Je m'abonne
+							</Text>
 						</Pressable>
 						<Pressable
-							style={styles.tooltipActionButton}
+							style={(state) => {
+								return [
+									styles.tooltipActionButton,
+									{
+										backgroundColor: themeColors[themeColor].primary,
+										shadowColor: "#fff",
+										shadowOffset: { width: -4 , height: 4 },
+										shadowOpacity: 0.9,
+										shadowRadius: 0,
+										borderRadius: 5,
+									},
+								];
+							}}
 							onPress={() => {
 								setShowTooltip(false);
 								hideTooltip();
 							}}
 						>
-							<Text>Compris !</Text>
+							<Text
+								style={{
+									color: "#fff",
+									fontSize: 16,
+									fontWeight: "bold",
+								}}
+							>
+								Compris !
+							</Text>
 						</Pressable>
 					</View>
-				</Animated.View>
+				</Animated.View>¬
 
 				<Animated.View
 					style={StyleSheet.flatten([
@@ -463,6 +503,8 @@ const styles = StyleSheet.create({
 		zIndex: 99,
 		borderRadius: 20,
 		padding: 26,
+		borderWidth: 1,
+		borderColor: "rgba(255, 255, 255, 0.7)",
 	},
 	tooltipText: {
 		color: "#fff",
