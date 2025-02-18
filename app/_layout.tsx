@@ -16,6 +16,7 @@ export default function RootLayout() {
 							animation: "none",
 						}}
 					>
+						<Stack.Screen options={{ animation: "fade" }} name="recipe" />
 					</Stack>
 				</SafeAreaView>
 			</SafeAreaProvider>

@@ -234,7 +234,7 @@ export default function Page() {
 							</Text>
 						</Pressable>
 					</View>
-				</Animated.View>¬
+				</Animated.View>
 
 				<Animated.View
 					style={StyleSheet.flatten([
@@ -320,7 +320,7 @@ export default function Page() {
 					</Fragment>
 				) : null}
 
-				{selectedValues.length >= 3 && (
+				{selectedValues.length >= -1 && (
 					<Animated.View
 						style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
 						entering={enteringAnimation()}
@@ -503,8 +503,7 @@ const styles = StyleSheet.create({
 		zIndex: 99,
 		borderRadius: 20,
 		padding: 26,
-		borderWidth: 1,
-		borderColor: "rgba(255, 255, 255, 0.7)",
+
 	},
 	tooltipText: {
 		color: "#fff",
