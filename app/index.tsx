@@ -139,9 +139,8 @@ export default function Page() {
 								top: 20,
 								left: 20,
 								zIndex: 100,
-								width: width - 80
+								width: width - 80,
 							},
-
 						]}
 					>
 						<Text style={styles.tooltipTextTitle}>Bienvenue sur Fridgy.</Text>
@@ -162,7 +161,12 @@ export default function Page() {
 						<Text style={styles.tooltipText}>
 							En version gratuite, vous êtes limité sur vos recettes. Il vous en reste :
 						</Text>
-						<TextGradient color={themeColor} text={getStorageLimitedAction()} home style={{ fontSize: 60, marginTop: -12 }} />
+						<TextGradient
+							color={themeColor}
+							text={getStorageLimitedAction()}
+							home
+							style={{ fontSize: 60, marginTop: -12 }}
+						/>
 					</View>
 
 					<View
@@ -174,12 +178,10 @@ export default function Page() {
 							bottom: 20,
 							left: 20,
 							zIndex: 100,
-							width: width - 80
+							width: width - 80,
 						}}
 					>
-						<Pressable
-							style={styles.tooltipActionButton}
-						>
+						<Pressable style={styles.tooltipActionButton}>
 							<Text>Je m'abonne</Text>
 						</Pressable>
 						<Pressable
@@ -469,7 +471,7 @@ const styles = StyleSheet.create({
 		textShadowColor: "rgba(0, 0, 0, 0.5)",
 		textShadowOffset: { width: -1, height: 1 },
 		textShadowRadius: 1,
-		paddingBottom: 20
+		paddingBottom: 20,
 	},
 	tooltipTextTitle: {
 		color: "#fff",
@@ -478,14 +480,14 @@ const styles = StyleSheet.create({
 		textShadowColor: "rgba(0, 0, 0, 0.5)",
 		textShadowOffset: { width: -1, height: 1 },
 		textShadowRadius: 1,
-		paddingBottom: 24
+		paddingBottom: 24,
 	},
-	tooltipActionButton : {
+	tooltipActionButton: {
 		flex: 1,
 		justifyContent: "center",
 		alignItems: "center",
 		backgroundColor: "#fff",
 		padding: 10,
 		borderRadius: 8,
-	} 
+	},
 });

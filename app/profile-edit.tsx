@@ -1,6 +1,6 @@
 import { DEFAULT_COLOR, DEFAULT_IMAGE_URI, DEFAULT_KEY_COLOR, DEFAULT_KEY_IMAGE_URI, setStorageImageUri, themeColors, } from "@/utils/theme-storage";
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
-import { KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from "react-native";
+import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, View } from "react-native";
 import { GestureDetector, Gesture, Pressable } from "react-native-gesture-handler";
 import { CheckIcon, CameraIcon, ArrowLeftIcon } from "lucide-react-native";
 import { useCallback, useEffect, useRef, useState, useMemo } from "react";
@@ -11,14 +11,16 @@ import { getKeysTypedObject } from "@/utils/helper";
 import { useMMKVString } from "react-native-mmkv";
 import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
+import { BlurView } from "expo-blur";
 import { Image } from "expo-image";
 
+
+const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
 // const blurhash =
 // 	"|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
 
 export default function Page() {
-	const bottomButtonRef = useRef<Animated.View>(null);
 	const inputRef = useRef<TextInput>(null);
 	const [animating, setAnimating] = useState(true);
 	const [imageUri, setImageUri] = useMMKVString(DEFAULT_KEY_IMAGE_URI);
@@ -158,11 +160,16 @@ export default function Page() {
 						</Pressable>
 					</Animated.View>
 
-					<Animated.View
-						ref={bottomButtonRef}
+					{/* <Animated.View
 						style={StyleSheet.flatten([stylesLayout.bottomButton, styles.buttons])}
 						entering={enteringAnimation}
 						exiting={FadeOut.duration(600)}
+					> */}
+					<AnimatedBlurView
+						style={[stylesLayout.bottomButton, styles.buttons]}
+						entering={enteringAnimation}
+						exiting={FadeOut.duration(600)}
+						intensity={70}
 					>
 						{getKeysTypedObject(themeColors).map((color) => (
 							<CircleRadialGradient
@@ -180,7 +187,8 @@ export default function Page() {
 								color={themeColors[color].primary}
 							/>
 						))}
-					</Animated.View>
+					</AnimatedBlurView>
+					{/* </Animated.View> */}
 				</LayoutBackground>
 			</KeyboardAvoidingView>
 		</GestureDetector>
@@ -196,7 +204,8 @@ const styles = StyleSheet.create({
 		borderColor: "#fff",
 		maxWidth: "100%",
 		width: "auto",
-		backgroundColor: "rgba(195, 176, 180, 0.7)",
+		backgroundColor: "rgba(195, 176, 180, 0.5)",
+		overflow: "hidden",
 	},
 	cameraButton: {
 		width: 40,
