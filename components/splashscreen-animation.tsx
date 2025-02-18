@@ -1,5 +1,6 @@
 import Animated, { useAnimatedStyle, useSharedValue, withRepeat, withTiming, Easing, withSequence, withSpring, FadeOut } from "react-native-reanimated";
 import { stylesLayout } from "@/layout/background";
+import { StyleSheet } from "react-native";
 import { Image } from "expo-image";
 import { useEffect } from "react";
 
@@ -29,7 +30,7 @@ export default function SplashScreenAnimation() {
 	});
 
 	return (
-			<Animated.View style={[stylesLayout.container, rStyle]}>
+			<Animated.View style={StyleSheet.flatten([stylesLayout.container, rStyle])}>
 				<Image
 					style={[stylesLayout.imageRecipe]}
 					source={require("@/assets/images/fridge.png")}

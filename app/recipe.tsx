@@ -1,8 +1,8 @@
 import SplashScreenAnimation from "@/components/splashscreen-animation";
+import LayoutBackground, { stylesLayout } from "@/layout/background";
 import Animated, { FadeOut } from "react-native-reanimated";
 import { ScrollView } from "react-native-gesture-handler";
 import { getStorageColor } from "@/utils/theme-storage";
-import LayoutBackground from "@/layout/background";
 import { useLocalSearchParams } from "expo-router";
 import { StyleSheet, Text } from "react-native";
 import { fetch as expoFetch } from "expo/fetch";
@@ -35,8 +35,8 @@ export default function Page() {
 		<LayoutBackground color={themeColor} centeredContent={false}>
 			{splashScreen ? (
 				<Animated.View
-					style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-					exiting={FadeOut.duration(1000)}
+					style={stylesLayout.container}
+					exiting={FadeOut.duration(400)}
 				>
 					<SplashScreenAnimation />
 				</Animated.View>
