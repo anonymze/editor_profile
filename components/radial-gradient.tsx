@@ -2,7 +2,6 @@ import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withRepe
 import Svg, { Defs, RadialGradient, Stop, Rect, Circle } from "react-native-svg";
 import { Pressable, PressableProps } from "react-native-gesture-handler";
 import { StyleSheet, Text } from "react-native";
-import { BlurView } from "expo-blur";
 import { useEffect } from "react";
 
 
