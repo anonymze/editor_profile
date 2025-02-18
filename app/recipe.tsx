@@ -18,8 +18,10 @@ export default function Page() {
 		fetch: expoFetch as unknown as typeof globalThis.fetch,
 		api: process.env.EXPO_PUBLIC_API_RECIPE_URL || "",
 		onError: (error) => {
-			setSplashScreen(false);
-			router.push("/");
+			setTimeout(() => {
+				setSplashScreen(false);
+				router.push("/");
+			}, 500);
 		},
 	});
 
@@ -37,7 +39,10 @@ export default function Page() {
 	return (
 		<LayoutBackground color={themeColor} centeredContent={false}>
 			{splashScreen ? (
-				<Animated.View style={stylesLayout.container} exiting={FadeOut.duration(400)}>
+				<Animated.View
+					style={stylesLayout.container}
+					exiting={FadeOut.duration(400)}
+				>
 					<SplashScreenAnimation />
 				</Animated.View>
 			) : (
