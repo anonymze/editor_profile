@@ -104,9 +104,15 @@ export default function Page() {
 							style={stylesLayout.centerContent}
 							entering={FadeInDown.duration(800).delay(200).springify()}
 						>
-							<Pressable style={stylesLayout.shadowImage} onPress={pickImage}>
+							<Pressable
+								style={StyleSheet.flatten([
+									stylesLayout.shadowImage,
+									{ backgroundColor: themeColors[themeColorFinal].primaryLight, borderRadius: 99 },
+								])}
+								onPress={pickImage}
+							>
 								<Image
-									style={StyleSheet.flatten([stylesLayout.image, { backgroundColor: themeColors[themeColorFinal].primaryLight }])}
+									style={[stylesLayout.image]}
 									contentFit="cover"
 									source={imageUri ?? DEFAULT_IMAGE_URI}
 									placeholderContentFit="cover"
@@ -170,7 +176,7 @@ export default function Page() {
 						style={[stylesLayout.bottomButton, styles.buttons]}
 						entering={enteringAnimation}
 						exiting={FadeOut.duration(600)}
-						intensity={70}				
+						intensity={70}
 					>
 						{getKeysTypedObject(themeColors).map((color) => (
 							<CircleRadialGradient
