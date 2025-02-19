@@ -278,12 +278,12 @@ export default function Page() {
 
 				<View style={styles.highPaddingTop}>
 					<Animated.View entering={enteringAnimationLeft()}>
-						<TextGradient color={themeColor} text={`${Application.applicationName ?? ""} !`} style={{ fontSize: height > 630 ? 75 : 60 }} />
+						<TextGradient color={themeColor} text={`${Application.applicationName?.toUpperCase()} !`} style={{ fontSize: height > 630 ? 75 : 60 }} />
 					</Animated.View>
 					{/* <Animated.View entering={enteringAnimationRight()}>
 						<TextGradient color={themeColor} text={"CHEF !"} home style={{ fontSize: 75, marginTop: -15 }} />
 					</Animated.View> */}
-
+  
 					<Animated.View
 						style={stylesLayout.centerContent}
 						entering={FadeInDown.duration(800).delay(400).springify()}
