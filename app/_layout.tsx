@@ -21,21 +21,15 @@ export default function RootLayout() {
 					style={{ flex: 1, backgroundColor: themeColors[themeColorFinal].primaryLight }}
 				>
 					<Stack
+					
 						screenOptions={{
 							headerShown: false,
 							animation: "none",
+							
 							// statusBarBackgroundColor: themeColors[themeColorFinal].primaryLight,
 						}}
 					>
-						<Stack.Screen
-							options={{
-								animation: Platform.select({
-									ios: "fade",
-									android: "fade", // Android will use a default slide animation if not supported
-								}),
-							}}
-							name="recipe"
-						/>
+						<Stack.Screen options={{ animation: "fade_from_bottom" }}  name="recipe" />
 					</Stack>
 				</SafeAreaView>
 			</SafeAreaProvider>
