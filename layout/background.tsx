@@ -1,5 +1,6 @@
 import { Dimensions, StyleProp, StyleSheet, ViewStyle } from "react-native";
-import { LinearGradient } from "react-native-linear-gradient";
+import { LinearGradient } from "expo-linear-gradient";
+// import { LinearGradient } from "react-native-linear-gradient";
 import { themeColors } from "@/utils/theme-storage";
 import { starPositions } from "@/utils/stars";
 import { Circle } from "react-native-svg";
@@ -13,8 +14,6 @@ export default function LayoutBackground(props: {
 	centeredContent: boolean;
 	children: React.ReactNode;
 	color: keyof typeof themeColors;
-	onLayout?: () => void;
-	style?: StyleProp<ViewStyle>;
 }) {
 	const firstColorRef = useRef(themeColors[props.color].primaryLight);
 	const secondColorRef = useRef(themeColors[props.color].primaryDark);
@@ -26,9 +25,8 @@ export default function LayoutBackground(props: {
 
 	return (
 		<LinearGradient
-			colors={[firstColorRef.current, secondColorRef.current]}
-			style={[props.centeredContent ? styles.containerCentered : styles.container, props.style]}
-			onLayout={props.onLayout}
+			colors={[themeColors[props.color].primaryLight, themeColors[props.color].primaryDark]}
+			style={[props.centeredContent ? styles.containerCentered : styles.container]}
 		>
 			<Svg style={styles.containerSvg}>
 				{starPositions.map((star) => (
