@@ -2,13 +2,14 @@ import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnima
 import { getStorageColor, getStorageLimitedAction, themeColors } from "@/utils/theme-storage";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
+import { Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { ButtonRadialGradient } from "@/components/radial-gradient";
 import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
+import * as Application from "expo-application";
 import vegetables from "@/data/vegetables";
 import { router } from "expo-router";
 import fruits from "@/data/fruits";
@@ -326,7 +327,7 @@ export default function Page() {
 						entering={enteringAnimation()}
 					>
 						<ButtonRadialGradient
-							onPress={() => {
+							onPress={async () => {
 								if (getStorageLimitedAction() <= 0) {
 									if (!showTooltip) animateTooltip();
 									setShowTooltip(true);
@@ -337,6 +338,7 @@ export default function Page() {
 									pathname: "/recipe",
 									params: {
 										// prompt: selectedValues.map((value) => value.label.FR).join(','),
+										vendorId: Platform.OS === 'ios' ? await Application.getIosIdForVendorAsync() : Application.getAndroidId(),
 										prompt: ["ail", "carotte", "poivron"],
 									},
 								});

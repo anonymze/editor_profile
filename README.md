@@ -13,3 +13,5 @@ subprojects { project ->
         }
     }
 }
+
+eas build -p android --profile preview

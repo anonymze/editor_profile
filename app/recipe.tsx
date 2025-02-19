@@ -1,10 +1,10 @@
 import SplashScreenAnimation from "@/components/splashscreen-animation";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
+import { Alert, Platform, StyleSheet, Text } from "react-native";
 import Animated, { FadeOut } from "react-native-reanimated";
 import { router, useLocalSearchParams } from "expo-router";
 import { ScrollView } from "react-native-gesture-handler";
 import { getStorageColor } from "@/utils/theme-storage";
-import { StyleSheet, Text } from "react-native";
 import { fetch as expoFetch } from "expo/fetch";
 import { useCompletion } from "@ai-sdk/react";
 import { useEffect, useState } from "react";
@@ -13,21 +13,26 @@ import { useEffect, useState } from "react";
 export default function Page() {
 	const themeColor = getStorageColor();
 	const [splashScreen, setSplashScreen] = useState(true);
-	const { prompt } = useLocalSearchParams();
+	const { prompt, vendorId } = useLocalSearchParams();
 	const { complete, completion, isLoading } = useCompletion({
 		fetch: expoFetch as unknown as typeof globalThis.fetch,
 		api: process.env.EXPO_PUBLIC_API_RECIPE_URL || "",
+		headers: {
+			"X-Origin": "fridgy",
+			"X-Vendor-Id": vendorId.toString() ?? "",
+		},
 		onError: (_) => {
 			setTimeout(() => {
 				setSplashScreen(false);
+				Alert.alert(
+					"Message",
+					"Une erreur est survenue lors de la récupération de la recette",
+					[{ text: "OK" }]
+				);
 				router.push("/");
 			}, 800);
 		},
 	});
-
-	console.log(prompt);
-	console.log(completion);
-	console.log(isLoading);
 
 	useEffect(() => {
 		complete(prompt.toString());
