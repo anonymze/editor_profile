@@ -278,7 +278,7 @@ export default function Page() {
 
 				<View style={styles.highPaddingTop}>
 					<Animated.View entering={enteringAnimationLeft()}>
-						<TextGradient color={themeColor} text={"FRIDGY !"} home style={{ fontSize: height > 630 ? 75 : 60 }} />
+						<TextGradient color={themeColor} text={"FRIDGY !"} style={{ fontSize: height > 630 ? 75 : 60 }} />
 					</Animated.View>
 					{/* <Animated.View entering={enteringAnimationRight()}>
 						<TextGradient color={themeColor} text={"CHEF !"} home style={{ fontSize: 75, marginTop: -15 }} />
@@ -505,9 +505,9 @@ const styles = StyleSheet.create({
 	},
 	halo: {
 		position: "absolute",
-		width: 140,
-		left: 9,
-		top: 10,
+		width: height > 700 ? 160 : height > 630 ? 130 : 115,
+		// left: 9,
+		// top: 10,
 		aspectRatio: 1,
 		borderRadius: 99,
 		borderWidth: 2,

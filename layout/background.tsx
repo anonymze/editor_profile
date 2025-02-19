@@ -80,7 +80,7 @@ export const stylesLayout = StyleSheet.create({
 	imageHome: {
 		width: height > 700 ? 160 : height > 630 ? 130 : 115,
 		aspectRatio: 1,
-		marginTop: 15,
+		paddingTop: 15,
 	},
 	imageRecipe: {
 		width: 70,
