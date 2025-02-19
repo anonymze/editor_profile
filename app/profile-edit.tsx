@@ -106,7 +106,7 @@ export default function Page() {
 						>
 							<Pressable style={stylesLayout.shadowImage} onPress={pickImage}>
 								<Image
-									style={[stylesLayout.image]}
+									style={StyleSheet.flatten([stylesLayout.image, { backgroundColor: themeColors[themeColorFinal].primaryLight }])}
 									contentFit="cover"
 									source={imageUri ?? DEFAULT_IMAGE_URI}
 									placeholderContentFit="cover"
