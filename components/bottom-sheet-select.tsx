@@ -54,8 +54,18 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 			(props: BottomSheetFooterProps) => (
 				<BottomSheetFooter {...props}>
 					<View style={styles.footerContainer}>
-						<Button
-							title="Effacer"
+						<Pressable
+							style={(status) => {
+								return {
+									backgroundColor: "transparent",
+									opacity: status.pressed ? 0.5 : 1,
+									padding: 10,
+									margin: 0,
+									borderWidth: 0,
+									alignItems: "center",
+									justifyContent: "center",
+								};
+							}}
 							onPress={() => {
 								onSelect(null);
 								setSelectedIds([]);
@@ -64,9 +74,21 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 									ref?.current?.close();
 								}
 							}}
-						/>
-						<Button
-							title="Ajouter"
+						>
+							<Text style={{ color: "#057efe", fontSize: 18 }}>Effacer</Text>
+						</Pressable>
+						<Pressable
+							style={(status) => {
+								return {
+									backgroundColor: "transparent",
+									opacity: status.pressed ? 0.5 : 1,
+									padding: 10,
+									margin: 0,
+									borderWidth: 0,
+									alignItems: "center",
+									justifyContent: "center",
+								};
+							}}
 							onPress={() => {
 								onSelect(selectedIds);
 								setSelectedIds([]);
@@ -75,7 +97,9 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 									ref?.current?.close();
 								}
 							}}
-						/>
+						>
+							<Text style={{ color: "#057efe", fontSize: 18 }}>Ajouter</Text>
+						</Pressable>
 					</View>
 				</BottomSheetFooter>
 			),
@@ -83,7 +107,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 		);
 
 		return (
-			<View style={{flex:1,  }}>
+			<View style={{ flex: 1 }}>
 				<BottomSheetModal
 					ref={ref}
 					enablePanDownToClose={true}
@@ -134,7 +158,12 @@ const MemoizedSections = React.memo(
 			{sections.map((section) => (
 				<View key={section.title} style={styles.bottomSheetListContent}>
 					<View style={styles.sectionHeaderContainer}>
-						<View style={StyleSheet.flatten([styles.sectionHeader, { backgroundColor: themeColors[themeColor].primary }])}>
+						<View
+							style={StyleSheet.flatten([
+								styles.sectionHeader,
+								{ backgroundColor: themeColors[themeColor].primary },
+							])}
+						>
 							<Text style={styles.sectionHeaderText}>{section.title}</Text>
 						</View>
 					</View>
@@ -143,7 +172,9 @@ const MemoizedSections = React.memo(
 							key={item.id}
 							style={[
 								styles.itemContainer,
-								selectedIds.find((id) => id.id === item.id) && { backgroundColor: themeColors[themeColor].primaryLight },
+								selectedIds.find((id) => id.id === item.id) && {
+									backgroundColor: themeColors[themeColor].primaryLight,
+								},
 							]}
 							onPress={() => onItemPress(item)}
 						>
@@ -164,7 +195,11 @@ const MemoizedSections = React.memo(
 	),
 	(prevProps, nextProps) => {
 		// optional: custom comparison function
-		return prevProps.sections === nextProps.sections && prevProps.selectedIds === nextProps.selectedIds && prevProps.themeColor === nextProps.themeColor;
+		return (
+			prevProps.sections === nextProps.sections &&
+			prevProps.selectedIds === nextProps.selectedIds &&
+			prevProps.themeColor === nextProps.themeColor
+		);
 	}
 );
 
