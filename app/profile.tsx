@@ -123,10 +123,6 @@ export default function Page() {
 									contentPosition="center"
 									placeholder={{ uri: DEFAULT_IMAGE_URI }}
 									placeholderContentFit="cover"
-									transition={{
-										duration: 100,
-										effect: "cross-dissolve",
-									}}
 								/>
 							</View>
 							<CircleRadialGradient

@@ -122,7 +122,7 @@ export const stylesLayout = StyleSheet.create({
 		alignItems: "center",
 		shadowColor: "#000",
 		shadowOffset: { width: -1, height: 1 },
-		shadowOpacity: 0.2,
+		shadowOpacity: 0.3,
 		shadowRadius: 2,
 	},
 	gradientHalo: {
