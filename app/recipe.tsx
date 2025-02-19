@@ -33,6 +33,9 @@ export default function Page() {
 				router.push("/");
 			}, 800);
 		},
+		onFinish: () => {
+			console.log("finishedddd")
+		},
 	});
 
 	useEffect(() => {
