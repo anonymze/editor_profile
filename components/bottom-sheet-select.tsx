@@ -226,8 +226,9 @@ const styles = StyleSheet.create({
 	footerContainer: {
 		flexDirection: "row",
 		justifyContent: "space-around",
-		paddingVertical: 8,
-		backgroundColor: "#ffffff",
+		paddingTop: 8,
+		backgroundColor: "#fff",
+		paddingBottom: 28,
 	},
 	paddingSheet: {
 		paddingHorizontal: 15,
