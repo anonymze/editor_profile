@@ -1,5 +1,5 @@
 import { BottomSheetFooter, BottomSheetFooterProps, BottomSheetModal, BottomSheetScrollView, } from "@gorhom/bottom-sheet";
-import { View, Button, Text, StyleSheet } from "react-native";
+import { View, Button, Text, StyleSheet, Platform } from "react-native";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { Pressable } from "react-native-gesture-handler";
 import { themeColors } from "@/utils/theme-storage";
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
 		justifyContent: "space-around",
 		paddingTop: 8,
 		backgroundColor: "#fff",
-		paddingBottom: 28,
+		paddingBottom: Platform.OS === "android" ? 10 : 25,
 	},
 	paddingSheet: {
 		paddingHorizontal: 15,
