@@ -498,7 +498,7 @@ const styles = StyleSheet.create({
 		paddingLeft: 20,
 	},
 	mediumPaddingTop: {
-		paddingTop: 45,
+		paddingTop: height > 700 ? 60 : height > 630 ? 45 : 30,
 	},
 	highPaddingTop: {
 		paddingTop: Platform.OS === "ios" ? 95 : 80,
