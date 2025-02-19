@@ -15,7 +15,7 @@ export default function RootLayout() {
 
 	return (
 		<GestureHandlerRootView>
-			<StatusBar style="light" />
+			<StatusBar style="light" translucent />
 			<SafeAreaProvider>
 				<SafeAreaView
 					edges={["right", "left", "top"]}
