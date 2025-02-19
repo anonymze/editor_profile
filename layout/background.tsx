@@ -4,6 +4,7 @@ import { themeColors } from "@/utils/theme-storage";
 import { starPositions } from "@/utils/stars";
 import { Circle } from "react-native-svg";
 import { Svg } from "react-native-svg";
+import { useRef } from "react";
 
 
 const { height } = Dimensions.get("window");
@@ -15,9 +16,17 @@ export default function LayoutBackground(props: {
 	onLayout?: () => void;
 	style?: StyleProp<ViewStyle>;
 }) {
+	const firstColorRef = useRef(themeColors[props.color].primaryLight);
+	const secondColorRef = useRef(themeColors[props.color].primaryDark);
+
+	if (firstColorRef.current !== themeColors[props.color].primaryLight) {
+		console.log("color has changed")
+	}
+
+
 	return (
 		<LinearGradient
-			colors={[themeColors[props.color].primaryLight, themeColors[props.color].primaryDark]}
+			colors={[firstColorRef.current, secondColorRef.current]}
 			style={[props.centeredContent ? styles.containerCentered : styles.container, props.style]}
 			onLayout={props.onLayout}
 		>
