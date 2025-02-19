@@ -24,7 +24,7 @@ export default function RootLayout() {
 						screenOptions={{
 							headerShown: false,
 							animation: "none",
-							statusBarBackgroundColor: themeColors[themeColorFinal].primaryLight
+							// statusBarBackgroundColor: themeColors[themeColorFinal].primaryLight,
 						}}
 					>
 						<Stack.Screen options={{ animation: "fade" }} name="recipe" />

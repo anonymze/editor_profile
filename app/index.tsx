@@ -278,7 +278,7 @@ export default function Page() {
 
 				<View style={styles.highPaddingTop}>
 					<Animated.View entering={enteringAnimationLeft()}>
-						<TextGradient color={themeColor} text={"FRIDGY !"} home style={{ fontSize: 75 }} />
+						<TextGradient color={themeColor} text={"FRIDGY !"} home style={{ fontSize: height > 630 ? 75 : 60 }} />
 					</Animated.View>
 					{/* <Animated.View entering={enteringAnimationRight()}>
 						<TextGradient color={themeColor} text={"CHEF !"} home style={{ fontSize: 75, marginTop: -15 }} />

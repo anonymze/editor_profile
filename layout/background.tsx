@@ -78,7 +78,7 @@ export const stylesLayout = StyleSheet.create({
 		borderRadius: 99,
 	},
 	imageHome: {
-		width: height > 700 ? 160 : 130,
+		width: height > 700 ? 160 : height > 630 ? 130 : 115,
 		aspectRatio: 1,
 		marginTop: 15,
 	},
