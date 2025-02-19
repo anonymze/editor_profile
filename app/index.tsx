@@ -271,7 +271,7 @@ export default function Page() {
 					</Animated.View>
 
 					<Animated.View
-						style={StyleSheet.flatten([stylesLayout.centerContent, styles.lowPaddingTop])}
+						style={stylesLayout.centerContent}
 						entering={FadeInDown.duration(800).delay(400).springify()}
 					>
 						<Pressable
@@ -487,9 +487,6 @@ const styles = StyleSheet.create({
 	},
 	highPaddingTop: {
 		paddingTop: 85,
-	},
-	lowPaddingTop: {
-		paddingTop: 10,
 	},
 	halo: {
 		position: "absolute",
