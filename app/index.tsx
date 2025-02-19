@@ -16,7 +16,7 @@ import fruits from "@/data/fruits";
 import { Image } from "expo-image";
 
 
-const { width, height} = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
 const initialSections = [
 	{

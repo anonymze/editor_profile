@@ -4,8 +4,8 @@ import { DEFAULT_COLOR, DEFAULT_KEY_COLOR, themeColors } from "@/utils/theme-sto
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useMMKVString } from "react-native-mmkv";
+import { Platform, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { View } from "react-native";
 import { Stack } from "expo-router";
 
 
@@ -27,7 +27,15 @@ export default function RootLayout() {
 							// statusBarBackgroundColor: themeColors[themeColorFinal].primaryLight,
 						}}
 					>
-						<Stack.Screen options={{ animation: "fade" }} name="recipe" />
+						<Stack.Screen
+							options={{
+								animation: Platform.select({
+									ios: "fade",
+									android: "fade", // Android will use a default slide animation if not supported
+								}),
+							}}
+							name="recipe"
+						/>
 					</Stack>
 				</SafeAreaView>
 			</SafeAreaProvider>
