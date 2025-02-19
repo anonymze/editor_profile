@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 export const stylesLayout = StyleSheet.create({
 	topButtons: {
 		position: "absolute",
-		top: 35,
+		top: 30,
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",

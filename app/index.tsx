@@ -512,7 +512,7 @@ const styles = StyleSheet.create({
 	},
 	tooltip: {
 		position: "absolute",
-		top: 98,
+		top: 90,
 		left: 20,
 		zIndex: 99,
 		borderRadius: 20,
