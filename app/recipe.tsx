@@ -19,20 +19,22 @@ export default function Page() {
 		api: process.env.EXPO_PUBLIC_API_RECIPE_URL || "",
 		headers: {
 			"X-Origin": "fridgy",
-			"X-Vendor-Id": vendorId.toString() ?? "",
+			"X-Vendor-Id": vendorId?.toString() ?? "",
 		},
 		onError: (_) => {
 			setTimeout(() => {
 				setSplashScreen(false);
 				Alert.alert(
-					"Message",
-					"Une erreur est survenue lors de la récupération de la recette",
+					"Erreur",
+					"Un problème est survenu lors de la génération de la recette",
 					[{ text: "OK" }]
 				);
 				router.push("/");
 			}, 800);
 		},
 	});
+
+	console.log(vendorId);
 
 	useEffect(() => {
 		complete(prompt.toString());
