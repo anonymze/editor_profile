@@ -63,7 +63,7 @@ export default function Page() {
 		// Check if adding new values would exceed max of 8
 		const uniqueNewValues = [...new Set([...selectedValues, ...values])];
 
-		if (uniqueNewValues.length > 8) {
+		if (uniqueNewValues.length > 10) {
 			Alert.alert(
 				"Attention",
 				"Vous ne pouvez pas ajouter plus de 10 ingrédients",
@@ -506,12 +506,11 @@ const styles = StyleSheet.create({
 	halo: {
 		position: "absolute",
 		width: height > 700 ? 160 : height > 630 ? 130 : 115,
-		// left: 9,
-		// top: 10,
 		aspectRatio: 1,
 		borderRadius: 99,
 		borderWidth: 2,
 		borderColor: "rgba(255, 255, 255, 0.7)",
+		top: 5,
 	},
 	containerIngredients: {
 		flex: 1,

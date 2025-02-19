@@ -6,7 +6,7 @@ import { Circle } from "react-native-svg";
 import { Svg } from "react-native-svg";
 
 
-const { height} = Dimensions.get("window");
+const { height } = Dimensions.get("window");
 
 export default function LayoutBackground(props: {
 	centeredContent: boolean;
@@ -21,14 +21,7 @@ export default function LayoutBackground(props: {
 			style={[props.centeredContent ? styles.containerCentered : styles.container, props.style]}
 			onLayout={props.onLayout}
 		>
-			<Svg
-				style={{
-					position: "absolute",
-					width: "100%",
-					height: "100%",
-					zIndex: -20,
-				}}
-			>
+			<Svg style={styles.containerSvg}>
 				{starPositions.map((star) => (
 					<Circle key={star.id} cx={star.left} cy={star.top} r="1.5" fill="white" opacity={star.opacity} />
 				))}
@@ -47,6 +40,12 @@ const styles = StyleSheet.create({
 	},
 	container: {
 		flex: 1,
+	},
+	containerSvg: {
+		position: "absolute",
+		width: "100%",
+		height: "100%",
+		zIndex: -20,
 	},
 });
 
@@ -80,7 +79,7 @@ export const stylesLayout = StyleSheet.create({
 	imageHome: {
 		width: height > 700 ? 160 : height > 630 ? 130 : 115,
 		aspectRatio: 1,
-		paddingTop: 15,
+		top: 5,
 	},
 	imageRecipe: {
 		width: 70,
