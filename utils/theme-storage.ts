@@ -39,13 +39,13 @@ export const themeColors = {
 	},
 } as const;
 
-export const DEFAULT_NAME = "MEGA";
+export const DEFAULT_NAME = "Visiteur";
 export const DEFAULT_KEY_NAME = "user.name";
 
-export const DEFAULT_COLOR = "blue" as const;
+export const DEFAULT_COLOR = "purple" as keyof typeof themeColors;
 export const DEFAULT_KEY_COLOR = "user.color";
 
-export const DEFAULT_IMAGE_URI = "https://picsum.photos/seed/696/3000/2000";
+export const DEFAULT_IMAGE_URI = require("@/assets/images/profile-placeholder.png");
 export const DEFAULT_KEY_IMAGE_URI = "user.image_uri";
 
 const DEFAULT_LIMITED_ACTION = 10;

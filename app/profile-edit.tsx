@@ -1,4 +1,4 @@
-import { DEFAULT_COLOR, DEFAULT_IMAGE_URI, DEFAULT_KEY_COLOR, DEFAULT_KEY_IMAGE_URI, setStorageImageUri, themeColors, } from "@/utils/theme-storage";
+import { DEFAULT_COLOR, DEFAULT_IMAGE_URI, DEFAULT_KEY_COLOR, DEFAULT_KEY_IMAGE_URI, setStorageImageUri, storage, themeColors, } from "@/utils/theme-storage";
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
 import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, View } from "react-native";
 import { GestureDetector, Gesture, Pressable } from "react-native-gesture-handler";
@@ -90,6 +90,7 @@ export default function Page() {
 		setStorageImageUri(result.assets[0].uri);
 	};
 
+	// storage.clearAll();
 	return (
 		<GestureDetector gesture={panGesture}>
 			<KeyboardAvoidingView

@@ -117,9 +117,10 @@ export default function Page() {
 						>
 							<View style={stylesLayout.shadowImage}>
 								<Image
-									style={stylesLayout.image}
+									style={[stylesLayout.image, { backgroundColor: themeColors[themeColor].secondary }]}
 									source={getStorageImageUri()}
 									contentFit="cover"
+									contentPosition="center"
 									placeholder={{ uri: DEFAULT_IMAGE_URI }}
 									placeholderContentFit="cover"
 									transition={{
