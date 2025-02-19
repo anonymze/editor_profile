@@ -10,6 +10,7 @@ import { Stack } from "expo-router";
 
 export default function RootLayout() {
 	const [themeColor] = useMMKVString(DEFAULT_KEY_COLOR);
+	const themeColorFinal = (themeColor as keyof typeof themeColors) ?? DEFAULT_COLOR;
 
 	return (
 		<GestureHandlerRootView>
@@ -17,7 +18,7 @@ export default function RootLayout() {
 			<SafeAreaProvider>
 				<SafeAreaView
 					edges={["right", "left", "top"]}
-					style={{ flex: 1, backgroundColor: themeColors[themeColor ?? DEFAULT_COLOR].primaryLight }}
+					style={{ flex: 1, backgroundColor: themeColors[themeColorFinal].primaryLight }}
 				>
 					<Stack
 						screenOptions={{
