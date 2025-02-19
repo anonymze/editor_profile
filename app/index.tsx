@@ -37,7 +37,7 @@ export default function Page() {
 	const themeColor = getStorageColor();
 	const {
 		enteringAnimationLeft,
-		enteringAnimationRight,
+		// enteringAnimationRight,
 		enteringAnimation,
 		scale1,
 		scale2,
@@ -157,7 +157,7 @@ export default function Page() {
 							},
 						]}
 					>
-						<Text style={styles.tooltipTextTitle}>Bienvenue sur Fridgy.</Text>
+						<Text style={styles.tooltipTextTitle}>Bienvenue sur {Application.applicationName}.</Text>
 						<Text style={styles.tooltipText}>
 							En appuyant sur le{" "}
 							<Text style={{ fontWeight: "bold", textDecorationLine: "underline" }}>frigo</Text> vous pouvez
@@ -278,7 +278,7 @@ export default function Page() {
 
 				<View style={styles.highPaddingTop}>
 					<Animated.View entering={enteringAnimationLeft()}>
-						<TextGradient color={themeColor} text={"FRIDGY !"} style={{ fontSize: height > 630 ? 75 : 60 }} />
+						<TextGradient color={themeColor} text={`${Application.applicationName ?? ""} !`} style={{ fontSize: height > 630 ? 75 : 60 }} />
 					</Animated.View>
 					{/* <Animated.View entering={enteringAnimationRight()}>
 						<TextGradient color={themeColor} text={"CHEF !"} home style={{ fontSize: 75, marginTop: -15 }} />

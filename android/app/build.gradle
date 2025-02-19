@@ -86,9 +86,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.anonymze.profile_editor'
+    namespace 'com.anonymze.fridgy'
     defaultConfig {
-        applicationId 'com.anonymze.profile_editor'
+        applicationId 'com.anonymze.fridgy'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

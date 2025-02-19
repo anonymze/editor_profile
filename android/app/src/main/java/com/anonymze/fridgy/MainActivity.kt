@@ -1,4 +1,4 @@
-package com.anonymze.profile_editor
+package com.anonymze.fridgy
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

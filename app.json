@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "profile_editor",
-    "slug": "profile_editor",
+    "name": "fridgy",
+    "slug": "fridgy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -10,14 +10,14 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymze.profile-editor"
+      "bundleIdentifier": "com.anonymze.fridgy"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymze.profile_editor"
+      "package": "com.anonymze.fridgy"
     },
     "web": {
       "bundler": "metro",

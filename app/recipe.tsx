@@ -5,6 +5,7 @@ import Animated, { FadeOut } from "react-native-reanimated";
 import { router, useLocalSearchParams } from "expo-router";
 import { ScrollView } from "react-native-gesture-handler";
 import { getStorageColor } from "@/utils/theme-storage";
+import * as Application from 'expo-application';
 import { fetch as expoFetch } from "expo/fetch";
 import { useCompletion } from "@ai-sdk/react";
 import { useEffect, useState } from "react";
@@ -18,7 +19,7 @@ export default function Page() {
 		fetch: expoFetch as unknown as typeof globalThis.fetch,
 		api: process.env.EXPO_PUBLIC_API_RECIPE_URL || "",
 		headers: {
-			"X-Origin": "fridgy",
+			"X-Origin": Application.applicationName ?? "",
 			"X-Vendor-Id": vendorId?.toString() ?? "",
 		},
 		onError: (_) => {

@@ -1,4 +1,4 @@
-package com.anonymze.profile_editor
+package com.anonymze.fridgy
 
 import android.app.Application
 import android.content.res.Configuration

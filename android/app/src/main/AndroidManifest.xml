@@ -26,7 +26,7 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="myapp"/>
-        <data android:scheme="com.anonymze.profile_editor"/>
+        <data android:scheme="com.anonymze.fridgy"/>
       </intent-filter>
     </activity>
   </application>

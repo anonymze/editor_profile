@@ -4,7 +4,6 @@ import { themeColors } from "@/utils/theme-storage";
 import { starPositions } from "@/utils/stars";
 import { Circle } from "react-native-svg";
 import { Svg } from "react-native-svg";
-import { useRef } from "react";
 
 
 const { height } = Dimensions.get("window");
@@ -14,12 +13,6 @@ export default function LayoutBackground(props: {
 	children: React.ReactNode;
 	color: keyof typeof themeColors;
 }) {
-	const firstColorRef = useRef(themeColors[props.color].primaryLight);
-	const secondColorRef = useRef(themeColors[props.color].primaryDark);
-
-	if (firstColorRef.current !== themeColors[props.color].primaryLight) {
-		console.log("color has changed")
-	}
 
 
 	return (
