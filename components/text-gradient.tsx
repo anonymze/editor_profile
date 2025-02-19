@@ -39,7 +39,7 @@ export function TextGradient({ text, style, color, home, lowShadow }: InputTextG
 							styles.text,
 							{ fontSize },
 							style,
-							lowShadow ? { shadowOffset: { width: 0, height: 2 } } : null,
+							lowShadow ? { shadowOffset: { width: 0, height: 2 }, elevation: 20 } : null,
 						])}
 					>
 						{text}
