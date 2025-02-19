@@ -15,3 +15,5 @@ subprojects { project ->
 }
 
 eas build -p android --profile preview
+
+pnpm run android --device

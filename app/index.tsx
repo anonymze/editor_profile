@@ -1,8 +1,8 @@
 import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, } from "react-native-reanimated";
 import { getStorageColor, getStorageLimitedAction, themeColors } from "@/utils/theme-storage";
+import { Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
-import { Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { ButtonRadialGradient } from "@/components/radial-gradient";
@@ -16,7 +16,7 @@ import fruits from "@/data/fruits";
 import { Image } from "expo-image";
 
 
-const width = Dimensions.get("window").width;
+const { width, height} = Dimensions.get("window");
 
 const initialSections = [
 	{
@@ -59,8 +59,21 @@ export default function Page() {
 			setSelectedValues([]);
 			return;
 		}
+		
+		// Check if adding new values would exceed max of 8
+		const uniqueNewValues = [...new Set([...selectedValues, ...values])];
+
+		if (uniqueNewValues.length > 8) {
+			Alert.alert(
+				"Attention",
+				"Vous ne pouvez pas ajouter plus de 8 ingrédients",
+				[{ text: "OK" }]
+			);
+			return;
+		}
+
 		latestBatchRef.current = values;
-		setSelectedValues((prev) => [...new Set([...prev, ...values])]);
+		setSelectedValues(uniqueNewValues);
 	};
 
 	useEffect(() => {
@@ -265,11 +278,11 @@ export default function Page() {
 
 				<View style={styles.highPaddingTop}>
 					<Animated.View entering={enteringAnimationLeft()}>
-						<TextGradient color={themeColor} text={"FRIGO"} home style={{ fontSize: 75 }} />
+						<TextGradient color={themeColor} text={"FRIDGY !"} home style={{ fontSize: 75 }} />
 					</Animated.View>
-					<Animated.View entering={enteringAnimationRight()}>
+					{/* <Animated.View entering={enteringAnimationRight()}>
 						<TextGradient color={themeColor} text={"CHEF !"} home style={{ fontSize: 75, marginTop: -15 }} />
-					</Animated.View>
+					</Animated.View> */}
 
 					<Animated.View
 						style={stylesLayout.centerContent}
@@ -306,7 +319,7 @@ export default function Page() {
 							/>
 						</Animated.View>
 
-						<View style={styles.containerFruits}>
+						<View style={styles.containerIngredients}>
 							{selectedValues.map((value) => (
 								<Animated.View
 									key={value.id}
@@ -314,7 +327,7 @@ export default function Page() {
 										.delay(latestBatchRef.current.indexOf(value) * 100)
 										.springify()}
 								>
-									<Image source={value.image} style={{ width: 50, height: 50 }} />
+									<Image source={value.image} style={styles.imageIngredients} />
 								</Animated.View>
 							))}
 						</View>
@@ -488,7 +501,7 @@ const styles = StyleSheet.create({
 		paddingTop: 45,
 	},
 	highPaddingTop: {
-		paddingTop: 85,
+		paddingTop: Platform.OS === "ios" ? 95 : 80,
 	},
 	halo: {
 		position: "absolute",
@@ -500,7 +513,7 @@ const styles = StyleSheet.create({
 		borderWidth: 2,
 		borderColor: "rgba(255, 255, 255, 0.7)",
 	},
-	containerFruits: {
+	containerIngredients: {
 		flex: 1,
 		flexDirection: "row",
 		flexWrap: "wrap",
@@ -508,6 +521,10 @@ const styles = StyleSheet.create({
 		columnGap: 20,
 		paddingLeft: 20,
 		paddingTop: 10,
+	},
+	imageIngredients: {
+		width: height > 660 ? 50 : 40,
+		height: height > 660 ? 50 : 40,
 	},
 	tooltip: {
 		position: "absolute",

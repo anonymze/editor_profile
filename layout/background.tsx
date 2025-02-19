@@ -1,10 +1,12 @@
-import { StyleProp, StyleSheet, ViewStyle } from "react-native";
+import { Dimensions, StyleProp, StyleSheet, ViewStyle } from "react-native";
 import { LinearGradient } from "react-native-linear-gradient";
 import { themeColors } from "@/utils/theme-storage";
 import { starPositions } from "@/utils/stars";
 import { Circle } from "react-native-svg";
 import { Svg } from "react-native-svg";
 
+
+const { height} = Dimensions.get("window");
 
 export default function LayoutBackground(props: {
 	centeredContent: boolean;
@@ -76,8 +78,9 @@ export const stylesLayout = StyleSheet.create({
 		borderRadius: 99,
 	},
 	imageHome: {
-		width: 160,
+		width: height > 700 ? 160 : 130,
 		aspectRatio: 1,
+		marginTop: 15,
 	},
 	imageRecipe: {
 		width: 70,

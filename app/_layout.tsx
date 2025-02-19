@@ -5,6 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useMMKVString } from "react-native-mmkv";
 import { StatusBar } from "expo-status-bar";
+import { View } from "react-native";
 import { Stack } from "expo-router";
 
 
@@ -23,6 +24,7 @@ export default function RootLayout() {
 						screenOptions={{
 							headerShown: false,
 							animation: "none",
+							statusBarBackgroundColor: themeColors[themeColorFinal].primaryLight
 						}}
 					>
 						<Stack.Screen options={{ animation: "fade" }} name="recipe" />
