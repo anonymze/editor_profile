@@ -34,8 +34,6 @@ export default function Page() {
 		},
 	});
 
-	console.log(vendorId);
-
 	useEffect(() => {
 		complete(prompt.toString());
 		setTimeout(() => {

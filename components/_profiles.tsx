@@ -55,7 +55,6 @@ export default function Page() {
 					<Pressable
 						style={StyleSheet.flatten([stylesLayout.shadowImage, styles.smallGap])}
 						onPress={() => {
-							console.log("pressed");
 						}}
 					>
 						<View>

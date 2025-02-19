@@ -66,7 +66,7 @@ export default function Page() {
 		if (uniqueNewValues.length > 8) {
 			Alert.alert(
 				"Attention",
-				"Vous ne pouvez pas ajouter plus de 8 ingrédients",
+				"Vous ne pouvez pas ajouter plus de 10 ingrédients",
 				[{ text: "OK" }]
 			);
 			return;
