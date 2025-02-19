@@ -1,4 +1,4 @@
-import { Dimensions, StyleProp, StyleSheet, Text, TextInput, TextStyle, View } from "react-native";
+import { Dimensions, Platform, StyleProp, StyleSheet, Text, TextInput, TextStyle, View } from "react-native";
 import { DEFAULT_KEY_NAME, DEFAULT_NAME, themeColors } from "@/utils/theme-storage";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { LinearGradient } from "react-native-linear-gradient";
@@ -37,6 +37,7 @@ export function TextGradient({ text, style, color, home, lowShadow }: InputTextG
 					<Text
 						style={StyleSheet.flatten([
 							styles.text,
+							styles.textShadow,
 							{ fontSize },
 							style,
 							lowShadow ? { shadowOffset: { width: 0, height: 2 } } : null,
@@ -95,10 +96,18 @@ const styles = StyleSheet.create({
 	text: {
 		fontWeight: "900",
 		alignSelf: "center",
-		shadowOffset: { width: 0, height: 6 },
-		shadowOpacity: 0.4,
-		shadowRadius: 0,
 	},
+	textShadow:
+		Platform.OS === "android"
+			? {
+					textShadowOffset: { width: 0, height: 6 },
+					textShadowRadius: 0.1,
+			  }
+			: {
+					shadowOffset: { width: 0, height: 6 },
+					shadowOpacity: 0.4,
+					shadowRadius: 0,
+			  },
 	full: {
 		flex: 1,
 	},
