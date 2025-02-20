@@ -1,6 +1,7 @@
-import { Dimensions, Platform, StyleProp, StyleSheet, Text, TextInput, TextStyle, View } from "react-native";
+import { Dimensions, Platform, StyleProp, StyleSheet, Text, TextStyle, View } from "react-native";
 import { DEFAULT_KEY_NAME, DEFAULT_NAME, themeColors } from "@/utils/theme-storage";
 import MaskedView from "@react-native-masked-view/masked-view";
+import { TextInput } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import { useMMKVString } from "react-native-mmkv";
 import { forwardRef } from "react";
@@ -75,6 +76,8 @@ export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & 
 					}}
 					defaultValue={name}
 					ref={ref}
+					autoCorrect={false}
+					autoCapitalize="none"
 					maxLength={maxLength ?? getMaxLength()}
 					editable={true}
 					cursorColor={"#fff"}
