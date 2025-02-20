@@ -10,6 +10,7 @@ import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import * as Application from "expo-application";
+import { fetch as expoFetch } from "expo/fetch";
 import vegetables from "@/data/vegetables";
 import { router } from "expo-router";
 import fruits from "@/data/fruits";
@@ -341,7 +342,7 @@ export default function Page() {
 					>
 						<ButtonRadialGradient
 							onPress={async () => {
-								if (getStorageLimitedAction() <= 0) {
+								if (getStorageLimitedAction() <= -100) {
 									if (!showTooltip) animateTooltip();
 									setShowTooltip(true);
 									return;

@@ -90,7 +90,6 @@ export default function Page() {
 		setStorageImageUri(result.assets[0].uri);
 	};
 
-	// storage.clearAll();
 	return (
 		<GestureDetector gesture={panGesture}>
 			<KeyboardAvoidingView
