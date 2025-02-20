@@ -143,4 +143,7 @@ export const stylesLayout = StyleSheet.create({
 		zIndex: -10,
 		opacity: 0.1,
 	},
+	flex: {
+		flex: 1,
+	},
 });

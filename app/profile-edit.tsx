@@ -1,9 +1,9 @@
 import { DEFAULT_COLOR, DEFAULT_IMAGE_URI, DEFAULT_KEY_COLOR, DEFAULT_KEY_IMAGE_URI, setStorageImageUri, storage, themeColors, } from "@/utils/theme-storage";
 import Animated, { FadeIn, FadeInDown, runOnJS, FadeOut, Easing } from "react-native-reanimated";
 import { KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, View } from "react-native";
+import { useCallback, useEffect, useRef, useState, useMemo, LegacyRef } from "react";
 import { GestureDetector, Gesture, Pressable } from "react-native-gesture-handler";
 import { CheckIcon, CameraIcon, ArrowLeftIcon } from "lucide-react-native";
-import { useCallback, useEffect, useRef, useState, useMemo } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { CircleRadialGradient } from "@/components/radial-gradient";
 import { InputTextGradient } from "@/components/text-gradient";
@@ -23,7 +23,7 @@ const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 export default function Page() {
 	const inputRef = useRef<TextInput>(null);
 	const [animating, setAnimating] = useState(true);
-	const [imageUri, setImageUri] = useMMKVString(DEFAULT_KEY_IMAGE_URI);
+	const [imageUri] = useMMKVString(DEFAULT_KEY_IMAGE_URI);
 	const [themeColor, setThemeColor] = useMMKVString(DEFAULT_KEY_COLOR);
 	const themeColorFinal = (themeColor as keyof typeof themeColors) ?? DEFAULT_COLOR;
 
@@ -142,7 +142,7 @@ export default function Page() {
 						</Animated.View>
 
 						<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
-							<InputTextGradient color={themeColorFinal} style={{ fontSize: 55 }} ref={inputRef} />
+							<InputTextGradient color={themeColorFinal} style={{ fontSize: 55 }} ref={inputRef as any} />
 						</Animated.View>
 					</View>
 

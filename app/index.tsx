@@ -1,5 +1,5 @@
 import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, } from "react-native-reanimated";
-import { getStorageColor, getStorageLimitedAction, themeColors } from "@/utils/theme-storage";
+import { getStorageColor, getStorageLimitedAction, storage, themeColors } from "@/utils/theme-storage";
 import { Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
@@ -335,7 +335,7 @@ export default function Page() {
 					</Fragment>
 				) : null}
 
-				{selectedValues.length >= -1 && (
+				{selectedValues.length >= 3 && (
 					<Animated.View
 						style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
 						entering={enteringAnimation()}

@@ -27,7 +27,7 @@ export default function RootLayout() {
 							animation: "none",
 						}}
 					>
-						<Stack.Screen options={{ animation: "fade_from_bottom" }}  name="recipe" />
+						<Stack.Screen  options={{ animation: "fade_from_bottom" }}  name="recipe" />
 					</Stack>
 				</SafeAreaView>
 			</SafeAreaProvider>
