@@ -18,7 +18,9 @@ export default function Page() {
 	const { prompt, vendorId } = useLocalSearchParams();
 	const { complete, completion, stop, isLoading } = useCompletion({
 		fetch: expoFetch as unknown as typeof globalThis.fetch,
-		api: `http://localhost:8081${process.env.EXPO_PUBLIC_API_URL_RECIPE_URL}`,
+		api: `${
+			process.env.NODE_ENV === "development" ? "http://localhost:8081" : process.env.EXPO_PUBLIC_API_URL
+		}${process.env.EXPO_PUBLIC_API_URL_RECIPE_URL}`,
 		headers: {
 			"X-Origin": Application.applicationName ?? "",
 			"X-Vendor-Id": vendorId?.toString() ?? "",
