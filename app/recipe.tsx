@@ -18,7 +18,7 @@ export default function Page() {
 	const { prompt, vendorId } = useLocalSearchParams();
 	const { complete, completion, stop, isLoading } = useCompletion({
 		fetch: expoFetch as unknown as typeof globalThis.fetch,
-		api: `${process.env.EXPO_PUBLIC_API_URL}${process.env.EXPO_PUBLIC_API_URL_RECIPE_URL}`,
+		api: `http://localhost:8081${process.env.EXPO_PUBLIC_API_URL_RECIPE_URL}`,
 		headers: {
 			"X-Origin": Application.applicationName ?? "",
 			"X-Vendor-Id": vendorId?.toString() ?? "",
@@ -26,8 +26,13 @@ export default function Page() {
 		body: {
 			username: getStorageName(),
 		},
-		onError: () => {
-			Alert.alert("Erreur", "Un problème est survenu lors de la génération de la recette", [{ text: "OK" }]);
+		onError: (error) => {
+			if (!error.message.includes("request has been canceled")) {
+				Alert.alert("Erreur", "Un problème est survenu lors de la génération de la recette", [
+					{ text: "OK" },
+				]);
+			}
+
 			router.push("/");
 		},
 		onResponse: () => setSplashScreen(false),
@@ -49,7 +54,7 @@ export default function Page() {
 							runOnJS(stop)();
 							return;
 						}
-						router.push("/");
+						runOnJS(router.push)("/");
 					}
 				}),
 		[]
@@ -64,6 +69,7 @@ export default function Page() {
 						stylesLayout.topRightButton,
 						{
 							backgroundColor: themeColors[themeColor].secondary,
+							zIndex: 1000,
 						},
 					])}
 					entering={FadeInDown.duration(800).delay(200).springify()}
@@ -71,7 +77,7 @@ export default function Page() {
 					<Pressable
 						onPress={() => {
 							if (isLoading) {
-								stop()
+								stop();
 								return;
 							}
 							router.push("/");
