@@ -46,10 +46,7 @@ export default function Page() {
 	});
 
 	useEffect(() => {
-		complete(
-			prompt.toString() +
-				" can you format the text by the way ? like don't send #### or ** convert them to correct react native tag"
-		);
+		complete(prompt.toString());
 
 		return () => {
 			stop();
