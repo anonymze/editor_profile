@@ -16,7 +16,7 @@ export default function Page() {
 	const themeColor = getStorageColor();
 	const [splashScreen, setSplashScreen] = useState(true);
 	const { prompt, vendorId } = useLocalSearchParams();
-	const { complete, completion, stop } = useCompletion({
+	const { complete, completion, stop, isLoading } = useCompletion({
 		fetch: expoFetch as unknown as typeof globalThis.fetch,
 		api: `${process.env.EXPO_PUBLIC_API_URL}${process.env.EXPO_PUBLIC_API_URL_RECIPE_URL}`,
 		headers: {
@@ -26,31 +26,16 @@ export default function Page() {
 		body: {
 			username: getStorageName(),
 		},
-		onError: (error) => {
-			console.log(error.message);
-			console.log(error.cause);
-			console.log(error.name);
-			console.log(error.stack);
-			setTimeout(() => {
-				setSplashScreen(false);
-				Alert.alert("Erreur", "Un problème est survenu lors de la génération de la recette", [
-					{ text: "OK" },
-				]);
-				router.push("/");
-			}, 1000);
+		onError: () => {
+			Alert.alert("Erreur", "Un problème est survenu lors de la génération de la recette", [{ text: "OK" }]);
+			router.push("/");
 		},
 		onResponse: () => setSplashScreen(false),
-		onFinish: () => {
-			setStorageLimitedAction(getStorageLimitedAction() - 1);
-		},
+		onFinish: () => setStorageLimitedAction(getStorageLimitedAction() - 1),
 	});
 
 	useEffect(() => {
 		complete(prompt.toString());
-
-		return () => {
-			stop();
-		};
 	}, []);
 
 	const panGesture = useMemo(
@@ -60,8 +45,11 @@ export default function Page() {
 				.onEnd((event) => {
 					// swipe left only
 					if (event.translationX > 50) {
-						runOnJS(stop)();
-						runOnJS(router.push)("/");
+						if (isLoading) {
+							runOnJS(stop)();
+							return;
+						}
+						router.push("/");
 					}
 				}),
 		[]
@@ -82,7 +70,10 @@ export default function Page() {
 				>
 					<Pressable
 						onPress={() => {
-							stop();
+							if (isLoading) {
+								stop()
+								return;
+							}
 							router.push("/");
 						}}
 						style={stylesLayout.paddingTopButtons}
