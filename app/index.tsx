@@ -380,8 +380,8 @@ const useAnimations = () => {
 	const opacity = useSharedValue(0.4);
 	const translateY = useSharedValue(0);
 	const opacityTooltip = useSharedValue(0);
-	const widthTooltip = useSharedValue(30);
-	const heightTooltip = useSharedValue(30);
+	const widthTooltip = useSharedValue(0);
+	const heightTooltip = useSharedValue(0);
 
 	const animateTooltip = () => {
 		opacityTooltip.value = withTiming(1, {
@@ -406,12 +406,12 @@ const useAnimations = () => {
 			easing: Easing.linear,
 		});
 
-		widthTooltip.value = withTiming(30, {
+		widthTooltip.value = withTiming(0, {
 			duration: 0,
 			easing: Easing.linear,
 		});
 
-		heightTooltip.value = withTiming(30, {
+		heightTooltip.value = withTiming(0, {
 			duration: 0,
 			easing: Easing.linear,
 		});

@@ -1,4 +1,7 @@
 pnpx expo prebuild --clean
+
+pnpm run android --device
+
 cd android && ./gradlew clean
 
 // FORCE KOTLIN VERSION
@@ -16,4 +19,14 @@ subprojects { project ->
 
 eas build -p android --profile preview
 
-pnpm run android --device
+// create consistent alias url hosted
+eas deploy --alias dev
+
+// test server (api routes)
+npx expo serve 
+
+// export web
+npx expo export --platform web
+
+
+
