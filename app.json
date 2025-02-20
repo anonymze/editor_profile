@@ -52,7 +52,7 @@
     },
     "extra": {
       "router": {
-        "origin": false
+        "origin": "https://fridgy--dev.expo.app"
       },
       "eas": {
         "projectId": "3c0878f0-9e8f-47b4-a642-e1d3d8084d20"

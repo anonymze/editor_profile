@@ -17,12 +17,13 @@ subprojects { project ->
     }
 }
 
+// native build on eas host
 eas build -p android --profile preview
 
 // create consistent alias url hosted
 eas deploy --alias dev
 
-// test server (api routes)
+// test server,locally (api routes)
 npx expo serve 
 
 // export web
