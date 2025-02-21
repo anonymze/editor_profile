@@ -40,11 +40,11 @@ export default function Page() {
 					}
 				);
 
-				const data = await response.json();
-				setResponse(data.response);
+				setResponse(await response.text());
 				setSplashScreen(false);
 				setStorageLimitedAction(getStorageLimitedAction() - 1);
 			} catch (error) {
+				console.log(error);
 				if (error instanceof Error && error.name === "AbortError") return;
 
 				Alert.alert("Erreur", "Un problème est survenu lors de la génération de la recette.", [
