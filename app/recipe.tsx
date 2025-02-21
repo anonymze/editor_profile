@@ -48,7 +48,7 @@ export default function Page() {
 				if (error instanceof Error) {
 					if (error.name === "AbortError") return;
 				}
-				
+
 				Alert.alert("Erreur", "Un problème est survenu lors de la génération de la recette.", [
 					{ text: "OK" },
 				]);
