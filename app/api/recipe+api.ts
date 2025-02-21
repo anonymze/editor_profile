@@ -20,22 +20,15 @@ export async function POST(request: Request) {
 	const arrayPrompt = data.prompt.split(",");
 
 	if (arrayPrompt.length <= 2) {
-		return new Response("Not enough ingredients provided (minimum 3)", { status: 400 });
+		return new Response("KO", { status: 400 });
 	}
 	
 	const result = await generateRecipe(arrayPrompt, 4, data.username);
 	
 	return new Response(result.text);
 	
-	// If you want to use streaming in the future, uncomment and use this:
 	// const stream = generateStreamRecipe(arrayPrompt, 4, data.username);
-	// return new Response(stream.readable, {
-	//     headers: {
-	//         'Content-Type': 'text/event-stream',
-	//         'Cache-Control': 'no-cache',
-	//         'Connection': 'keep-alive',
-	//     }
-	// });
+	// return stream.toDataStreamResponse();
 }
 
 const generateRecipe = (ingredients: string[], numberOfPeople: number, username: string) => {
