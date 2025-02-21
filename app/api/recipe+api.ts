@@ -1,4 +1,5 @@
 import { generateText, streamText } from "ai";
+import { mistral } from '@ai-sdk/mistral';
 import { openai } from "@ai-sdk/openai";
 
 
@@ -35,7 +36,9 @@ export async function POST(request: Request) {
 
 const generateRecipe = (ingredients: string[], numberOfPeople: number, username: string) => {
 	return generateText({
-		model: openai("gpt-4o-mini"),
+		model: mistral("mistral-small-latest", {
+			safePrompt: true,
+		}),
 		system: `Tu es sur une application mobile de type cuisine. Un utilisateur va chercher une recette avec le reste d'ingrédients
 		qu'il a dans son frigo, donc l'application va lui proposer de choisir et d'indiquer ses ingrédients.
 		Avec les ingrédients que tu recevras de la part de l'utilisateur tu devras lui proposer une recette, simple, efficace et originale si possible.
