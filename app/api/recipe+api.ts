@@ -24,14 +24,18 @@ export async function POST(request: Request) {
 	}
 	
 	const result = await generateRecipe(arrayPrompt, 4, data.username);
-	// const result = generateStreamRecipe(arrayPrompt, 4, data.username);
-
-	// for await (const textPart of result.textStream) {
-	// 	console.log(textPart);
-	// }
-
+	
 	return new Response(result.text);
-	// return result.toDataStreamResponse();
+	
+	// If you want to use streaming in the future, uncomment and use this:
+	// const stream = generateStreamRecipe(arrayPrompt, 4, data.username);
+	// return new Response(stream.readable, {
+	//     headers: {
+	//         'Content-Type': 'text/event-stream',
+	//         'Cache-Control': 'no-cache',
+	//         'Connection': 'keep-alive',
+	//     }
+	// });
 }
 
 const generateRecipe = (ingredients: string[], numberOfPeople: number, username: string) => {

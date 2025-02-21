@@ -9,55 +9,73 @@ import { useEffect, useMemo, useState } from "react";
 import { ArrowLeftIcon } from "lucide-react-native";
 import * as Application from "expo-application";
 import { fetch as expoFetch } from "expo/fetch";
-import { useCompletion } from "@ai-sdk/react";
 
 
 export default function Page() {
 	const themeColor = getStorageColor();
 	const [splashScreen, setSplashScreen] = useState(true);
+	const [response, setResponse] = useState("");
 	const { prompt, vendorId } = useLocalSearchParams();
-	const { complete, completion, stop, isLoading } = useCompletion({
-		fetch: expoFetch as unknown as typeof globalThis.fetch,
-		api: `${
-			process.env.NODE_ENV === "development" ? "http://localhost:8081" : process.env.EXPO_PUBLIC_API_URL
-		}${process.env.EXPO_PUBLIC_API_URL_RECIPE_URL}`,
-		headers: {
-			"X-Origin": Application.applicationName ?? "",
-			"X-Vendor-Id": vendorId?.toString() ?? "",
-		},
-		body: {
-			username: getStorageName(),
-		},
-		onError: (error) => {
-			if (!error.message.includes("request has been canceled")) {
-				Alert.alert("Erreur", "Un problème est survenu lors de la génération de la recette.", [
-					{ text: "OK" },
-				]);
-			}
-
-			router.push("/");
-		},
-		onResponse: () => setSplashScreen(false),
-		onFinish: () => setStorageLimitedAction(getStorageLimitedAction() - 1),
-	});
-
 
 	useEffect(() => {
-		complete(prompt.toString());
+		console.log("useEffect");
+		const abortController = new AbortController();
+		const fetchRecipe = async () => {
+			try {
+				const response = await fetch(
+					`${
+						process.env.NODE_ENV === "development" ? "http://localhost:8081" : process.env.EXPO_PUBLIC_API_URL
+					}${process.env.EXPO_PUBLIC_API_URL_RECIPE_URL}`,
+					{
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+							"X-Origin": Application.applicationName ?? "",
+							"X-Vendor-Id": vendorId?.toString() ?? "",
+						},
+						body: JSON.stringify({
+							username: getStorageName(),
+							prompt: prompt.toString(),
+						}),
+						signal: abortController.signal,
+					}
+				);
+
+				const data = await response.json();
+				setResponse(data.response);
+				setSplashScreen(false);
+				setStorageLimitedAction(getStorageLimitedAction() - 1);
+			} catch (error) {
+				if (error instanceof Error) {
+					if (error.name === "AbortError") {
+					} else {
+						Alert.alert("Erreur", "Un problème est survenu lors de la génération de la recette.", [
+							{ text: "OK" },
+						]);
+						router.back();
+					}
+				}
+			}
+		};
+
+		fetchRecipe();
+
+		return () => {
+			abortController.abort();
+		};
 	}, []);
+
+	// console.log("Current prompt:", prompt);
+	// console.log("Current response:", response);
+	// console.log(response);
 
 	const panGesture = useMemo(
 		() =>
 			Gesture.Pan()
 				.activeOffsetX([-20, 20])
 				.onEnd((event) => {
-					// swipe left only
 					if (event.translationX > 50) {
-						if (isLoading) {
-							runOnJS(stop)();
-							return;
-						}
-						runOnJS(router.push)("/");
+						runOnJS(router.back)();
 					}
 				}),
 		[]
@@ -79,11 +97,7 @@ export default function Page() {
 				>
 					<Pressable
 						onPress={() => {
-							if (isLoading) {
-								stop();
-								return;
-							}
-							router.push("/");
+							router.back();
 						}}
 						style={stylesLayout.paddingTopButtons}
 					>
@@ -97,7 +111,7 @@ export default function Page() {
 				) : (
 					<ScrollView style={stylesLayout.flex}>
 						<View style={styles.containerPrompt}>
-							<Text style={styles.containerText}>{completion}</Text>
+							<Text style={styles.containerText}>{response}</Text>
 						</View>
 					</ScrollView>
 				)}
