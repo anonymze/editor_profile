@@ -59,7 +59,7 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		- Tu dois indiquer pour combien de personnes la recette est faite, une estimation de la 
 		durée de cuisine après le titre et avant la recette et indiquer les quantités des ingrédients au plus précis.
 		- Quand tu présentes les ingrédients, tu dois les présenter dans l'ordre alphabétique et mettre les ingrédients optionnels en dernier.
-		- Il faut qu'il y est un message de fin de recette qui sera : "Fridgy vous souhaite une excellente cuisine !"
+		- Une fois toutes les instructions respectées, ajoute un message à la toute fin disant : "Fridgy vous souhaite une excellente cuisine !"
 		`,
 		prompt: `La recette sera pour ${numberOfPeople} personne(s). Voici les ingrédients que l'utilisateur a indiqué : ${ingredients} et le nom de l'utilisateur est ${username}`,
 	});
