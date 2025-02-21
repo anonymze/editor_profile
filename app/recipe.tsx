@@ -30,7 +30,7 @@ export default function Page() {
 		},
 		onError: (error) => {
 			if (!error.message.includes("request has been canceled")) {
-				Alert.alert("Erreur", "Un problème est survenu lors de la génération de la recette", [
+				Alert.alert("Erreur", "Un problème est survenu lors de la génération de la recette.", [
 					{ text: "OK" },
 				]);
 			}
