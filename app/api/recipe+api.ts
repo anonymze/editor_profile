@@ -49,8 +49,8 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		
 		**[TITRE DE LA RECETTE]**
 		
-		⏱️ *Temps de préparation* : [X] minutes
-		🔥 *Temps de cuisson* : [X] minutes
+		⏱️ *Temps de préparation* : [X] minutes (si il n'y a pas de temps de préparation ne pas le mettre)
+		🔥 *Temps de cuisson* : [X] minutes (si il n'y a pas de temps de cuisson, pour une salade par exemple, ne pas le mettre)
 		👥 *Nombre de personnes* : [X]
 		
 		📝 *Ingrédients* :
@@ -80,7 +80,8 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		- Tu ne dois pas proposer une recette qui nécessite des ingrédients qu'il n'a pas dans son frigo, à l'exception 
 		de certains ingrédients qui sont facilement trouvables dans une cuisine, exemple : des pâtes, du riz, de la farine, du beurre...
 		- Les ingrédients doivent être présentés dans l'ordre alphabétique, avec les ingrédients optionnels en dernier.
-		- Le titre doit être original et non redondant.
+		- Le titre de la recette doit être original et non redondant.
+		- Tu dois au maximum proposer des recettes de saison.
 		`,
 		prompt: `La recette sera pour ${numberOfPeople} personne(s). Voici les ingrédients que l'utilisateur a indiqué : ${ingredients} et le nom de l'utilisateur est ${username}`,
 	});
