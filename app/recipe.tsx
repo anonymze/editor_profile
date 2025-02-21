@@ -45,9 +45,7 @@ export default function Page() {
 				setSplashScreen(false);
 				setStorageLimitedAction(getStorageLimitedAction() - 1);
 			} catch (error) {
-				if (error instanceof Error) {
-					if (error.name === "AbortError") return;
-				}
+				if (error instanceof Error && error.name === "AbortError") return;
 
 				Alert.alert("Erreur", "Un problème est survenu lors de la génération de la recette.", [
 					{ text: "OK" },
