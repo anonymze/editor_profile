@@ -18,7 +18,6 @@ export default function Page() {
 	const { prompt, vendorId } = useLocalSearchParams();
 
 	useEffect(() => {
-		console.log("useEffect");
 		const abortController = new AbortController();
 		const fetchRecipe = async () => {
 			try {
@@ -64,10 +63,6 @@ export default function Page() {
 			abortController.abort();
 		};
 	}, []);
-
-	// console.log("Current prompt:", prompt);
-	// console.log("Current response:", response);
-	// console.log(response);
 
 	const panGesture = useMemo(
 		() =>

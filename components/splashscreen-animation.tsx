@@ -17,10 +17,6 @@ export default function SplashScreenAnimation() {
 			-1,
 			false
 		);
-
-		return () => {
-			rotation.value = 0;
-		};
 	}, []);
 
 	const rStyle = useAnimatedStyle(() => {
