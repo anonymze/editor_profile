@@ -76,8 +76,9 @@ export const InputTextGradient = forwardRef<TextInput, InputTextGradientProps & 
 					}}
 					defaultValue={name}
 					ref={ref}
-					autoCorrect={false}
 					autoCapitalize="none"
+					autoComplete="off"
+					autoCorrect={false}
 					maxLength={maxLength ?? getMaxLength()}
 					editable={true}
 					cursorColor={"#fff"}

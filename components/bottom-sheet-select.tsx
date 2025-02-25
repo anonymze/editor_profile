@@ -56,15 +56,12 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 					<View style={styles.footerContainer}>
 						<Pressable
 							style={(status) => {
-								return {
-									backgroundColor: "transparent",
-									opacity: status.pressed ? 0.5 : 1,
-									padding: 10,
-									margin: 0,
-									borderWidth: 0,
-									alignItems: "center",
-									justifyContent: "center",
-								};
+								return StyleSheet.flatten([
+									{
+										opacity: status.pressed ? 0.5 : 1,
+									},
+									styles.containerTextBottom,
+								]);
 							}}
 							onPress={() => {
 								onSelect(null);
@@ -75,19 +72,16 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 								}
 							}}
 						>
-							<Text style={{ color: "#057efe", fontSize: 18 }}>Effacer</Text>
+							<Text style={styles.textBottomSheet}>Effacer</Text>
 						</Pressable>
 						<Pressable
 							style={(status) => {
-								return {
-									backgroundColor: "transparent",
-									opacity: status.pressed ? 0.5 : 1,
-									padding: 10,
-									margin: 0,
-									borderWidth: 0,
-									alignItems: "center",
-									justifyContent: "center",
-								};
+								return StyleSheet.flatten([
+									{
+										opacity: status.pressed ? 0.5 : 1,
+									},
+									styles.containerTextBottom,
+								]);
 							}}
 							onPress={() => {
 								onSelect(selectedIds);
@@ -98,7 +92,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 								}
 							}}
 						>
-							<Text style={{ color: "#057efe", fontSize: 18 }}>Ajouter</Text>
+							<Text style={styles.textBottomSheet}>Ajouter</Text>
 						</Pressable>
 					</View>
 				</BottomSheetFooter>
@@ -109,6 +103,9 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 		return (
 			<View style={{ flex: 1 }}>
 				<BottomSheetModal
+					onDismiss={() => {
+						setSearchQuery("");
+					}}
 					ref={ref}
 					enablePanDownToClose={true}
 					enableDynamicSizing={false}
@@ -117,6 +114,9 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 					style={styles.paddingSheet}
 				>
 					<BottomSheetTextInput
+						autoCapitalize="none"
+						autoComplete="off"
+						autoCorrect={false}
 						placeholder={placeholderSearch}
 						style={styles.searchInput}
 						onChangeText={setSearchQuery}
@@ -173,7 +173,7 @@ const MemoizedSections = React.memo(
 							style={[
 								styles.itemContainer,
 								selectedIds.find((id) => id.id === item.id) && {
-									backgroundColor: themeColors[themeColor].primaryLight,
+									backgroundColor: themeColors[themeColor].primary,
 								},
 							]}
 							onPress={() => onItemPress(item)}
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 	},
 	sectionHeader: {
-		borderRadius: 8,
+		borderRadius: 6,
 		paddingHorizontal: 12,
 		paddingVertical: 4,
 		marginBottom: 6,
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
 		marginBottom: 15,
 		marginTop: 15,
 		padding: 14,
-		borderRadius: 15,
+		borderRadius: 10,
 		fontSize: 16,
 		backgroundColor: "rgba(151, 151, 151, 0.25)",
 	},
@@ -267,5 +267,17 @@ const styles = StyleSheet.create({
 	},
 	paddingSheet: {
 		paddingHorizontal: 15,
+	},
+	containerTextBottom: {
+		backgroundColor: "transparent",
+		padding: 10,
+		margin: 0,
+		borderWidth: 0,
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	textBottomSheet: {
+		color: "#057efe",
+		fontSize: 18,
 	},
 });
