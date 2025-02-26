@@ -1,4 +1,4 @@
-import { BottomSheetFooter, BottomSheetFooterProps, BottomSheetModal, BottomSheetScrollView, } from "@gorhom/bottom-sheet";
+import { BottomSheetFooter, BottomSheetFooterProps, BottomSheetModal, BottomSheetScrollView, BottomSheetBackdrop, BottomSheetBackdropProps, } from "@gorhom/bottom-sheet";
 import { View, Button, Text, StyleSheet, Platform } from "react-native";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { Pressable } from "react-native-gesture-handler";
@@ -50,13 +50,17 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 				.filter((section) => section.data.length > 0); // Remove empty sections
 		}, [searchQuery]);
 
+		// Render backdrop component
+		// const renderBackdrop = React.useCallback(
+		// 	(props: BottomSheetBackdropProps) => (
+		// 		<BottomSheetBackdrop {...props} />
+		// 	),
+		// 	[themeColor]
+		// );
+
 		const renderFooter = React.useCallback(
 			(props: BottomSheetFooterProps) => (
-				<BottomSheetFooter
-					{...props}
-					bottomInset={Platform.OS === "android" ? 10 : 25}
-					style={styles.footerContainer}
-				>
+				<BottomSheetFooter {...props} style={styles.footerContainer}>
 					<Pressable
 						style={(status) => {
 							return StyleSheet.flatten([
@@ -113,7 +117,12 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 					enableDynamicSizing={false}
 					snapPoints={snapPoints}
 					footerComponent={renderFooter}
+					// backdropComponent={renderBackdrop}
+					// bottomInset={Platform.OS === "android" ? 10 : 25}
 					style={styles.paddingSheet}
+					backgroundStyle={{ backgroundColor: "#fff" }}
+					handleStyle={{ backgroundColor: "#fff" }}
+					handleIndicatorStyle={{ backgroundColor: themeColors[themeColor].primary }}
 				>
 					<BottomSheetTextInput
 						autoCapitalize="none"
@@ -262,7 +271,10 @@ const styles = StyleSheet.create({
 	footerContainer: {
 		flexDirection: "row",
 		justifyContent: "space-around",
+		alignItems: "center",
 		backgroundColor: "#fff",
+		height: Platform.OS === "android" ? 55 : 60,
+		paddingBottom: Platform.OS === "android" ? 0 : 15,
 	},
 	paddingSheet: {
 		paddingHorizontal: 15,
