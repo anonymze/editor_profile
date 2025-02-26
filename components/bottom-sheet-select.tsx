@@ -266,14 +266,14 @@ const styles = StyleSheet.create({
 		paddingEnd: 16,
 	},
 	bottomSheetListContent: {
-		marginBottom: 20,
+		marginBottom: 30,
 	},
 	footerContainer: {
 		flexDirection: "row",
 		justifyContent: "space-around",
 		alignItems: "center",
 		backgroundColor: "#fff",
-		height: Platform.OS === "android" ? 55 : 62,
+		height: Platform.OS === "android" ? 55 : 70,
 		paddingBottom: Platform.OS === "android" ? 0 : 15,
 	},
 	paddingSheet: {
