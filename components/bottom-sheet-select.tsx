@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
 		justifyContent: "space-around",
 		alignItems: "center",
 		backgroundColor: "#fff",
-		height: Platform.OS === "android" ? 55 : 60,
+		height: Platform.OS === "android" ? 55 : 62,
 		paddingBottom: Platform.OS === "android" ? 0 : 15,
 	},
 	paddingSheet: {
