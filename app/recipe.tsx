@@ -153,7 +153,7 @@ export default function Page() {
 const styles = StyleSheet.create({
 	containerPrompt: {
 		flex: 1,
-		paddingTop: 110,
+		paddingTop: 100,
 		paddingBottom: 40,
 		paddingHorizontal: 18,
 	},

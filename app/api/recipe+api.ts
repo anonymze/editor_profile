@@ -68,7 +68,6 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		* [Terme technique 2] : [Explication simple]
 		(si nécessaire)
 		
-		-------------------
 		Fridgy vous souhaite une excellente cuisine !
 		
 		Autres règles à respecter :
@@ -80,6 +79,7 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		- Tu ne dois pas proposer une recette qui nécessite des ingrédients qu'il n'a pas dans son frigo, à l'exception 
 		de certains ingrédients qui sont très facilement trouvables dans une cuisine, exemple : du beurre, de l'huile, du sucre, du sel, du poivre...
 		- Les ingrédients doivent être présentés dans l'ordre alphabétique, avec les ingrédients optionnels en dernier.
+		- Tu dois expliquer tous les termes techniques que tu emplois, imagine que tu parles à un enfant de 14 ans.
 		- Le titre de la recette doit être original et non redondant.
 		- Tu dois au maximum proposer des recettes de saison si les ingrédients te le permettent.
 		`,
