@@ -1,9 +1,9 @@
 import { getStorageColor, getStorageLimitedAction, getStorageName, setStorageLimitedAction, themeColors, } from "@/utils/theme-storage";
 import { Gesture, GestureDetector, Pressable, ScrollView } from "react-native-gesture-handler";
-import Animated, { FadeInDown, FadeOut, runOnJS } from "react-native-reanimated";
+import Animated, { FadeIn, FadeInDown, FadeOut, runOnJS } from "react-native-reanimated";
 import SplashScreenAnimation from "@/components/splashscreen-animation";
+import { Alert, Platform, StyleSheet, Text, View } from "react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
-import { Alert, StyleSheet, Text, View } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { ArrowLeftIcon } from "lucide-react-native";
@@ -75,39 +75,77 @@ export default function Page() {
 
 	return (
 		<GestureDetector gesture={panGesture}>
-			<LayoutBackground color={themeColor} centeredContent={false}>
-				<Animated.View
-					style={StyleSheet.flatten([
-						stylesLayout.topButtons,
-						stylesLayout.topRightButton,
-						{
-							backgroundColor: themeColors[themeColor].secondary,
-							zIndex: 1000,
-						},
-					])}
-					entering={FadeInDown.duration(800).delay(200).springify()}
-				>
-					<Pressable
-						onPress={() => {
-							router.back();
-						}}
-						style={stylesLayout.paddingTopButtons}
+			{Platform.OS === 'android' ? (
+				<View collapsable={false} style={stylesLayout.flex}>
+					<LayoutBackground color={themeColor} centeredContent={false}>
+						<Animated.View
+							style={StyleSheet.flatten([
+								stylesLayout.topButtons,
+								stylesLayout.topRightButton,
+								{
+									backgroundColor: themeColors[themeColor].secondary,
+									zIndex: 1000,
+								},
+							])}
+							entering={FadeInDown.duration(800).delay(200).springify()}
+						>
+							<Pressable
+								onPress={() => {
+									router.back();
+								}}
+								style={stylesLayout.paddingTopButtons}
+							>
+								<ArrowLeftIcon size={26} color="#fff" />
+							</Pressable>
+						</Animated.View>
+						{splashScreen ? (
+							<Animated.View style={stylesLayout.container} exiting={FadeOut.duration(400)}>
+								<SplashScreenAnimation />
+							</Animated.View>
+						) : (
+							<Animated.ScrollView style={stylesLayout.flex} entering={FadeIn}>
+								<View style={styles.containerPrompt}>
+									<Text style={styles.containerText}>{response}</Text>
+								</View>
+							</Animated.ScrollView>
+						)}
+					</LayoutBackground>
+				</View>
+			) : (
+				<LayoutBackground color={themeColor} centeredContent={false}>
+					<Animated.View
+						style={StyleSheet.flatten([
+							stylesLayout.topButtons,
+							stylesLayout.topRightButton,
+							{
+								backgroundColor: themeColors[themeColor].secondary,
+								zIndex: 1000,
+							},
+						])}
+						entering={FadeInDown.duration(800).delay(200).springify()}
 					>
-						<ArrowLeftIcon size={26} color="#fff" />
-					</Pressable>
-				</Animated.View>
-				{splashScreen ? (
-					<Animated.View style={stylesLayout.container} exiting={FadeOut.duration(400)}>
-						<SplashScreenAnimation />
+						<Pressable
+							onPress={() => {
+								router.back();
+							}}
+							style={stylesLayout.paddingTopButtons}
+						>
+							<ArrowLeftIcon size={26} color="#fff" />
+						</Pressable>
 					</Animated.View>
-				) : (
-					<ScrollView style={stylesLayout.flex}>
-						<View style={styles.containerPrompt}>
-							<Text style={styles.containerText}>{response}</Text>
-						</View>
-					</ScrollView>
-				)}
-			</LayoutBackground>
+					{splashScreen ? (
+						<Animated.View style={stylesLayout.container} exiting={FadeOut.duration(400)}>
+							<SplashScreenAnimation />
+						</Animated.View>
+					) : (
+						<Animated.ScrollView style={stylesLayout.flex} entering={FadeIn}>
+							<View style={styles.containerPrompt}>
+								<Text style={styles.containerText}>{response}</Text>
+							</View>
+						</Animated.ScrollView>
+					)}
+				</LayoutBackground>
+			)}
 		</GestureDetector>
 	);
 }

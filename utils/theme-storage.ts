@@ -39,7 +39,7 @@ export const themeColors = {
 	},
 } as const;
 
-export const DEFAULT_NAME = "Visiteur";
+export const DEFAULT_NAME = "Chef";
 export const DEFAULT_KEY_NAME = "user.name";
 
 export const DEFAULT_COLOR = "purple" as keyof typeof themeColors;

@@ -45,7 +45,7 @@ export default function Page() {
 	return (
 		<GestureDetector gesture={panGesture}>
 			{Platform.OS === 'android' ? (
-				<View collapsable={false} style={{flex: 1}}>
+				<View collapsable={false} style={stylesLayout.flex}>
 					<LayoutBackground centeredContent color={themeColor}>
 						<View style={stylesLayout.containerWithGap}>
 							<Animated.View
