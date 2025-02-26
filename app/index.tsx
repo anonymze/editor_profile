@@ -520,7 +520,7 @@ const styles = StyleSheet.create({
 		rowGap: 8,
 		columnGap: 20,
 		paddingLeft: 20,
-		paddingTop: 15,
+		paddingTop: 18,
 	},
 	imageIngredients: {
 		width: height > 660 ? 50 : 40,
