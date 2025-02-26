@@ -166,58 +166,16 @@ export default function Page() {
 					</View>
 
 					<View style={styles.tooltipActionsAbsolute}>
-						<Pressable
-							style={[
-								styles.tooltipActionButton,
-								{
-									borderRadius: 5,
-									backgroundColor: themeColors[themeColor].primary,
-									shadowColor: "#fff",
-									shadowOffset: { width: -4, height: 4 },
-									shadowOpacity: 0.9,
-									shadowRadius: 0,
-								},
-							]}
-						>
-							<Text
-								style={{
-									color: "#fff",
-									fontSize: 16,
-									fontWeight: "bold",
-								}}
-							>
-								Je m'abonne
-							</Text>
-						</Pressable>
-						<Pressable
-							style={(state) => {
-								return [
-									styles.tooltipActionButton,
-									{
-										backgroundColor: themeColors[themeColor].primary,
-										shadowColor: "#fff",
-										shadowOffset: { width: -4, height: 4 },
-										shadowOpacity: 0.9,
-										shadowRadius: 0,
-										borderRadius: 5,
-									},
-								];
-							}}
+						<ButtonRadialGradient text="Je m'abonne" color={themeColors[themeColor].primaryLight} isAction />
+						<ButtonRadialGradient
+							text="Compris !"
+							color={themeColors[themeColor].primaryLight}
+							isAction
 							onPress={() => {
 								setShowTooltip(false);
 								hideTooltip();
 							}}
-						>
-							<Text
-								style={{
-									color: "#fff",
-									fontSize: 16,
-									fontWeight: "bold",
-								}}
-							>
-								Compris !
-							</Text>
-						</Pressable>
+						/>
 					</View>
 				</Animated.View>
 
@@ -264,7 +222,6 @@ export default function Page() {
 						entering={FadeInDown.duration(800).delay(400).springify()}
 					>
 						<Pressable
-							style={stylesLayout.shadowImage}
 							onPress={() => {
 								bottomSheetRef.current?.present();
 							}}
@@ -371,7 +328,7 @@ const useAnimations = () => {
 			easing: Easing.elastic(),
 		});
 
-		heightTooltip.value = withTiming(420, {
+		heightTooltip.value = withTiming(425, {
 			duration: 280,
 			easing: Easing.elastic(),
 		});

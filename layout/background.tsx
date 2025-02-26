@@ -13,8 +13,6 @@ export default function LayoutBackground(props: {
 	children: React.ReactNode;
 	color: keyof typeof themeColors;
 }) {
-
-
 	return (
 		<LinearGradient
 			colors={[themeColors[props.color].primaryLight, themeColors[props.color].primaryDark]}
@@ -120,10 +118,12 @@ export const stylesLayout = StyleSheet.create({
 	shadowImage: {
 		justifyContent: "center",
 		alignItems: "center",
-		shadowColor: "#000",
-		shadowOffset: { width: -1, height: 1 },
-		shadowOpacity: 0.3,
-		shadowRadius: 2,
+		borderRadius: 99,
+		// shadowColor: "#000",
+		// shadowOffset: { width: -1, height: 1 },
+		// shadowOpacity: 0.3,
+		// shadowRadius: 2,
+		boxShadow: "-1px 2px 9px 0 rgba(0,0,0,0.1)",
 	},
 	gradientHalo: {
 		position: "absolute",

@@ -117,7 +117,7 @@ export default function Page() {
 						>
 							<View style={stylesLayout.shadowImage}>
 								<Image
-									style={[stylesLayout.image, { backgroundColor: themeColors[themeColor].primaryLight }]}
+									style={stylesLayout.image}
 									source={getStorageImageUri()}
 									contentFit="cover"
 									contentPosition="center"

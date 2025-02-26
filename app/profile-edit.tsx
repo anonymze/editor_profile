@@ -100,18 +100,12 @@ export default function Page() {
 				<LayoutBackground color={themeColorFinal} centeredContent>
 					<View style={stylesLayout.containerWithGap}>
 						<Animated.View
-							style={stylesLayout.centerContent}
+							style={[stylesLayout.centerContent, stylesLayout.shadowImage]}
 							entering={FadeInDown.duration(800).delay(200).springify()}
 						>
-							<Pressable
-								style={StyleSheet.flatten([
-									stylesLayout.shadowImage,
-									{ backgroundColor: themeColors[themeColorFinal].primaryLight, borderRadius: 99 },
-								])}
-								onPress={pickImage}
-							>
+							<Pressable onPress={pickImage}>
 								<Image
-									style={[stylesLayout.image]}
+									style={stylesLayout.image}
 									contentFit="cover"
 									source={imageUri ?? DEFAULT_IMAGE_URI}
 									placeholderContentFit="cover"

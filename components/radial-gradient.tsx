@@ -11,10 +11,24 @@ export function ButtonRadialGradient({
 	text,
 	color,
 	style,
+	isAction = false,
 	...props
-}: PressableProps & { text: string; color: string }) {
+}: PressableProps & { text: string; color: string; isAction?: boolean }) {
 	return (
-		<Pressable {...props} style={StyleSheet.flatten([styles.containerButton, style])}>
+		<Pressable
+			{...props}
+			style={StyleSheet.flatten([
+				styles.containerButton,
+				style,
+				isAction
+					? {
+							flex: 1,
+							borderRadius: 12,
+							height: 45,
+					  }
+					: undefined,
+			])}
+		>
 			<Svg style={styles.absoluteFull}>
 				<Defs>
 					<RadialGradient
@@ -31,9 +45,26 @@ export function ButtonRadialGradient({
 						<Stop offset="60%" stopColor={color} stopOpacity="0.8" />
 					</RadialGradient>
 				</Defs>
-				<Rect x="0" y="0" width="100%" height="100%" fill="url(#grad)" rx={27.5} ry={27.5} />
+				<Rect
+					x="0"
+					y="0"
+					width="100%"
+					height="100%"
+					fill="url(#grad)"
+					rx={isAction ? 12 : 27.5}
+					ry={isAction ? 12 : 27.5}
+				/>
 			</Svg>
-			<Text style={styles.text}>{text}</Text>
+			<Text
+				style={StyleSheet.flatten([
+					styles.text,
+					{
+						fontSize: isAction ? 14 : 18,
+					},
+				])}
+			>
+				{text}
+			</Text>
 		</Pressable>
 	);
 }
@@ -173,7 +204,6 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		color: "#fff",
-		fontSize: 18,
 		fontWeight: "bold",
 	},
 	container: {

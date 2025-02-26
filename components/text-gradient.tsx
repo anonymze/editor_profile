@@ -42,6 +42,7 @@ export function TextGradient({ text, style, color, home, lowShadow }: InputTextG
 							{ fontSize },
 							style,
 							lowShadow ? { shadowOffset: { width: 0, height: 3 } } : null,
+							lowShadow ? { textShadowOffset: { width: 0, height: 2 } } : null,
 						])}
 					>
 						{text}
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
 	textShadow:
 		Platform.OS === "android"
 			? {
-					textShadowOffset: { width: 0, height: 6 },
+					textShadowOffset: { width: 0, height: 5 },
 					textShadowRadius: 0.1,
 			  }
 			: {
