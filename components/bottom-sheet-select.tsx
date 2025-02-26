@@ -1,5 +1,5 @@
-import { BottomSheetFooter, BottomSheetFooterProps, BottomSheetModal, BottomSheetScrollView, BottomSheetBackdrop, BottomSheetBackdropProps, } from "@gorhom/bottom-sheet";
-import { View, Button, Text, StyleSheet, Platform } from "react-native";
+import { BottomSheetFooter, BottomSheetFooterProps, BottomSheetModal, BottomSheetModalProvider, BottomSheetScrollView } from "@gorhom/bottom-sheet";
+import { View, Text, StyleSheet, Platform } from "react-native";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { Pressable } from "react-native-gesture-handler";
 import { themeColors } from "@/utils/theme-storage";
@@ -79,7 +79,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 							}
 						}}
 					>
-						<Text style={styles.textBottomSheet}>Effacer</Text>
+						<Text style={StyleSheet.flatten([styles.textBottomSheet, { color: themeColors[themeColor].primary }])}>Effacer</Text>
 					</Pressable>
 					<Pressable
 						style={(status) => {
@@ -99,7 +99,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 							}
 						}}
 					>
-						<Text style={styles.textBottomSheet}>Ajouter</Text>
+						<Text style={StyleSheet.flatten([styles.textBottomSheet, { color: themeColors[themeColor].primary }])}>Ajouter</Text>
 					</Pressable>
 				</BottomSheetFooter>
 			),
@@ -107,7 +107,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 		);
 
 		return (
-			<View style={{ flex: 1 }}>
+			<BottomSheetModalProvider>
 				<BottomSheetModal
 					onDismiss={() => {
 						setSearchQuery("");
@@ -148,7 +148,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 						/>
 					</BottomSheetScrollView>
 				</BottomSheetModal>
-			</View>
+			</BottomSheetModalProvider>
 		);
 	}
 );
@@ -214,9 +214,6 @@ const MemoizedSections = React.memo(
 	}
 );
 
-// WE ARE DEALING WITH A CONSEQUENT LIST, SO WE USE STYLE SHEET CSS
-// INSTEAD OF TAILWIND FOR PERFORMANCE REASONS
-
 const styles = StyleSheet.create({
 	sectionHeaderContainer: {
 		flexDirection: "row",
@@ -266,6 +263,7 @@ const styles = StyleSheet.create({
 		paddingEnd: 16,
 	},
 	bottomSheetListContent: {
+		gap: 2,
 		marginBottom: 30,
 	},
 	footerContainer: {
@@ -288,7 +286,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 	},
 	textBottomSheet: {
-		color: "#057efe",
 		fontSize: 18,
+		fontWeight: 500,
 	},
 });

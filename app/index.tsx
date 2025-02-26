@@ -114,7 +114,7 @@ export default function Page() {
 	}, []);
 
 	return (
-		<BottomSheetModalProvider>
+
 			<LayoutBackground color={themeColor} centeredContent={false}>
 				<Animated.View
 					style={StyleSheet.flatten([
@@ -304,7 +304,6 @@ export default function Page() {
 					themeColor={themeColor}
 				/>
 			</LayoutBackground>
-		</BottomSheetModalProvider>
 	);
 }
 
