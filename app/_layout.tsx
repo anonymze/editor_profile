@@ -21,13 +21,13 @@ export default function RootLayout() {
 					style={{ flex: 1, backgroundColor: themeColors[themeColorFinal].primaryLight }}
 				>
 					<Stack
-					
 						screenOptions={{
 							headerShown: false,
 							animation: "none",
 						}}
 					>
-						<Stack.Screen  options={{ animation: "fade_from_bottom" }}  name="recipe" />
+						<Stack.Screen options={{ animation: "fade_from_bottom" }} name="recipe" />
+						<Stack.Screen options={{ animation: "fade_from_bottom" }} name="index" />
 					</Stack>
 				</SafeAreaView>
 			</SafeAreaProvider>

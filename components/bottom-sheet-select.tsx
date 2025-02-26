@@ -52,49 +52,51 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 
 		const renderFooter = React.useCallback(
 			(props: BottomSheetFooterProps) => (
-				<BottomSheetFooter {...props}>
-					<View style={styles.footerContainer}>
-						<Pressable
-							style={(status) => {
-								return StyleSheet.flatten([
-									{
-										opacity: status.pressed ? 0.5 : 1,
-									},
-									styles.containerTextBottom,
-								]);
-							}}
-							onPress={() => {
-								onSelect(null);
-								setSelectedIds([]);
-								setSearchQuery("");
-								if (ref && "current" in ref) {
-									ref?.current?.close();
-								}
-							}}
-						>
-							<Text style={styles.textBottomSheet}>Effacer</Text>
-						</Pressable>
-						<Pressable
-							style={(status) => {
-								return StyleSheet.flatten([
-									{
-										opacity: status.pressed ? 0.5 : 1,
-									},
-									styles.containerTextBottom,
-								]);
-							}}
-							onPress={() => {
-								onSelect(selectedIds);
-								setSelectedIds([]);
-								setSearchQuery("");
-								if (ref && "current" in ref) {
-									ref?.current?.close();
-								}
-							}}
-						>
-							<Text style={styles.textBottomSheet}>Ajouter</Text>
-						</Pressable>
-					</View>
+				<BottomSheetFooter
+					{...props}
+					bottomInset={Platform.OS === "android" ? 10 : 25}
+					style={styles.footerContainer}
+				>
+					<Pressable
+						style={(status) => {
+							return StyleSheet.flatten([
+								{
+									opacity: status.pressed ? 0.5 : 1,
+								},
+								styles.containerTextBottom,
+							]);
+						}}
+						onPress={() => {
+							onSelect(null);
+							setSelectedIds([]);
+							setSearchQuery("");
+							if (ref && "current" in ref) {
+								ref?.current?.close();
+							}
+						}}
+					>
+						<Text style={styles.textBottomSheet}>Effacer</Text>
+					</Pressable>
+					<Pressable
+						style={(status) => {
+							return StyleSheet.flatten([
+								{
+									opacity: status.pressed ? 0.5 : 1,
+								},
+								styles.containerTextBottom,
+							]);
+						}}
+						onPress={() => {
+							onSelect(selectedIds);
+							setSelectedIds([]);
+							setSearchQuery("");
+							if (ref && "current" in ref) {
+								ref?.current?.close();
+							}
+						}}
+					>
+						<Text style={styles.textBottomSheet}>Ajouter</Text>
+					</Pressable>
 				</BottomSheetFooter>
 			),
 			[onSelect, selectedIds]
@@ -261,9 +263,7 @@ const styles = StyleSheet.create({
 	footerContainer: {
 		flexDirection: "row",
 		justifyContent: "space-around",
-		paddingTop: 8,
 		backgroundColor: "#fff",
-		paddingBottom: Platform.OS === "android" ? 10 : 25,
 	},
 	paddingSheet: {
 		paddingHorizontal: 15,

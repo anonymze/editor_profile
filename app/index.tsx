@@ -10,7 +10,6 @@ import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import * as Application from "expo-application";
-import { fetch as expoFetch } from "expo/fetch";
 import vegetables from "@/data/vegetables";
 import { router } from "expo-router";
 import fruits from "@/data/fruits";
@@ -60,16 +59,12 @@ export default function Page() {
 			setSelectedValues([]);
 			return;
 		}
-		
+
 		// Check if adding new values would exceed max of 8
 		const uniqueNewValues = [...new Set([...selectedValues, ...values])];
 
 		if (uniqueNewValues.length > 10) {
-			Alert.alert(
-				"Attention",
-				"Vous ne pouvez pas ajouter plus de 10 ingrédients",
-				[{ text: "OK" }]
-			);
+			Alert.alert("Attention", "Vous ne pouvez pas ajouter plus de 10 ingrédients", [{ text: "OK" }]);
 			return;
 		}
 
@@ -147,30 +142,16 @@ export default function Page() {
 						},
 					])}
 				>
-					<View
-						style={[
-							{
-								position: "absolute",
-								top: 20,
-								left: 20,
-								zIndex: 100,
-								width: width - 80,
-							},
-						]}
-					>
+					<View style={styles.tooltipViewAbsolute}>
 						<Text style={styles.tooltipTextTitle}>Bienvenue sur {Application.applicationName}.</Text>
 						<Text style={styles.tooltipText}>
-							En appuyant sur le{" "}
-							<Text style={{ fontWeight: "bold", textDecorationLine: "underline" }}>frigo</Text> vous pouvez
-							ajoutez des ingrédients.
+							En appuyant sur le <Text style={styles.tooltipUnderlineText}>frigo</Text> vous pouvez ajoutez
+							des ingrédients.
 						</Text>
 
 						<Text style={styles.tooltipText}>
-							Un{" "}
-							<Text style={{ fontWeight: "bold", textDecorationLine: "underline" }}>
-								minimum de 3 ingrédients
-							</Text>{" "}
-							est requis pour trouver une recette.
+							Un <Text style={styles.tooltipUnderlineText}>minimum de 3 ingrédients</Text> est requis pour
+							trouver une recette.
 						</Text>
 
 						<Text style={styles.tooltipText}>
@@ -184,18 +165,7 @@ export default function Page() {
 						/>
 					</View>
 
-					<View
-						style={{
-							flexDirection: "row",
-							justifyContent: "space-between",
-							gap: 20,
-							position: "absolute",
-							bottom: 20,
-							left: 20,
-							zIndex: 100,
-							width: width - 80,
-						}}
-					>
+					<View style={styles.tooltipActionsAbsolute}>
 						<Pressable
 							style={[
 								styles.tooltipActionButton,
@@ -279,12 +249,16 @@ export default function Page() {
 
 				<View style={styles.highPaddingTop}>
 					<Animated.View entering={enteringAnimationLeft()}>
-						<TextGradient color={themeColor} text={`${Application.applicationName?.toUpperCase()} !`} style={{ fontSize: height > 630 ? 75 : 60 }} />
+						<TextGradient
+							color={themeColor}
+							text={`${Application.applicationName?.toUpperCase()} !`}
+							style={{ fontSize: height > 630 ? 75 : 60 }}
+						/>
 					</Animated.View>
 					{/* <Animated.View entering={enteringAnimationRight()}>
 						<TextGradient color={themeColor} text={"CHEF !"} home style={{ fontSize: 75, marginTop: -15 }} />
 					</Animated.View> */}
-  
+
 					<Animated.View
 						style={stylesLayout.centerContent}
 						entering={FadeInDown.duration(800).delay(400).springify()}
@@ -351,9 +325,11 @@ export default function Page() {
 								router.push({
 									pathname: "/recipe",
 									params: {
-										// prompt: selectedValues.map((value) => value.label.FR).join(','),
-										vendorId: Platform.OS === 'ios' ? await Application.getIosIdForVendorAsync() : Application.getAndroidId(),
-										prompt: ["ail", "carotte", "poivron"],
+										prompt: selectedValues.map((value) => value.label.FR).join(","),
+										vendorId:
+											Platform.OS === "ios"
+												? await Application.getIosIdForVendorAsync()
+												: Application.getAndroidId(),
 									},
 								});
 							}}
@@ -366,7 +342,7 @@ export default function Page() {
 				<BottomSheetSelect
 					onSelect={getSelectecValues}
 					data={initialSections}
-					placeholderSearch="Chercher un ingrédient"
+					placeholderSearch="Chercher des ingrédients"
 					ref={bottomSheetRef}
 					themeColor={themeColor}
 				/>
@@ -395,7 +371,7 @@ const useAnimations = () => {
 			easing: Easing.elastic(),
 		});
 
-		heightTooltip.value = withTiming(400, {
+		heightTooltip.value = withTiming(420, {
 			duration: 280,
 			easing: Easing.elastic(),
 		});
@@ -559,5 +535,26 @@ const styles = StyleSheet.create({
 		backgroundColor: "#fff",
 		padding: 10,
 		borderRadius: 8,
+	},
+	tooltipUnderlineText: {
+		fontWeight: "bold",
+		textDecorationLine: "underline",
+	},
+	tooltipViewAbsolute: {
+		position: "absolute",
+		top: 20,
+		left: 20,
+		zIndex: 100,
+		width: width - 80,
+	},
+	tooltipActionsAbsolute: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		gap: 20,
+		position: "absolute",
+		bottom: 20,
+		left: 20,
+		zIndex: 100,
+		width: width - 80,
 	},
 });
