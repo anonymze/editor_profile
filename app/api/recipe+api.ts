@@ -83,7 +83,7 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		- Le titre de la recette doit être original et non redondant.
 		- Tu dois au maximum proposer des recettes de saison si les ingrédients te le permettent.
 		`,
-		prompt: `La recette sera pour ${numberOfPeople} personne(s). Voici les ingrédients que l'utilisateur a indiqué : ${ingredients} et le nom de l'utilisateur est ${username ?? "Chef"}`,
+		prompt: `La recette sera pour ${numberOfPeople} personne(s). Voici les ingrédients que l'utilisateur a indiqué : ${ingredients} et le nom de l'utilisateur est ${username || "Chef"}`,
 	});
 };
 
