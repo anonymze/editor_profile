@@ -1,4 +1,4 @@
-import { BottomSheetFooter, BottomSheetFooterProps, BottomSheetModal, BottomSheetModalProvider, BottomSheetScrollView } from "@gorhom/bottom-sheet";
+import { BottomSheetFooter, BottomSheetFooterProps, BottomSheetModal, BottomSheetModalProvider, BottomSheetScrollView, } from "@gorhom/bottom-sheet";
 import { View, Text, StyleSheet, Platform } from "react-native";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { Pressable } from "react-native-gesture-handler";
@@ -62,14 +62,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 			(props: BottomSheetFooterProps) => (
 				<BottomSheetFooter {...props} style={styles.footerContainer}>
 					<Pressable
-						style={(status) => {
-							return StyleSheet.flatten([
-								{
-									opacity: status.pressed ? 0.5 : 1,
-								},
-								styles.containerTextBottom,
-							]);
-						}}
+						style={styles.containerTextBottom}
 						onPress={() => {
 							onSelect(null);
 							setSelectedIds([]);
@@ -79,17 +72,19 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 							}
 						}}
 					>
-						<Text style={StyleSheet.flatten([styles.textBottomSheet, { color: themeColors[themeColor].primary }])}>Effacer</Text>
+						{({ pressed }) => (
+							<Text
+								style={StyleSheet.flatten([
+									styles.textBottomSheet,
+									{ color: themeColors[themeColor].primary, opacity: pressed ? 0.5 : 1 },
+								])}
+							>
+								Effacer
+							</Text>
+						)}
 					</Pressable>
 					<Pressable
-						style={(status) => {
-							return StyleSheet.flatten([
-								{
-									opacity: status.pressed ? 0.5 : 1,
-								},
-								styles.containerTextBottom,
-							]);
-						}}
+						style={styles.containerTextBottom}
 						onPress={() => {
 							onSelect(selectedIds);
 							setSelectedIds([]);
@@ -99,7 +94,16 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 							}
 						}}
 					>
-						<Text style={StyleSheet.flatten([styles.textBottomSheet, { color: themeColors[themeColor].primary }])}>Ajouter</Text>
+						{({ pressed }) => (
+							<Text
+								style={StyleSheet.flatten([
+									styles.textBottomSheet,
+									{ color: themeColors[themeColor].primary, opacity: pressed ? 0.5 : 1 },
+								])}
+							>
+								Ajouter
+							</Text>
+						)}
 					</Pressable>
 				</BottomSheetFooter>
 			),
