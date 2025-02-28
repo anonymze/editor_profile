@@ -52,7 +52,7 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 			"prepTime": "X minutes", // (optionnel, null si non applicable)
 			"cookTime": "X minutes", // (optionnel, null si non applicable)
 			"servings": X, // (nombre de personnes pour la recette)
-			"type": "starter or main or 	",
+			"type": "Entrée ou Plat ou Déssert",
 			"ingredients": [
 				"Ingrédient 1 + quantité précise",
 				"Ingrédient 2 + quantité précise",

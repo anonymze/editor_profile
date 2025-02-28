@@ -1,4 +1,5 @@
 import { getStorageColor, getStorageLimitedAction, getStorageName, setStorageLimitedAction, themeColors, } from "@/utils/theme-storage";
+import { ArrowLeftIcon, BookAIcon, CarrotIcon, ChefHatIcon, ClockIcon, DotIcon, UsersRoundIcon, } from "lucide-react-native";
 import { Gesture, GestureDetector, Pressable, ScrollView } from "react-native-gesture-handler";
 import Animated, { FadeIn, FadeInDown, FadeOut, runOnJS } from "react-native-reanimated";
 import SplashScreenAnimation from "@/components/splashscreen-animation";
@@ -6,7 +7,6 @@ import { Alert, Platform, StyleSheet, Text, View } from "react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
-import { ArrowLeftIcon } from "lucide-react-native";
 import * as Application from "expo-application";
 import type { Recipe } from "@/types/recipe";
 import React from "react";
@@ -150,26 +150,34 @@ export default function Page() {
 
 const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 	<View style={styles.containerPrompt}>
-		<Text style={styles.presentation}>{recipe.presentation}</Text>
 		<Text style={styles.titleRecipe}>{recipe.titleRecipe}</Text>
 
 		{/* Time and servings row */}
 		<View style={styles.infoRow}>
-			<View style={styles.infoItem}>
-				<Text style={styles.infoIcon}>🕙</Text>
-				<Text style={styles.infoText}>{recipe.prepTime || "10 minutes"}</Text>
-			</View>
+			{recipe.prepTime && (
+				<View style={styles.infoItem}>
+					<ClockIcon size={26} color="#fff" />
+					<Text style={styles.infoText}>{recipe.prepTime || "10 minutes"}</Text>
+				</View>
+			)}
 
 			<View style={styles.infoItem}>
-				<Text style={styles.infoIcon}>👥</Text>
+				<UsersRoundIcon size={26} color="#fff" />
 				<Text style={styles.infoText}>{recipe.servings || "4 personnes"}</Text>
 			</View>
+
+			{recipe.type && (
+				<View style={styles.infoItem}>
+					<ClockIcon size={26} color="#fff" />
+					<Text style={styles.infoText}>{recipe.type}</Text>
+				</View>
+			)}
 		</View>
 
 		{/* Ingredients */}
 		<View style={styles.sectionContainer}>
 			<View style={styles.sectionIconContainer}>
-				<Text style={styles.sectionIcon}>🍍</Text>
+				<CarrotIcon size={26} color="#000" />
 			</View>
 			<Text style={styles.sectionLabel}>Ingrédients</Text>
 		</View>
@@ -177,7 +185,7 @@ const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 		<View style={styles.listContainer}>
 			{recipe.ingredients.map((ingredient, index) => (
 				<View key={`ingredient-${index}`} style={styles.listItem}>
-					<Text style={styles.listBullet}>•</Text>
+					<DotIcon size={30} strokeWidth={4} color="#fff" />
 					<Text style={styles.listText}>{ingredient}</Text>
 				</View>
 			))}
@@ -186,7 +194,7 @@ const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 		{/* Instructions */}
 		<View style={styles.sectionContainer}>
 			<View style={styles.sectionIconContainer}>
-				<Text style={styles.sectionIcon}>👨‍🍳</Text>
+				<ChefHatIcon size={26} color="#000" />
 			</View>
 			<Text style={styles.sectionLabel}>Instructions</Text>
 		</View>
@@ -206,13 +214,15 @@ const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 		{recipe?.lexicon && recipe.lexicon.length > 0 && (
 			<>
 				<View style={styles.sectionContainer}>
-					<Text style={styles.sectionIcon}>📚</Text>
-					<Text style={styles.sectionLabel}>Lexique des termes techniques :</Text>
+					<View style={styles.sectionIconContainer}>
+						<BookAIcon size={26} color="#000" />
+					</View>
+					<Text style={styles.sectionLabel}>Lexique</Text>
 				</View>
 				<View style={styles.listContainer}>
 					{recipe.lexicon.map((item, index) => (
 						<View key={`lexicon-${index}`} style={styles.listItem}>
-							<Text style={styles.listBullet}>•</Text>
+							<DotIcon size={30} strokeWidth={4} color="#fff" />
 							<Text style={styles.listText}>
 								<Text style={styles.termText}>{item.term} : </Text>
 								{item.definition}
@@ -228,29 +238,25 @@ const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 const styles = StyleSheet.create({
 	containerPrompt: {
 		flex: 1,
-		paddingTop: 90,
+		paddingTop: 88,
 		paddingBottom: 40,
-		paddingHorizontal: 18,
-	},
-	presentation: {
-		fontSize: 16,
-		color: "#000",
-		marginBottom: 20,
+		paddingHorizontal: 15,
 	},
 	titleRecipe: {
-		fontSize: 28,
+		fontSize: 24,
 		fontWeight: "bold",
-		color: "#000",
+		color: "#fff",
 		marginBottom: 20,
 	},
 	infoRow: {
 		flexDirection: "row",
+		gap: 25,
 		marginBottom: 30,
 	},
 	infoItem: {
 		flexDirection: "row",
 		alignItems: "center",
-		marginRight: 30,
+		gap: 8,
 	},
 	infoIcon: {
 		fontSize: 20,
@@ -258,7 +264,7 @@ const styles = StyleSheet.create({
 	},
 	infoText: {
 		fontSize: 16,
-		color: "#000",
+		color: "#fff",
 	},
 	sectionContainer: {
 		flexDirection: "row",
@@ -280,21 +286,15 @@ const styles = StyleSheet.create({
 	sectionLabel: {
 		fontSize: 22,
 		fontWeight: "bold",
-		color: "#000",
+		color: "#fff",
 	},
 	listContainer: {
-		marginBottom: 30,
+		marginBottom: 15,
 	},
 	listItem: {
 		flexDirection: "row",
 		marginBottom: 12,
 		paddingLeft: 10,
-	},
-	listBullet: {
-		fontSize: 18,
-		color: "#000",
-		marginRight: 10,
-		width: 15,
 	},
 	instructionItem: {
 		flexDirection: "row",
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
 		width: 40,
 		height: 40,
 		borderRadius: 20,
-		backgroundColor: "#FFA726",
+		backgroundColor: "#00787e",
 		justifyContent: "center",
 		alignItems: "center",
 		marginRight: 15,
@@ -322,7 +322,7 @@ const styles = StyleSheet.create({
 	},
 	listText: {
 		fontSize: 16,
-		color: "#000",
+		color: "#fff",
 		flex: 1,
 		lineHeight: 24,
 	},

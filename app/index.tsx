@@ -286,12 +286,6 @@ export default function Page() {
 					>
 						<ButtonRadialGradient
 							onPress={async () => {
-								if (getStorageLimitedAction() <= -100) {
-									if (!showTooltip) animateTooltip();
-									setShowTooltip(true);
-									return;
-								}
-
 								router.push({
 									pathname: "/recipe",
 									params: {

@@ -1,7 +1,7 @@
 export interface Recipe {
 	presentation: string;
 	titleRecipe: string;
-	type: "starter" | "main" | "dessert";
+	type: string;
 	prepTime: string | null;
 	cookTime: string | null;
 	servings: number;
