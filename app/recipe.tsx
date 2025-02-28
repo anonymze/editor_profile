@@ -29,6 +29,7 @@ export default function Page() {
 						method: "POST",
 						headers: {
 							"Content-Type": "application/json",
+							"Accept": "application/json",
 							"X-Origin": Application.applicationName ?? "",
 							"X-Vendor-Id": vendorId?.toString() ?? "",
 						},
@@ -106,7 +107,8 @@ export default function Page() {
 							<Animated.ScrollView style={stylesLayout.flex} entering={FadeIn}>
 								<View style={styles.containerPrompt}>
 									<Text style={styles.containerText}>
-										<Text>{response?.title}</Text> 
+										<Text>{response?.presentation}</Text> 
+										<Text>{response?.titleRecipe}</Text> 
 									</Text>
 								</View>
 							</Animated.ScrollView>
@@ -143,7 +145,8 @@ export default function Page() {
 						<Animated.ScrollView style={stylesLayout.flex} entering={FadeIn}>
 							<View style={styles.containerPrompt}>
 								<Text style={styles.containerText}>
-									<Text>{response?.title}</Text>
+									<Text>{response?.presentation}</Text>
+									<Text>{response?.titleRecipe}</Text>
 								</Text>
 							</View>
 						</Animated.ScrollView>

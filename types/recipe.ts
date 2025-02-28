@@ -1,5 +1,6 @@
 export interface Recipe {
-	title: string;
+	presentation: string;
+	titleRecipe: string;
 	prepTime: string | null;
 	cookTime: string | null;
 	servings: number;
@@ -9,5 +10,5 @@ export interface Recipe {
 		term: string;
 		definition: string;
 	}[];
-	
+	footer: string;
 }
