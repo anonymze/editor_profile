@@ -1,4 +1,4 @@
-import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, } from "react-native-reanimated";
+import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS } from "react-native-reanimated";
 import { getStorageColor, getStorageLimitedAction, storage, themeColors } from "@/utils/theme-storage";
 import { Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
@@ -18,8 +18,6 @@ import { Image } from "expo-image";
 
 const { width, height } = Dimensions.get("window");
 
-console.log(width, height);
-
 const initialSections = [
 	{
 		title: "Fruits",
@@ -35,6 +33,7 @@ export default function Page() {
 	const bottomSheetRef = useRef<BottomSheetModal>(null);
 	const [selectedValues, setSelectedValues] = useState<FoodItem[]>([]);
 	const [showTooltip, setShowTooltip] = useState(false);
+	const [isTooltipAnimating, setIsTooltipAnimating] = useState(false);
 	const latestBatchRef = useRef<FoodItem[]>([]);
 	const themeColor = getStorageColor();
 	const {
@@ -54,7 +53,7 @@ export default function Page() {
 		animateTooltip,
 		hideTooltip,
 		buttonsOpacity,
-	} = useAnimations();
+	} = useAnimations(setIsTooltipAnimating);
 
 	const getSelectecValues = (values: FoodItem[] | null) => {
 		if (values === null) {
@@ -188,29 +187,35 @@ export default function Page() {
 				</Animated.View>
 
 				<Animated.View
-					style={StyleSheet.flatten([
-						stylesLayout.topButtons,
-						stylesLayout.topLeftButton,
-						{
-							backgroundColor: themeColors[themeColor].secondary,
-							borderRadius: 99,
-						},
-					])}
 					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
-					<Pressable
-						style={stylesLayout.paddingTopButtons}
-						onPress={() => {
-							if (showTooltip) {
-								hideTooltip();
-							} else {
-								animateTooltip();
-							}
-							setShowTooltip(!showTooltip);
-						}}
+					<Animated.View
+						style={StyleSheet.flatten([
+							stylesLayout.topButtons,
+							stylesLayout.topLeftButton,
+							{
+								backgroundColor: themeColors[themeColor].secondary,
+								borderRadius: 99,
+								opacity: isTooltipAnimating ? 0.7 : 1,
+							},
+						])}
 					>
-						<BadgeInfoIcon size={26} color="#fff" />
-					</Pressable>
+						<Pressable
+							style={stylesLayout.paddingTopButtons}
+							onPress={() => {
+								if (!isTooltipAnimating) {
+									if (showTooltip) {
+										hideTooltip();
+									} else {
+										animateTooltip();
+									}
+									setShowTooltip(!showTooltip);
+								}
+							}}
+						>
+							<BadgeInfoIcon size={26} color="#fff" />
+						</Pressable>
+					</Animated.View>
 				</Animated.View>
 
 				<View style={styles.highPaddingTop}>
@@ -315,7 +320,7 @@ export default function Page() {
 	);
 }
 
-const useAnimations = () => {
+const useAnimations = (setIsAnimating: React.Dispatch<React.SetStateAction<boolean>>) => {
 	const scale1 = useSharedValue(0.7);
 	const scale2 = useSharedValue(0.5);
 	const opacity = useSharedValue(0.4);
@@ -326,28 +331,34 @@ const useAnimations = () => {
 	const buttonsOpacity = useSharedValue(0);
 
 	const animateTooltip = () => {
+		runOnJS(setIsAnimating)(true);
+		
 		opacityTooltip.value = withTiming(1, {
-			duration: 200,
+			duration: 280,
 			easing: Easing.linear,
 		});
 
 		widthTooltip.value = withTiming(width - 40, {
-			duration: 300,
-			easing: Easing.elastic(),
+			duration: 280,
+			easing: Easing.elastic(1.1),
 		});
 
 		heightTooltip.value = withTiming(425, {
-			duration: 300,
-			easing: Easing.elastic(),
+			duration: 280,
+			easing: Easing.elastic(1.1),
+		}, () => {
+			runOnJS(setIsAnimating)(false);
 		});
 		
 		buttonsOpacity.value = withTiming(1, {
-			duration: 200,
+			duration: 280,
 			easing: Easing.linear,
 		});
 	};
 
 	const hideTooltip = () => {
+		runOnJS(setIsAnimating)(true);
+		
 		buttonsOpacity.value = withTiming(0, {
 			duration: 100,
 			easing: Easing.out(Easing.ease),
@@ -378,6 +389,8 @@ const useAnimations = () => {
 			heightTooltip.value = withTiming(0, {
 				duration: 200,
 				easing: Easing.out(Easing.ease),
+			}, () => {
+				runOnJS(setIsAnimating)(false);
 			});
 		});
 	};
