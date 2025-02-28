@@ -218,7 +218,7 @@ export default function Page() {
 						<TextGradient
 							color={themeColor}
 							text={`${Application.applicationName?.toUpperCase()} !`}
-							style={{ fontSize: height > 630 || width > 400 ? 75 : 60 }}
+							style={{ fontSize: height < 630 || width < 400 ? 60 : 75 }}
 						/>
 					</Animated.View>
 					{/* <Animated.View entering={enteringAnimationRight()}>
