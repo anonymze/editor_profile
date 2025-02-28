@@ -168,8 +168,9 @@ const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 
 			{recipe.type && (
 				<View style={styles.infoItem}>
-					<ClockIcon size={26} color="#fff" />
-					<Text style={styles.infoText}>{recipe.type}</Text>
+					<View style={styles.bubble}>
+						<Text style={styles.bubbleText}>{recipe.type}</Text>
+					</View>
 				</View>
 			)}
 		</View>
@@ -185,7 +186,7 @@ const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 		<View style={styles.listContainer}>
 			{recipe.ingredients.map((ingredient, index) => (
 				<View key={`ingredient-${index}`} style={styles.listItem}>
-					<DotIcon size={30} strokeWidth={4} color="#fff" />
+					<DotIcon size={20} strokeWidth={6} color="#fff" />
 					<Text style={styles.listText}>{ingredient}</Text>
 				</View>
 			))}
@@ -222,7 +223,7 @@ const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 				<View style={styles.listContainer}>
 					{recipe.lexicon.map((item, index) => (
 						<View key={`lexicon-${index}`} style={styles.listItem}>
-							<DotIcon size={30} strokeWidth={4} color="#fff" />
+							<DotIcon size={20} strokeWidth={4} color="#fff" />
 							<Text style={styles.listText}>
 								<Text style={styles.termText}>{item.term} : </Text>
 								{item.definition}
@@ -246,7 +247,7 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 		fontWeight: "bold",
 		color: "#fff",
-		marginBottom: 20,
+		marginBottom: 15,
 	},
 	infoRow: {
 		flexDirection: "row",
@@ -293,32 +294,34 @@ const styles = StyleSheet.create({
 	},
 	listItem: {
 		flexDirection: "row",
-		marginBottom: 12,
+		marginBottom: 8,
 		paddingLeft: 10,
+		gap: 8,
+		alignItems: "center",
 	},
 	instructionItem: {
 		flexDirection: "row",
-		marginBottom: 20,
+		alignItems: "center",
+		marginBottom: 18,
 	},
 	instructionNumber: {
-		width: 40,
-		height: 40,
-		borderRadius: 20,
+		width: 34,
+		height: 34,
+		borderRadius: 99,
 		backgroundColor: "#00787e",
 		justifyContent: "center",
 		alignItems: "center",
 		marginRight: 15,
 	},
 	instructionNumberText: {
-		fontSize: 18,
+		fontSize: 16,
 		fontWeight: "bold",
 		color: "#FFF",
 	},
 	instructionText: {
-		fontSize: 16,
-		color: "#000",
+		fontSize: 15,
+		color: "#fff",
 		flex: 1,
-		paddingTop: 10,
 	},
 	listText: {
 		fontSize: 16,
@@ -335,5 +338,17 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 		textAlign: "center",
 		fontStyle: "italic",
+	},
+	bubbleText: {
+		fontSize: 14,
+		color: "#fff",
+		fontWeight: "bold",
+	},
+	bubble: {
+		borderWidth: 3,
+		borderColor: "#fff",
+		borderRadius: 99,
+		paddingHorizontal: 10,
+		paddingVertical: 4,
 	},
 });
