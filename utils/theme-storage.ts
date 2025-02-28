@@ -20,8 +20,8 @@ export const themeColors = {
 		primary: "#e89150",
 		primaryLight: "#e1bf8e",
 		primaryDark: "#ef7c2e",
-		secondary: "#c2c443",
-		secondaryRgba: (opacity: number = 1) => `rgba(194, 196, 67, ${opacity})`
+		secondary: "#fc987f",
+		secondaryRgba: (opacity: number = 1) => `rgba(252, 152, 127, ${opacity})`
 	},
 	green: {
 		primary: "#009e8a",

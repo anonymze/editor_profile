@@ -325,22 +325,22 @@ const useAnimations = () => {
 
 	const animateTooltip = () => {
 		opacityTooltip.value = withTiming(1, {
-			duration: 280,
+			duration: 200,
 			easing: Easing.linear,
 		});
 
 		widthTooltip.value = withTiming(width - 40, {
-			duration: 280,
-			easing: Easing.elastic(1.1),
+			duration: 300,
+			easing: Easing.elastic(),
 		});
 
 		heightTooltip.value = withTiming(425, {
-			duration: 280,
-			easing: Easing.elastic(1.1),
+			duration: 300,
+			easing: Easing.elastic(),
 		});
 		
 		buttonsOpacity.value = withTiming(1, {
-			duration: 280,
+			duration: 200,
 			easing: Easing.linear,
 		});
 	};
