@@ -186,7 +186,7 @@ const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe, themeColor: key
 		<View style={styles.listContainer}>
 			{recipe.ingredients.map((ingredient, index) => (
 				<View key={`ingredient-${index}`} style={styles.listItem}>
-					<DotIcon size={20} strokeWidth={6} color="#fff" />
+					<DotIcon size={28} strokeWidth={4} fill={"#fff"} color="#fff" />
 					<Text style={styles.listText}>{ingredient}</Text>
 				</View>
 			))}
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
 	listItem: {
 		flexDirection: "row",
 		marginBottom: 8,
-		paddingLeft: 10,
+		paddingLeft: 6,
 		gap: 8,
 		alignItems: "center",
 	},
@@ -303,6 +303,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		marginBottom: 17,
+		marginLeft: 3,
 	},
 	instructionNumber: {
 		width: 34,
