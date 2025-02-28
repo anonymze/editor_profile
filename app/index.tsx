@@ -51,6 +51,7 @@ export default function Page() {
 		heightTooltip,
 		animateTooltip,
 		hideTooltip,
+		buttonsOpacity,
 	} = useAnimations();
 
 	const getSelectecValues = (values: FoodItem[] | null) => {
@@ -165,7 +166,12 @@ export default function Page() {
 						/>
 					</View>
 
-					<View style={styles.tooltipActionsAbsolute}>
+					<Animated.View 
+						style={[
+							styles.tooltipActionsAbsolute, 
+							{ opacity: buttonsOpacity }
+						]}
+					>
 						<ButtonRadialGradient text="Je m'abonne" color={themeColors[themeColor].primaryLight} isAction />
 						<ButtonRadialGradient
 							text="Compris !"
@@ -176,7 +182,7 @@ export default function Page() {
 								hideTooltip();
 							}}
 						/>
-					</View>
+					</Animated.View>
 				</Animated.View>
 
 				<Animated.View
@@ -315,6 +321,7 @@ const useAnimations = () => {
 	const opacityTooltip = useSharedValue(0);
 	const widthTooltip = useSharedValue(0);
 	const heightTooltip = useSharedValue(0);
+	const buttonsOpacity = useSharedValue(0);
 
 	const animateTooltip = () => {
 		opacityTooltip.value = withTiming(1, {
@@ -324,29 +331,52 @@ const useAnimations = () => {
 
 		widthTooltip.value = withTiming(width - 40, {
 			duration: 280,
-			easing: Easing.elastic(),
+			easing: Easing.elastic(1.1),
 		});
 
 		heightTooltip.value = withTiming(425, {
 			duration: 280,
-			easing: Easing.elastic(),
+			easing: Easing.elastic(1.1),
+		});
+		
+		buttonsOpacity.value = withTiming(1, {
+			duration: 280,
+			easing: Easing.linear,
 		});
 	};
 
 	const hideTooltip = () => {
-		opacityTooltip.value = withTiming(0, {
-			duration: 0,
-			easing: Easing.linear,
+		buttonsOpacity.value = withTiming(0, {
+			duration: 100,
+			easing: Easing.out(Easing.ease),
 		});
-
-		widthTooltip.value = withTiming(0, {
-			duration: 0,
-			easing: Easing.linear,
+		
+		opacityTooltip.value = withDelay(150, withTiming(0, {
+			duration: 50,
+			easing: Easing.out(Easing.ease),
+		}));
+		
+		const initialWidth = width - 40;
+		const initialHeight = 425;
+		
+		widthTooltip.value = withTiming(initialWidth * 1.06, {
+			duration: 110,
+			easing: Easing.out(Easing.ease),
+		}, () => {
+			widthTooltip.value = withTiming(0, {
+				duration: 200,
+				easing: Easing.out(Easing.ease),
+			});
 		});
-
-		heightTooltip.value = withTiming(0, {
-			duration: 0,
-			easing: Easing.linear,
+		
+		heightTooltip.value = withTiming(initialHeight * 1.06, {
+			duration: 110,
+			easing: Easing.out(Easing.ease),
+		}, () => {
+			heightTooltip.value = withTiming(0, {
+				duration: 200,
+				easing: Easing.out(Easing.ease),
+			});
 		});
 	};
 
@@ -419,6 +449,7 @@ const useAnimations = () => {
 		opacityTooltip,
 		widthTooltip,
 		heightTooltip,
+		buttonsOpacity,
 		animateTooltip,
 		hideTooltip,
 	};
