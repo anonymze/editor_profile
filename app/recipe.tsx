@@ -153,67 +153,54 @@ const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 		<Text style={styles.presentation}>{recipe.presentation}</Text>
 		<Text style={styles.titleRecipe}>{recipe.titleRecipe}</Text>
 
-		{/* Time information */}
-		<View style={styles.timeContainer}>
-			{recipe.prepTime && (
-				<View style={styles.timeItem}>
-					<Text style={styles.timeIcon}>⏱️</Text>
-					<Text style={styles.timeLabel}>Temps de préparation :</Text>
-					<Text style={styles.timeValue}>{recipe.prepTime}</Text>
-				</View>
-			)}
+		{/* Time and servings row */}
+		<View style={styles.infoRow}>
+			<View style={styles.infoItem}>
+				<Text style={styles.infoIcon}>🕙</Text>
+				<Text style={styles.infoText}>{recipe.prepTime || "10 minutes"}</Text>
+			</View>
 
-			{recipe.cookTime && (
-				<View style={styles.timeItem}>
-					<Text style={styles.timeIcon}>🔥</Text>
-					<Text style={styles.timeLabel}>Temps de cuisson :</Text>
-					<Text style={styles.timeValue}>{recipe.cookTime}</Text>
-				</View>
-			)}
-		</View>
-
-		{/* Servings */}
-		<View style={styles.sectionContainer}>
-			<Text style={styles.sectionIcon}>👥</Text>
-			<Text style={styles.sectionLabel}>Nombre de personnes :</Text>
-			<Text style={styles.sectionContent}>{recipe.servings}</Text>
+			<View style={styles.infoItem}>
+				<Text style={styles.infoIcon}>👥</Text>
+				<Text style={styles.infoText}>{recipe.servings || "4 personnes"}</Text>
+			</View>
 		</View>
 
 		{/* Ingredients */}
-		{recipe.instructions.length > 0 && (
-			<>
-				<View style={styles.sectionContainer}>
-					<Text style={styles.sectionIcon}>📝</Text>
-					<Text style={styles.sectionLabel}>Ingrédients :</Text>
+		<View style={styles.sectionContainer}>
+			<View style={styles.sectionIconContainer}>
+				<Text style={styles.sectionIcon}>🍍</Text>
+			</View>
+			<Text style={styles.sectionLabel}>Ingrédients</Text>
+		</View>
+
+		<View style={styles.listContainer}>
+			{recipe.ingredients.map((ingredient, index) => (
+				<View key={`ingredient-${index}`} style={styles.listItem}>
+					<Text style={styles.listBullet}>•</Text>
+					<Text style={styles.listText}>{ingredient}</Text>
 				</View>
-				<View style={styles.listContainer}>
-					{recipe.ingredients.map((ingredient, index) => (
-						<View key={`ingredient-${index}`} style={styles.listItem}>
-							<Text style={styles.listBullet}>•</Text>
-							<Text style={styles.listText}>{ingredient}</Text>
-						</View>
-					))}
-				</View>
-			</>
-		)}
+			))}
+		</View>
 
 		{/* Instructions */}
-		{recipe.instructions.length > 0 && (
-			<>
-				<View style={styles.sectionContainer}>
-					<Text style={styles.sectionIcon}>📋</Text>
-					<Text style={styles.sectionLabel}>Instructions :</Text>
+		<View style={styles.sectionContainer}>
+			<View style={styles.sectionIconContainer}>
+				<Text style={styles.sectionIcon}>👨‍🍳</Text>
+			</View>
+			<Text style={styles.sectionLabel}>Instructions</Text>
+		</View>
+
+		<View style={styles.listContainer}>
+			{recipe.instructions.map((instruction, index) => (
+				<View key={`instruction-${index}`} style={styles.instructionItem}>
+					<View style={styles.instructionNumber}>
+						<Text style={styles.instructionNumberText}>{index + 1}</Text>
+					</View>
+					<Text style={styles.instructionText}>{instruction}</Text>
 				</View>
-				<View style={styles.listContainer}>
-					{recipe.instructions.map((instruction, index) => (
-						<View key={`instruction-${index}`} style={styles.listItem}>
-							<Text style={styles.listNumber}>{index + 1}.</Text>
-							<Text style={styles.listText}>{instruction}</Text>
-						</View>
-					))}
-				</View>
-			</>
-		)}
+			))}
+		</View>
 
 		{/* Lexicon */}
 		{recipe?.lexicon && recipe.lexicon.length > 0 && (
@@ -235,79 +222,73 @@ const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 				</View>
 			</>
 		)}
-
-		{/* Footer */}
-		<Text style={styles.footer}>{recipe.footer}</Text>
 	</View>
 );
 
 const styles = StyleSheet.create({
 	containerPrompt: {
 		flex: 1,
-		paddingTop: 100,
+		paddingTop: 90,
 		paddingBottom: 40,
 		paddingHorizontal: 18,
 	},
 	presentation: {
-		fontSize: 18,
+		fontSize: 16,
 		color: "#000",
-		marginBottom: 10,
+		marginBottom: 20,
 	},
 	titleRecipe: {
-		fontSize: 24,
+		fontSize: 28,
 		fontWeight: "bold",
 		color: "#000",
 		marginBottom: 20,
 	},
-	timeContainer: {
-		marginBottom: 15,
+	infoRow: {
+		flexDirection: "row",
+		marginBottom: 30,
 	},
-	timeItem: {
+	infoItem: {
 		flexDirection: "row",
 		alignItems: "center",
-		marginBottom: 5,
+		marginRight: 30,
 	},
-	timeIcon: {
-		fontSize: 18,
-		marginRight: 8,
+	infoIcon: {
+		fontSize: 20,
+		marginRight: 10,
 	},
-	timeLabel: {
-		fontSize: 16,
-		fontWeight: "bold",
-		color: "#000",
-		marginRight: 5,
-	},
-	timeValue: {
+	infoText: {
 		fontSize: 16,
 		color: "#000",
 	},
 	sectionContainer: {
 		flexDirection: "row",
 		alignItems: "center",
-		marginTop: 15,
-		marginBottom: 10,
+		marginBottom: 15,
+	},
+	sectionIconContainer: {
+		width: 40,
+		height: 40,
+		backgroundColor: "#FFF8E1",
+		borderRadius: 8,
+		justifyContent: "center",
+		alignItems: "center",
+		marginRight: 15,
 	},
 	sectionIcon: {
-		fontSize: 20,
-		marginRight: 8,
+		fontSize: 22,
 	},
 	sectionLabel: {
-		fontSize: 18,
+		fontSize: 22,
 		fontWeight: "bold",
-		color: "#000",
-		marginRight: 5,
-	},
-	sectionContent: {
-		fontSize: 18,
 		color: "#000",
 	},
 	listContainer: {
-		marginLeft: 10,
-		marginBottom: 15,
+		marginBottom: 30,
 	},
 	listItem: {
 		flexDirection: "row",
-		marginBottom: 8,
+		marginBottom: 12,
+		paddingLeft: 10,
 	},
 	listBullet: {
 		fontSize: 18,
@@ -315,23 +296,41 @@ const styles = StyleSheet.create({
 		marginRight: 10,
 		width: 15,
 	},
-	listNumber: {
-		fontSize: 18,
-		color: "#000",
-		marginRight: 10,
-		width: 20,
+	instructionItem: {
+		flexDirection: "row",
+		marginBottom: 20,
 	},
-	listText: {
+	instructionNumber: {
+		width: 40,
+		height: 40,
+		borderRadius: 20,
+		backgroundColor: "#FFA726",
+		justifyContent: "center",
+		alignItems: "center",
+		marginRight: 15,
+	},
+	instructionNumberText: {
 		fontSize: 18,
+		fontWeight: "bold",
+		color: "#FFF",
+	},
+	instructionText: {
+		fontSize: 16,
 		color: "#000",
 		flex: 1,
-		lineHeight: 26,
+		paddingTop: 10,
+	},
+	listText: {
+		fontSize: 16,
+		color: "#000",
+		flex: 1,
+		lineHeight: 24,
 	},
 	termText: {
 		fontWeight: "bold",
 	},
 	footer: {
-		fontSize: 18,
+		fontSize: 16,
 		color: "#000",
 		marginTop: 20,
 		textAlign: "center",

@@ -8,6 +8,7 @@ Technical preferences:
 - Always use kebab case for component names (e.g. my-component.tsx)
 - Always use camel case for variables (e.g. myVariable)
 - Always use camel case for functions (e.g. myFunction)
+- Use lucide-react-native for icons
 - Favour using Expo features where possible
 - You can give exemples of web component with 'use dom' if you think it's relevant instead of a native component
 - Always add loading and error states to data fetching components

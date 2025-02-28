@@ -47,11 +47,12 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		Tu dois retourner uniquement un objet JSON avec la structure suivante :
 		
 		{
-			"presentation": "Bonjour [Nom de l'utilisateur], voici votre recette !",
+			"presentation": "Bonjour [Nom de l'utilisateur], voici votre recette :",
 			"titleRecipe": "Titre de la recette",
 			"prepTime": "X minutes", // (optionnel, null si non applicable)
 			"cookTime": "X minutes", // (optionnel, null si non applicable)
 			"servings": X, // (nombre de personnes pour la recette)
+			"type": "starter or main or 	",
 			"ingredients": [
 				"Ingrédient 1 + quantité précise",
 				"Ingrédient 2 + quantité précise",
@@ -73,7 +74,7 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 				}
 				// etc... (optionnel, tableau vide si non applicable)
 			],
-			"footer": "Fridgy vous souhaite une excellente cuisine."
+			"footer": "Fridgy vous souhaite une excellente cuisine !"
 		}
 		
 		Autres règles à respecter :
@@ -85,8 +86,9 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		- Tu ne dois pas proposer une recette qui nécessite des ingrédients qu'il n'a pas dans son frigo, à l'exception 
 		de certains ingrédients qui sont très facilement trouvables dans une cuisine, exemple : du beurre, de l'huile, du sucre, du sel, du poivre...
 		- Les ingrédients doivent être présentés dans l'ordre alphabétique, avec les ingrédients optionnels en dernier.
-		- Tu dois expliquer tous les termes techniques que tu emplois, imagine que tu parles à un enfant de 14 ans.
+		- Tu dois expliquer tous les termes techniques que tu emplois, imagine que tu parles à un enfant de 16 ans.
 		- Le titre de la recette doit être original et non redondant.
+		- Tu dois undiquer si c'est un dessert, une entrée ou un plat principal.
 		- Tu dois au maximum proposer des recettes de saison si les ingrédients te le permettent.
 		- Tu dois retourner UNIQUEMENT l'objet JSON, sans aucun texte supplémentaire, commentaire ou explication.
 		- NE PAS UTILISER DE BLOC DE CODE MARKDOWN pour le json (\`\`\`json ou autre markdown), tu dois retourner le json en format brut.
