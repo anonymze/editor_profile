@@ -1,6 +1,5 @@
-import { generateText, streamText } from "ai";
 import { mistral } from "@ai-sdk/mistral";
-import { openai } from "@ai-sdk/openai";
+import { generateText } from "ai";
 
 
 const DEFAULT_SERVINGS = 4;
@@ -16,7 +15,7 @@ export async function POST(request: Request) {
 		return new Response("KO", { status: 401 });
 	}
 
-	if (!data?.prompt || typeof data?.username === undefined) {
+	if (!data?.prompt) {
 		return new Response("KO", { status: 400 });
 	}
 
@@ -26,20 +25,11 @@ export async function POST(request: Request) {
 		return new Response("KO", { status: 400 });
 	}
 
-	const result = await generateRecipe(arrayPrompt, 4, data.username);
 
-	console.log(result.text);
+	// @ts-expect-error
+	const result = await generateRecipe(arrayPrompt, 4 || DEFAULT_SERVINGS, data.username || DEFAULT_USERNAME);
 
-	// Try to parse the result as JSON
-	try {
-		// If it's already JSON, return it directly
-		const jsonResult = JSON.parse(result.text);
-		return Response.json(jsonResult);
-	} catch (e) {
-		// If it's not JSON, return the text as is
-		return new Response(result.text);
-	}
-
+	return new Response(JSON.parse(result.text));
 	// const stream = generateStreamRecipe(arrayPrompt, 4, data.username);
 	// return stream.toDataStreamResponse();
 }
@@ -54,7 +44,7 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		qu'il a dans son frigo, donc l'application va lui proposer de choisir et d'indiquer ses ingrédients.
 		Avec les ingrédients que tu recevras de la part de l'utilisateur tu devras lui proposer une recette, simple, efficace et originale si possible.
 		
-		Tu dois retourner uniquement un objet JSON avec la structure suivante, sans aucun texte supplémentaire :
+		Tu dois retourner uniquement un objet JSON avec la structure suivante :
 		
 		{
 			"title": "Bonjour [Nom de l'utilisateur], voici votre fridgélicieuse recette !",
@@ -97,9 +87,14 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		- Tu dois expliquer tous les termes techniques que tu emplois, imagine que tu parles à un enfant de 14 ans.
 		- Le titre de la recette doit être original et non redondant.
 		- Tu dois au maximum proposer des recettes de saison si les ingrédients te le permettent.
-		- Tu dois retourner UNIQUEMENT l'objet JSON, sans aucun texte supplémentaire, commentaire ou explication.
+		- IMPORTANT: Tu dois retourner UNIQUEMENT l'objet JSON, sans aucun texte supplémentaire, commentaire ou explication pour que je puisse le parser directement.
+		- NE PAS UTILISER DE BLOC DE CODE MARKDOWN pour le json
 		`,
-		prompt: `La recette sera pour ${numberOfPeople || DEFAULT_SERVINGS} personne(s). Voici les ingrédients que l'utilisateur a indiqué : ${ingredients} et le nom de l'utilisateur est ${username || DEFAULT_USERNAME}`,
+		prompt: `La recette sera pour ${
+			numberOfPeople
+		} personne(s). Voici les ingrédients que l'utilisateur a indiqué : ${ingredients} et le nom de l'utilisateur est ${
+			username
+		}`,
 	});
 };
 
