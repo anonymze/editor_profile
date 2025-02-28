@@ -1,5 +1,5 @@
 import { getStorageColor, getStorageLimitedAction, getStorageName, setStorageLimitedAction, themeColors, } from "@/utils/theme-storage";
-import { ArrowLeftIcon, BookAIcon, CarrotIcon, ChefHatIcon, ClockIcon, DotIcon, UsersRoundIcon, } from "lucide-react-native";
+import { ArrowLeftIcon, BookAIcon, CarrotIcon, ChefHatIcon, ClockIcon, DotIcon, MinusIcon, UsersRoundIcon, } from "lucide-react-native";
 import { Gesture, GestureDetector, Pressable, ScrollView } from "react-native-gesture-handler";
 import Animated, { FadeIn, FadeInDown, FadeOut, runOnJS } from "react-native-reanimated";
 import SplashScreenAnimation from "@/components/splashscreen-animation";
@@ -106,7 +106,7 @@ export default function Page() {
 							</Animated.View>
 						) : (
 							<Animated.ScrollView style={stylesLayout.flex} entering={FadeIn}>
-								{response && <RecipeContent recipe={response} />}
+								{response && <RecipeContent themeColor={themeColor} recipe={response} />}
 							</Animated.ScrollView>
 						)}
 					</LayoutBackground>
@@ -139,7 +139,7 @@ export default function Page() {
 						</Animated.View>
 					) : (
 						<Animated.ScrollView style={stylesLayout.flex} entering={FadeIn}>
-							{response && <RecipeContent recipe={response} />}
+							{response && <RecipeContent themeColor={themeColor} recipe={response} />}
 						</Animated.ScrollView>
 					)}
 				</LayoutBackground>
@@ -148,7 +148,7 @@ export default function Page() {
 	);
 }
 
-const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
+const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe, themeColor: keyof typeof themeColors }) => (
 	<View style={styles.containerPrompt}>
 		<Text style={styles.titleRecipe}>{recipe.titleRecipe}</Text>
 
@@ -168,7 +168,7 @@ const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 
 			{recipe.type && (
 				<View style={styles.infoItem}>
-					<View style={styles.bubble}>
+					<View style={StyleSheet.flatten([styles.bubble, { backgroundColor: themeColors[themeColor].primary }])}>
 						<Text style={styles.bubbleText}>{recipe.type}</Text>
 					</View>
 				</View>
@@ -203,7 +203,7 @@ const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 		<View style={styles.listContainer}>
 			{recipe.instructions.map((instruction, index) => (
 				<View key={`instruction-${index}`} style={styles.instructionItem}>
-					<View style={styles.instructionNumber}>
+					<View style={StyleSheet.flatten([styles.instructionNumber, { backgroundColor: themeColors[themeColor].primaryDark }])}>
 						<Text style={styles.instructionNumberText}>{index + 1}</Text>
 					</View>
 					<Text style={styles.instructionText}>{instruction}</Text>
@@ -223,16 +223,17 @@ const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 				<View style={styles.listContainer}>
 					{recipe.lexicon.map((item, index) => (
 						<View key={`lexicon-${index}`} style={styles.listItem}>
-							<DotIcon size={20} strokeWidth={4} color="#fff" />
+							<MinusIcon size={20} strokeWidth={4} color="#fff" />
 							<Text style={styles.listText}>
-								<Text style={styles.termText}>{item.term} : </Text>
-								{item.definition}
+								{item.term} : {item.definition}
 							</Text>
 						</View>
 					))}
 				</View>
 			</>
 		)}
+
+		<Text style={styles.footer}>{recipe.footer}</Text>
 	</View>
 );
 
@@ -302,13 +303,12 @@ const styles = StyleSheet.create({
 	instructionItem: {
 		flexDirection: "row",
 		alignItems: "center",
-		marginBottom: 18,
+		marginBottom: 17,
 	},
 	instructionNumber: {
 		width: 34,
 		height: 34,
 		borderRadius: 99,
-		backgroundColor: "#00787e",
 		justifyContent: "center",
 		alignItems: "center",
 		marginRight: 15,
@@ -324,19 +324,15 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	listText: {
-		fontSize: 16,
+		fontSize: 15,
 		color: "#fff",
 		flex: 1,
 		lineHeight: 24,
 	},
-	termText: {
-		fontWeight: "bold",
-	},
 	footer: {
-		fontSize: 16,
-		color: "#000",
-		marginTop: 20,
-		textAlign: "center",
+		fontSize: 15,
+		color: "#fff",
+		marginTop: 5,
 		fontStyle: "italic",
 	},
 	bubbleText: {
@@ -345,10 +341,8 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 	},
 	bubble: {
-		borderWidth: 3,
-		borderColor: "#fff",
 		borderRadius: 99,
-		paddingHorizontal: 10,
+		paddingHorizontal: 12,
 		paddingVertical: 4,
 	},
 });

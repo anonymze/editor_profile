@@ -86,9 +86,9 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		- Tu ne dois pas proposer une recette qui nécessite des ingrédients qu'il n'a pas dans son frigo, à l'exception 
 		de certains ingrédients qui sont très facilement trouvables dans une cuisine, exemple : du beurre, de l'huile, du sucre, du sel, du poivre...
 		- Les ingrédients doivent être présentés dans l'ordre alphabétique, avec les ingrédients optionnels en dernier.
-		- Tu dois expliquer tous les termes techniques que tu emplois, imagine que tu parles à un enfant de 16 ans.
+		- Tu dois expliquer tous les termes techniques que tu emplois, imagine que tu parles à un adolescent de 20 ans.
 		- Le titre de la recette doit être original et non redondant.
-		- Tu dois undiquer si c'est un dessert, une entrée ou un plat principal.
+		- Tu dois undiquer si c'est un une entrée, un plat ou un dessert.
 		- Tu dois au maximum proposer des recettes de saison si les ingrédients te le permettent.
 		- Tu dois retourner UNIQUEMENT l'objet JSON, sans aucun texte supplémentaire, commentaire ou explication.
 		- NE PAS UTILISER DE BLOC DE CODE MARKDOWN pour le json (\`\`\`json ou autre markdown), tu dois retourner le json en format brut.
