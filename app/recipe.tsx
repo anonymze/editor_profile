@@ -155,17 +155,21 @@ const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 
 		{/* Time information */}
 		<View style={styles.timeContainer}>
-			<View style={styles.timeItem}>
-				<Text style={styles.timeIcon}>⏱️</Text>
-				<Text style={styles.timeLabel}>Temps de préparation :</Text>
-				<Text style={styles.timeValue}>{recipe.prepTime}</Text>
-			</View>
+			{recipe.prepTime && (
+				<View style={styles.timeItem}>
+					<Text style={styles.timeIcon}>⏱️</Text>
+					<Text style={styles.timeLabel}>Temps de préparation :</Text>
+					<Text style={styles.timeValue}>{recipe.prepTime}</Text>
+				</View>
+			)}
 
-			<View style={styles.timeItem}>
-				<Text style={styles.timeIcon}>🔥</Text>
-				<Text style={styles.timeLabel}>Temps de cuisson :</Text>
-				<Text style={styles.timeValue}>{recipe.cookTime}</Text>
-			</View>
+			{recipe.cookTime && (
+				<View style={styles.timeItem}>
+					<Text style={styles.timeIcon}>🔥</Text>
+					<Text style={styles.timeLabel}>Temps de cuisson :</Text>
+					<Text style={styles.timeValue}>{recipe.cookTime}</Text>
+				</View>
+			)}
 		</View>
 
 		{/* Servings */}
@@ -176,32 +180,40 @@ const RecipeContent = ({ recipe }: { recipe: Recipe }) => (
 		</View>
 
 		{/* Ingredients */}
-		<View style={styles.sectionContainer}>
-			<Text style={styles.sectionIcon}>📝</Text>
-			<Text style={styles.sectionLabel}>Ingrédients :</Text>
-		</View>
-		<View style={styles.listContainer}>
-			{recipe.ingredients.map((ingredient, index) => (
-				<View key={`ingredient-${index}`} style={styles.listItem}>
-					<Text style={styles.listBullet}>•</Text>
-					<Text style={styles.listText}>{ingredient}</Text>
+		{recipe.instructions.length > 0 && (
+			<>
+				<View style={styles.sectionContainer}>
+					<Text style={styles.sectionIcon}>📝</Text>
+					<Text style={styles.sectionLabel}>Ingrédients :</Text>
 				</View>
-			))}
-		</View>
+				<View style={styles.listContainer}>
+					{recipe.ingredients.map((ingredient, index) => (
+						<View key={`ingredient-${index}`} style={styles.listItem}>
+							<Text style={styles.listBullet}>•</Text>
+							<Text style={styles.listText}>{ingredient}</Text>
+						</View>
+					))}
+				</View>
+			</>
+		)}
 
 		{/* Instructions */}
-		<View style={styles.sectionContainer}>
-			<Text style={styles.sectionIcon}>📋</Text>
-			<Text style={styles.sectionLabel}>Instructions :</Text>
-		</View>
-		<View style={styles.listContainer}>
-			{recipe.instructions.map((instruction, index) => (
-				<View key={`instruction-${index}`} style={styles.listItem}>
-					<Text style={styles.listNumber}>{index + 1}.</Text>
-					<Text style={styles.listText}>{instruction}</Text>
+		{recipe.instructions.length > 0 && (
+			<>
+				<View style={styles.sectionContainer}>
+					<Text style={styles.sectionIcon}>📋</Text>
+					<Text style={styles.sectionLabel}>Instructions :</Text>
 				</View>
-			))}
-		</View>
+				<View style={styles.listContainer}>
+					{recipe.instructions.map((instruction, index) => (
+						<View key={`instruction-${index}`} style={styles.listItem}>
+							<Text style={styles.listNumber}>{index + 1}.</Text>
+							<Text style={styles.listText}>{instruction}</Text>
+						</View>
+					))}
+				</View>
+			</>
+		)}
 
 		{/* Lexicon */}
 		{recipe?.lexicon && recipe.lexicon.length > 0 && (
@@ -240,14 +252,12 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		color: "#000",
 		marginBottom: 10,
-		textAlign: "center",
 	},
 	titleRecipe: {
 		fontSize: 24,
 		fontWeight: "bold",
 		color: "#000",
 		marginBottom: 20,
-		textAlign: "center",
 	},
 	timeContainer: {
 		marginBottom: 15,

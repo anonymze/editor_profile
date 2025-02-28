@@ -29,8 +29,6 @@ export async function POST(request: Request) {
 	// @ts-expect-error
 	const result = await generateRecipe(arrayPrompt, 4 || DEFAULT_SERVINGS, data.username || DEFAULT_USERNAME);
 
-	console.log(result.text);
-
 	return Response.json(JSON.parse(result.text));
 	// const stream = generateStreamRecipe(arrayPrompt, 4, data.username);
 	// return stream.toDataStreamResponse();
@@ -49,7 +47,7 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		Tu dois retourner uniquement un objet JSON avec la structure suivante :
 		
 		{
-			"presentation": "Bonjour [Nom de l'utilisateur], voici votre fridgélicieuse recette !",
+			"presentation": "Bonjour [Nom de l'utilisateur], voici votre recette !",
 			"titleRecipe": "Titre de la recette",
 			"prepTime": "X minutes", // (optionnel, null si non applicable)
 			"cookTime": "X minutes", // (optionnel, null si non applicable)
