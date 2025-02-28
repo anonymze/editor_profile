@@ -91,7 +91,7 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		- Le titre de la recette doit être original et non redondant.
 		- Tu dois au maximum proposer des recettes de saison si les ingrédients te le permettent.
 		- Tu dois retourner UNIQUEMENT l'objet JSON, sans aucun texte supplémentaire, commentaire ou explication.
-		- NE PAS UTILISER DE BLOC DE CODE MARKDOWN pour le json (\`\`\`json), tu dois retourner le json en format brut.
+		- NE PAS UTILISER DE BLOC DE CODE MARKDOWN pour le json (\`\`\`json ou autre markdown), tu dois retourner le json en format brut.
 		`,
 		prompt: `La recette sera pour ${
 			numberOfPeople
