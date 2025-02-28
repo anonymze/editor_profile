@@ -38,5 +38,9 @@ npx expo serve
 // export web
 npx expo export --platform web
 
+TODO 
+- logo android
+- ingredients 
+
 
 

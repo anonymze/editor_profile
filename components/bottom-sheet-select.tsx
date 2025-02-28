@@ -123,6 +123,9 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 					footerComponent={renderFooter}
 					// backdropComponent={renderBackdrop}
 					// bottomInset={Platform.OS === "android" ? 10 : 25}
+					keyboardBehavior="extend"
+					keyboardBlurBehavior="restore"
+					android_keyboardInputMode="adjustResize"
 					style={styles.paddingSheet}
 					backgroundStyle={{ backgroundColor: "#fff" }}
 					handleStyle={{ backgroundColor: "#fff" }}

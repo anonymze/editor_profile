@@ -1,4 +1,4 @@
-import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS } from "react-native-reanimated";
+import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS, } from "react-native-reanimated";
 import { getStorageColor, getStorageLimitedAction, storage, themeColors } from "@/utils/theme-storage";
 import { Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
@@ -116,201 +116,193 @@ export default function Page() {
 	}, []);
 
 	return (
+		<LayoutBackground color={themeColor} centeredContent={false}>
+			<Animated.View
+				style={StyleSheet.flatten([
+					stylesLayout.topButtons,
+					stylesLayout.topRightButton,
+					{
+						backgroundColor: themeColors[themeColor].secondary,
+					},
+				])}
+				entering={FadeInDown.duration(800).delay(200).springify()}
+			>
+				<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/profile")}>
+					<UserRoundIcon size={24} color="#fff" />
+				</Pressable>
+			</Animated.View>
 
-			<LayoutBackground color={themeColor} centeredContent={false}>
+			<Animated.View
+				style={StyleSheet.flatten([
+					styles.tooltip,
+					{
+						backgroundColor: themeColors[themeColor].secondaryRgba(0.96),
+						width: widthTooltip,
+						height: heightTooltip,
+						opacity: opacityTooltip,
+					},
+				])}
+			>
+				<View style={styles.tooltipViewAbsolute}>
+					<Text style={styles.tooltipTextTitle}>Bienvenue sur {Application.applicationName}.</Text>
+					<Text style={styles.tooltipText}>
+						En appuyant sur le <Text style={styles.tooltipUnderlineText}>frigo</Text> vous pouvez ajoutez des
+						ingrédients.
+					</Text>
+
+					<Text style={styles.tooltipText}>
+						Un <Text style={styles.tooltipUnderlineText}>minimum de 3 ingrédients</Text> est requis pour
+						trouver une recette.
+					</Text>
+
+					<Text style={styles.tooltipText}>
+						En version gratuite, vous êtes limité sur vos recettes. Il vous en reste :
+					</Text>
+					<TextGradient
+						color={themeColor}
+						text={getStorageLimitedAction()}
+						home
+						style={{ fontSize: 60, marginTop: -13 }}
+					/>
+				</View>
+
+				<Animated.View style={[styles.tooltipActionsAbsolute, { opacity: buttonsOpacity }]}>
+					<ButtonRadialGradient text="Je m'abonne" color={themeColors[themeColor].primaryLight} isAction />
+					<ButtonRadialGradient
+						text="Compris !"
+						color={themeColors[themeColor].primaryLight}
+						isAction
+						onPress={() => {
+							setShowTooltip(false);
+							hideTooltip();
+						}}
+					/>
+				</Animated.View>
+			</Animated.View>
+
+			<Animated.View entering={FadeInDown.duration(800).delay(200).springify()}>
 				<Animated.View
 					style={StyleSheet.flatten([
 						stylesLayout.topButtons,
-						stylesLayout.topRightButton,
+						stylesLayout.topLeftButton,
 						{
 							backgroundColor: themeColors[themeColor].secondary,
+							borderRadius: 99,
+							opacity: isTooltipAnimating ? 0.7 : 1,
 						},
 					])}
-					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
-					<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/profile")}>
-						<UserRoundIcon size={24} color="#fff" />
+					<Pressable
+						style={stylesLayout.paddingTopButtons}
+						onPress={() => {
+							if (!isTooltipAnimating) {
+								if (showTooltip) {
+									hideTooltip();
+								} else {
+									animateTooltip();
+								}
+								setShowTooltip(!showTooltip);
+							}
+						}}
+					>
+						<BadgeInfoIcon size={26} color="#fff" />
 					</Pressable>
 				</Animated.View>
+			</Animated.View>
 
-				<Animated.View
-					style={StyleSheet.flatten([
-						styles.tooltip,
-						{
-							backgroundColor: themeColors[themeColor].secondaryRgba(0.96),
-							width: widthTooltip,
-							height: heightTooltip,
-							opacity: opacityTooltip,
-						},
-					])}
-				>
-					<View style={styles.tooltipViewAbsolute}>
-						<Text style={styles.tooltipTextTitle}>Bienvenue sur {Application.applicationName}.</Text>
-						<Text style={styles.tooltipText}>
-							En appuyant sur le <Text style={styles.tooltipUnderlineText}>frigo</Text> vous pouvez ajoutez
-							des ingrédients.
-						</Text>
-
-						<Text style={styles.tooltipText}>
-							Un <Text style={styles.tooltipUnderlineText}>minimum de 3 ingrédients</Text> est requis pour
-							trouver une recette.
-						</Text>
-
-						<Text style={styles.tooltipText}>
-							En version gratuite, vous êtes limité sur vos recettes. Il vous en reste :
-						</Text>
-						<TextGradient
-							color={themeColor}
-							text={getStorageLimitedAction()}
-							home
-							style={{ fontSize: 60, marginTop: -13 }}
-						/>
-					</View>
-
-					<Animated.View 
-						style={[
-							styles.tooltipActionsAbsolute, 
-							{ opacity: buttonsOpacity }
-						]}
-					>
-						<ButtonRadialGradient text="Je m'abonne" color={themeColors[themeColor].primaryLight} isAction />
-						<ButtonRadialGradient
-							text="Compris !"
-							color={themeColors[themeColor].primaryLight}
-							isAction
-							onPress={() => {
-								setShowTooltip(false);
-								hideTooltip();
-							}}
-						/>
-					</Animated.View>
+			<View style={styles.highPaddingTop}>
+				<Animated.View entering={enteringAnimationLeft()}>
+					<TextGradient
+						color={themeColor}
+						text={`${Application.applicationName?.toUpperCase()} !`}
+						style={{ fontSize: height < 630 || width < 400 ? 60 : 75 }}
+					/>
 				</Animated.View>
-
-				<Animated.View
-					entering={FadeInDown.duration(800).delay(200).springify()}
-				>
-					<Animated.View
-						style={StyleSheet.flatten([
-							stylesLayout.topButtons,
-							stylesLayout.topLeftButton,
-							{
-								backgroundColor: themeColors[themeColor].secondary,
-								borderRadius: 99,
-								opacity: isTooltipAnimating ? 0.7 : 1,
-							},
-						])}
-					>
-						<Pressable
-							style={stylesLayout.paddingTopButtons}
-							onPress={() => {
-								if (!isTooltipAnimating) {
-									if (showTooltip) {
-										hideTooltip();
-									} else {
-										animateTooltip();
-									}
-									setShowTooltip(!showTooltip);
-								}
-							}}
-						>
-							<BadgeInfoIcon size={26} color="#fff" />
-						</Pressable>
-					</Animated.View>
-				</Animated.View>
-
-				<View style={styles.highPaddingTop}>
-					<Animated.View entering={enteringAnimationLeft()}>
-						<TextGradient
-							color={themeColor}
-							text={`${Application.applicationName?.toUpperCase()} !`}
-							style={{ fontSize: height < 630 || width < 400 ? 60 : 75 }}
-						/>
-					</Animated.View>
-					{/* <Animated.View entering={enteringAnimationRight()}>
+				{/* <Animated.View entering={enteringAnimationRight()}>
 						<TextGradient color={themeColor} text={"CHEF !"} home style={{ fontSize: 75, marginTop: -15 }} />
 					</Animated.View> */}
 
-					<Animated.View
-						style={stylesLayout.centerContent}
-						entering={FadeInDown.duration(800).delay(400).springify()}
+				<Animated.View
+					style={stylesLayout.centerContent}
+					entering={FadeInDown.duration(800).delay(400).springify()}
+				>
+					<Pressable
+						onPress={() => {
+							bottomSheetRef.current?.present();
+						}}
 					>
-						<Pressable
-							onPress={() => {
-								bottomSheetRef.current?.present();
-							}}
-						>
-							<Animated.View style={StyleSheet.flatten([stylesLayout.centerContent, bounceStyle])}>
-								<Animated.View style={[styles.halo, pulseStyle1]} />
-								<Animated.View style={[styles.halo, pulseStyle2]} />
-								<Image
-									style={[stylesLayout.imageHome]}
-									source={require("@/assets/images/fridge.png")}
-									cachePolicy="memory-disk"
-									contentFit="contain"
-								/>
-							</Animated.View>
-						</Pressable>
-					</Animated.View>
-				</View>
-
-				{selectedValues.length > 0 ? (
-					<Fragment>
-						<Animated.View entering={FadeIn} style={styles.mediumPaddingTop}>
-							<TextGradient
-								lowShadow
-								color={themeColor}
-								text={"Vos ingrédients :"}
-								style={styles.ingredientsText}
+						<Animated.View style={StyleSheet.flatten([stylesLayout.centerContent, bounceStyle])}>
+							<Animated.View style={[styles.halo, pulseStyle1]} />
+							<Animated.View style={[styles.halo, pulseStyle2]} />
+							<Image
+								style={[stylesLayout.imageHome]}
+								source={require("@/assets/images/fridge.png")}
+								cachePolicy="memory-disk"
+								contentFit="contain"
 							/>
 						</Animated.View>
+					</Pressable>
+				</Animated.View>
+			</View>
 
-						<View style={styles.containerIngredients}>
-							{selectedValues.map((value) => (
-								<Animated.View
-									key={value.id}
-									entering={FadeInDown.duration(300)
-										.delay(latestBatchRef.current.indexOf(value) * 100)
-										.springify()}
-								>
-									<Image source={value.image} style={styles.imageIngredients} />
-								</Animated.View>
-							))}
-						</View>
-					</Fragment>
-				) : null}
-
-				{selectedValues.length >= 3 && (
-					<Animated.View
-						style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
-						entering={enteringAnimation()}
-					>
-						<ButtonRadialGradient
-							onPress={async () => {
-								router.push({
-									pathname: "/recipe",
-									params: {
-										prompt: selectedValues.map((value) => value.label.FR).join(","),
-										vendorId:
-											Platform.OS === "ios"
-												? await Application.getIosIdForVendorAsync()
-												: Application.getAndroidId(),
-									},
-								});
-							}}
-							text="Trouver ma recette"
-							color={themeColors[themeColor].primaryLight}
+			{selectedValues.length > 0 ? (
+				<Fragment>
+					<Animated.View entering={FadeIn} style={styles.mediumPaddingTop}>
+						<TextGradient
+							lowShadow
+							color={themeColor}
+							text={"Vos ingrédients :"}
+							style={styles.ingredientsText}
 						/>
 					</Animated.View>
-				)}
 
-				<BottomSheetSelect
-					onSelect={getSelectecValues}
-					data={initialSections}
-					placeholderSearch="Chercher des ingrédients"
-					ref={bottomSheetRef}
-					themeColor={themeColor}
-				/>
-			</LayoutBackground>
+					<View style={styles.containerIngredients}>
+						{selectedValues.map((value) => (
+							<Animated.View
+								key={value.id}
+								entering={FadeInDown.duration(300)
+									.delay(latestBatchRef.current.indexOf(value) * 100)
+									.springify()}
+							>
+								<Image source={value.image} style={styles.imageIngredients} />
+							</Animated.View>
+						))}
+					</View>
+				</Fragment>
+			) : null}
+
+			{selectedValues.length >= 3 && (
+				<Animated.View
+					style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
+					entering={enteringAnimation()}
+				>
+					<ButtonRadialGradient
+						onPress={async () => {
+							router.push({
+								pathname: "/recipe",
+								params: {
+									prompt: selectedValues.map((value) => value.label.FR).join(","),
+									vendorId:
+										Platform.OS === "ios"
+											? await Application.getIosIdForVendorAsync()
+											: Application.getAndroidId(),
+								},
+							});
+						}}
+						text="Trouver ma recette"
+						color={themeColors[themeColor].primaryLight}
+					/>
+				</Animated.View>
+			)}
+
+			<BottomSheetSelect
+				onSelect={getSelectecValues}
+				data={initialSections}
+				placeholderSearch="Chercher des ingrédients"
+				ref={bottomSheetRef}
+				themeColor={themeColor}
+			/>
+		</LayoutBackground>
 	);
 }
 
@@ -326,7 +318,7 @@ const useAnimations = (setIsAnimating: React.Dispatch<React.SetStateAction<boole
 
 	const animateTooltip = () => {
 		runOnJS(setIsAnimating)(true);
-		
+
 		opacityTooltip.value = withTiming(1, {
 			duration: 280,
 			easing: Easing.linear,
@@ -337,13 +329,17 @@ const useAnimations = (setIsAnimating: React.Dispatch<React.SetStateAction<boole
 			easing: Easing.elastic(1.1),
 		});
 
-		heightTooltip.value = withTiming(425, {
-			duration: 280,
-			easing: Easing.elastic(1.1),
-		}, () => {
-			runOnJS(setIsAnimating)(false);
-		});
-		
+		heightTooltip.value = withTiming(
+			425,
+			{
+				duration: 280,
+				easing: Easing.elastic(1.1),
+			},
+			() => {
+				runOnJS(setIsAnimating)(false);
+			}
+		);
+
 		buttonsOpacity.value = withTiming(1, {
 			duration: 280,
 			easing: Easing.linear,
@@ -352,41 +348,56 @@ const useAnimations = (setIsAnimating: React.Dispatch<React.SetStateAction<boole
 
 	const hideTooltip = () => {
 		runOnJS(setIsAnimating)(true);
-		
+
 		buttonsOpacity.value = withTiming(0, {
 			duration: 100,
 			easing: Easing.out(Easing.ease),
 		});
-		
-		opacityTooltip.value = withDelay(150, withTiming(0, {
-			duration: 50,
-			easing: Easing.out(Easing.ease),
-		}));
-		
+
+		opacityTooltip.value = withDelay(
+			150,
+			withTiming(0, {
+				duration: 50,
+				easing: Easing.out(Easing.ease),
+			})
+		);
+
 		const initialWidth = width - 40;
 		const initialHeight = 425;
-		
-		widthTooltip.value = withTiming(initialWidth * 1.06, {
-			duration: 110,
-			easing: Easing.out(Easing.ease),
-		}, () => {
-			widthTooltip.value = withTiming(0, {
-				duration: 200,
+
+		widthTooltip.value = withTiming(
+			initialWidth * 1.06,
+			{
+				duration: 110,
 				easing: Easing.out(Easing.ease),
-			});
-		});
-		
-		heightTooltip.value = withTiming(initialHeight * 1.06, {
-			duration: 110,
-			easing: Easing.out(Easing.ease),
-		}, () => {
-			heightTooltip.value = withTiming(0, {
-				duration: 200,
+			},
+			() => {
+				widthTooltip.value = withTiming(0, {
+					duration: 200,
+					easing: Easing.out(Easing.ease),
+				});
+			}
+		);
+
+		heightTooltip.value = withTiming(
+			initialHeight * 1.06,
+			{
+				duration: 110,
 				easing: Easing.out(Easing.ease),
-			}, () => {
-				runOnJS(setIsAnimating)(false);
-			});
-		});
+			},
+			() => {
+				heightTooltip.value = withTiming(
+					0,
+					{
+						duration: 200,
+						easing: Easing.out(Easing.ease),
+					},
+					() => {
+						runOnJS(setIsAnimating)(false);
+					}
+				);
+			}
+		);
 	};
 
 	const enteringAnimation = useCallback(
