@@ -3,6 +3,9 @@ import { mistral } from "@ai-sdk/mistral";
 import { openai } from "@ai-sdk/openai";
 
 
+const DEFAULT_SERVINGS = 4;
+const DEFAULT_USERNAME = "Chef";
+
 export async function POST(request: Request) {
 	const headers = request.headers;
 	const data = (await request.json()) as { prompt: string; username: string } | undefined;
@@ -19,7 +22,7 @@ export async function POST(request: Request) {
 
 	const arrayPrompt = data.prompt.split(",");
 
-	if (arrayPrompt.length <= 2) {
+	if (arrayPrompt.length < 3) {
 		return new Response("KO", { status: 400 });
 	}
 
@@ -27,7 +30,15 @@ export async function POST(request: Request) {
 
 	console.log(result.text);
 
-	return new Response(result.text);
+	// Try to parse the result as JSON
+	try {
+		// If it's already JSON, return it directly
+		const jsonResult = JSON.parse(result.text);
+		return Response.json(jsonResult);
+	} catch (e) {
+		// If it's not JSON, return the text as is
+		return new Response(result.text);
+	}
 
 	// const stream = generateStreamRecipe(arrayPrompt, 4, data.username);
 	// return stream.toDataStreamResponse();
@@ -43,32 +54,36 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		qu'il a dans son frigo, donc l'application va lui proposer de choisir et d'indiquer ses ingrédients.
 		Avec les ingrédients que tu recevras de la part de l'utilisateur tu devras lui proposer une recette, simple, efficace et originale si possible.
 		
-		Tu dois suivre ces indications à la lettre et respecter EXACTEMENT ce format de présentation :
+		Tu dois retourner uniquement un objet JSON avec la structure suivante, sans aucun texte supplémentaire :
 		
-		Bonjour [Nom de l'utilisateur], voici votre recette !
-		
-		**[TITRE DE LA RECETTE]**
-		
-		⏱️ *Temps de préparation* : [X] minutes (si il n'y a pas de temps de préparation ne pas le mettre)
-		🔥 *Temps de cuisson* : [X] minutes (si il n'y a pas de temps de cuisson, pour une salade par exemple, ne pas le mettre)
-		👥 *Nombre de personnes* : [X]
-		
-		📝 *Ingrédients* :
-		- [Ingrédient 1 + quantité précise]
-		- [Ingrédient 2 + quantité précise]
-		(etc...)
-		
-		📋 *Instructions* :
-		1. [Première étape]
-		2. [Deuxième étape]
-		(etc...)
-		
-		📚 Lexique des termes techniques :
-		* [Terme technique 1] : [Explication simple]
-		* [Terme technique 2] : [Explication simple]
-		(si nécessaire)
-		
-		Fridgy vous souhaite une excellente cuisine !
+		{
+			"title": "Bonjour [Nom de l'utilisateur], voici votre fridgélicieuse recette !",
+			"prepTime": "X minutes", // (optionnel, null si non applicable)
+			"cookTime": "X minutes", // (optionnel, null si non applicable)
+			"servings": X, // (nombre de personnes pour la recette)
+			"ingredients": [
+				"Ingrédient 1 + quantité précise",
+				"Ingrédient 2 + quantité précise",
+				// etc...
+			],
+			"instructions": [
+				"Première étape",
+				"Deuxième étape",
+				// etc...
+			],
+			"lexicon": [
+				{
+					"term": "Terme technique 1",
+					"definition": "Explication simple"
+				},
+				{
+					"term": "Terme technique 2",
+					"definition": "Explication simple"
+				}
+				// etc... (optionnel, tableau vide si non applicable)
+			],
+			"footer": "Fridgy vous souhaite une excellente cuisine."
+		}
 		
 		Autres règles à respecter :
 		- Tu dois répondre en français.
@@ -82,8 +97,9 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		- Tu dois expliquer tous les termes techniques que tu emplois, imagine que tu parles à un enfant de 14 ans.
 		- Le titre de la recette doit être original et non redondant.
 		- Tu dois au maximum proposer des recettes de saison si les ingrédients te le permettent.
+		- Tu dois retourner UNIQUEMENT l'objet JSON, sans aucun texte supplémentaire, commentaire ou explication.
 		`,
-		prompt: `La recette sera pour ${numberOfPeople} personne(s). Voici les ingrédients que l'utilisateur a indiqué : ${ingredients} et le nom de l'utilisateur est ${username || "Chef"}`,
+		prompt: `La recette sera pour ${numberOfPeople || DEFAULT_SERVINGS} personne(s). Voici les ingrédients que l'utilisateur a indiqué : ${ingredients} et le nom de l'utilisateur est ${username || DEFAULT_USERNAME}`,
 	});
 };
 

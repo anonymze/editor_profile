@@ -20,7 +20,7 @@ subprojects { project ->
 // native build on eas host (preview for internal testing with testFlight for exemple)
 eas build  --profile preview
 
-// build and submit (default to production i guess)
+// build and submit (default to production)
 eas build -s
 
 // submit (latest) builds you have on eas expo
