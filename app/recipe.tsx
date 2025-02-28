@@ -177,8 +177,8 @@ const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe, themeColor: key
 
 		{/* Ingredients */}
 		<View style={styles.sectionContainer}>
-			<View style={styles.sectionIconContainer}>
-				<CarrotIcon size={26} color="#000" />
+			<View style={StyleSheet.flatten([styles.sectionIconContainer, { backgroundColor: themeColors[themeColor].secondary }])}>
+				<CarrotIcon size={26} color="#fff" />
 			</View>
 			<Text style={styles.sectionLabel}>Ingrédients</Text>
 		</View>
@@ -194,8 +194,8 @@ const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe, themeColor: key
 
 		{/* Instructions */}
 		<View style={styles.sectionContainer}>
-			<View style={styles.sectionIconContainer}>
-				<ChefHatIcon size={26} color="#000" />
+			<View style={StyleSheet.flatten([styles.sectionIconContainer, { backgroundColor: themeColors[themeColor].secondary }])}>
+				<ChefHatIcon size={26} color="#fff" />
 			</View>
 			<Text style={styles.sectionLabel}>Instructions</Text>
 		</View>
@@ -215,8 +215,8 @@ const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe, themeColor: key
 		{recipe?.lexicon && recipe.lexicon.length > 0 && (
 			<>
 				<View style={styles.sectionContainer}>
-					<View style={styles.sectionIconContainer}>
-						<BookAIcon size={26} color="#000" />
+					<View style={StyleSheet.flatten([styles.sectionIconContainer, { backgroundColor: themeColors[themeColor].secondary }])}>
+						<BookAIcon size={26} color="#fff" />
 					</View>
 					<Text style={styles.sectionLabel}>Lexique</Text>
 				</View>
@@ -276,7 +276,6 @@ const styles = StyleSheet.create({
 	sectionIconContainer: {
 		width: 40,
 		height: 40,
-		backgroundColor: "#FFF8E1",
 		borderRadius: 8,
 		justifyContent: "center",
 		alignItems: "center",
