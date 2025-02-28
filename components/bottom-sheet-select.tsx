@@ -137,7 +137,10 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 						autoCorrect={false}
 						placeholder={placeholderSearch}
 						style={styles.searchInput}
-						onChangeText={setSearchQuery}
+						onSubmitEditing={(event) => {
+							setSearchQuery(event.nativeEvent.text);
+						}}
+						returnKeyType="search"
 					/>
 
 					<BottomSheetScrollView style={styles.bottomSheetContent}>
