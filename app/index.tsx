@@ -304,7 +304,7 @@ export default function Page() {
 									.delay(latestBatchRef.current.indexOf(value) * 100)
 									.springify()}
 							>
-								<Image transition={200} placeholder={require("@/assets/images/fridge.png")} placeholderContentFit="contain" source={value.image} style={styles.imageIngredients} />
+								<Image transition={300} placeholder={require("@/assets/images/fridge.png")} placeholderContentFit="contain" source={value.image} style={styles.imageIngredients} />
 							</Animated.View>
 						))}
 					</View>

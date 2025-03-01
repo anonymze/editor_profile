@@ -197,7 +197,7 @@ const MemoizedSections = React.memo(
 							onPress={() => onItemPress(item)}
 						>
 							<Image
-							transition={200}
+								transition={300}
 								placeholder={require("@/assets/images/fridge.png")}
 								placeholderContentFit="contain"
 								style={styles.itemImage}
