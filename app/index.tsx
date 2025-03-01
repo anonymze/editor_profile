@@ -52,6 +52,10 @@ const initialSections = [
 		data: dough,
 	},
 	{
+		title: "Produits laitiers",
+		data: dairy,
+	},
+	{
 		title: "Poissons",
 		data: fish,
 	},
