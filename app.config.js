@@ -52,7 +52,7 @@ module.exports = () => ({
 		},
 		extra: {
 			eas: {
-				projectId: "3c0878f0-9e8f-47b4-a642-e1d3d8084d20",
+				projectId: "0706ee30-c626-47b7-90cc-c5f1f4a2703d",
 			},
 		},
 		runtimeVersion: "1.0.0",
