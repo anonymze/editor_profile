@@ -57,14 +57,6 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 				.filter((section) => section.data.length > 0); // Remove empty sections
 		}, [searchQuery]);
 
-		// Render backdrop component
-		// const renderBackdrop = React.useCallback(
-		// 	(props: BottomSheetBackdropProps) => (
-		// 		<BottomSheetBackdrop {...props} />
-		// 	),
-		// 	[themeColor]
-		// );
-
 		const renderFooter = React.useCallback(
 			(props: BottomSheetFooterProps) => (
 				<BottomSheetFooter {...props} style={styles.footerContainer}>
@@ -128,8 +120,6 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 					enableDynamicSizing={false}
 					snapPoints={snapPoints}
 					footerComponent={renderFooter}
-					// backdropComponent={renderBackdrop}
-					// bottomInset={Platform.OS === "android" ? 10 : 25}
 					keyboardBehavior="extend"
 					keyboardBlurBehavior="restore"
 					android_keyboardInputMode="adjustResize"
@@ -206,7 +196,15 @@ const MemoizedSections = React.memo(
 							]}
 							onPress={() => onItemPress(item)}
 						>
-							{item.image && <Image style={styles.itemImage} contentFit="contain" source={item.image} alt={item.label.FR} />}
+							<Image
+								transition={300}
+								placeholder={require("@/assets/images/fridge.png")}
+								placeholderContentFit="contain"
+								style={styles.itemImage}
+								contentFit="contain"
+								source={item.image}
+								alt={item.label.FR}
+							/>
 							<Text
 								style={[
 									styles.itemText,
