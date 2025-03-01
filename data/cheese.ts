@@ -2,7 +2,7 @@ export default [
 	{
 		id: "cheese_abondance",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/abondance.svg"),
+		image: null,
 		label: {
 			FR: "Abondance",
 		},
@@ -10,7 +10,7 @@ export default [
 	{
 		id: "cheese_banon",
 		co2: 0.33,
-		image: require("@/assets/images/cheese/banon.svg"),
+		image: null,
 		label: {
 			FR: "Banon",
 		},
@@ -18,7 +18,7 @@ export default [
 	{
 		id: "cheese_beaufort",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/beaufort.svg"),
+		image: null,
 		label: {
 			FR: "Beaufort",
 		},
@@ -26,7 +26,7 @@ export default [
 	{
 		id: "cheese_bleu_auvergne",
 		co2: 0.38,
-		image: require("@/assets/images/cheese/bleu_auvergne.svg"),
+		image: null,
 		label: {
 			FR: "Bleu d'Auvergne",
 		},
@@ -34,7 +34,7 @@ export default [
 	{
 		id: "cheese_bleu_causses",
 		co2: 0.38,
-		image: require("@/assets/images/cheese/bleu_causses.svg"),
+		image: null,
 		label: {
 			FR: "Bleu des Causses",
 		},
@@ -42,7 +42,7 @@ export default [
 	{
 		id: "cheese_bleu_gex",
 		co2: 0.38,
-		image: require("@/assets/images/cheese/bleu_gex.svg"),
+		image: null,
 		label: {
 			FR: "Bleu de Gex",
 		},
@@ -50,7 +50,7 @@ export default [
 	{
 		id: "chesse_brie",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/brie.svg"),
+		image: null,
 		label: {
 			FR: "Brie",
 		},
@@ -58,7 +58,7 @@ export default [
 	{
 		id: "cheese_brocciu",
 		co2: 0.32,
-		image: require("@/assets/images/cheese/brocciu.svg"),
+		image: null,
 		label: {
 			FR: "Brocciu",
 		},
@@ -66,7 +66,7 @@ export default [
 	{
 		id: "chesse_camembert",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/camembert.svg"),
+		image: null,
 		label: {
 			FR: "Camembert",
 		},
@@ -74,7 +74,7 @@ export default [
 	{
 		id: "cheese_cantal",
 		co2: 0.37,
-		image: require("@/assets/images/cheese/cantal.svg"),
+		image: null,
 		label: {
 			FR: "Cantal",
 		},
@@ -82,7 +82,7 @@ export default [
 	{
 		id: "cheese_chabichou",
 		co2: 0.33,
-		image: require("@/assets/images/cheese/chabichou.svg"),
+		image: null,
 		label: {
 			FR: "Chabichou du Poitou",
 		},
@@ -90,7 +90,7 @@ export default [
 	{
 		id: "cheese_chaource",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/chaource.svg"),
+		image: null,
 		label: {
 			FR: "Chaource",
 		},
@@ -98,7 +98,7 @@ export default [
 	{
 		id: "cheese_charolais",
 		co2: 0.33,
-		image: require("@/assets/images/cheese/charolais.svg"),
+		image: null,
 		label: {
 			FR: "Charolais",
 		},
@@ -106,7 +106,7 @@ export default [
 	{
 		id: "cheese_chevre",
 		co2: 0.33,
-		image: require("@/assets/images/cheese/chevre.svg"),
+		image: null,
 		label: {
 			FR: "Chèvre",
 		},
@@ -114,7 +114,7 @@ export default [
 	{
 		id: "chesse_comte",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/comte.svg"),
+		image: null,
 		label: {
 			FR: "Comté",
 		},
@@ -122,7 +122,7 @@ export default [
 	{
 		id: "cheese_coulommiers",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/coulommiers.svg"),
+		image: null,
 		label: {
 			FR: "Coulommiers",
 		},
@@ -130,7 +130,7 @@ export default [
 	{
 		id: "cheese_emmental",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/emmental.svg"),
+		image: null,
 		label: {
 			FR: "Emmental",
 		},
@@ -138,7 +138,7 @@ export default [
 	{
 		id: "cheese_epoisses",
 		co2: 0.37,
-		image: require("@/assets/images/cheese/epoisses.svg"),
+		image: null,
 		label: {
 			FR: "Époisses",
 		},
@@ -146,7 +146,7 @@ export default [
 	{
 		id: "cheese_fourme_ambert",
 		co2: 0.38,
-		image: require("@/assets/images/cheese/fourme_ambert.svg"),
+		image: null,
 		label: {
 			FR: "Fourme d'Ambert",
 		},
@@ -154,7 +154,7 @@ export default [
 	{
 		id: "cheese_laguiole",
 		co2: 0.37,
-		image: require("@/assets/images/cheese/laguiole.svg"),
+		image: null,
 		label: {
 			FR: "Laguiole",
 		},
@@ -162,7 +162,7 @@ export default [
 	{
 		id: "cheese_langres",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/langres.svg"),
+		image: null,
 		label: {
 			FR: "Langres",
 		},
@@ -170,7 +170,7 @@ export default [
 	{
 		id: "cheese_livarot",
 		co2: 0.37,
-		image: require("@/assets/images/cheese/livarot.svg"),
+		image: null,
 		label: {
 			FR: "Livarot",
 		},
@@ -178,7 +178,7 @@ export default [
 	{
 		id: "cheese_maroilles",
 		co2: 0.37,
-		image: require("@/assets/images/cheese/maroilles.svg"),
+		image: null,
 		label: {
 			FR: "Maroilles",
 		},
@@ -186,7 +186,7 @@ export default [
 	{
 		id: "cheese_mimolette",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/mimolette.svg"),
+		image: null,
 		label: {
 			FR: "Mimolette",
 		},
@@ -194,7 +194,7 @@ export default [
 	{
 		id: "cheese_mont_dor",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/mont_dor.svg"),
+		image: null,
 		label: {
 			FR: "Mont d'Or",
 		},
@@ -202,7 +202,7 @@ export default [
 	{
 		id: "cheese_morbier",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/morbier.svg"),
+		image: null,
 		label: {
 			FR: "Morbier",
 		},
@@ -210,7 +210,7 @@ export default [
 	{
 		id: "cheese_munster",
 		co2: 0.37,
-		image: require("@/assets/images/cheese/munster.svg"),
+		image: null,
 		label: {
 			FR: "Munster",
 		},
@@ -218,7 +218,7 @@ export default [
 	{
 		id: "cheese_neufchatel",
 		co2: 0.35,
-		image: require("@/assets/images/cheese/neufchatel.svg"),
+		image: null,
 		label: {
 			FR: "Neufchâtel",
 		},
@@ -226,7 +226,7 @@ export default [
 	{
 		id: "cheese_ossau_iraty",
 		co2: 0.35,
-		image: require("@/assets/images/cheese/ossau_iraty.svg"),
+		image: null,
 		label: {
 			FR: "Ossau-Iraty",
 		},
@@ -234,7 +234,7 @@ export default [
 	{
 		id: "cheese_pelardon",
 		co2: 0.33,
-		image: require("@/assets/images/cheese/pelardon.svg"),
+		image: null,
 		label: {
 			FR: "Pélardon",
 		},
@@ -242,7 +242,7 @@ export default [
 	{
 		id: "cheese_picodon",
 		co2: 0.33,
-		image: require("@/assets/images/cheese/picodon.svg"),
+		image: null,
 		label: {
 			FR: "Picodon",
 		},
@@ -250,7 +250,7 @@ export default [
 	{
 		id: "cheese_pont_leveque",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/pont_leveque.svg"),
+		image: null,
 		label: {
 			FR: "Pont-l'Évêque",
 		},
@@ -258,7 +258,7 @@ export default [
 	{
 		id: "cheese_raclette",
 		co2: 0.35,
-		image: require("@/assets/images/cheese/raclette.svg"),
+		image: null,
 		label: {
 			FR: "Raclette",
 		},
@@ -266,7 +266,7 @@ export default [
 	{
 		id: "cheese_reblochon",
 		co2: 0.35,
-		image: require("@/assets/images/cheese/reblochon.svg"),
+		image: null,
 		label: {
 			FR: "Reblochon",
 		},
@@ -274,7 +274,7 @@ export default [
 	{
 		id: "cheese_rigotte_condrieu",
 		co2: 0.33,
-		image: require("@/assets/images/cheese/rigotte_condrieu.svg"),
+		image: null,
 		label: {
 			FR: "Rigotte de Condrieu",
 		},
@@ -282,7 +282,7 @@ export default [
 	{
 		id: "cheese_rocamadour",
 		co2: 0.33,
-		image: require("@/assets/images/cheese/rocamadour.svg"),
+		image: null,
 		label: {
 			FR: "Rocamadour",
 		},
@@ -290,7 +290,7 @@ export default [
 	{
 		id: "cheese_roquefort",
 		co2: 0.38,
-		image: require("@/assets/images/cheese/roquefort.svg"),
+		image: null,
 		label: {
 			FR: "Roquefort",
 		},
@@ -298,7 +298,7 @@ export default [
 	{
 		id: "cheese_saint_felicien",
 		co2: 0.35,
-		image: require("@/assets/images/cheese/saint_felicien.svg"),
+		image: null,
 		label: {
 			FR: "Saint-Félicien",
 		},
@@ -306,7 +306,7 @@ export default [
 	{
 		id: "cheese_saint_marcellin",
 		co2: 0.35,
-		image: require("@/assets/images/cheese/saint_marcellin.svg"),
+		image: null,
 		label: {
 			FR: "Saint-Marcellin",
 		},
@@ -314,7 +314,7 @@ export default [
 	{
 		id: "cheese_saint_nectaire",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/saint_nectaire.svg"),
+		image: null,
 		label: {
 			FR: "Saint-Nectaire",
 		},
@@ -322,7 +322,7 @@ export default [
 	{
 		id: "cheese_saint_paulin",
 		co2: 0.35,
-		image: require("@/assets/images/cheese/saint_paulin.svg"),
+		image: null,
 		label: {
 			FR: "Saint-Paulin",
 		},
@@ -330,7 +330,7 @@ export default [
 	{
 		id: "cheese_sainte_maure",
 		co2: 0.33,
-		image: require("@/assets/images/cheese/sainte_maure.svg"),
+		image: null,
 		label: {
 			FR: "Sainte-Maure de Touraine",
 		},
@@ -338,7 +338,7 @@ export default [
 	{
 		id: "cheese_salers",
 		co2: 0.37,
-		image: require("@/assets/images/cheese/salers.svg"),
+		image: null,
 		label: {
 			FR: "Salers",
 		},
@@ -346,7 +346,7 @@ export default [
 	{
 		id: "cheese_selles_sur_cher",
 		co2: 0.33,
-		image: require("@/assets/images/cheese/selles_sur_cher.svg"),
+		image: null,
 		label: {
 			FR: "Selles-sur-Cher",
 		},
@@ -354,7 +354,7 @@ export default [
 	{
 		id: "cheese_tomme_savoie",
 		co2: 0.36,
-		image: require("@/assets/images/cheese/tomme_savoie.svg"),
+		image: null,
 		label: {
 			FR: "Tomme de Savoie",
 		},
@@ -362,7 +362,7 @@ export default [
 	{
 		id: "cheese_valencay",
 		co2: 0.33,
-		image: require("@/assets/images/cheese/valencay.svg"),
+		image: null,
 		label: {
 			FR: "Valençay",
 		},
@@ -370,7 +370,7 @@ export default [
 	{
 		id: "cheese_vieux_lille",
 		co2: 0.37,
-		image: require("@/assets/images/cheese/vieux_lille.svg"),
+		image: null,
 		label: {
 			FR: "Vieux Lille",
 		},

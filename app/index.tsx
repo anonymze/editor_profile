@@ -11,21 +11,57 @@ import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import * as Application from "expo-application";
 import vegetables from "@/data/vegetables";
+import ingredient from "@/data/ingredient";
 import { router } from "expo-router";
+import cheese from "@/data/cheese";
 import { Image } from "expo-image";
 import fruits from "@/data/fruit";
+import pasta from "@/data/pasta";
+import dough from "@/data/dough";
+import dairy from "@/data/dairy";
+import rice from "@/data/rice";
+import meat from "@/data/meat";
+import fish from "@/data/fish";
 
 
 const { width, height } = Dimensions.get("window");
 
 const initialSections = [
 	{
+		title: "Fromages",
+		data: cheese,
+	},
+	{
 		title: "Fruits",
 		data: fruits,
 	},
 	{
+		title: "Ingrédients",
+		data: ingredient,
+	},
+	{
 		title: "Légumes",
 		data: vegetables,
+	},
+	{
+		title: "Pâtes",
+		data: pasta,
+	},
+	{
+		title: "Pâtes préparées",
+		data: dough,
+	},
+	{
+		title: "Poissons",
+		data: fish,
+	},
+	{
+		title: "Riz",
+		data: rice,
+	},
+	{
+		title: "Viandes",
+		data: meat,
 	},
 ];
 

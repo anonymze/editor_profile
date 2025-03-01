@@ -2,7 +2,7 @@ export default [
 	{
 		id: "pasta_cannelloni",
 		co2: 0.25,
-		image: require("@/assets/images/pasta/cannelloni.svg"),
+		image: null,
 		label: {
 			FR: "Pâte cannelloni",
 		},
@@ -10,7 +10,7 @@ export default [
 	{
 		id: "pasta_capellini",
 		co2: 0.24,
-		image: require("@/assets/images/pasta/capellini.svg"),
+		image: null,
 		label: {
 			FR: "Pâte capellini",
 		},
@@ -18,7 +18,7 @@ export default [
 	{
 		id: "pasta_conchiglie",
 		co2: 0.25,
-		image: require("@/assets/images/pasta/conchiglie.svg"),
+		image: null,
 		label: {
 			FR: "Pâte Conchiglie",
 		},
@@ -26,7 +26,7 @@ export default [
 	{
 		id: "pasta_coquillettes",
 		co2: 0.24,
-		image: require("@/assets/images/pasta/coquillettes.svg"),
+		image: null,
 		label: {
 			FR: "Pâte coquillettes",
 		},
@@ -34,7 +34,7 @@ export default [
 	{
 		id: "pasta_farfalle",
 		co2: 0.25,
-		image: require("@/assets/images/pasta/farfalle.svg"),
+		image: null,
 		label: {
 			FR: "Pâte farfalle",
 		},
@@ -42,7 +42,7 @@ export default [
 	{
 		id: "pasta_fettuccine",
 		co2: 0.25,
-		image: require("@/assets/images/pasta/fettuccine.svg"),
+		image: null,
 		label: {
 			FR: "Pâte fettuccine",
 		},
@@ -50,7 +50,7 @@ export default [
 	{
 		id: "pasta_fusilli",
 		co2: 0.25,
-		image: require("@/assets/images/pasta/fusilli.svg"),
+		image: null,
 		label: {
 			FR: "Pâte fusilli",
 		},
@@ -58,7 +58,7 @@ export default [
 	{
 		id: "pasta_gnocchi",
 		co2: 0.26,
-		image: require("@/assets/images/pasta/gnocchi.svg"),
+		image: null,
 		label: {
 			FR: "Pâte gnocchi",
 		},
@@ -66,7 +66,7 @@ export default [
 	{
 		id: "pasta_lasagne",
 		co2: 0.26,
-		image: require("@/assets/images/pasta/lasagne.svg"),
+		image: null,
 		label: {
 			FR: "Pâte lasagne",
 		},
@@ -74,7 +74,7 @@ export default [
 	{
 		id: "pasta_linguine",
 		co2: 0.25,
-		image: require("@/assets/images/pasta/linguine.svg"),
+		image: null,
 		label: {
 			FR: "Pâte linguine",
 		},
@@ -82,7 +82,7 @@ export default [
 	{
 		id: "pasta_macaroni",
 		co2: 0.25,
-		image: require("@/assets/images/pasta/macaroni.svg"),
+		image: null,
 		label: {
 			FR: "Pâte macaroni",
 		},
@@ -90,7 +90,7 @@ export default [
 	{
 		id: "pasta_orecchiette",
 		co2: 0.25,
-		image: require("@/assets/images/pasta/orecchiette.svg"),
+		image: null,
 		label: {
 			FR: "Pâte orecchiette",
 		},
@@ -98,7 +98,7 @@ export default [
 	{
 		id: "pasta_pappardelle",
 		co2: 0.25,
-		image: require("@/assets/images/pasta/pappardelle.svg"),
+		image: null,
 		label: {
 			FR: "Pâte pappardelle",
 		},
@@ -106,7 +106,7 @@ export default [
 	{
 		id: "pasta_pates_completes",
 		co2: 0.24,
-		image: require("@/assets/images/pasta/pates_completes.svg"),
+		image: null,
 		label: {
 			FR: "Pâtes complètes",
 		},
@@ -114,7 +114,7 @@ export default [
 	{
 		id: "pasta_pates_fraiches",
 		co2: 0.26,
-		image: require("@/assets/images/pasta/pates_fraiches.svg"),
+		image: null,
 		label: {
 			FR: "Pâtes fraîches",
 		},
@@ -122,7 +122,7 @@ export default [
 	{
 		id: "pasta_penne",
 		co2: 0.25,
-		image: require("@/assets/images/pasta/penne.svg"),
+		image: null,
 		label: {
 			FR: "Pâte penne",
 		},
@@ -130,7 +130,7 @@ export default [
 	{
 		id: "pasta_ravioli",
 		co2: 0.27,
-		image: require("@/assets/images/pasta/ravioli.svg"),
+		image: null,
 		label: {
 			FR: "Pâte ravioli",
 		},
@@ -138,7 +138,7 @@ export default [
 	{
 		id: "pasta_rigatoni",
 		co2: 0.25,
-		image: require("@/assets/images/pasta/rigatoni.svg"),
+		image: null,
 		label: {
 			FR: "Pâte rigatoni",
 		},
@@ -146,7 +146,7 @@ export default [
 	{
 		id: "pasta_risoni",
 		co2: 0.25,
-		image: require("@/assets/images/pasta/risoni.svg"),
+		image: null,
 		label: {
 			FR: "Pâte risoni",
 		},
@@ -154,7 +154,7 @@ export default [
 	{
 		id: "pasta_spaghetti",
 		co2: 0.25,
-		image: require("@/assets/images/pasta/spaghetti.svg"),
+		image: null,
 		label: {
 			FR: "Pâte spaghetti",
 		},
@@ -162,7 +162,7 @@ export default [
 	{
 		id: "pasta_tagliatelle",
 		co2: 0.25,
-		image: require("@/assets/images/pasta/tagliatelle.svg"),
+		image: null,
 		label: {
 			FR: "Pâte tagliatelle",
 		},
@@ -170,7 +170,7 @@ export default [
 	{
 		id: "pasta_tortellini",
 		co2: 0.27,
-		image: require("@/assets/images/pasta/tortellini.svg"),
+		image: null,
 		label: {
 			FR: "Pâte tortellini",
 		},
@@ -178,7 +178,7 @@ export default [
 	{
 		id: "pasta_vermicelles",
 		co2: 0.24,
-		image: require("@/assets/images/pasta/vermicelles.svg"),
+		image: null,
 		label: {
 			FR: "Pâte vermicelles",
 		},

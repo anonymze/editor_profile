@@ -2,7 +2,7 @@ export default [
 	{
 		id: "ingredient_bicarbonate",
 		co2: 0.12,
-		image: require("@/assets/images/ingredients/bicarbonate.svg"),
+		image: null,
 		label: {
 			FR: "Bicarbonate",
 		},
@@ -10,7 +10,7 @@ export default [
 	{
 		id: "ingredient_cacao",
 		co2: 0.18,
-		image: require("@/assets/images/ingredients/cacao.svg"),
+		image: null,
 		label: {
 			FR: "Cacao",
 		},
@@ -18,7 +18,7 @@ export default [
 	{
 		id: "ingredient_cannelle",
 		co2: 0.14,
-		image: require("@/assets/images/ingredients/cannelle.svg"),
+		image: null,
 		label: {
 			FR: "Cannelle",
 		},
@@ -26,7 +26,7 @@ export default [
 	{
 		id: "ingredient_chapelure",
 		co2: 0.16,
-		image: require("@/assets/images/ingredients/chapelure.svg"),
+		image: null,
 		label: {
 			FR: "Chapelure",
 		},
@@ -34,7 +34,7 @@ export default [
 	{
 		id: "ingredient_chocolat",
 		co2: 0.19,
-		image: require("@/assets/images/ingredients/chocolat.svg"),
+		image: null,
 		label: {
 			FR: "Chocolat",
 		},
@@ -42,7 +42,7 @@ export default [
 	{
 		id: "ingredient_farine",
 		co2: 0.15,
-		image: require("@/assets/images/ingredients/farine.svg"),
+		image: null,
 		label: {
 			FR: "Farine",
 		},
@@ -50,7 +50,7 @@ export default [
 	{
 		id: "ingredient_fecule",
 		co2: 0.15,
-		image: require("@/assets/images/ingredients/fecule.svg"),
+		image: null,
 		label: {
 			FR: "Fécule",
 		},
@@ -58,7 +58,7 @@ export default [
 	{
 		id: "ingredient_gelatine",
 		co2: 0.17,
-		image: require("@/assets/images/ingredients/gelatine.svg"),
+		image: null,
 		label: {
 			FR: "Gélatine",
 		},
@@ -66,7 +66,7 @@ export default [
 	{
 		id: "ingredient_levure",
 		co2: 0.14,
-		image: require("@/assets/images/ingredients/levure.svg"),
+		image: null,
 		label: {
 			FR: "Levure",
 		},
@@ -74,7 +74,7 @@ export default [
 	{
 		id: "ingredient_miel",
 		co2: 0.16,
-		image: require("@/assets/images/ingredients/miel.svg"),
+		image: null,
 		label: {
 			FR: "Miel",
 		},
@@ -82,7 +82,7 @@ export default [
 	{
 		id: "ingredient_moutarde",
 		co2: 0.15,
-		image: require("@/assets/images/ingredients/moutarde.svg"),
+		image: null,
 		label: {
 			FR: "Moutarde",
 		},
@@ -90,7 +90,7 @@ export default [
 	{
 		id: "ingredient_oeuf",
 		co2: 0.21,
-		image: require("@/assets/images/ingredients/oeuf.svg"),
+		image: null,
 		label: {
 			FR: "Oeuf",
 		},
@@ -98,7 +98,7 @@ export default [
 	{
 		id: "ingredient_sucre",
 		co2: 0.13,
-		image: require("@/assets/images/ingredients/sucre.svg"),
+		image: null,
 		label: {
 			FR: "Sucre",
 		},
@@ -106,7 +106,7 @@ export default [
 	{
 		id: "ingredient_vanille",
 		co2: 0.13,
-		image: require("@/assets/images/ingredients/vanille.svg"),
+		image: null,
 		label: {
 			FR: "Vanille",
 		},
@@ -114,7 +114,7 @@ export default [
 	{
 		id: "ingredient_vinaigre",
 		co2: 0.13,
-		image: require("@/assets/images/ingredients/vinaigre.svg"),
+		image: null,
 		label: {
 			FR: "Vinaigre",
 		},

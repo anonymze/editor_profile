@@ -2,7 +2,7 @@ export default [
 	{
 		id: "rice_arborio",
 		co2: 0.28,
-		image: require("@/assets/images/rice/arborio.svg"),
+		image: null,
 		label: {
 			FR: "Arborio",
 		},
@@ -10,7 +10,7 @@ export default [
 	{
 		id: "rice_basmati",
 		co2: 0.27,
-		image: require("@/assets/images/rice/basmati.svg"),
+		image: null,
 		label: {
 			FR: "Basmati",
 		},
@@ -18,7 +18,7 @@ export default [
 	{
 		id: "rice_bomba",
 		co2: 0.28,
-		image: require("@/assets/images/rice/bomba.svg"),
+		image: null,
 		label: {
 			FR: "Bomba",
 		},
@@ -26,7 +26,7 @@ export default [
 	{
 		id: "rice_camargue",
 		co2: 0.26,
-		image: require("@/assets/images/rice/camargue.svg"),
+		image: null,
 		label: {
 			FR: "Camargue",
 		},
@@ -34,7 +34,7 @@ export default [
 	{
 		id: "rice_carnaroli",
 		co2: 0.28,
-		image: require("@/assets/images/rice/carnaroli.svg"),
+		image: null,
 		label: {
 			FR: "Carnaroli",
 		},
@@ -42,7 +42,7 @@ export default [
 	{
 		id: "rice_complet",
 		co2: 0.26,
-		image: require("@/assets/images/rice/complet.svg"),
+		image: null,
 		label: {
 			FR: "Complet",
 		},
@@ -50,7 +50,7 @@ export default [
 	{
 		id: "rice_jasmin",
 		co2: 0.27,
-		image: require("@/assets/images/rice/jasmin.svg"),
+		image: null,
 		label: {
 			FR: "Jasmin",
 		},
@@ -58,7 +58,7 @@ export default [
 	{
 		id: "rice_long",
 		co2: 0.27,
-		image: require("@/assets/images/rice/long.svg"),
+		image: null,
 		label: {
 			FR: "Long",
 		},
@@ -66,7 +66,7 @@ export default [
 	{
 		id: "rice_noir",
 		co2: 0.26,
-		image: require("@/assets/images/rice/noir.svg"),
+		image: null,
 		label: {
 			FR: "Noir",
 		},
@@ -74,7 +74,7 @@ export default [
 	{
 		id: "rice_parfume",
 		co2: 0.27,
-		image: require("@/assets/images/rice/parfume.svg"),
+		image: null,
 		label: {
 			FR: "Parfumé",
 		},
@@ -82,7 +82,7 @@ export default [
 	{
 		id: "rice_pilaf",
 		co2: 0.28,
-		image: require("@/assets/images/rice/pilaf.svg"),
+		image: null,
 		label: {
 			FR: "Pilaf",
 		},
@@ -90,7 +90,7 @@ export default [
 	{
 		id: "rice_risotto",
 		co2: 0.28,
-		image: require("@/assets/images/rice/risotto.svg"),
+		image: null,
 		label: {
 			FR: "Risotto",
 		},
@@ -98,7 +98,7 @@ export default [
 	{
 		id: "rice_rond",
 		co2: 0.27,
-		image: require("@/assets/images/rice/rond.svg"),
+		image: null,
 		label: {
 			FR: "Rond",
 		},
@@ -106,7 +106,7 @@ export default [
 	{
 		id: "rice_rouge",
 		co2: 0.26,
-		image: require("@/assets/images/rice/rouge.svg"),
+		image: null,
 		label: {
 			FR: "Rouge",
 		},
@@ -114,7 +114,7 @@ export default [
 	{
 		id: "rice_sauvage",
 		co2: 0.26,
-		image: require("@/assets/images/rice/sauvage.svg"),
+		image: null,
 		label: {
 			FR: "Sauvage",
 		},
@@ -122,7 +122,7 @@ export default [
 	{
 		id: "rice_sushi",
 		co2: 0.27,
-		image: require("@/assets/images/rice/sushi.svg"),
+		image: null,
 		label: {
 			FR: "Sushi",
 		},
@@ -130,7 +130,7 @@ export default [
 	{
 		id: "rice_thai",
 		co2: 0.27,
-		image: require("@/assets/images/rice/thai.svg"),
+		image: null,
 		label: {
 			FR: "Thaï",
 		},
@@ -138,7 +138,7 @@ export default [
 	{
 		id: "rice_vapeur",
 		co2: 0.27,
-		image: require("@/assets/images/rice/vapeur.svg"),
+		image: null,
 		label: {
 			FR: "Vapeur",
 		},

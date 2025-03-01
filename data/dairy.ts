@@ -2,7 +2,7 @@ export default [
 	{
 		id: "dairy_beurre",
 		co2: 0.33,
-		image: require("@/assets/images/dairy/beurre.svg"),
+		image: null,
 		label: {
 			FR: "Beurre",
 		},
@@ -10,7 +10,7 @@ export default [
 	{
 		id: "dairy_creme_fraiche",
 		co2: 0.30,
-		image: require("@/assets/images/dairy/creme_fraiche.svg"),
+		image: null,
 		label: {
 			FR: "Crème fraîche",
 		},
@@ -18,7 +18,7 @@ export default [
 	{
 		id: "dairy_creme_liquide",
 		co2: 0.29,
-		image: require("@/assets/images/dairy/creme_liquide.svg"),
+		image: null,
 		label: {
 			FR: "Crème liquide",
 		},
@@ -26,7 +26,7 @@ export default [
 	{
 		id: "dairy_fromage_blanc",
 		co2: 0.27,
-		image: require("@/assets/images/dairy/fromage_blanc.svg"),
+		image: null,
 		label: {
 			FR: "Fromage blanc",
 		},
@@ -34,7 +34,7 @@ export default [
 	{
 		id: "dairy_lait",
 		co2: 0.25,
-		image: require("@/assets/images/dairy/lait.svg"),
+		image: null,
 		label: {
 			FR: "Lait",
 		},
@@ -42,7 +42,7 @@ export default [
 	{
 		id: "dairy_lait_amande",
 		co2: 0.20,
-		image: require("@/assets/images/dairy/lait_amande.svg"),
+		image: null,
 		label: {
 			FR: "Lait d'amande",
 		},
@@ -50,7 +50,7 @@ export default [
 	{
 		id: "dairy_lait_avoine",
 		co2: 0.18,
-		image: require("@/assets/images/dairy/lait_avoine.svg"),
+		image: null,
 		label: {
 			FR: "Lait d'avoine",
 		},
@@ -58,7 +58,7 @@ export default [
 	{
 		id: "dairy_lait_coco",
 		co2: 0.22,
-		image: require("@/assets/images/dairy/lait_coco.svg"),
+		image: null,
 		label: {
 			FR: "Lait de coco",
 		},
@@ -66,7 +66,7 @@ export default [
 	{
 		id: "dairy_lait_concentre",
 		co2: 0.27,
-		image: require("@/assets/images/dairy/lait_concentre.svg"),
+		image: null,
 		label: {
 			FR: "Lait concentré",
 		},
@@ -74,7 +74,7 @@ export default [
 	{
 		id: "dairy_mascarpone",
 		co2: 0.32,
-		image: require("@/assets/images/dairy/mascarpone.svg"),
+		image: null,
 		label: {
 			FR: "Mascarpone",
 		},
@@ -82,7 +82,7 @@ export default [
 	{
 		id: "dairy_soja_sale",
 		co2: 0.19,
-		image: require("@/assets/images/dairy/soja_sale.svg"),
+		image: null,
 		label: {
 			FR: "Soja salé",
 		},
@@ -90,7 +90,7 @@ export default [
 	{
 		id: "dairy_soja_sucre",
 		co2: 0.19,
-		image: require("@/assets/images/dairy/soja_sucre.svg"),
+		image: null,
 		label: {
 			FR: "Soja sucré",
 		},
@@ -98,7 +98,7 @@ export default [
 	{
 		id: "dairy_tofu",
 		co2: 0.18,
-		image: require("@/assets/images/dairy/tofu.svg"),
+		image: null,
 		label: {
 			FR: "Tofu",
 		},
@@ -106,7 +106,7 @@ export default [
 	{
 		id: "dairy_yaourt_blanc",
 		co2: 0.26,
-		image: require("@/assets/images/dairy/yaourt_blanc.svg"),
+		image: null,
 		label: {
 			FR: "Yaourt blanc",
 		},
@@ -114,7 +114,7 @@ export default [
 	{
 		id: "dairy_yaourt",
 		co2: 0.26,
-		image: require("@/assets/images/dairy/yaourt_chocolat.svg"),
+		image: null,
 		label: {
 			FR: "Yaourt",
 		},
@@ -122,7 +122,7 @@ export default [
 	{
 		id: "dairy_yaourt_greek",
 		co2: 0.20,
-		image: require("@/assets/images/dairy/yaourt_greek.svg"),
+		image: null,
 		label: {
 			FR: "Yaourt grec",
 		},
@@ -130,7 +130,7 @@ export default [
 	{
 		id: "dairy_yaourt_soja",
 		co2: 0.20,
-		image: require("@/assets/images/dairy/yaourt_soja.svg"),
+		image: null,
 		label: {
 			FR: "Yaourt au soja",
 		},
@@ -138,7 +138,7 @@ export default [
 	{
 		id: "dairy_yaourt_vegetal",
 		co2: 0.21,
-		image: require("@/assets/images/dairy/yaourt_vegetal.svg"),
+		image: null,
 		label: {
 			FR: "Yaourt végétal",
 		},

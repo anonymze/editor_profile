@@ -9,7 +9,14 @@ import { Image } from "expo-image";
 import fruits from "@/data/fruit";
 
 
-export type FoodItem = (typeof fruits)[number] | (typeof vegetables)[number];
+export type FoodItem = {
+	id: string;
+	co2: number;
+	image: string | null;
+	label: {
+		FR: string;
+	};
+};
 
 interface Props {
 	placeholderSearch: string;
@@ -199,7 +206,7 @@ const MemoizedSections = React.memo(
 							]}
 							onPress={() => onItemPress(item)}
 						>
-							<Image style={styles.itemImage} contentFit="contain" source={item.image} alt={item.label.FR} />
+							{item.image && <Image style={styles.itemImage} contentFit="contain" source={item.image} alt={item.label.FR} />}
 							<Text
 								style={[
 									styles.itemText,
@@ -215,7 +222,8 @@ const MemoizedSections = React.memo(
 		</>
 	),
 	(prevProps, nextProps) => {
-		// optional: custom comparison function
+		// optional: custom comp
+		// arison function
 		return (
 			prevProps.sections === nextProps.sections &&
 			prevProps.selectedIds === nextProps.selectedIds &&
