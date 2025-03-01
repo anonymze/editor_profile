@@ -96,19 +96,19 @@ export default [
 		},
 	},
 	{
+		id: "ingredient_sucre",
+		co2: 0.13,
+		image: require("@/assets/images/ingredients/sucre.svg"),
+		label: {
+			FR: "Sucre",
+		},
+	},
+	{
 		id: "ingredient_vanille",
 		co2: 0.13,
 		image: require("@/assets/images/ingredients/vanille.svg"),
 		label: {
 			FR: "Vanille",
-		},
-	},
-	{
-		id: "ingredient_sucre_blanc",
-		co2: 0.13,
-		image: require("@/assets/images/ingredients/sucre.svg"),
-		label: {
-			FR: "Sucre blanc",
 		},
 	},
 	{
@@ -119,4 +119,4 @@ export default [
 			FR: "Vinaigre",
 		},
 	},
-]; 
+];
