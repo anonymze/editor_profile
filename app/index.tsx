@@ -305,7 +305,7 @@ export default function Page() {
 									.springify()}
 							>
 								<Image
-									transition={300}
+									placeholderContentFit="contain"
 									placeholder={require("@/assets/images/fridge.png")}
 									source={value.image}
 									style={styles.imageIngredients}
