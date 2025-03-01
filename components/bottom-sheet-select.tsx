@@ -5,8 +5,8 @@ import { Pressable } from "react-native-gesture-handler";
 import { themeColors } from "@/theme/theme-storage";
 import vegetables from "@/data/vegetables";
 import React, { forwardRef } from "react";
-import fruits from "@/data/fruits";
 import { Image } from "expo-image";
+import fruits from "@/data/fruit";
 
 
 export type FoodItem = (typeof fruits)[number] | (typeof vegetables)[number];

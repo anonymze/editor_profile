@@ -1,4 +1,5 @@
-import fruitsAndVegetables from "./fruits_vegetables_months";
+import fruitsAndVegetables from "./fruit_vegetable_month";
+
 
 export const MONTHS: Record<string, keyof typeof fruitsAndVegetables> = {
 	"0": "january",

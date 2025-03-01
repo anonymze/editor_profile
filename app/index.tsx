@@ -12,8 +12,8 @@ import { Pressable } from "react-native-gesture-handler";
 import * as Application from "expo-application";
 import vegetables from "@/data/vegetables";
 import { router } from "expo-router";
-import fruits from "@/data/fruits";
 import { Image } from "expo-image";
+import fruits from "@/data/fruit";
 
 
 const { width, height } = Dimensions.get("window");
