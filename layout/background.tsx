@@ -1,6 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { Dimensions, StyleSheet } from "react-native";
-import { themeColors } from "@/utils/theme-storage";
+import { themeColors } from "@/hooks/theme-storage";
 import { starPositions } from "@/utils/stars";
 import { Circle } from "react-native-svg";
 import { Svg } from "react-native-svg";

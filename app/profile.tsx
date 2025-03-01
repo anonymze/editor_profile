@@ -1,4 +1,4 @@
-import { DEFAULT_IMAGE_URI, getStorageColor, getStorageImageUri, getStorageName, themeColors, } from "@/utils/theme-storage";
+import { DEFAULT_IMAGE_URI, getStorageColor, getStorageImageUri, getStorageName, themeColors, } from "@/hooks/theme-storage";
 import { PlusIcon, PencilIcon, ArrowLeftIcon, UserRoundPenIcon } from "lucide-react-native";
 import { ButtonRadialGradient, CircleRadialGradient } from "@/components/radial-gradient";
 import { Gesture, GestureDetector, Pressable } from "react-native-gesture-handler";

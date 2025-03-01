@@ -1,5 +1,5 @@
 import { Dimensions, Platform, StyleProp, StyleSheet, Text, TextStyle, View } from "react-native";
-import { DEFAULT_KEY_NAME, DEFAULT_NAME, themeColors } from "@/utils/theme-storage";
+import { DEFAULT_KEY_NAME, DEFAULT_NAME, themeColors } from "@/hooks/theme-storage";
 import MaskedView from "@react-native-masked-view/masked-view";
 import { TextInput } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";

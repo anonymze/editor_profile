@@ -2,7 +2,7 @@ import { BottomSheetFooter, BottomSheetFooterProps, BottomSheetModal, BottomShee
 import { View, Text, StyleSheet, Platform } from "react-native";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { Pressable } from "react-native-gesture-handler";
-import { themeColors } from "@/utils/theme-storage";
+import { themeColors } from "@/hooks/theme-storage";
 import vegetables from "@/data/vegetables";
 import React, { forwardRef } from "react";
 import fruits from "@/data/fruits";

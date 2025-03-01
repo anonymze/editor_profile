@@ -1,5 +1,5 @@
 import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS, } from "react-native-reanimated";
-import { getStorageColor, getStorageLimitedAction, storage, themeColors } from "@/utils/theme-storage";
+import { getStorageColor, getStorageLimitedAction, storage, themeColors } from "@/hooks/theme-storage";
 import { Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";

@@ -1,4 +1,4 @@
-import { getStorageColor, getStorageLimitedAction, getStorageName, setStorageLimitedAction, themeColors, } from "@/utils/theme-storage";
+import { getStorageColor, getStorageLimitedAction, getStorageName, setStorageLimitedAction, themeColors, } from "@/hooks/theme-storage";
 import { ArrowLeftIcon, BookAIcon, CarrotIcon, ChefHatIcon, ClockIcon, DotIcon, MinusIcon, UsersRoundIcon, } from "lucide-react-native";
 import { Gesture, GestureDetector, Pressable, ScrollView } from "react-native-gesture-handler";
 import Animated, { FadeIn, FadeInDown, FadeOut, runOnJS } from "react-native-reanimated";

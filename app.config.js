@@ -1,6 +1,6 @@
 module.exports = () => ({
 	expo: {
-		name: "fridgy",
+		name: "Fridgy",
 		slug: "fridgy",
 		version: "1.0.0",
 		orientation: "portrait",
