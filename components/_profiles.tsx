@@ -1,7 +1,7 @@
 import Animated, { Easing, FadeInDown, useSharedValue, withTiming, useAnimatedStyle, interpolate, withSpring, withDelay, } from "react-native-reanimated";
 import { PencilIcon, CameraIcon, CheckIcon } from "lucide-react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
-import { getStorageColor, themeColors } from "@/hooks/theme-storage";
+import { getStorageColor, themeColors } from "@/theme/theme-storage";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { StyleSheet, View } from "react-native";

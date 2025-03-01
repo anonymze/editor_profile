@@ -1,6 +1,6 @@
 import "react-native-reanimated";
 
-import { DEFAULT_COLOR, DEFAULT_KEY_COLOR, themeColors } from "@/hooks/theme-storage";
+import { DEFAULT_COLOR, DEFAULT_KEY_COLOR, themeColors } from "@/theme/theme-storage";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useMMKVString } from "react-native-mmkv";
