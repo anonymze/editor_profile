@@ -38,9 +38,13 @@ npx expo serve
 // export web
 npx expo export --platform web
 
-TODO 
-- logo android
-- ingredients 
 
+"preview": {
+			"ios": {
+				"appleId": "anodevfr@gmail.com",
+				"ascAppId": "xxxxxx",
+				"companyName": "Ano"
+			}
+		}
 
-
+eas submit --non-interactive for CI/CD pipelines
