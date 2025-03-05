@@ -60,12 +60,12 @@ export default function Page() {
 	);
 
 	useEffect(() => {
-		const timeout = setTimeout(() => {
+		const animationFrame = requestAnimationFrame(() => {
 			inputRef.current?.focus();
-		}, 1);
+		});
 
 		return () => {
-			clearTimeout(timeout);
+			cancelAnimationFrame(animationFrame);
 		};
 	}, []);
 
