@@ -6,6 +6,7 @@ import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { ButtonRadialGradient } from "@/components/radial-gradient";
 import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
+import { purchaseSubscription } from "@/utils/in-app-purchase";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
@@ -209,8 +210,8 @@ export default function Page() {
 				</View>
 
 				<Animated.View style={[styles.tooltipActionsAbsolute, { opacity: buttonsOpacity }]}>
-					<ButtonRadialGradient onPress={() => {
-						console.log('ici')
+					<ButtonRadialGradient onPress={async () => {
+							await purchaseSubscription("entl14442e31e1");
 					}} text="Je m'abonne" color={themeColors[themeColor].primaryLight} isAction />
 					<ButtonRadialGradient
 						text="Compris !"

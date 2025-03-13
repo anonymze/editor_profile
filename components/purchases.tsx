@@ -36,7 +36,7 @@ export default function PurchaseList() {
 			</View>
 			<View style={{ margin: 10 }}>
 				<Text>OFFERINGS</Text>
-				<Text>MOTNHLY : {offerings?.current?.monthly?.identifier}</Text>
+				<Text>MOTNHLY IDENTIFIER : {offerings?.current?.monthly?.identifier}</Text>
 				<Text>PACKAGES CURRENT : </Text>
 				{offerings?.current?.availablePackages.map((pack) => (
 					<Text key={pack.identifier}>{pack.identifier}</Text>
