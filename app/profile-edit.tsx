@@ -6,6 +6,7 @@ import { GestureDetector, Gesture, Pressable } from "react-native-gesture-handle
 import { CheckIcon, CameraIcon, ArrowLeftIcon } from "lucide-react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { CircleRadialGradient } from "@/components/radial-gradient";
+import { useEnteringBottomAnimation } from "@/hooks/animations";
 import { InputTextGradient } from "@/components/text-gradient";
 import { getKeysTypedObject } from "@/utils/helper";
 import { useMMKVString } from "react-native-mmkv";
@@ -26,6 +27,10 @@ export default function Page() {
 	const [imageUri] = useMMKVString(DEFAULT_KEY_IMAGE_URI);
 	const [themeColor, setThemeColor] = useMMKVString(DEFAULT_KEY_COLOR);
 	const themeColorFinal = (themeColor as keyof typeof themeColors) ?? DEFAULT_COLOR;
+	const enteringAnimation = useEnteringBottomAnimation(() => {
+		"worklet";
+		runOnJS(setAnimating)(false);
+	});
 
 	const panGesture = useMemo(
 		() =>
@@ -36,25 +41,6 @@ export default function Page() {
 					if (event.translationX > 50) {
 						runOnJS(router.push)("/profile");
 					}
-				}),
-		[]
-	);
-
-	const enteringAnimation = useMemo(
-		() =>
-			FadeInDown.duration(600)
-				.delay(300)
-				.easing(Easing.inOut(Easing.ease))
-				.springify()
-				.stiffness(100)
-				.damping(16)
-				.withInitialValues({
-					opacity: 0,
-					transform: [{ translateY: 100 }],
-				})
-				.withCallback((_) => {
-					"worklet";
-					runOnJS(setAnimating)(false);
 				}),
 		[]
 	);
@@ -77,7 +63,7 @@ export default function Page() {
 		[animating]
 	);
 
-	const pickImage = async () => {
+	const pickImage = useCallback(async () => {
 		let result = await ImagePicker.launchImageLibraryAsync({
 			mediaTypes: ["images"],
 			allowsEditing: true,
@@ -88,14 +74,14 @@ export default function Page() {
 
 		if (result.canceled || result.assets[0].type !== "image") return;
 		setStorageImageUri(result.assets[0].uri);
-	};
+	}, []);
 
 	return (
 		<GestureDetector gesture={panGesture}>
 			<KeyboardAvoidingView
 				behavior={Platform.OS === "ios" ? "padding" : "height"}
 				style={{ flex: 1, backgroundColor: themeColors[themeColorFinal].primaryDark }}
-				keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 0}
+				keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 20}
 			>
 				<LayoutBackground color={themeColorFinal} centeredContent>
 					<View style={stylesLayout.containerWithGap}>
@@ -160,14 +146,9 @@ export default function Page() {
 						</Pressable>
 					</Animated.View>
 
-					{/* <Animated.View
-						style={StyleSheet.flatten([stylesLayout.bottomButton, styles.buttons])}
-						entering={enteringAnimation}
-						exiting={FadeOut.duration(600)}
-					> */}
 					<AnimatedBlurView
-						style={[stylesLayout.bottomButton, styles.buttons]}
-						entering={enteringAnimation}
+						style={StyleSheet.flatten([stylesLayout.bottomButton, styles.buttons])}
+						entering={enteringAnimation()}
 						exiting={FadeOut.duration(600)}
 						intensity={70}
 					>
@@ -188,7 +169,6 @@ export default function Page() {
 							/>
 						))}
 					</AnimatedBlurView>
-					{/* </Animated.View> */}
 				</LayoutBackground>
 			</KeyboardAvoidingView>
 		</GestureDetector>
