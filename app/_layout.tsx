@@ -27,7 +27,7 @@ const apiKey = Platform.select({
 });
 
 Purchases.configure({ apiKey: apiKey || "" });
-Purchases.setLogLevel(LOG_LEVEL.DEBUG);
+Purchases.setLogLevel(LOG_LEVEL.ERROR);
 /** end initialize RevenueCat */
 
 // ignore warning logs
