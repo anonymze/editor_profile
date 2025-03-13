@@ -25,13 +25,26 @@ export default function PurchaseList() {
 				<Text>ACTIVE SUBSCRIPTIONS : {customerInfo?.activeSubscriptions.toString()}</Text>
 				<Text>
 					PURCHASES ENTITLEMENTS :{" "}
-					{customerInfo ? JSON.stringify(customerInfo.entitlements.active) : "NO CUSTOMER INFO"}
+					{customerInfo?.entitlements ?
+					Object.keys(customerInfo.entitlements.active).map((key) => (
+							<View key={key}>
+								<Text>{key}</Text>
+								<Text>identifier : {customerInfo.entitlements.active[key]?.identifier}</Text>
+								<Text>is active : {customerInfo.entitlements.active[key]?.isActive ? "YES" : "NO"}</Text>
+								<Text>expiration date : {customerInfo.entitlements.active[key]?.expirationDate}</Text>
+							</View>
+					  ))
+					: null}
 				</Text>
 				<Text>MANAGEMENT URL : {customerInfo?.managementURL}</Text>
 				<Text>APPLICATION VERSION : {customerInfo?.originalAppUserId}</Text>
 				<Text>
 					IS USER SUBSCRIBED TO THIS ENTLITED entl14442e31e1 ?{" "}
 					{customerInfo?.entitlements?.active["entl14442e31e1"]?.isActive ? "YES" : "NO"}
+				</Text>
+				<Text>
+					EXPIRATION DATE ENTLITED entl14442e31e1 ?{" "}
+					{customerInfo?.entitlements?.active["entl14442e31e1"]?.expirationDate}
 				</Text>
 			</View>
 			<View style={{ margin: 10 }}>
