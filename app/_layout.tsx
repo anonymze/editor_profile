@@ -13,14 +13,25 @@ import { Stack } from "expo-router";
 import React from "react";
 
 
-LogBox.ignoreLogs(["Warning: ..."]);
-
 // keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({
 	fade: true,
-		duration: 200,
-	});
+	duration: 200,
+});
+
+/** initialize RevenueCat */
+const apiKey = Platform.select({
+	ios: process.env.EXPO_PUBLIC_REVENUECAT_IOS_API_KEY,
+	android: process.env.EXPO_PUBLIC_REVENUECAT_ANDROID_API_KEY,
+});
+
+Purchases.configure({ apiKey: apiKey || "" });
+Purchases.setLogLevel(LOG_LEVEL.DEBUG);
+/** end initialize RevenueCat */
+
+// ignore warning logs
+LogBox.ignoreLogs(["Warning: ..."]);
 
 export default function RootLayout() {
 	const [themeColor] = useMMKVString(DEFAULT_KEY_COLOR);
@@ -33,12 +44,6 @@ export default function RootLayout() {
 
 	React.useEffect(() => {
 		if (loaded) {
-			if (Platform.OS === "ios") {
-				Purchases.configure({ apiKey: process.env.EXPO_PUBLIC_REVENUECAT_IOS_API_KEY || "" });
-			} else if (Platform.OS === "android") {
-				Purchases.configure({ apiKey: process.env.EXPO_PUBLIC_REVENUECAT_ANDROID_API_KEY || "" });
-			}
-			Purchases.setLogLevel(LOG_LEVEL.DEBUG);
 			SplashScreen.hideAsync();
 		}
 	}, [loaded]);
