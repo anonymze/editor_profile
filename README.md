@@ -27,7 +27,7 @@ eas build -s
 eas submit --platform ios --latest
 
 // register devices to test internally (use .ipa (Ad Hoc) for exemple on the device registered)
- eas device:create
+eas device:create
 
 // create consistent alias url hosted
 eas deploy --alias dev
