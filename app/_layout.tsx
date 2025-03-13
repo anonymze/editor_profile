@@ -20,16 +20,6 @@ SplashScreen.setOptions({
 	duration: 200,
 });
 
-/** initialize RevenueCat */
-const apiKey = Platform.select({
-	ios: process.env.EXPO_PUBLIC_REVENUECAT_IOS_API_KEY,
-	android: process.env.EXPO_PUBLIC_REVENUECAT_ANDROID_API_KEY,
-});
-
-Purchases.configure({ apiKey: apiKey || "" });
-Purchases.setLogLevel(LOG_LEVEL.VERBOSE);
-/** end initialize RevenueCat */
-
 // ignore warning logs
 LogBox.ignoreLogs(["Warning: ..."]);
 
@@ -42,11 +32,24 @@ export default function RootLayout() {
 		// AtkinsonItalic: require("@/assets/fonts/atkinson/Atkinson-Hyperlegible-Italic-102a.woff2"),
 	});
 
+	// initialize RevenueCat
+	React.useEffect(() => {
+		const apiKey = Platform.select({
+			ios: process.env.EXPO_PUBLIC_REVENUECAT_IOS_API_KEY,
+			android: process.env.EXPO_PUBLIC_REVENUECAT_ANDROID_API_KEY,
+		});
+
+		Purchases.configure({ apiKey: apiKey || "" });
+		Purchases.setLogLevel(LOG_LEVEL.VERBOSE);
+	}, []);
+
 	React.useEffect(() => {
 		if (loaded) {
 			SplashScreen.hideAsync();
 		}
 	}, [loaded]);
+
+	if (!loaded) return null;
 
 	return (
 		<GestureHandlerRootView>
