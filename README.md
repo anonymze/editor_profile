@@ -48,3 +48,5 @@ npx expo export --platform web
 		}
 
 eas submit --non-interactive for CI/CD pipelines
+
+pnpx expo-doctor
