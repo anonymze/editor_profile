@@ -159,7 +159,6 @@ export default function Page() {
 
 	return (
 		<LayoutBackground color={themeColor} centeredContent={false}>
-				<PurchaseList />
 			<Animated.View
 				style={StyleSheet.flatten([
 					stylesLayout.topButtons,
@@ -210,9 +209,14 @@ export default function Page() {
 				</View>
 
 				<Animated.View style={[styles.tooltipActionsAbsolute, { opacity: buttonsOpacity }]}>
-					<ButtonRadialGradient onPress={async () => {
+					<ButtonRadialGradient
+						onPress={async () => {
 							await purchaseSubscription("entl14442e31e1");
-					}} text="Je m'abonne" color={themeColors[themeColor].primaryLight} isAction />
+						}}
+						text="Je m'abonne"
+						color={themeColors[themeColor].primaryLight}
+						isAction
+					/>
 					<ButtonRadialGradient
 						text="Compris !"
 						color={themeColors[themeColor].primaryLight}
@@ -256,6 +260,7 @@ export default function Page() {
 			</Animated.View>
 
 			<View style={styles.highPaddingTop}>
+				<PurchaseList />
 				<Animated.View entering={enteringAnimationLeft()}>
 					<TextGradient
 						color={themeColor}
