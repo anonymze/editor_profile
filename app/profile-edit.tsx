@@ -81,7 +81,7 @@ export default function Page() {
 			<KeyboardAvoidingView
 				behavior={Platform.OS === "ios" ? "padding" : "height"}
 				style={{ flex: 1, backgroundColor: themeColors[themeColorFinal].primaryDark }}
-				keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 20}
+				keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 5}
 			>
 				<LayoutBackground color={themeColorFinal} centeredContent>
 					<View style={stylesLayout.containerWithGap}>
