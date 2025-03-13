@@ -37,4 +37,44 @@ export const isUserSubscribed = async (entitlementId?: string) => {
   }
 };
 
+/**
+ * purchases a subscription package
+ * @param packageId the identifier of the package to purchase
+ * @returns customer info object if purchase is successful, null if error occurs
+ */
+export const purchaseSubscription = async (packageId: string) => {
+  try {
+    // Get available packages
+    const offerings = await Purchases.getOfferings();
+    
+    if (!offerings.current) {
+      console.error('No offerings available');
+      return null;
+    }
+    
+    // Find the package with the specified ID
+    const targetPackage = offerings.current.availablePackages.find(
+      pkg => pkg.identifier === packageId
+    );
+    
+    if (!targetPackage) {
+      console.error(`Package with ID ${packageId} not found`);
+      return null;
+    }
+    
+    // Purchase the package
+    const { customerInfo } = await Purchases.purchasePackage(targetPackage);
+    
+    return customerInfo;
+  } catch (error: any) {
+    // Handle user cancellation separately from other errors
+    if (error.userCancelled) {
+      console.log('User cancelled the purchase');
+    } else {
+      console.error('Error purchasing subscription:', error);
+    }
+    return null;
+  }
+};
+
 
