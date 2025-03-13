@@ -32,7 +32,7 @@ export default function RootLayout() {
 		// AtkinsonItalic: require("@/assets/fonts/atkinson/Atkinson-Hyperlegible-Italic-102a.woff2"),
 	});
 
-	// initialize RevenueCat
+	// initialize RevenueCat (can do it only when component is mounted)
 	React.useEffect(() => {
 		const apiKey = Platform.select({
 			ios: process.env.EXPO_PUBLIC_REVENUECAT_IOS_API_KEY,
