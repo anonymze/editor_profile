@@ -1,14 +1,15 @@
 import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS, } from "react-native-reanimated";
-import { getStorageColor, getStorageLimitedAction, storage, themeColors } from "@/theme/theme-storage";
+import { getStorageColor, getStorageLimitedAction, themeColors } from "@/theme/theme-storage";
+import { Fragment, Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
-import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
-import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { ButtonRadialGradient } from "@/components/radial-gradient";
 import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import PurchaseList from "@/components/purchases";
 import * as Application from "expo-application";
 import vegetables from "@/data/vegetables";
 import ingredient from "@/data/ingredient";
@@ -157,6 +158,7 @@ export default function Page() {
 
 	return (
 		<LayoutBackground color={themeColor} centeredContent={false}>
+				<PurchaseList />
 			<Animated.View
 				style={StyleSheet.flatten([
 					stylesLayout.topButtons,
