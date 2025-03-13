@@ -207,7 +207,9 @@ export default function Page() {
 				</View>
 
 				<Animated.View style={[styles.tooltipActionsAbsolute, { opacity: buttonsOpacity }]}>
-					<ButtonRadialGradient text="Je m'abonne" color={themeColors[themeColor].primaryLight} isAction />
+					<ButtonRadialGradient onPress={() => {
+						console.log('ici')
+					}} text="Je m'abonne" color={themeColors[themeColor].primaryLight} isAction />
 					<ButtonRadialGradient
 						text="Compris !"
 						color={themeColors[themeColor].primaryLight}

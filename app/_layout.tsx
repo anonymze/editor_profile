@@ -3,18 +3,20 @@ import "react-native-reanimated";
 import { DEFAULT_COLOR, DEFAULT_KEY_COLOR, themeColors } from "@/theme/theme-storage";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Purchases, { LOG_LEVEL } from "react-native-purchases";
 import * as SplashScreen from "expo-splash-screen";
 import { useMMKVString } from "react-native-mmkv";
+import { LogBox, Platform } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { LogBox } from "react-native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import React from "react";
 
 
-LogBox.ignoreLogs(['Warning: ...']);
+LogBox.ignoreLogs(["Warning: ..."]);
+Purchases.setLogLevel(LOG_LEVEL.DEBUG);
 
-// Keep the splash screen visible while we fetch resources
+// keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({
 	fade: true,
@@ -31,7 +33,14 @@ export default function RootLayout() {
 	});
 
 	React.useEffect(() => {
-		if (loaded) SplashScreen.hideAsync();
+		if (loaded) {
+			if (Platform.OS === "ios") {
+				Purchases.configure({ apiKey: process.env.EXPO_PUBLIC_REVENUECAT_IOS_API_KEY || "" });
+			} else if (Platform.OS === "android") {
+				Purchases.configure({ apiKey: process.env.EXPO_PUBLIC_REVENUECAT_ANDROID_API_KEY || "" });
+			}
+			SplashScreen.hideAsync();
+		}
 	}, [loaded]);
 
 	return (

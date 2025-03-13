@@ -114,8 +114,8 @@ importers:
         specifier: ^3.2.0
         version: 3.2.0(react-native@0.76.7(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)
       react-native-purchases:
-        specifier: ^8.7.0
-        version: 8.7.0(react-native@0.76.7(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)
+        specifier: ^8.8.0
+        version: 8.8.0(react-native@0.76.7(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)
       react-native-reanimated:
         specifier: ~3.16.1
         version: 3.16.7(@babel/core@7.26.7)(react-native@0.76.7(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1)
@@ -1395,8 +1395,8 @@ packages:
   '@remix-run/web-stream@1.1.0':
     resolution: {integrity: sha512-KRJtwrjRV5Bb+pM7zxcTJkhIqWWSy+MYsIxHK+0m5atcznsf15YwUBWHWulZerV2+vvHH1Lp1DD7pw6qKW8SgA==}
 
-  '@revenuecat/purchases-typescript-internal@13.21.0':
-    resolution: {integrity: sha512-4pJa3OkCL+o7EGHm2dNzMwqPMh9mfTjDapq8hKC6kkIDa8cmgs9kMHxDZfi0mMKY4a+E3mfMX0f+5KR2NjuG9w==}
+  '@revenuecat/purchases-typescript-internal@13.22.0':
+    resolution: {integrity: sha512-Q4lMxQfCMVJA3XSrFQIy1l5Nga7y8r6qaZuksrU95mKbDCoF7+iu30UvSKWN1y0rErDyRNT8HeI1j/jQ42Z5tA==}
 
   '@segment/loosely-validate-event@2.0.0':
     resolution: {integrity: sha512-ZMCSfztDBqwotkl848ODgVcAmN4OItEWDCkshcKz0/W6gGSQayuuCtWV/MlodFivAZD793d6UgANd6wCXUfrIw==}
@@ -3770,8 +3770,8 @@ packages:
       react: '*'
       react-native: '*'
 
-  react-native-purchases@8.7.0:
-    resolution: {integrity: sha512-aw2XPtpSISiKn6JNo9MeEjPeN4ArzneZVfmXOxy7bVH2RdMhRiCm2S7LgixModdxSpVaMAXZaXU7aLFffMtTZw==}
+  react-native-purchases@8.8.0:
+    resolution: {integrity: sha512-IXa6DzSfGFSVXKczlVxXq58OJNzxp8/7pCmVxC7wT5qiALn2uUl5BfICechTKmtKD4YPNJFfhW1VLbiUn3Dovw==}
     peerDependencies:
       react: '>= 16.6.3'
       react-native: '*'
@@ -6521,7 +6521,7 @@ snapshots:
     dependencies:
       web-streams-polyfill: 3.3.3
 
-  '@revenuecat/purchases-typescript-internal@13.21.0': {}
+  '@revenuecat/purchases-typescript-internal@13.22.0': {}
 
   '@segment/loosely-validate-event@2.0.0':
     dependencies:
@@ -9220,9 +9220,9 @@ snapshots:
       react: 18.3.1
       react-native: 0.76.7(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@18.3.18)(react@18.3.1)
 
-  react-native-purchases@8.7.0(react-native@0.76.7(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1):
+  react-native-purchases@8.8.0(react-native@0.76.7(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1):
     dependencies:
-      '@revenuecat/purchases-typescript-internal': 13.21.0
+      '@revenuecat/purchases-typescript-internal': 13.22.0
       react: 18.3.1
       react-native: 0.76.7(@babel/core@7.26.7)(@babel/preset-env@7.26.7(@babel/core@7.26.7))(@types/react@18.3.18)(react@18.3.1)
 
