@@ -14,14 +14,13 @@ import React from "react";
 
 
 LogBox.ignoreLogs(["Warning: ..."]);
-Purchases.setLogLevel(LOG_LEVEL.DEBUG);
 
 // keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({
 	fade: true,
-	duration: 200,
-});
+		duration: 200,
+	});
 
 export default function RootLayout() {
 	const [themeColor] = useMMKVString(DEFAULT_KEY_COLOR);
@@ -39,6 +38,7 @@ export default function RootLayout() {
 			} else if (Platform.OS === "android") {
 				Purchases.configure({ apiKey: process.env.EXPO_PUBLIC_REVENUECAT_ANDROID_API_KEY || "" });
 			}
+			Purchases.setLogLevel(LOG_LEVEL.DEBUG);
 			SplashScreen.hideAsync();
 		}
 	}, [loaded]);

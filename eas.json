@@ -14,8 +14,8 @@
       "autoIncrement": true
 		},
 		"production": {
-			"autoIncrement": true,
-			"channel": "production"
+			"channel": "production",
+			"autoIncrement": true
 		}
 	},
 	"submit": {
