@@ -45,7 +45,7 @@ export default function PurchaseList() {
 				<Text>
 					EXPIRATION DATE ENTLITED entl14442e31e1 ?{" "}
 					{customerInfo?.entitlements?.active["entl14442e31e1"]?.expirationDate}
-					
+
 				</Text>
 			</View>
 			<View style={{ margin: 10 }}>
