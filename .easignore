@@ -40,5 +40,3 @@ yarn-error.*
 .idea
 .history
 
-/android
-/ios
