@@ -16,28 +16,6 @@ export const getCustomerInfo = async () => {
 };
 
 /**
- * checks if the customer is subscribed to any active entitlement
- * @param entitlementId optional specific entitlement to check for
- * @returns boolean indicating if user has an active subscription
- */
-export const isUserSubscribed = async (entitlementId?: string) => {
-  try {
-    const customerInfo = await Purchases.getCustomerInfo();
-    
-    // If a specific entitlement ID is provided, check for that one
-    if (entitlementId) {
-      return customerInfo.entitlements.active[entitlementId] !== undefined;
-    }
-    
-    // Otherwise check if the user has any active entitlements
-    return Object.keys(customerInfo.entitlements.active).length > 0;
-  } catch (error) {
-    console.error('Error checking subscription status:', error);
-    return false;
-  }
-};
-
-/**
  * purchases a subscription package
  * @param identifier the name of the identifier attributed by revenuecat (ex: "$rc_monthly" or could be the identifier or entitlement ?)
  * @returns customer info object if purchase is successful, null if error occurs

@@ -1,4 +1,5 @@
 import Purchases, { CustomerInfo, PurchasesOfferings } from "react-native-purchases";
+import { isUserSubscribed } from "@/utils/in-app-purchase";
 import { Text, View } from "react-native";
 import React from "react";
 
@@ -41,7 +42,7 @@ export default function PurchaseList() {
 				<Text>MANAGEMENT URL : {customerInfo?.managementURL}</Text>
 				<Text>APPLICATION VERSION : {customerInfo?.originalAppUserId}</Text>
 				<Text>
-					IS USER SUBSCRIBED TO THIS ENTLITED {IDENTIFIER} ?{" "}
+					IS USER SUBSCRIBED TO THIS IDENTIFIER {IDENTIFIER} ?{" "}
 					{customerInfo?.entitlements?.active[IDENTIFIER]?.isActive ? "YES" : "NO"}
 				</Text>
 				<Text>
