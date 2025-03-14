@@ -97,10 +97,6 @@ export default function Page() {
 										source={imageUri ?? DEFAULT_IMAGE_URI}
 										placeholderContentFit="cover"
 										placeholder={{ uri: DEFAULT_IMAGE_URI }}
-										transition={{
-											duration: 320,
-											effect: "flip-from-top",
-										}}
 									/>
 									<View style={styles.cameraButton}>
 										<CameraIcon fill={themeColors[themeColorFinal].primary} color="#fff" size={26} />

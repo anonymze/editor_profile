@@ -100,8 +100,8 @@ export default function Page() {
 									placeholderContentFit="cover"
 									placeholder={{ uri: DEFAULT_IMAGE_URI }}
 									transition={{
-										duration: 320,
-										effect: "flip-from-top",
+										duration: 300,
+										// effect: "flip-from-top",
 									}}
 								/>
 								<View style={styles.cameraButton}>
