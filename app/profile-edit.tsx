@@ -79,9 +79,9 @@ export default function Page() {
 	return (
 		<GestureDetector gesture={panGesture}>
 			<KeyboardAvoidingView
-				behavior={Platform.OS === "ios" ? "padding" : "padding"}
+				behavior={Platform.OS === "ios" ? "padding" : "height"}
 				style={{ flex: 1, backgroundColor: themeColors[themeColorFinal].primaryDark }}
-				keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 0}
+				keyboardVerticalOffset={Platform.OS === "ios" ? 30 : 10}
 			>
 				<LayoutBackground color={themeColorFinal} centeredContent>
 					<View style={stylesLayout.containerWithGap}>
