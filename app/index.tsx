@@ -211,7 +211,7 @@ export default function Page() {
 				<Animated.View style={[styles.tooltipActionsAbsolute, { opacity: buttonsOpacity }]}>
 					<ButtonRadialGradient
 						onPress={async () => {
-							await purchaseSubscription("entl14442e31e1");
+							await purchaseSubscription("$rc_monthly");
 						}}
 						text="Je m'abonne"
 						color={themeColors[themeColor].primaryLight}

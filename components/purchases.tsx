@@ -3,6 +3,8 @@ import { Text, View } from "react-native";
 import React from "react";
 
 
+const IDENTIFIER = "$rc_monthly";
+
 export default function PurchaseList() {
 	const [offerings, setOfferings] = React.useState<PurchasesOfferings | null>(null);
 	const [customerInfo, setCustomerInfo] = React.useState<CustomerInfo | null>(null);
@@ -39,12 +41,12 @@ export default function PurchaseList() {
 				<Text>MANAGEMENT URL : {customerInfo?.managementURL}</Text>
 				<Text>APPLICATION VERSION : {customerInfo?.originalAppUserId}</Text>
 				<Text>
-					IS USER SUBSCRIBED TO THIS ENTLITED entl14442e31e1 ?{" "}
-					{customerInfo?.entitlements?.active["entl14442e31e1"]?.isActive ? "YES" : "NO"}
+					IS USER SUBSCRIBED TO THIS ENTLITED {IDENTIFIER} ?{" "}
+					{customerInfo?.entitlements?.active[IDENTIFIER]?.isActive ? "YES" : "NO"}
 				</Text>
 				<Text>
-					EXPIRATION DATE ENTLITED entl14442e31e1 ?{" "}
-					{customerInfo?.entitlements?.active["entl14442e31e1"]?.expirationDate}
+					EXPIRATION DATE ENTLITED {IDENTIFIER} ?{" "}
+					{customerInfo?.entitlements?.active[IDENTIFIER]?.expirationDate}
 
 				</Text>
 			</View>

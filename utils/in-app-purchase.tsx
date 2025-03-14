@@ -39,10 +39,10 @@ export const isUserSubscribed = async (entitlementId?: string) => {
 
 /**
  * purchases a subscription package
- * @param packageId the identifier of the package to purchase
+ * @param identifier the name of the identifier attributed by revenuecat (ex: "$rc_monthly" or could be the identifier or entitlement ?)
  * @returns customer info object if purchase is successful, null if error occurs
  */
-export const purchaseSubscription = async (packageId: string) => {
+export const purchaseSubscription = async (identifier: string) => {
   try {
     // Get available packages
     const offerings = await Purchases.getOfferings();
@@ -54,11 +54,11 @@ export const purchaseSubscription = async (packageId: string) => {
     
     // Find the package with the specified ID
     const targetPackage = offerings.current.availablePackages.find(
-      pkg => pkg.identifier === packageId
+      pkg => pkg.identifier === identifier
     );
     
     if (!targetPackage) {
-      console.error(`Package with ID ${packageId} not found`);
+      console.error(`Package with ID ${identifier} not found`);
       return null;
     }
     
