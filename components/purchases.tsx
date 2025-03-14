@@ -46,7 +46,7 @@ export default function PurchaseList() {
 					{customerInfo?.entitlements?.active[IDENTIFIER]?.isActive ? "YES" : "NO"}
 				</Text>
 				<Text>
-					EXPIRATION DATE ENTLITED {IDENTIFIER} ?{" "}
+					EXPIRATION DATE IDENTIFIER {IDENTIFIER} ?{" "}
 					{customerInfo?.entitlements?.active[IDENTIFIER]?.expirationDate}
 
 				</Text>
