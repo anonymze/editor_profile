@@ -23,7 +23,6 @@ buildscript {
 
 apply plugin: "com.facebook.react.rootproject"
 
-// FORCE KOTLIN VERSION
 subprojects { project ->
     project.configurations.all {
         resolutionStrategy {
@@ -35,6 +34,7 @@ subprojects { project ->
         }
     }
 }
+
 
 allprojects {
     repositories {

@@ -3,6 +3,7 @@ import "react-native-reanimated";
 import { DEFAULT_COLOR, DEFAULT_KEY_COLOR, themeColors } from "@/theme/theme-storage";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 import Purchases, { LOG_LEVEL } from "react-native-purchases";
 import * as SplashScreen from "expo-splash-screen";
 import { useMMKVString } from "react-native-mmkv";
@@ -53,23 +54,25 @@ export default function RootLayout() {
 
 	return (
 		<GestureHandlerRootView>
-			<StatusBar style="light" translucent />
-			<SafeAreaProvider>
-				<SafeAreaView
-					edges={["right", "left", "top"]}
-					style={{ flex: 1, backgroundColor: themeColors[themeColorFinal].primaryLight }}
-				>
-					<Stack
-						screenOptions={{
-							headerShown: false,
-							animation: "none",
-						}}
+			<KeyboardProvider>
+				<SafeAreaProvider>
+					<StatusBar style="light" translucent />
+					<SafeAreaView
+						edges={["right", "left", "top"]}
+						style={{ flex: 1, backgroundColor: themeColors[themeColorFinal].primaryLight }}
 					>
-						<Stack.Screen options={{ animation: "fade_from_bottom" }} name="recipe" />
-						<Stack.Screen options={{ animation: "fade_from_bottom" }} name="index" />
-					</Stack>
-				</SafeAreaView>
-			</SafeAreaProvider>
+						<Stack
+							screenOptions={{
+								headerShown: false,
+								animation: "none",
+							}}
+						>
+							<Stack.Screen options={{ animation: "fade_from_bottom" }} name="recipe" />
+							<Stack.Screen options={{ animation: "fade_from_bottom" }} name="index" />
+						</Stack>
+					</SafeAreaView>
+				</SafeAreaProvider>
+			</KeyboardProvider>
 		</GestureHandlerRootView>
 	);
 }

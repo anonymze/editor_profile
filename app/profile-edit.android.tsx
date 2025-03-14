@@ -80,100 +80,99 @@ export default function Page() {
 
 	return (
 		<GestureDetector gesture={panGesture}>
-			<LayoutBackground color={themeColorFinal} centeredContent>
-				<Animated.View
-					style={StyleSheet.flatten([
-						stylesLayout.centerContent,
-						{ transform: [{ translateY: height }] },
-					])}
-				>
-					<View style={stylesLayout.containerWithGap}>
+			<View collapsable={false} style={stylesLayout.flex}>
+				<LayoutBackground color={themeColorFinal} centeredContent>
+					<Animated.View
+						style={StyleSheet.flatten([stylesLayout.centerContent, { transform: [{ translateY: height }] }])}
+					>
+						<View style={stylesLayout.containerWithGap}>
+							<Animated.View
+								style={StyleSheet.flatten([stylesLayout.centerContent, stylesLayout.shadowImage])}
+								entering={FadeInDown.duration(800).delay(200).springify()}
+							>
+								<Pressable onPress={pickImage}>
+									<Image
+										style={stylesLayout.image}
+										contentFit="cover"
+										source={imageUri ?? DEFAULT_IMAGE_URI}
+										placeholderContentFit="cover"
+										placeholder={{ uri: DEFAULT_IMAGE_URI }}
+										transition={{
+											duration: 320,
+											effect: "flip-from-top",
+										}}
+									/>
+									<View style={styles.cameraButton}>
+										<CameraIcon fill={themeColors[themeColorFinal].primary} color="#fff" size={26} />
+									</View>
+								</Pressable>
+
+								<CircleRadialGradient
+									offset="80%"
+									icon={null}
+									color={themeColors[themeColorFinal].primary}
+									style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.bigHalo])}
+								/>
+
+								<CircleRadialGradient
+									offset="80%"
+									icon={null}
+									color={themeColors[themeColorFinal].primary}
+									style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.smallHalo])}
+								/>
+							</Animated.View>
+
+							<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
+								<InputTextGradient color={themeColorFinal} style={{ fontSize: 55 }} ref={inputRef as any} />
+							</Animated.View>
+						</View>
+
 						<Animated.View
-							style={StyleSheet.flatten([stylesLayout.centerContent, stylesLayout.shadowImage])}
+							style={StyleSheet.flatten([
+								stylesLayout.topButtons,
+								stylesLayout.topRightButton,
+								{
+									backgroundColor: themeColors[themeColorFinal].secondary,
+								},
+							])}
 							entering={FadeInDown.duration(800).delay(200).springify()}
 						>
-							<Pressable onPress={pickImage}>
-								<Image
-									style={stylesLayout.image}
-									contentFit="cover"
-									source={imageUri ?? DEFAULT_IMAGE_URI}
-									placeholderContentFit="cover"
-									placeholder={{ uri: DEFAULT_IMAGE_URI }}
-									transition={{
-										duration: 320,
-										effect: "flip-from-top",
-									}}
-								/>
-								<View style={styles.cameraButton}>
-									<CameraIcon fill={themeColors[themeColorFinal].primary} color="#fff" size={26} />
-								</View>
-							</Pressable>
-
-							<CircleRadialGradient
-								offset="80%"
-								icon={null}
-								color={themeColors[themeColorFinal].primary}
-								style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.bigHalo])}
-							/>
-
-							<CircleRadialGradient
-								offset="80%"
-								icon={null}
-								color={themeColors[themeColorFinal].primary}
-								style={StyleSheet.flatten([stylesLayout.gradientHalo, stylesLayout.smallHalo])}
-							/>
-						</Animated.View>
-
-						<Animated.View entering={FadeInDown.duration(800).delay(150).springify()}>
-							<InputTextGradient color={themeColorFinal} style={{ fontSize: 55 }} ref={inputRef as any} />
-						</Animated.View>
-					</View>
-
-					<Animated.View
-						style={StyleSheet.flatten([
-							stylesLayout.topButtons,
-							stylesLayout.topRightButton,
-							{
-								backgroundColor: themeColors[themeColorFinal].secondary,
-							},
-						])}
-						entering={FadeInDown.duration(800).delay(200).springify()}
-					>
-						<Pressable
-							onPress={() => {
-								router.push("/profile");
-							}}
-							style={stylesLayout.paddingTopButtons}
-						>
-							<ArrowLeftIcon size={26} color="#fff" />
-						</Pressable>
-					</Animated.View>
-
-					<AnimatedBlurView
-						style={StyleSheet.flatten([stylesLayout.bottomButton, styles.buttons])}
-						entering={enteringAnimation()}
-						exiting={FadeOut.duration(600)}
-						intensity={70}
-					>
-						{getKeysTypedObject(themeColors).map((color) => (
-							<CircleRadialGradient
+							<Pressable
 								onPress={() => {
-									handleThemeChange(color);
+									router.push("/profile");
 								}}
-								key={color}
-								icon={
-									themeColorFinal === color ? (
-										<Animated.View entering={FadeIn.duration(600)}>
-											<CheckIcon size={28} color="#fff" />
-										</Animated.View>
-									) : null
-								}
-								color={themeColors[color].primary}
-							/>
-						))}
-					</AnimatedBlurView>
-				</Animated.View>
-			</LayoutBackground>
+								style={stylesLayout.paddingTopButtons}
+							>
+								<ArrowLeftIcon size={26} color="#fff" />
+							</Pressable>
+						</Animated.View>
+
+						<AnimatedBlurView
+							style={StyleSheet.flatten([stylesLayout.bottomButton, styles.buttons])}
+							entering={enteringAnimation()}
+							exiting={FadeOut.duration(600)}
+							intensity={70}
+						>
+							{getKeysTypedObject(themeColors).map((color) => (
+								<CircleRadialGradient
+									onPress={() => {
+										handleThemeChange(color);
+									}}
+									key={color}
+									icon={
+										themeColorFinal === color ? (
+											<Animated.View entering={FadeIn.duration(600)}>
+												<CheckIcon size={28} color="#fff" />
+											</Animated.View>
+										) : null
+									}
+									color={themeColors[color].primary}
+								/>
+							))}
+						</AnimatedBlurView>
+					</Animated.View>
+				</LayoutBackground>
+			</View>
 		</GestureDetector>
 	);
 }
