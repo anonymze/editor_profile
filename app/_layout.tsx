@@ -41,7 +41,7 @@ export default function RootLayout() {
 		});
 
 		Purchases.configure({ apiKey: apiKey || "" });
-		Purchases.setLogLevel(LOG_LEVEL.VERBOSE);
+		Purchases.setLogLevel(LOG_LEVEL.ERROR);
 	}, []);
 
 	React.useEffect(() => {

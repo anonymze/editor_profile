@@ -1,5 +1,4 @@
 import Purchases, { CustomerInfo, PurchasesOfferings } from "react-native-purchases";
-import { isUserSubscribed } from "@/utils/in-app-purchase";
 import { Text, View } from "react-native";
 import React from "react";
 

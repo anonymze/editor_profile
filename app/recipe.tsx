@@ -7,7 +7,6 @@ import { Alert, Platform, StyleSheet, Text, View } from "react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
-import * as Application from "expo-application";
 import type { Recipe } from "@/types/recipe";
 import React from "react";
 
@@ -16,7 +15,7 @@ export default function Page() {
 	const themeColor = getStorageColor();
 	const [splashScreen, setSplashScreen] = useState(true);
 	const [response, setResponse] = useState<Recipe | null>(null);
-	const { prompt, vendorId } = useLocalSearchParams();
+	const { prompt, vendorId, customerID } = useLocalSearchParams();
 
 	useEffect(() => {
 		const abortController = new AbortController();
@@ -31,8 +30,9 @@ export default function Page() {
 						headers: {
 							"Content-Type": "application/json",
 							Accept: "application/json",
-							"X-Origin": Application.applicationName ?? "",
+							"X-Origin": process.env.EXPO_PUBLIC_ORIGIN_MOBILE ?? "",
 							"X-Vendor-Id": vendorId?.toString() ?? "",
+							"X-User-Id": customerID?.toString() ?? "",
 						},
 						body: JSON.stringify({
 							username: getStorageName(),

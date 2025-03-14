@@ -1,4 +1,5 @@
 import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS, } from "react-native-reanimated";
+import { getCustomerAppStore, purchaseFirstSubscriptionAvailable } from "@/utils/in-app-purchase";
 import { getStorageColor, getStorageLimitedAction, themeColors } from "@/theme/theme-storage";
 import { Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
@@ -6,11 +7,9 @@ import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { ButtonRadialGradient } from "@/components/radial-gradient";
 import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
-import { purchaseSubscription } from "@/utils/in-app-purchase";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import PurchaseList from "@/components/purchases";
 import * as Application from "expo-application";
 import vegetables from "@/data/vegetables";
 import ingredient from "@/data/ingredient";
@@ -211,7 +210,7 @@ export default function Page() {
 				<Animated.View style={[styles.tooltipActionsAbsolute, { opacity: buttonsOpacity }]}>
 					<ButtonRadialGradient
 						onPress={async () => {
-							await purchaseSubscription("$rc_monthly");
+							await purchaseFirstSubscriptionAvailable();
 						}}
 						text="Je m'abonne"
 						color={themeColors[themeColor].primaryLight}
@@ -260,7 +259,6 @@ export default function Page() {
 			</Animated.View>
 
 			<View style={styles.highPaddingTop}>
-				<PurchaseList />
 				<Animated.View entering={enteringAnimationLeft()}>
 					<TextGradient
 						color={themeColor}
@@ -336,6 +334,7 @@ export default function Page() {
 							router.push({
 								pathname: "/recipe",
 								params: {
+									customerID: (await getCustomerAppStore())?.originalAppUserId,
 									prompt: selectedValues.map((value) => value.label.FR).join(","),
 									vendorId:
 										Platform.OS === "ios"
