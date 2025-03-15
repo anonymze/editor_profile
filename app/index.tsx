@@ -339,7 +339,7 @@ export default function Page() {
 							router.push({
 								pathname: "/recipe",
 								params: {
-									customerID: (await getCustomerAppStore())?.originalAppUserId,
+									customerID: customer?.originalAppUserId,
 									prompt: selectedValues.map((value) => value.label.FR).join(","),
 									vendorId:
 										Platform.OS === "ios"
