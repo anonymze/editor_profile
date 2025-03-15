@@ -56,9 +56,8 @@ export const getOfferingsAppStore = async () => {
  * activeSubscriptions return the names of the subscriptions that has the customer (on android `${id of subscription}:{id base plan}`)
  *
  */
-export const customerAppStoreHasSubscriptions = async (customerInfo?: CustomerInfo) => {
-	let customer = customerInfo || (await getCustomerAppStore());
-	return customer && customer.activeSubscriptions.length > 0;
+export const customerAppStoreHasSubscriptions = (customerInfo: CustomerInfo | null) => {
+	return customerInfo && customerInfo.activeSubscriptions.length > 0;
 };
 
 export const purchaseFirstSubscriptionAvailable = async (offerings?: PurchasesOfferings) => {

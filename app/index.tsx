@@ -1,5 +1,5 @@
 import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS, } from "react-native-reanimated";
-import { getCustomerAppStore, purchaseFirstSubscriptionAvailable } from "@/utils/in-app-purchase";
+import { customerAppStoreHasSubscriptions, getCustomerAppStore, purchaseFirstSubscriptionAvailable, } from "@/utils/in-app-purchase";
 import { getStorageColor, getStorageLimitedAction, themeColors } from "@/theme/theme-storage";
 import { Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
@@ -10,6 +10,7 @@ import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import { useCustomer } from "@/context/customer";
 import * as Application from "expo-application";
 import vegetables from "@/data/vegetables";
 import ingredient from "@/data/ingredient";
@@ -71,6 +72,7 @@ const initialSections = [
 ];
 
 export default function Page() {
+	const { customer, setCustomer } = useCustomer();
 	const bottomSheetRef = useRef<BottomSheetModal>(null);
 	const [selectedValues, setSelectedValues] = useState<FoodItem[]>([]);
 	const [showTooltip, setShowTooltip] = useState(false);
@@ -201,7 +203,7 @@ export default function Page() {
 					</Text>
 					<TextGradient
 						color={themeColor}
-						text={getStorageLimitedAction()}
+						text={customerAppStoreHasSubscriptions(customer) ? "∞" : getStorageLimitedAction()}
 						home
 						style={{ fontSize: 60, marginTop: -13 }}
 					/>
@@ -212,10 +214,13 @@ export default function Page() {
 						onPress={async () => {
 							await purchaseFirstSubscriptionAvailable();
 						}}
+						disabled={customerAppStoreHasSubscriptions(customer)}
 						text="Je m'abonne"
 						color={themeColors[themeColor].primaryLight}
 						isAction
+						style={{ opacity: customerAppStoreHasSubscriptions(customer) ? 0.6 : 1 }}
 					/>
+
 					<ButtonRadialGradient
 						text="Compris !"
 						color={themeColors[themeColor].primaryLight}
