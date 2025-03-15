@@ -1,12 +1,8 @@
-import BottomSheet, { BottomSheetFlashList, BottomSheetFooter, BottomSheetFooterProps, BottomSheetScrollView, } from "@gorhom/bottom-sheet";
-import { useReanimatedKeyboardAnimation } from "react-native-keyboard-controller";
-import { Text, StyleSheet, Platform, TextInput, View } from "react-native";
-import { LegendList, LegendListRenderItemProps } from "@legendapp/list";
+import { Text, StyleSheet, Platform, TextInput, View, Pressable } from "react-native";
+import BottomSheet, { BottomSheetFlashList } from "@gorhom/bottom-sheet";
 import React, { Dispatch, SetStateAction, forwardRef } from "react";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
-import { Pressable } from "react-native-gesture-handler";
 import { themeColors } from "@/theme/theme-storage";
-import { FlashList } from "@shopify/flash-list";
 import { Image } from "expo-image";
 
 
@@ -35,7 +31,6 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 	({ onSelect, placeholderSearch, data, themeColor }, ref) => {
 		const [searchQuery, setSearchQuery] = React.useState("");
 		const [selectedIds, setSelectedIds] = React.useState<FoodItem[]>([]);
-		const { height } = useReanimatedKeyboardAnimation();
 		const searchInputRef = React.useRef<TextInput>(null);
 
 		// filter sections based on search query
@@ -55,55 +50,57 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 				.filter((section) => section?.data?.length > 0); // Remove empty sections
 		}, [searchQuery]);
 
-		const renderFooter = React.useCallback(
-			(props: BottomSheetFooterProps) => (
-				<BottomSheetFooter {...props} style={styles.footerContainer}>
-					<Pressable
-						style={styles.containerTextBottom}
-						onPress={() => {
-							onSelect(null);
-							setSelectedIds([]);
-							if (ref && "current" in ref) {
-								ref?.current?.close();
-							}
-						}}
-					>
-						{({ pressed }) => (
-							<Text
-								style={StyleSheet.flatten([
-									styles.textBottomSheet,
-									{ color: themeColors[themeColor].primary, opacity: pressed ? 0.5 : 1 },
-								])}
-							>
-								Effacer
-							</Text>
-						)}
-					</Pressable>
-					<Pressable
-						style={styles.containerTextBottom}
-						onPress={() => {
-							onSelect(selectedIds);
-							setSelectedIds([]);
-							if (ref && "current" in ref) {
-								ref?.current?.close();
-							}
-						}}
-					>
-						{({ pressed }) => (
-							<Text
-								style={StyleSheet.flatten([
-									styles.textBottomSheet,
-									{ color: themeColors[themeColor].primary, opacity: pressed ? 0.5 : 1 },
-								])}
-							>
-								Ajouter
-							</Text>
-						)}
-					</Pressable>
-				</BottomSheetFooter>
-			),
-			[onSelect, selectedIds]
-		);
+		// const renderFooter = React.useCallback(
+		// 	(props: BottomSheetFooterProps) => (
+		// 		<BottomSheetFooter {...props} style={styles.footerContainer}>
+		// 			<Pressable
+		// 				style={styles.containerTextBottom}
+		// 				onPress={() => {
+		// 					onSelect(null);
+		// 					setSelectedIds([]);
+		// 					if (ref && "current" in ref) {
+		// 						ref?.current?.close();
+		// 					}
+		// 				}}
+		// 			>
+		// 				{({ pressed }) => {
+		// 					return (
+		// 						<Text
+		// 							style={StyleSheet.flatten([
+		// 								styles.textBottomSheet,
+		// 								{ color: themeColors[themeColor].primary, opacity: pressed ? 0.5 : 1 },
+		// 							])}
+		// 						>
+		// 							Effacer
+		// 						</Text>
+		// 					);
+		// 				}}
+		// 			</Pressable>
+		// 			<Pressable
+		// 				style={styles.containerTextBottom}
+		// 				onPress={() => {
+		// 					onSelect(selectedIds);
+		// 					setSelectedIds([]);
+		// 					if (ref && "current" in ref) {
+		// 						ref?.current?.close();
+		// 					}
+		// 				}}
+		// 			>
+		// 				{({ pressed }) => (
+		// 					<Text
+		// 						style={StyleSheet.flatten([
+		// 							styles.textBottomSheet,
+		// 							{ color: themeColors[themeColor].primary, opacity: pressed ? 0.5 : 1 },
+		// 						])}
+		// 					>
+		// 						Ajouter
+		// 					</Text>
+		// 				)}
+		// 			</Pressable>
+		// 		</BottomSheetFooter>
+		// 	),
+		// 	[onSelect, selectedIds]
+		// );
 
 		const resetSearchInput = React.useCallback(() => {
 			setSearchQuery("");
@@ -121,7 +118,7 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 				enablePanDownToClose={true}
 				enableDynamicSizing={false}
 				snapPoints={snapPoints}
-				footerComponent={renderFooter}
+				// footerComponent={renderFooter}
 				keyboardBehavior="extend"
 				keyboardBlurBehavior="restore"
 				android_keyboardInputMode="adjustResize"
@@ -130,39 +127,40 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 				handleStyle={{ backgroundColor: "#fff" }}
 				handleIndicatorStyle={{ backgroundColor: themeColors[themeColor].primary }}
 			>
-				{/* <BottomSheetTextInput
-					autoCapitalize="none"
-					autoComplete="off"
-					autoCorrect={false}
-					placeholder={placeholderSearch}
-					style={styles.searchInput}
-					onSubmitEditing={(event) => {
-						setSearchQuery(event.nativeEvent.text);
-					}}
-					returnKeyType="search"
-				/> */}
-
-				<TextInput
-					ref={searchInputRef}
-					autoCapitalize="none"
-					autoCorrect={true}
-					placeholder={placeholderSearch}
-					style={styles.searchInput}
-					onSubmitEditing={(event) => {
-						setSearchQuery(
-							event.nativeEvent.text
-								.toLowerCase()
-								.normalize("NFD") // Decompose characters into base + combining marks
-								.replace(/[\u0300-\u036f]/g, "") // Remove all the combining marks
-						);
-					}}
-					returnKeyType="search"
-				/>
+				{Platform.OS === "android" ? (
+					<BottomSheetTextInput
+						autoCapitalize="none"
+						autoCorrect={true}
+						placeholder={placeholderSearch}
+						style={styles.searchInput}
+						onSubmitEditing={(event) => {
+							setSearchQuery(event.nativeEvent.text);
+						}}
+						returnKeyType="search"
+					/>
+				) : (
+					<TextInput
+						ref={searchInputRef}
+						autoCapitalize="none"
+						autoCorrect={true}
+						placeholder={placeholderSearch}
+						style={styles.searchInput}
+						onSubmitEditing={(event) => {
+							setSearchQuery(
+								event.nativeEvent.text
+									.toLowerCase()
+									.normalize("NFD") // Decompose characters into base + combining marks
+									.replace(/[\u0300-\u036f]/g, "") // Remove all the combining marks
+							);
+						}}
+						returnKeyType="search"
+					/>
+				)}
 
 				{/* <BottomSheetScrollView style={styles.bottomSheetContent}> */}
 				<BottomSheetFlashList
 					contentContainerStyle={{
-						paddingBottom: 85,
+						paddingBottom: 75,
 					}}
 					data={filteredSections?.[0]?.data ?? []}
 					keyExtractor={(item) => item.id}
@@ -176,7 +174,7 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 					)}
 					estimatedItemSize={45}
 					extraData={selectedIds}
-					drawDistance={350}
+					drawDistance={360}
 				/>
 				{/* <LegendList
 					recycleItems={false}
@@ -195,56 +193,104 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 					drawDistance={350}
 				/> */}
 				{/* </BottomSheetScrollView> */}
+
+				{/* there is a visual glitch on iOS with bottom sheet footer */}
+				<View style={styles.footerContainer}>
+					<Pressable
+						style={({pressed}) => [
+							styles.containerTextBottom,
+							{ opacity: pressed ? 0.5 : 1 }
+						]}
+						onPress={() => {
+							onSelect(null);
+							setSelectedIds([]);
+							if (ref && "current" in ref) {
+								ref?.current?.close();
+							}
+						}}
+					>
+						<Text
+							style={[
+								styles.textBottomSheet,
+								{ color: themeColors[themeColor].primary }
+							]}
+						>
+							Effacer
+						</Text>
+					</Pressable>
+					<Pressable
+						style={({pressed}) => [
+							styles.containerTextBottom,
+							{ opacity: pressed ? 0.5 : 1 }
+						]}
+						onPress={() => {
+							onSelect(selectedIds);
+							setSelectedIds([]);
+							if (ref && "current" in ref) {
+								ref?.current?.close();
+							}
+						}}
+					>
+						<Text
+							style={[
+								styles.textBottomSheet,
+								{ color: themeColors[themeColor].primary }
+							]}
+						>
+							Ajouter
+						</Text>
+					</Pressable>
+				</View>
 			</BottomSheet>
 		);
 	}
 );
 
-function ItemComponent<T extends FoodItem>({
-	item,
-	useRecyclingEffect,
-	useRecyclingState,
-	selectedIds,
-	setSelectedIds,
-	themeColor,
-}: {
-	item: T;
-	useRecyclingEffect: LegendListRenderItemProps<T>["useRecyclingEffect"];
-	useRecyclingState: LegendListRenderItemProps<T>["useRecyclingState"];
-	selectedIds: FoodItem[];
-	setSelectedIds: Dispatch<SetStateAction<FoodItem[]>>;
-	themeColor: keyof typeof themeColors;
-}) {
-	const isSelected = selectedIds.some((selectedItem) => selectedItem.id === item.id);
-	return (
-		<Pressable
-			key={item.id}
-			style={[
-				styles.itemContainer,
-				isSelected && {
-					backgroundColor: themeColors[themeColor].primary,
-				},
-			]}
-			onPress={() => {
-				if (selectedIds.find((id) => id.id === item.id)) {
-					setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
-				} else {
-					setSelectedIds((prev) => [...prev, item]);
-				}
-			}}
-		>
-			<Image
-				placeholder={require("@/assets/images/fridge.png")}
-				placeholderContentFit="contain"
-				style={styles.itemImage}
-				contentFit="contain"
-				source={item.image}
-				alt={item.label.FR}
-			/>
-			<Text style={[styles.itemText, isSelected && styles.selectedItemText]}>{item.label.FR}</Text>
-		</Pressable>
-	);
-}
+// function ItemComponent<T extends FoodItem>({
+// 	item,
+// 	useRecyclingEffect,
+// 	useRecyclingState,
+// 	selectedIds,
+// 	setSelectedIds,
+// 	themeColor,
+// }: {
+// 	item: T;
+// 	useRecyclingEffect: LegendListRenderItemProps<T>["useRecyclingEffect"];
+// 	useRecyclingState: LegendListRenderItemProps<T>["useRecyclingState"];
+// 	selectedIds: FoodItem[];
+// 	setSelectedIds: Dispatch<SetStateAction<FoodItem[]>>;
+// 	themeColor: keyof typeof themeColors;
+// }) {
+// 	const isSelected = selectedIds.some((selectedItem) => selectedItem.id === item.id);
+// 	return (
+// 		<Pressable
+// 			key={item.id}
+// 			style={[
+// 				styles.itemContainer,
+// 				isSelected && {
+// 					backgroundColor: themeColors[themeColor].primary,
+// 				},
+// 			]}
+// 			onPress={() => {
+// 				if (selectedIds.find((id) => id.id === item.id)) {
+// 					setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
+// 				} else {
+// 					setSelectedIds((prev) => [...prev, item]);
+// 				}
+// 			}}
+// 		>
+// 			<Image
+// 				placeholder={require("@/assets/images/fridge.png")}
+// 				placeholderContentFit="contain"
+// 				style={styles.itemImage}
+// 				contentFit="contain"
+// 				source={item.image}
+// 				alt={item.label.FR}
+// 			/>
+// 			<Text style={[styles.itemText, isSelected && styles.selectedItemText]}>{item.label.FR}</Text>
+// 		</Pressable>
+// 	);
+// }
 
 function ItemComponentFlashList({
 	item,
@@ -313,7 +359,7 @@ const styles = StyleSheet.create({
 		gap: 20,
 		alignItems: "center",
 		padding: 8,
-		marginVertical: 4,
+		marginVertical: 3,
 		borderRadius: 8,
 	},
 	itemImage: {
@@ -347,16 +393,16 @@ const styles = StyleSheet.create({
 	},
 	footerContainer: {
 		position: "absolute",
-		bottom: 0,
 		left: 0,
 		right: 0,
-		zIndex: 1000,
+		bottom: 0,
+		width: "100%",
 		flexDirection: "row",
 		justifyContent: "space-around",
 		alignItems: "center",
 		backgroundColor: "#fff",
-		height: Platform.OS === "android" ? 0 : 70,
-		paddingBottom: Platform.OS === "android" ? 0 : 15,
+		height: Platform.OS === "android" ? 50 : 70,
+		paddingBottom: Platform.OS === "android" ? 5 : 15,
 	},
 	paddingSheet: {
 		paddingHorizontal: 15,
