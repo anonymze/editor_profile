@@ -50,3 +50,5 @@ npx expo export --platform web
 eas submit --non-interactive for CI/CD pipelines
 
 pnpx expo-doctor
+
+// TODO BETTER BOTTOM SHEET (legend list ?)  + icones + route api ai
