@@ -103,7 +103,7 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 					</Pressable>
 				);
 			},
-			[selectedIds, themeColor]
+			[selectedIds, themeColor, setSelectedIds]
 		);
 
 		// const renderFooter = React.useCallback(
@@ -190,11 +190,17 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 						placeholder={placeholderSearch}
 						style={styles.searchInput}
 						onSubmitEditing={(event) => {
-							setSearchQuery(event.nativeEvent.text);
+							setSearchQuery(
+								event.nativeEvent.text
+									.toLowerCase()
+									.normalize("NFD") // Decompose characters into base + combining marks
+									.replace(/[\u0300-\u036f]/g, "") // Remove all the combining marks
+							);
 						}}
 						returnKeyType="search"
 					/>
 				) : (
+					// needed because bottom sheet textinput is pushng the bottom sheet up when keyboard open
 					<TextInput
 						ref={searchInputRef}
 						autoCapitalize="none"
