@@ -1,12 +1,13 @@
-import { BottomSheetFooter, BottomSheetFooterProps, BottomSheetModal, BottomSheetModalProvider, BottomSheetScrollView, } from "@gorhom/bottom-sheet";
-import { View, Text, StyleSheet, Platform } from "react-native";
+import BottomSheet, { BottomSheetFlashList, BottomSheetFooter, BottomSheetFooterProps, BottomSheetScrollView, } from "@gorhom/bottom-sheet";
+import { useReanimatedKeyboardAnimation } from "react-native-keyboard-controller";
+import { Text, StyleSheet, Platform, TextInput, View } from "react-native";
+import { LegendList, LegendListRenderItemProps } from "@legendapp/list";
+import React, { Dispatch, SetStateAction, forwardRef } from "react";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { Pressable } from "react-native-gesture-handler";
 import { themeColors } from "@/theme/theme-storage";
-import vegetables from "@/data/vegetables";
-import React, { forwardRef } from "react";
+import { FlashList } from "@shopify/flash-list";
 import { Image } from "expo-image";
-import fruits from "@/data/fruit";
 
 
 export type FoodItem = {
@@ -30,10 +31,12 @@ interface Props {
 
 const snapPoints = ["75%"];
 
-export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
+export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 	({ onSelect, placeholderSearch, data, themeColor }, ref) => {
 		const [searchQuery, setSearchQuery] = React.useState("");
 		const [selectedIds, setSelectedIds] = React.useState<FoodItem[]>([]);
+		const { height } = useReanimatedKeyboardAnimation();
+		const searchInputRef = React.useRef<TextInput>(null);
 
 		// filter sections based on search query
 		const filteredSections = React.useMemo(() => {
@@ -46,15 +49,10 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 						item.label.FR.toLowerCase()
 							.normalize("NFD")
 							.replace(/[\u0300-\u036f]/g, "")
-							.includes(
-								searchQuery
-									.toLowerCase()
-									.normalize("NFD")
-									.replace(/[\u0300-\u036f]/g, "")
-							)
+							.includes(searchQuery)
 					),
 				}))
-				.filter((section) => section.data.length > 0); // Remove empty sections
+				.filter((section) => section?.data?.length > 0); // Remove empty sections
 		}, [searchQuery]);
 
 		const renderFooter = React.useCallback(
@@ -65,7 +63,6 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 						onPress={() => {
 							onSelect(null);
 							setSelectedIds([]);
-							setSearchQuery("");
 							if (ref && "current" in ref) {
 								ref?.current?.close();
 							}
@@ -87,7 +84,6 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 						onPress={() => {
 							onSelect(selectedIds);
 							setSelectedIds([]);
-							setSearchQuery("");
 							if (ref && "current" in ref) {
 								ref?.current?.close();
 							}
@@ -109,125 +105,193 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 			[onSelect, selectedIds]
 		);
 
+		const resetSearchInput = React.useCallback(() => {
+			setSearchQuery("");
+			if (searchInputRef.current) {
+				searchInputRef.current.clear();
+			}
+		}, []);
+
 		return (
-			<BottomSheetModalProvider>
-				<BottomSheetModal
-					onDismiss={() => {
-						setSearchQuery("");
+			<BottomSheet
+				// initially closed
+				index={-1}
+				onClose={resetSearchInput}
+				ref={ref}
+				enablePanDownToClose={true}
+				enableDynamicSizing={false}
+				snapPoints={snapPoints}
+				footerComponent={renderFooter}
+				keyboardBehavior="extend"
+				keyboardBlurBehavior="restore"
+				android_keyboardInputMode="adjustResize"
+				style={styles.paddingSheet}
+				backgroundStyle={{ backgroundColor: "#fff" }}
+				handleStyle={{ backgroundColor: "#fff" }}
+				handleIndicatorStyle={{ backgroundColor: themeColors[themeColor].primary }}
+			>
+				{/* <BottomSheetTextInput
+					autoCapitalize="none"
+					autoComplete="off"
+					autoCorrect={false}
+					placeholder={placeholderSearch}
+					style={styles.searchInput}
+					onSubmitEditing={(event) => {
+						setSearchQuery(event.nativeEvent.text);
 					}}
-					ref={ref}
-					enablePanDownToClose={true}
-					enableDynamicSizing={false}
-					snapPoints={snapPoints}
-					footerComponent={renderFooter}
-					keyboardBehavior="extend"
-					keyboardBlurBehavior="restore"
-					android_keyboardInputMode="adjustResize"
-					style={styles.paddingSheet}
-					backgroundStyle={{ backgroundColor: "#fff" }}
-					handleStyle={{ backgroundColor: "#fff" }}
-					handleIndicatorStyle={{ backgroundColor: themeColors[themeColor].primary }}
-				>
-					<BottomSheetTextInput
-						autoCapitalize="none"
-						autoComplete="off"
-						autoCorrect={false}
-						placeholder={placeholderSearch}
-						style={styles.searchInput}
-						onSubmitEditing={(event) => {
-							setSearchQuery(event.nativeEvent.text);
-						}}
-						returnKeyType="search"
-					/>
+					returnKeyType="search"
+				/> */}
 
-					<BottomSheetScrollView style={styles.bottomSheetContent}>
-						<MemoizedSections
-							themeColor={themeColor}
-							sections={filteredSections}
+				<TextInput
+					ref={searchInputRef}
+					autoCapitalize="none"
+					autoCorrect={true}
+					placeholder={placeholderSearch}
+					style={styles.searchInput}
+					onSubmitEditing={(event) => {
+						setSearchQuery(
+							event.nativeEvent.text
+								.toLowerCase()
+								.normalize("NFD") // Decompose characters into base + combining marks
+								.replace(/[\u0300-\u036f]/g, "") // Remove all the combining marks
+						);
+					}}
+					returnKeyType="search"
+				/>
+
+				{/* <BottomSheetScrollView style={styles.bottomSheetContent}> */}
+				<BottomSheetFlashList
+					contentContainerStyle={{
+						paddingBottom: 85,
+					}}
+					data={filteredSections?.[0]?.data ?? []}
+					keyExtractor={(item) => item.id}
+					renderItem={({ item }) => (
+						<ItemComponentFlashList
+							item={item}
 							selectedIds={selectedIds}
-							onItemPress={(item) => {
-								if (selectedIds.find((id) => id.id === item.id)) {
-									setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
-								} else {
-									setSelectedIds((prev) => [...prev, item]);
-								}
-							}}
+							setSelectedIds={setSelectedIds}
+							themeColor={themeColor}
 						/>
-					</BottomSheetScrollView>
-				</BottomSheetModal>
-			</BottomSheetModalProvider>
+					)}
+					estimatedItemSize={45}
+					extraData={selectedIds}
+					drawDistance={350}
+				/>
+				{/* <LegendList
+					recycleItems={false}
+					data={filteredSections?.[0]?.data ?? []}
+					renderItem={(props) => (
+						<ItemComponent
+							{...props}
+							selectedIds={selectedIds}
+							setSelectedIds={setSelectedIds}
+							themeColor={themeColor}
+						/>
+					)}
+					keyExtractor={(item) => item.id}
+					estimatedItemSize={50}
+					extraData={selectedIds}
+					drawDistance={350}
+				/> */}
+				{/* </BottomSheetScrollView> */}
+			</BottomSheet>
 		);
 	}
 );
 
-const MemoizedSections = React.memo(
-	({
-		sections,
-		selectedIds,
-		themeColor,
-		onItemPress,
-	}: {
-		sections: Props["data"];
-		selectedIds: FoodItem[];
-		themeColor: keyof typeof themeColors;
-		onItemPress: (item: FoodItem) => void;
-	}) => (
-		<>
-			{sections.map((section) => (
-				<View key={section.title} style={styles.bottomSheetListContent}>
-					<View style={styles.sectionHeaderContainer}>
-						<View
-							style={StyleSheet.flatten([
-								styles.sectionHeader,
-								{ backgroundColor: themeColors[themeColor].primary },
-							])}
-						>
-							<Text style={styles.sectionHeaderText}>{section.title}</Text>
-						</View>
-					</View>
-					{section.data.map((item) => (
-						<Pressable
-							key={item.id}
-							style={[
-								styles.itemContainer,
-								selectedIds.find((id) => id.id === item.id) && {
-									backgroundColor: themeColors[themeColor].primary,
-								},
-							]}
-							onPress={() => onItemPress(item)}
-						>
-							<Image
-								placeholder={require("@/assets/images/fridge.png")}
-								placeholderContentFit="contain"
-								style={styles.itemImage}
-								contentFit="contain"
-								source={item.image}
-								alt={item.label.FR}
-							/>
-							<Text
-								style={[
-									styles.itemText,
-									selectedIds.find((id) => id.id === item.id) && styles.selectedItemText,
-								]}
-							>
-								{item.label.FR}
-							</Text>
-						</Pressable>
-					))}
-				</View>
-			))}
-		</>
-	),
-	(prevProps, nextProps) => {
-		// optional: custom comp
-		// arison function
-		return (
-			prevProps.sections === nextProps.sections &&
-			prevProps.selectedIds === nextProps.selectedIds &&
-			prevProps.themeColor === nextProps.themeColor
-		);
-	}
-);
+function ItemComponent<T extends FoodItem>({
+	item,
+	useRecyclingEffect,
+	useRecyclingState,
+	selectedIds,
+	setSelectedIds,
+	themeColor,
+}: {
+	item: T;
+	useRecyclingEffect: LegendListRenderItemProps<T>["useRecyclingEffect"];
+	useRecyclingState: LegendListRenderItemProps<T>["useRecyclingState"];
+	selectedIds: FoodItem[];
+	setSelectedIds: Dispatch<SetStateAction<FoodItem[]>>;
+	themeColor: keyof typeof themeColors;
+}) {
+	const isSelected = selectedIds.some((selectedItem) => selectedItem.id === item.id);
+	return (
+		<Pressable
+			key={item.id}
+			style={[
+				styles.itemContainer,
+				isSelected && {
+					backgroundColor: themeColors[themeColor].primary,
+				},
+			]}
+			onPress={() => {
+				if (selectedIds.find((id) => id.id === item.id)) {
+					setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
+				} else {
+					setSelectedIds((prev) => [...prev, item]);
+				}
+			}}
+		>
+			<Image
+				placeholder={require("@/assets/images/fridge.png")}
+				placeholderContentFit="contain"
+				style={styles.itemImage}
+				contentFit="contain"
+				source={item.image}
+				alt={item.label.FR}
+			/>
+			<Text style={[styles.itemText, isSelected && styles.selectedItemText]}>{item.label.FR}</Text>
+		</Pressable>
+	);
+}
+
+function ItemComponentFlashList({
+	item,
+	selectedIds,
+	setSelectedIds,
+	themeColor,
+}: {
+	item: FoodItem;
+	selectedIds: FoodItem[];
+	setSelectedIds: Dispatch<SetStateAction<FoodItem[]>>;
+	themeColor: keyof typeof themeColors;
+}) {
+	const isSelected = selectedIds.some((selectedItem) => selectedItem.id === item.id);
+
+	return (
+		<Pressable
+			key={item.id}
+			style={[
+				styles.itemContainer,
+				isSelected && {
+					backgroundColor: themeColors[themeColor].primary,
+				},
+			]}
+			onPress={() => {
+				console.log(
+					`Item ${item.id} pressed. Current selection: ${isSelected ? "selected" : "not selected"}`
+				);
+
+				if (isSelected) {
+					setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
+				} else {
+					setSelectedIds((prev) => [...prev, item]);
+				}
+			}}
+		>
+			<Image
+				placeholder={require("@/assets/images/fridge.png")}
+				placeholderContentFit="contain"
+				style={styles.itemImage}
+				contentFit="contain"
+				source={item.image}
+				alt={item.label.FR}
+			/>
+			<Text style={[styles.itemText, isSelected && styles.selectedItemText]}>{item.label.FR}</Text>
+		</Pressable>
+	);
+}
 
 const styles = StyleSheet.create({
 	sectionHeaderContainer: {
@@ -246,10 +310,10 @@ const styles = StyleSheet.create({
 	},
 	itemContainer: {
 		flexDirection: "row",
-		gap: 12,
+		gap: 20,
 		alignItems: "center",
 		padding: 8,
-		marginVertical: 2,
+		marginVertical: 4,
 		borderRadius: 8,
 	},
 	itemImage: {
@@ -282,11 +346,16 @@ const styles = StyleSheet.create({
 		marginBottom: 30,
 	},
 	footerContainer: {
+		position: "absolute",
+		bottom: 0,
+		left: 0,
+		right: 0,
+		zIndex: 1000,
 		flexDirection: "row",
 		justifyContent: "space-around",
 		alignItems: "center",
 		backgroundColor: "#fff",
-		height: Platform.OS === "android" ? 55 : 70,
+		height: Platform.OS === "android" ? 0 : 70,
 		paddingBottom: Platform.OS === "android" ? 0 : 15,
 	},
 	paddingSheet: {

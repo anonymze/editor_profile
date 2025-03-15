@@ -5,11 +5,11 @@ import { Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-nativ
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
+import BottomSheet, { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { ButtonRadialGradient } from "@/components/radial-gradient";
 import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useCustomer } from "@/context/customer";
 import * as Application from "expo-application";
 import vegetables from "@/data/vegetables";
@@ -73,7 +73,7 @@ const initialSections = [
 
 export default function Page() {
 	const { customer, setCustomer } = useCustomer();
-	const bottomSheetRef = useRef<BottomSheetModal>(null);
+	const bottomSheetRef = useRef<BottomSheet>(null);
 	const [selectedValues, setSelectedValues] = useState<FoodItem[]>([]);
 	const [showTooltip, setShowTooltip] = useState(false);
 	const [isTooltipAnimating, setIsTooltipAnimating] = useState(false);
@@ -281,7 +281,7 @@ export default function Page() {
 				>
 					<Pressable
 						onPress={() => {
-							bottomSheetRef.current?.present();
+							bottomSheetRef.current?.expand();
 						}}
 					>
 						<Animated.View style={StyleSheet.flatten([stylesLayout.centerContent, bounceStyle])}>
