@@ -1,8 +1,9 @@
+import BottomSheet, { BottomSheetFlashList, BottomSheetSectionList } from "@gorhom/bottom-sheet";
 import { Text, StyleSheet, Platform, TextInput, View, Pressable } from "react-native";
-import BottomSheet, { BottomSheetFlashList } from "@gorhom/bottom-sheet";
 import React, { Dispatch, SetStateAction, forwardRef } from "react";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { themeColors } from "@/theme/theme-storage";
+import { useCallback } from "react";
 import { Image } from "expo-image";
 
 
@@ -49,6 +50,60 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 				}))
 				.filter((section) => section?.data?.length > 0); // Remove empty sections
 		}, [searchQuery]);
+
+		const renderSectionHeader = useCallback(
+			({ section }: { section: { title: string; data: FoodItem[] } }) => {
+				return (
+					<View style={styles.sectionHeaderContainer}>
+						<Text
+							style={StyleSheet.flatten([
+								styles.sectionHeaderText,
+								{ backgroundColor: themeColors[themeColor].primary },
+							])}
+						>
+							{section.title}
+						</Text>
+					</View>
+				);
+			},
+			[themeColor]
+		);
+
+		const renderItem = useCallback(
+			({ item }: { item: FoodItem }) => {
+				const isSelected = selectedIds.some((selectedItem) => selectedItem.id === item.id);
+
+				return (
+					<Pressable
+						key={item.id}
+						style={[
+							styles.itemContainer,
+							isSelected && {
+								backgroundColor: themeColors[themeColor].primary,
+							},
+						]}
+						onPress={() => {
+							if (isSelected) {
+								setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
+							} else {
+								setSelectedIds((prev) => [...prev, item]);
+							}
+						}}
+					>
+						<Image
+							placeholder={require("@/assets/images/fridge.png")}
+							placeholderContentFit="contain"
+							style={styles.itemImage}
+							contentFit="contain"
+							source={item.image}
+							alt={item.label.FR}
+						/>
+						<Text style={[styles.itemText, isSelected && styles.selectedItemText]}>{item.label.FR}</Text>
+					</Pressable>
+				);
+			},
+			[selectedIds, themeColor, setSelectedIds]
+		);
 
 		// const renderFooter = React.useCallback(
 		// 	(props: BottomSheetFooterProps) => (
@@ -158,7 +213,7 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 				)}
 
 				{/* <BottomSheetScrollView style={styles.bottomSheetContent}> */}
-				<BottomSheetFlashList
+				{/* <BottomSheetFlashList
 					contentContainerStyle={{
 						paddingBottom: 75,
 					}}
@@ -175,6 +230,16 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 					estimatedItemSize={45}
 					extraData={selectedIds}
 					drawDistance={360}
+				/> */}
+				<BottomSheetSectionList
+					sections={filteredSections}
+					keyExtractor={(item) => item.id}
+					renderSectionHeader={renderSectionHeader}
+					renderItem={renderItem}
+					extraData={selectedIds}
+					contentContainerStyle={{
+						paddingBottom: 75,
+					}}
 				/>
 				{/* <LegendList
 					recycleItems={false}
@@ -197,10 +262,7 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 				{/* there is a visual glitch on iOS with bottom sheet footer */}
 				<View style={styles.footerContainer}>
 					<Pressable
-						style={({pressed}) => [
-							styles.containerTextBottom,
-							{ opacity: pressed ? 0.5 : 1 }
-						]}
+						style={({ pressed }) => [styles.containerTextBottom, { opacity: pressed ? 0.5 : 1 }]}
 						onPress={() => {
 							onSelect(null);
 							setSelectedIds([]);
@@ -209,20 +271,10 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 							}
 						}}
 					>
-						<Text
-							style={[
-								styles.textBottomSheet,
-								{ color: themeColors[themeColor].primary }
-							]}
-						>
-							Effacer
-						</Text>
+						<Text style={[styles.textBottomSheet, { color: themeColors[themeColor].primary }]}>Effacer</Text>
 					</Pressable>
 					<Pressable
-						style={({pressed}) => [
-							styles.containerTextBottom,
-							{ opacity: pressed ? 0.5 : 1 }
-						]}
+						style={({ pressed }) => [styles.containerTextBottom, { opacity: pressed ? 0.5 : 1 }]}
 						onPress={() => {
 							onSelect(selectedIds);
 							setSelectedIds([]);
@@ -231,14 +283,7 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 							}
 						}}
 					>
-						<Text
-							style={[
-								styles.textBottomSheet,
-								{ color: themeColors[themeColor].primary }
-							]}
-						>
-							Ajouter
-						</Text>
+						<Text style={[styles.textBottomSheet, { color: themeColors[themeColor].primary }]}>Ajouter</Text>
 					</Pressable>
 				</View>
 			</BottomSheet>
@@ -342,17 +387,16 @@ function ItemComponentFlashList({
 const styles = StyleSheet.create({
 	sectionHeaderContainer: {
 		flexDirection: "row",
-	},
-	sectionHeader: {
-		borderRadius: 6,
-		paddingHorizontal: 12,
-		paddingVertical: 4,
-		marginBottom: 6,
+		paddingVertical: 0,
+		marginBottom: 3,
+		borderRadius: 8,
 	},
 	sectionHeaderText: {
 		color: "#ffffff",
 		fontSize: 18,
 		fontWeight: "bold",
+		padding: 8,
+		borderRadius: 6,
 	},
 	itemContainer: {
 		flexDirection: "row",
@@ -418,5 +462,7 @@ const styles = StyleSheet.create({
 	textBottomSheet: {
 		fontSize: 18,
 		fontWeight: 500,
+
+		paddingHorizontal: 15,
 	},
 });
