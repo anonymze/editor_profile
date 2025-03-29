@@ -148,12 +148,21 @@ export default function Page() {
 	);
 }
 
-const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe, themeColor: keyof typeof themeColors }) => (
+const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe; themeColor: keyof typeof themeColors }) => (
 	<View style={styles.containerPrompt}>
 		<Text style={styles.titleRecipe}>{recipe.titleRecipe}</Text>
 
 		{/* Time and servings row */}
 		<View style={styles.infoRow}>
+		{recipe.type && (
+				<View style={styles.infoItem}>
+					<View
+						style={StyleSheet.flatten([styles.bubble, { backgroundColor: themeColors[themeColor].primary }])}
+					>
+						<Text style={styles.bubbleText}>{recipe.type}</Text>
+					</View>
+				</View>
+			)}
 			{recipe.prepTime && (
 				<View style={styles.infoItem}>
 					<ClockIcon size={26} color="#fff" />
@@ -166,18 +175,17 @@ const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe, themeColor: key
 				<Text style={styles.infoText}>{recipe.servings || "4 personnes"}</Text>
 			</View>
 
-			{recipe.type && (
-				<View style={styles.infoItem}>
-					<View style={StyleSheet.flatten([styles.bubble, { backgroundColor: themeColors[themeColor].primary }])}>
-						<Text style={styles.bubbleText}>{recipe.type}</Text>
-					</View>
-				</View>
-			)}
+
 		</View>
 
 		{/* Ingredients */}
 		<View style={styles.sectionContainer}>
-			<View style={StyleSheet.flatten([styles.sectionIconContainer, { backgroundColor: themeColors[themeColor].secondary }])}>
+			<View
+				style={StyleSheet.flatten([
+					styles.sectionIconContainer,
+					{ backgroundColor: themeColors[themeColor].secondary },
+				])}
+			>
 				<CarrotIcon size={26} color="#fff" />
 			</View>
 			<Text style={styles.sectionLabel}>Ingrédients</Text>
@@ -194,7 +202,12 @@ const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe, themeColor: key
 
 		{/* Instructions */}
 		<View style={styles.sectionContainer}>
-			<View style={StyleSheet.flatten([styles.sectionIconContainer, { backgroundColor: themeColors[themeColor].secondary }])}>
+			<View
+				style={StyleSheet.flatten([
+					styles.sectionIconContainer,
+					{ backgroundColor: themeColors[themeColor].secondary },
+				])}
+			>
 				<ChefHatIcon size={26} color="#fff" />
 			</View>
 			<Text style={styles.sectionLabel}>Instructions</Text>
@@ -203,7 +216,12 @@ const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe, themeColor: key
 		<View style={styles.listContainer}>
 			{recipe.instructions.map((instruction, index) => (
 				<View key={`instruction-${index}`} style={styles.instructionItem}>
-					<View style={StyleSheet.flatten([styles.instructionNumber, { backgroundColor: themeColors[themeColor].primaryDark }])}>
+					<View
+						style={StyleSheet.flatten([
+							styles.instructionNumber,
+							{ backgroundColor: themeColors[themeColor].primaryDark },
+						])}
+					>
 						<Text style={styles.instructionNumberText}>{index + 1}</Text>
 					</View>
 					<Text style={styles.instructionText}>{instruction}</Text>
@@ -215,7 +233,12 @@ const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe, themeColor: key
 		{recipe?.lexicon && recipe.lexicon.length > 0 && (
 			<>
 				<View style={styles.sectionContainer}>
-					<View style={StyleSheet.flatten([styles.sectionIconContainer, { backgroundColor: themeColors[themeColor].secondary }])}>
+					<View
+						style={StyleSheet.flatten([
+							styles.sectionIconContainer,
+							{ backgroundColor: themeColors[themeColor].secondary },
+						])}
+					>
 						<BookAIcon size={26} color="#fff" />
 					</View>
 					<Text style={styles.sectionLabel}>Lexique</Text>
@@ -223,7 +246,7 @@ const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe, themeColor: key
 				<View style={styles.listContainer}>
 					{recipe.lexicon.map((item, index) => (
 						<View key={`lexicon-${index}`} style={styles.listItem}>
-							<MinusIcon size={20} strokeWidth={4} color="#fff" style={{marginTop: 5}} />
+							<MinusIcon size={20} strokeWidth={4} color="#fff" style={{ marginTop: 5 }} />
 							<Text style={styles.listText}>
 								{item.term} : {item.definition}
 							</Text>
@@ -344,5 +367,7 @@ const styles = StyleSheet.create({
 		borderRadius: 99,
 		paddingHorizontal: 12,
 		paddingVertical: 4,
+		borderColor: "#fff",
+		borderWidth: 1
 	},
 });
