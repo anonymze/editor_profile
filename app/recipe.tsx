@@ -1,7 +1,7 @@
 import { getStorageColor, getStorageLimitedAction, getStorageName, setStorageLimitedAction, themeColors, } from "@/theme/theme-storage";
 import { ArrowLeftIcon, BookAIcon, CarrotIcon, ChefHatIcon, ClockIcon, DotIcon, MinusIcon, UsersRoundIcon, } from "lucide-react-native";
-import { Gesture, GestureDetector, Pressable, ScrollView } from "react-native-gesture-handler";
 import Animated, { FadeIn, FadeInDown, FadeOut, runOnJS } from "react-native-reanimated";
+import { Gesture, GestureDetector, Pressable } from "react-native-gesture-handler";
 import SplashScreenAnimation from "@/components/splashscreen-animation";
 import { Alert, Platform, StyleSheet, Text, View } from "react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";

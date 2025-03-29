@@ -72,7 +72,7 @@ const initialSections = [
 ];
 
 export default function Page() {
-	const { customer, setCustomer } = useCustomer();
+	const { customer } = useCustomer();
 	const bottomSheetRef = useRef<BottomSheet>(null);
 	const [selectedValues, setSelectedValues] = useState<FoodItem[]>([]);
 	const [showTooltip, setShowTooltip] = useState(false);
@@ -336,6 +336,11 @@ export default function Page() {
 				>
 					<ButtonRadialGradient
 						onPress={async () => {
+							if (getStorageLimitedAction() < 1) {
+								animateTooltip();
+								return;
+							}
+
 							router.push({
 								pathname: "/recipe",
 								params: {
