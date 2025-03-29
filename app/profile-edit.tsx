@@ -49,7 +49,9 @@ export default function Page() {
 
 	useEffect(() => {
 		const animationFrame = requestAnimationFrame(() => {
-			inputRef.current?.focus();
+			setTimeout(() => {
+				inputRef.current?.focus();
+			}, 600);
 		});
 
 		return () => {
@@ -82,10 +84,7 @@ export default function Page() {
 		<GestureDetector gesture={panGesture}>
 			<LayoutBackground color={themeColorFinal} centeredContent>
 				<Animated.View
-					style={StyleSheet.flatten([
-						stylesLayout.centerContent,
-						{ transform: [{ translateY: height }] },
-					])}
+					style={StyleSheet.flatten([stylesLayout.centerContent, { transform: [{ translateY: height }] }])}
 				>
 					<View style={stylesLayout.containerWithGap}>
 						<Animated.View

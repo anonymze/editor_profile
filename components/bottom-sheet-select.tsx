@@ -200,7 +200,7 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 						returnKeyType="search"
 					/>
 				) : (
-					// needed because bottom sheet textinput is pushng the bottom sheet up when keyboard open
+					// needed because bottom sheet text input is pushing the bottom sheet up when keyboard open
 					<TextInput
 						ref={searchInputRef}
 						autoCapitalize="none"
