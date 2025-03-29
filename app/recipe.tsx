@@ -223,7 +223,7 @@ const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe, themeColor: key
 				<View style={styles.listContainer}>
 					{recipe.lexicon.map((item, index) => (
 						<View key={`lexicon-${index}`} style={styles.listItem}>
-							<MinusIcon size={20} strokeWidth={4} color="#fff" />
+							<MinusIcon size={20} strokeWidth={4} color="#fff" style={{marginTop: 5}} />
 							<Text style={styles.listText}>
 								{item.term} : {item.definition}
 							</Text>
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
 	sectionContainer: {
 		flexDirection: "row",
 		alignItems: "center",
-		marginBottom: 15,
+		marginBottom: 22,
 	},
 	sectionIconContainer: {
 		width: 40,
@@ -286,6 +286,7 @@ const styles = StyleSheet.create({
 	},
 	sectionLabel: {
 		fontSize: 22,
+
 		fontWeight: "bold",
 		color: "#fff",
 	},
@@ -297,12 +298,11 @@ const styles = StyleSheet.create({
 		marginBottom: 8,
 		paddingLeft: 6,
 		gap: 8,
-		alignItems: "center",
 	},
 	instructionItem: {
 		flexDirection: "row",
 		alignItems: "center",
-		marginBottom: 17,
+		marginBottom: 18,
 		marginLeft: 3,
 	},
 	instructionNumber: {

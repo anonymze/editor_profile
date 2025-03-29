@@ -83,7 +83,6 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 							},
 						]}
 						onPress={() => {
-							console.log("item pressed", item.id);
 							if (isSelected) {
 								setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
 							} else {
@@ -367,10 +366,6 @@ function ItemComponentFlashList({
 				},
 			]}
 			onPress={() => {
-				console.log(
-					`Item ${item.id} pressed. Current selection: ${isSelected ? "selected" : "not selected"}`
-				);
-
 				if (isSelected) {
 					setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
 				} else {

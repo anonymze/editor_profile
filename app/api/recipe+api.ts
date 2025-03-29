@@ -11,15 +11,6 @@ export async function POST(request: Request) {
 	const origin = headers.get("X-Origin");
 	const vendorId = headers.get("X-Vendor-Id");
 
-	console.log("origin", origin);
-	console.log("vendorId", vendorId);
-
-	console.log("request");
-	console.dir(request, { depth: null });
-
-	console.log("headers");
-	console.dir(headers, { depth: null });
-
 	if (!origin || !vendorId) {
 		return new Response("KO", { status: 401 });
 	}
