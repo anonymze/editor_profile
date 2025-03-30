@@ -32,7 +32,7 @@ export default function Page() {
 							Accept: "application/json",
 							"X-Origin": process.env.EXPO_PUBLIC_ORIGIN_MOBILE ?? "",
 							"X-Vendor-Id": vendorId?.toString() ?? "",
-							"X-User-Id": customerID?.toString() ?? "",
+							"X-Customer-Id": customerID?.toString() ?? "",
 						},
 						body: JSON.stringify({
 							username: getStorageName(),

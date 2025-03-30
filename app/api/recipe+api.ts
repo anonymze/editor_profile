@@ -10,8 +10,15 @@ export async function POST(request: Request) {
 	const data = (await request.json()) as { prompt: string; username: string } | undefined;
 	const origin = headers.get("X-Origin");
 	const vendorId = headers.get("X-Vendor-Id");
+	const customerId = headers.get("X-Customer-Id");
 
-	if (!origin || !vendorId) {
+	console.log(origin, vendorId, customerId);
+
+	if (!origin || !vendorId || !customerId) {
+		return new Response("KO", { status: 401 });
+	}
+
+	if (origin !== process.env.EXPO_PUBLIC_ORIGIN_MOBILE) {
 		return new Response("KO", { status: 401 });
 	}
 
