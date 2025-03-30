@@ -1,6 +1,8 @@
 import { mistral } from "@ai-sdk/mistral";
 import { generateText } from "ai";
 
+import { hasReachedRequestLimit, incrementVendorRequest } from "./_utils/request-tracker";
+
 
 const DEFAULT_SERVINGS = 4;
 const DEFAULT_USERNAME = "Chef";
@@ -14,7 +16,10 @@ export async function POST(request: Request) {
 
 	console.log(origin, vendorId, customerId);
 
-	if (!origin || !vendorId || !customerId) {
+	// vendor id
+	// CBAD5FB9-C5E1-4641-AAE1-B257E2580A1B
+
+	if (!origin || !vendorId) {
 		return new Response("KO", { status: 401 });
 	}
 
@@ -32,12 +37,15 @@ export async function POST(request: Request) {
 		return new Response("KO", { status: 400 });
 	}
 
-	// @ts-expect-error
-	const result = await generateRecipe(arrayPrompt, 4 || DEFAULT_SERVINGS, data.username || DEFAULT_USERNAME);
+	if (await hasReachedRequestLimit(vendorId)) {
+		return new Response("Request limit reached", { status: 429 });
+	}
+
+	const result = await generateRecipe(arrayPrompt, DEFAULT_SERVINGS, data.username || DEFAULT_USERNAME);
+
+	await incrementVendorRequest(vendorId);
 
 	return Response.json(JSON.parse(result.text));
-	// const stream = generateStreamRecipe(arrayPrompt, 4, data.username);
-	// return stream.toDataStreamResponse();
 }
 
 const generateRecipe = (ingredients: string[], numberOfPeople: number, username: string) => {
