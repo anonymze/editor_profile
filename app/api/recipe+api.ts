@@ -1,7 +1,8 @@
 import { mistral } from "@ai-sdk/mistral";
 import { generateText } from "ai";
 
-import { hasReachedRequestLimit, incrementVendorRequest } from "./_utils/request-tracker";
+
+// import { getVendorRequestCount, hasReachedRequestLimit, incrementVendorRequest, } from "./_utils/request-tracker";
 
 
 const DEFAULT_SERVINGS = 4;
@@ -37,13 +38,15 @@ export async function POST(request: Request) {
 		return new Response("KO", { status: 400 });
 	}
 
-	if (await hasReachedRequestLimit(vendorId)) {
-		return new Response("Request limit reached", { status: 429 });
-	}
+	// console.log(await getVendorRequestCount(vendorId));
+
+	// if (await hasReachedRequestLimit(vendorId)) {
+	// 	return new Response("Request limit reached", { status: 429 });
+	// }
 
 	const result = await generateRecipe(arrayPrompt, DEFAULT_SERVINGS, data.username || DEFAULT_USERNAME);
 
-	await incrementVendorRequest(vendorId);
+	// await incrementVendorRequest(vendorId);
 
 	return Response.json(JSON.parse(result.text));
 }
