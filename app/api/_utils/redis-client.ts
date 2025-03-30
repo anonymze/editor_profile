@@ -7,7 +7,7 @@ if (!process.env.REDIS_URL) {
 
 const redisClient = createClient({
   url: process.env.REDIS_URL,
-  // memcached doesn't need TLS
+  // memcached database doesn't need TLS
   socket: {
     tls: false
   }
@@ -21,7 +21,6 @@ redisClient.on('connect', () => {
   console.log('connected to redis');
 });
 
-// connect immediately
 redisClient.connect().catch(console.error);
 
 export default redisClient; 
