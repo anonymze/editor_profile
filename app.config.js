@@ -39,15 +39,13 @@ module.exports = () => ({
 				},
 			],
 			[
-        "@sentry/react-native/expo",
-        {
-          "organization": "sentry org slug, or use the `SENTRY_ORG` environment variable",
-          "project": "sentry project name, or use the `SENTRY_PROJECT` environment variable",
-          // If you are using a self-hosted instance, update the value of the url property
-          // to point towards your self-hosted instance. For example, https://self-hosted.example.com/.
-          "url": "https://sentry.io/"
-        }
-      ],
+				"@sentry/react-native/expo",
+				{
+					url: "https://sentry.io/",
+					project: "fridgy",
+					organization: "yann-metier",
+				},
+			],
 			[
 				"expo-image-picker",
 				{

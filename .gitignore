@@ -41,3 +41,11 @@ yarn-error.*
 .history
 
 /x
+.env.local
+
+
+# Keep android/ios folders but exclude sentry.properties
+android/sentry.properties
+ios/sentry.properties
+resources/android/sentry.properties
+resources/ios/sentry.properties

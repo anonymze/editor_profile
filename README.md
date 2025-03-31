@@ -51,4 +51,7 @@ eas submit --non-interactive for CI/CD pipelines
 
 pnpx expo-doctor
 
+// setup sentry for native part and config
+pnpx @sentry/wizard@latest -i reactNative --saas --org yann-metier --project react-native
+
 // TODO BETTER BOTTOM SHEET (legend list ?)  + icones + route api ai + set customer updated after purchase
