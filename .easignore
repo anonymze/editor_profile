@@ -40,9 +40,7 @@ yarn-error.*
 .idea
 .history
 
-/x
+x/
 .env.local
 
-
-resources/android/sentry.properties
-resources/ios/sentry.properties
+resources/
