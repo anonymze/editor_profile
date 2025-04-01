@@ -12,7 +12,6 @@ import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { useCustomer } from "@/context/customer";
 import * as Application from "expo-application";
-import * as Sentry from "@sentry/react-native";
 import vegetables from "@/data/vegetables";
 import ingredient from "@/data/ingredient";
 import { router } from "expo-router";
@@ -326,13 +325,6 @@ export default function Page() {
 					</View>
 				</Fragment>
 			) : null}
-
-			<Button
-				title="Try!"
-				onPress={() => {
-					Sentry.captureException(new Error("First error"));
-				}}
-			/>
 
 			{selectedValues.length >= 3 && (
 				<Animated.View
