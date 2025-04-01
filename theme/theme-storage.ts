@@ -81,7 +81,11 @@ export const setStorageImageUri = (imageUri: string) => {
 };
 
 export const getStorageLimitedAction = () => {
-	return storage.getNumber(DEFAULT_KEY_LIMITED_ACTION) ?? DEFAULT_LIMITED_ACTION;
+	const limitedAction = storage.getNumber(DEFAULT_KEY_LIMITED_ACTION) ?? DEFAULT_LIMITED_ACTION;
+
+	if (limitedAction < 1) return 0;
+
+	return limitedAction;
 }
 
 export const setStorageLimitedAction = (action: number) => {

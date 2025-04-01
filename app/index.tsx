@@ -1,7 +1,7 @@
 import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS, } from "react-native-reanimated";
-import { customerAppStoreHasSubscriptions, getCustomerAppStore, purchaseFirstSubscriptionAvailable, } from "@/utils/in-app-purchase";
+import { customerAppStoreHasSubscriptions, purchaseFirstSubscriptionAvailable, } from "@/utils/in-app-purchase";
 import { getStorageColor, getStorageLimitedAction, themeColors } from "@/theme/theme-storage";
-import { Alert, Button, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
+import { Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
