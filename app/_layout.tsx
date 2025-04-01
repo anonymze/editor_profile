@@ -86,7 +86,6 @@ export default Sentry.wrap(function RootLayout() {
 								}}
 							>
 								<Stack.Screen options={{ animation: "fade_from_bottom" }} name="recipe" />
-								<Stack.Screen options={{ animation: "fade_from_bottom" }} name="index" />
 							</Stack>
 						</SafeAreaView>
 					</SafeAreaProvider>
