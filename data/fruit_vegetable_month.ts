@@ -4,7 +4,7 @@ export default {
 			{
 				id: "betterave",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/betterave.svg"),
+				image: require("@/assets/images/vegetable/betterave.svg"),
 				label: {
 					FR: "Betterave",
 				},
@@ -12,7 +12,7 @@ export default {
 			{
 				id: "carotte",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/carotte.svg"),
+				image: require("@/assets/images/vegetable/carotte.svg"),
 				label: {
 					FR: "Carotte",
 				},
@@ -20,7 +20,7 @@ export default {
 			{
 				id: "navet",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/navet.svg"),
+				image: require("@/assets/images/vegetable/navet.svg"),
 				label: {
 					FR: "Navet",
 				},
@@ -28,7 +28,7 @@ export default {
 			{
 				id: "oignon",
 				co2: 0.39,
-				image: require("@/assets/images/vegetables/oignon.svg"),
+				image: require("@/assets/images/vegetable/oignon.svg"),
 				label: {
 					FR: "Oignon",
 				},
@@ -36,7 +36,7 @@ export default {
 			{
 				id: "epinard",
 				co2: 0.39,
-				image: require("@/assets/images/vegetables/epinard.svg"),
+				image: require("@/assets/images/vegetable/epinard.svg"),
 				label: {
 					FR: "Épinard",
 				},
@@ -44,7 +44,7 @@ export default {
 			{
 				id: "panais",
 				co2: 0.46,
-				image: require("@/assets/images/vegetables/panais.svg"),
+				image: require("@/assets/images/vegetable/panais.svg"),
 				label: {
 					FR: "Panais",
 				},
@@ -52,7 +52,7 @@ export default {
 			{
 				id: "salsifis",
 				co2: 0.46,
-				image: require("@/assets/images/vegetables/salsifis.svg"),
+				image: require("@/assets/images/vegetable/salsifis.svg"),
 				label: {
 					FR: "Salsifis",
 				},
@@ -60,7 +60,7 @@ export default {
 			{
 				id: "champignon",
 				co2: 0.49,
-				image: require("@/assets/images/vegetables/champignon.svg"),
+				image: require("@/assets/images/vegetable/champignon.svg"),
 				label: {
 					FR: "Champignon",
 				},
@@ -68,7 +68,7 @@ export default {
 			{
 				id: "topinambour",
 				co2: 0.51,
-				image: require("@/assets/images/vegetables/topinambour.svg"),
+				image: require("@/assets/images/vegetable/topinambour.svg"),
 				label: {
 					FR: "Topinambour",
 				},
@@ -76,7 +76,7 @@ export default {
 			{
 				id: "chou_bruxelles",
 				co2: 0.58,
-				image: require("@/assets/images/vegetables/chou_bruxelles.svg"),
+				image: require("@/assets/images/vegetable/chou_bruxelles.svg"),
 				label: {
 					FR: "Chou de Bruxelles",
 				},
@@ -84,7 +84,7 @@ export default {
 			{
 				id: "courge",
 				co2: 0.62,
-				image: require("@/assets/images/vegetables/courge.svg"),
+				image: require("@/assets/images/vegetable/courge.svg"),
 				label: {
 					FR: "Courge",
 				},
@@ -92,7 +92,7 @@ export default {
 			{
 				id: "potiron",
 				co2: 0.62,
-				image: require("@/assets/images/vegetables/potiron.svg"),
+				image: require("@/assets/images/vegetable/potiron.svg"),
 				label: {
 					FR: "Potiron",
 				},
@@ -100,7 +100,7 @@ export default {
 			{
 				id: "celeri",
 				co2: 0.68,
-				image: require("@/assets/images/vegetables/celeri.svg"),
+				image: require("@/assets/images/vegetable/celeri.svg"),
 				label: {
 					FR: "Céleri",
 				},
@@ -108,7 +108,7 @@ export default {
 			{
 				id: "chou_fleur",
 				co2: 0.74,
-				image: require("@/assets/images/vegetables/chou_fleur.svg"),
+				image: require("@/assets/images/vegetable/chou_fleur.svg"),
 				label: {
 					FR: "Chou-fleur",
 				},
@@ -116,7 +116,7 @@ export default {
 			{
 				id: "poireau",
 				co2: 0.77,
-				image: require("@/assets/images/vegetables/poireau.svg"),
+				image: require("@/assets/images/vegetable/poireau.svg"),
 				label: {
 					FR: "Poireau",
 				},
@@ -124,7 +124,7 @@ export default {
 			{
 				id: "chou",
 				co2: 0.86,
-				image: require("@/assets/images/vegetables/chou.svg"),
+				image: require("@/assets/images/vegetable/chou.svg"),
 				  label: {
 					FR: "Chou",
 				},
@@ -132,7 +132,7 @@ export default {
 			{
 				id: "endive",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/endive.svg"),
+				image: require("@/assets/images/vegetable/endive.svg"),
 				label: {
 					FR: "Endive",
 				},
@@ -140,7 +140,7 @@ export default {
 			{
 				id: "cresson",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/cresson.svg"),
+				image: require("@/assets/images/vegetable/cresson.svg"),
 				  label: {
 					FR: "Cresson",
 				},
@@ -148,7 +148,7 @@ export default {
 			{
 				id: "mache",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/mache.svg"),
+				image: require("@/assets/images/vegetable/mache.svg"),
 				  label: {
 					FR: "Mâche",
 				},
@@ -158,7 +158,7 @@ export default {
 			{
 				id: "poire",
 				co2: 0.36,
-				image: require("@/assets/images/fruits/poire.svg"),
+				image: require("@/assets/images/fruit/poire.svg"),
 				label: {
 					FR: "Poire",
 				},
@@ -166,7 +166,7 @@ export default {
 			{
 				id: "pomme",
 				co2: 0.41,
-				image: require("@/assets/images/fruits/pomme.svg"),
+				image: require("@/assets/images/fruit/pomme.svg"),
 				label: {
 					FR: "Pomme",
 				},
@@ -174,7 +174,7 @@ export default {
 			{
 				id: "mandarine",
 				co2: 0.42,
-				image: require("@/assets/images/fruits/mandarine.svg"),
+				image: require("@/assets/images/fruit/mandarine.svg"),
 				label: {
 					FR: "Mandarine",
 				},
@@ -182,7 +182,7 @@ export default {
 			{
 				id: "grenade",
 				co2: 0.49,
-				image: require("@/assets/images/fruits/grenade.svg"),
+				image: require("@/assets/images/fruit/grenade.svg"),
 				label: {
 					FR: "Grenade",
 				},
@@ -190,7 +190,7 @@ export default {
 			{
 				id: "carambole",
 				co2: 0.53,
-				image: require("@/assets/images/fruits/carambole.svg"),
+				image: require("@/assets/images/fruit/carambole.svg"),
 				label: {
 					FR: "Carambole",
 				},
@@ -198,7 +198,7 @@ export default {
 			{
 				id: "orange",
 				co2: 0.63,
-				image: require("@/assets/images/fruits/orange.svg"),
+				image: require("@/assets/images/fruit/orange.svg"),
 				label: {
 					FR: "Orange",
 				},
@@ -206,7 +206,7 @@ export default {
 			{
 				id: "citron",
 				co2: 0.71,
-				image: require("@/assets/images/fruits/citron.svg"),
+				image: require("@/assets/images/fruit/citron.svg"),
 				label: {
 					FR: "Citron",
 				},
@@ -214,7 +214,7 @@ export default {
 			{
 				id: "banane",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/banane.svg"),
+				image: require("@/assets/images/fruit/banane.svg"),
 				label: {
 					FR: "Banane",
 				},
@@ -222,7 +222,7 @@ export default {
 			{
 				id: "fruit_passion",
 				co2: 0.89,
-				image: require("@/assets/images/fruits/fruit_passion.svg"),
+				image: require("@/assets/images/fruit/fruit_passion.svg"),
 				label: {
 					FR: "Fruit de la passion",
 				},
@@ -230,7 +230,7 @@ export default {
 			{
 				id: "kaki",
 				co2: 0.9,
-				image: require("@/assets/images/fruits/kaki.svg"),
+				image: require("@/assets/images/fruit/kaki.svg"),
         label: {
 					FR: "Kaki",
 				},
@@ -238,7 +238,7 @@ export default {
 			{
 				id: "kiwi",
 				co2: 0.98,
-        image: require("@/assets/images/fruits/kiwi.svg"),
+        image: require("@/assets/images/fruit/kiwi.svg"),
 				label: {
 					FR: "Kiwi",
 				},
@@ -246,7 +246,7 @@ export default {
 			{
 				id: "clementine",
 				co2: 1.22,
-        image: require("@/assets/images/fruits/clementine.svg"),
+        image: require("@/assets/images/fruit/clementine.svg"),
 				label: {
 					FR: "Clémentine",
 				},
@@ -254,7 +254,7 @@ export default {
 			{
 				id: "ananas",
 				co2: 1.29,
-        image: require("@/assets/images/fruits/ananas.svg"),
+        image: require("@/assets/images/fruit/ananas.svg"),
 				label: {
 					FR: "Ananas",
 				},
@@ -262,7 +262,7 @@ export default {
 			{
 				id: "avocat",
 				co2: 1.48,
-        image: require("@/assets/images/fruits/avocat.svg"),
+        image: require("@/assets/images/fruit/avocat.svg"),
 				label: {
 					FR: "Avocat",
 				},
@@ -270,7 +270,7 @@ export default {
 			{
 				id: "noix_coco",
 				co2: 2.49,
-        image: require("@/assets/images/fruits/noix_coco.svg"),
+        image: require("@/assets/images/fruit/noix_coco.svg"),
 				label: {
 					FR: "Noix de coco",
 				},
@@ -278,7 +278,7 @@ export default {
 			{
 				id: "datte",
 				co2: 2.76,
-        image: require("@/assets/images/fruits/datte.svg"),
+        image: require("@/assets/images/fruit/datte.svg"),
 				label: {
 					FR: "Datte",
 				},
@@ -286,7 +286,7 @@ export default {
 			{
 				id: "mangue",
 				co2: 10.6,
-        image: require("@/assets/images/fruits/mangue.svg"),
+        image: require("@/assets/images/fruit/mangue.svg"),
 				label: {
 					FR: "Mangue",
 				},
@@ -298,7 +298,7 @@ export default {
 			{
 				id: "betterave",
 				co2: 0.36,
-        image: require("@/assets/images/vegetables/betterave.svg"),
+        image: require("@/assets/images/vegetable/betterave.svg"),
 				label: {
 					FR: "Betterave",
 				},
@@ -306,7 +306,7 @@ export default {
 			{
 				id: "carotte",
 				co2: 0.36,
-        image: require("@/assets/images/vegetables/carotte.svg"),
+        image: require("@/assets/images/vegetable/carotte.svg"),
 				label: {
 					FR: "Carotte",
 				},
@@ -314,7 +314,7 @@ export default {
 			{
 				id: "navet",
 				co2: 0.36,
-        image: require("@/assets/images/vegetables/navet.svg"),
+        image: require("@/assets/images/vegetable/navet.svg"),
 				label: {
 					FR: "Navet",
 				},
@@ -322,7 +322,7 @@ export default {
 			{
 				id: "oignon",
 				co2: 0.39,
-        image: require("@/assets/images/vegetables/oignon.svg"),
+        image: require("@/assets/images/vegetable/oignon.svg"),
 				label: {
 					FR: "Oignon",
 				},
@@ -330,7 +330,7 @@ export default {
 			{
 				id: "epinard",
 				co2: 0.39,
-        image: require("@/assets/images/vegetables/epinard.svg"),
+        image: require("@/assets/images/vegetable/epinard.svg"),
 				label: {
 					FR: "Épinard",
 				},
@@ -338,7 +338,7 @@ export default {
 			{
 				id: "panais",
 				co2: 0.46,
-        image: require("@/assets/images/vegetables/panais.svg"),
+        image: require("@/assets/images/vegetable/panais.svg"),
 				label: {
 					FR: "Panais",
 				},
@@ -346,7 +346,7 @@ export default {
 			{
 				id: "salsifis",
 				co2: 0.46,
-        image: require("@/assets/images/vegetables/salsifis.svg"),
+        image: require("@/assets/images/vegetable/salsifis.svg"),
 				label: {
 					FR: "Salsifis",
 				},
@@ -354,7 +354,7 @@ export default {
 			{
 				id: "champignon",
 				co2: 0.49,
-        image: require("@/assets/images/vegetables/champignon.svg"),
+        image: require("@/assets/images/vegetable/champignon.svg"),
 				label: {
 					FR: "Champignon",
 				},
@@ -362,7 +362,7 @@ export default {
 			{
 				id: "topinambour",
 				co2: 0.51,
-        image: require("@/assets/images/vegetables/topinambour.svg"),
+        image: require("@/assets/images/vegetable/topinambour.svg"),
 				label: {
 					FR: "Topinambour",
 				},
@@ -370,7 +370,7 @@ export default {
 			{
 				id: "chou_bruxelles",
 				co2: 0.58,
-        image: require("@/assets/images/vegetables/chou_bruxelles.svg"),
+        image: require("@/assets/images/vegetable/chou_bruxelles.svg"),
 				label: {
 					FR: "Chou de Bruxelles",
 				},
@@ -378,7 +378,7 @@ export default {
 			{
 				id: "celeri",
 				co2: 0.68,
-        image: require("@/assets/images/vegetables/celeri.svg"),
+        image: require("@/assets/images/vegetable/celeri.svg"),
 				label: {
 					FR: "Céleri",
 				},
@@ -386,7 +386,7 @@ export default {
 			{
 				id: "chou_fleur",
 				co2: 0.74,
-        image: require("@/assets/images/vegetables/chou_fleur.svg"),
+        image: require("@/assets/images/vegetable/chou_fleur.svg"),
 				label: {
 					FR: "Chou-fleur",
 				},
@@ -394,7 +394,7 @@ export default {
 			{
 				id: "poireau",
 				co2: 0.77,
-        image: require("@/assets/images/vegetables/poireau.svg"),
+        image: require("@/assets/images/vegetable/poireau.svg"),
 				label: {
 					FR: "Poireau",
 				},
@@ -402,7 +402,7 @@ export default {
 			{
 				id: "chou",
 				co2: 0.86,
-        image: require("@/assets/images/vegetables/chou.svg"),
+        image: require("@/assets/images/vegetable/chou.svg"),
 				label: {
 					FR: "Chou",
 				},
@@ -410,7 +410,7 @@ export default {
 			{
 				id: "endive",
 				co2: 0.94,
-        image: require("@/assets/images/vegetables/endive.svg"),
+        image: require("@/assets/images/vegetable/endive.svg"),
 				label: {
 					FR: "Endive",
 				},
@@ -418,7 +418,7 @@ export default {
 			{
 				id: "cresson",
 				co2: 0.94,
-        image: require("@/assets/images/vegetables/cresson.svg"),
+        image: require("@/assets/images/vegetable/cresson.svg"),
 				label: {
 					FR: "Cresson",
 				},
@@ -426,7 +426,7 @@ export default {
 			{
 				id: "mache",
 				co2: 0.94,
-        image: require("@/assets/images/vegetables/mache.svg"),
+        image: require("@/assets/images/vegetable/mache.svg"),
 				label: {
 					FR: "Mâche",
 				},
@@ -436,7 +436,7 @@ export default {
 			{
 				id: "poire",
 				co2: 0.36,
-        image: require("@/assets/images/fruits/poire.svg"),
+        image: require("@/assets/images/fruit/poire.svg"),
 				label: {
 					FR: "Poire",
 				},
@@ -444,7 +444,7 @@ export default {
 			{
 				id: "pomme",
 				co2: 0.41,
-        image: require("@/assets/images/fruits/pomme.svg"),
+        image: require("@/assets/images/fruit/pomme.svg"),
 				label: {
 					FR: "Pomme",
 				},
@@ -452,7 +452,7 @@ export default {
 			{
 				id: "mandarine",
 				co2: 0.42,
-        image: require("@/assets/images/fruits/mandarine.svg"),
+        image: require("@/assets/images/fruit/mandarine.svg"),
 				label: {
 					FR: "Mandarine",
 				},
@@ -460,7 +460,7 @@ export default {
 			{
 				id: "grenade",
 				co2: 0.49,
-        image: require("@/assets/images/fruits/grenade.svg"),
+        image: require("@/assets/images/fruit/grenade.svg"),
 				label: {
 					FR: "Grenade",
 				},
@@ -468,7 +468,7 @@ export default {
 			{
 				id: "orange",
 				co2: 0.63,
-        image: require("@/assets/images/fruits/orange.svg"),
+        image: require("@/assets/images/fruit/orange.svg"),
 				label: {
 					FR: "Orange",
 				},
@@ -476,7 +476,7 @@ export default {
 			{
 				id: "citron",
 				co2: 0.71,
-        image: require("@/assets/images/fruits/citron.svg"),
+        image: require("@/assets/images/fruit/citron.svg"),
 				label: {
 					FR: "Citron",
 				},
@@ -484,7 +484,7 @@ export default {
 			{
 				id: "banane",
 				co2: 0.88,
-        image: require("@/assets/images/fruits/banane.svg"),
+        image: require("@/assets/images/fruit/banane.svg"),
 				label: {
 					FR: "Banane",
 				},
@@ -492,7 +492,7 @@ export default {
 			{
 				id: "fruit_passion",
 				co2: 0.89,
-        image: require("@/assets/images/fruits/fruit_passion.svg"),
+        image: require("@/assets/images/fruit/fruit_passion.svg"),
 				label: {
 					FR: "Fruit de la passion",
 				},
@@ -500,7 +500,7 @@ export default {
 			{
 				id: "kiwi",
 				co2: 0.98,
-        image: require("@/assets/images/fruits/kiwi.svg"),
+        image: require("@/assets/images/fruit/kiwi.svg"),
 				label: {
 					FR: "Kiwi",
 				},
@@ -508,7 +508,7 @@ export default {
 			{
 				id: "clementine",
 				co2: 1.22,
-        image: require("@/assets/images/fruits/clementine.svg"),
+        image: require("@/assets/images/fruit/clementine.svg"),
 				label: {
 					FR: "Clémentine",
 				},
@@ -516,7 +516,7 @@ export default {
 			{
 				id: "ananas",
 				co2: 1.29,
-        image: require("@/assets/images/fruits/ananas.svg"),
+        image: require("@/assets/images/fruit/ananas.svg"),
 				label: {
 					FR: "Ananas",
 				},
@@ -524,7 +524,7 @@ export default {
 			{
 				id: "avocat",
 				co2: 1.48,
-        image: require("@/assets/images/fruits/avocat.svg"),
+        image: require("@/assets/images/fruit/avocat.svg"),
 				label: {
 					FR: "Avocat",
 				},
@@ -532,7 +532,7 @@ export default {
 			{
 				id: "noix_coco",
 				co2: 2.49,
-        image: require("@/assets/images/fruits/noix_coco.svg"),
+        image: require("@/assets/images/fruit/noix_coco.svg"),
 				label: {
 					FR: "Noix de coco",
 				},
@@ -540,7 +540,7 @@ export default {
 			{
 				id: "mangue",
 				co2: 10.6,
-        image: require("@/assets/images/fruits/mangue.svg"),
+        image: require("@/assets/images/fruit/mangue.svg"),
 				label: {
 					FR: "Mangue",
 				},
@@ -552,7 +552,7 @@ export default {
 			{
 				id: "betterave",
 				co2: 0.36,
-        image: require("@/assets/images/vegetables/betterave.svg"),
+        image: require("@/assets/images/vegetable/betterave.svg"),
 				label: {
 					FR: "Betterave",
 				},
@@ -560,7 +560,7 @@ export default {
 			{
 				id: "carotte",
 				co2: 0.36,
-        image: require("@/assets/images/vegetables/carotte.svg"),
+        image: require("@/assets/images/vegetable/carotte.svg"),
 				label: {
 					FR: "Carotte",
 				},
@@ -568,7 +568,7 @@ export default {
 			{
 				id: "navet",
 				co2: 0.36,
-        image: require("@/assets/images/vegetables/navet.svg"),
+        image: require("@/assets/images/vegetable/navet.svg"),
 				label: {
 					FR: "Navet",
 				},
@@ -576,7 +576,7 @@ export default {
 			{
 				id: "oignon",
 				co2: 0.39,
-        image: require("@/assets/images/vegetables/oignon.svg"),
+        image: require("@/assets/images/vegetable/oignon.svg"),
 				label: {
 					FR: "Oignon",
 				},
@@ -584,7 +584,7 @@ export default {
 			{
 				id: "epinard",
 				co2: 0.39,
-        image: require("@/assets/images/vegetables/epinard.svg"),
+        image: require("@/assets/images/vegetable/epinard.svg"),
 				label: {
 					FR: "Épinard",
 				},
@@ -592,7 +592,7 @@ export default {
 			{
 				id: "panais",
 				co2: 0.46,
-        image: require("@/assets/images/vegetables/panais.svg"),
+        image: require("@/assets/images/vegetable/panais.svg"),
 				label: {
 					FR: "Panais",
 				},
@@ -600,7 +600,7 @@ export default {
 			{
 				id: "salsifis",
 				co2: 0.46,
-        image: require("@/assets/images/vegetables/salsifis.svg"),
+        image: require("@/assets/images/vegetable/salsifis.svg"),
 				label: {
 					FR: "Salsifis",
 				},
@@ -608,7 +608,7 @@ export default {
 			{
 				id: "champignon",
 				co2: 0.49,
-        image: require("@/assets/images/vegetables/champignon.svg"),
+        image: require("@/assets/images/vegetable/champignon.svg"),
 				label: {
 					FR: "Champignon",
 				},
@@ -616,7 +616,7 @@ export default {
 			{
 				id: "chou_bruxelles",
 				co2: 0.58,
-        image: require("@/assets/images/vegetables/chou_bruxelles.svg"),
+        image: require("@/assets/images/vegetable/chou_bruxelles.svg"),
 				label: {
 					FR: "Chou de Bruxelles",
 				},
@@ -624,7 +624,7 @@ export default {
 			{
 				id: "radis",
 				co2: 0.61,
-        image: require("@/assets/images/vegetables/radis.svg"),
+        image: require("@/assets/images/vegetable/radis.svg"),
 				label: {
 					FR: "Radis",
 				},
@@ -632,7 +632,7 @@ export default {
 			{
 				id: "celeri",
 				co2: 0.68,
-        image: require("@/assets/images/vegetables/celeri.svg"),
+        image: require("@/assets/images/vegetable/celeri.svg"),
 				label: {
 					FR: "Céleri",
 				},
@@ -640,7 +640,7 @@ export default {
 			{
 				id: "chou_fleur",
 				co2: 0.74,
-        image: require("@/assets/images/vegetables/chou_fleur.svg"),
+        image: require("@/assets/images/vegetable/chou_fleur.svg"),
 				label: {
 					FR: "Chou-fleur",
 				},
@@ -648,7 +648,7 @@ export default {
 			{
 				id: "poireau",
 				co2: 0.77,
-        image: require("@/assets/images/vegetables/poireau.svg"),
+        image: require("@/assets/images/vegetable/poireau.svg"),
 				label: {
 					FR: "Poireau",
 				},
@@ -656,7 +656,7 @@ export default {
 			{
 				id: "chou",
 				co2: 0.86,
-        image: require("@/assets/images/vegetables/chou.svg"),
+        image: require("@/assets/images/vegetable/chou.svg"),
 				label: {
 					FR: "Chou",
 				},
@@ -664,7 +664,7 @@ export default {
 			{
 				id: "endive",
 				co2: 0.94,
-        image: require("@/assets/images/vegetables/endive.svg"),
+        image: require("@/assets/images/vegetable/endive.svg"),
 				label: {
 					FR: "Endive",
 				},
@@ -672,7 +672,7 @@ export default {
 			{
 				id: "cresson",
 				co2: 0.94,
-        image: require("@/assets/images/vegetables/cresson.svg"),
+        image: require("@/assets/images/vegetable/cresson.svg"),
 				label: {
 					FR: "Cresson",
 				},
@@ -682,7 +682,7 @@ export default {
 			{
 				id: "poire",
 				co2: 0.36,
-        image: require("@/assets/images/fruits/poire.svg"),
+        image: require("@/assets/images/fruit/poire.svg"),
 				  label: {
 					FR: "Poire",
 				},
@@ -690,7 +690,7 @@ export default {
 			{
 				id: "pomme",
 				co2: 0.41,
-        image: require("@/assets/images/fruits/pomme.svg"),
+        image: require("@/assets/images/fruit/pomme.svg"),
 				label: {
 					FR: "Pomme",
 				},
@@ -698,7 +698,7 @@ export default {
 			{
 				id: "orange",
 				co2: 0.63,
-        image: require("@/assets/images/fruits/orange.svg"),
+        image: require("@/assets/images/fruit/orange.svg"),
 				label: {
 					FR: "Orange",
 				},
@@ -706,7 +706,7 @@ export default {
 			{
 				id: "pamplemousse",
 				co2: 0.87,
-        image: require("@/assets/images/fruits/pamplemousse.svg"),
+        image: require("@/assets/images/fruit/pamplemousse.svg"),
 				label: {
 					FR: "Pamplemousse",
 				},
@@ -714,7 +714,7 @@ export default {
 			{
 				id: "banane",
 				co2: 0.88,
-        image: require("@/assets/images/fruits/banane.svg"),
+        image: require("@/assets/images/fruit/banane.svg"),
 				label: {
 					FR: "Banane",
 				},
@@ -722,7 +722,7 @@ export default {
 			{
 				id: "fruit_passion",
 				co2: 0.89,
-        image: require("@/assets/images/fruits/fruit_passion.svg"),
+        image: require("@/assets/images/fruit/fruit_passion.svg"),
 				label: {
 					FR: "Fruit de la passion",
 				},
@@ -730,7 +730,7 @@ export default {
 			{
 				id: "kiwi",
 				co2: 0.98,
-        image: require("@/assets/images/fruits/kiwi.svg"),
+        image: require("@/assets/images/fruit/kiwi.svg"),
 				label: {
 					FR: "Kiwi",
 				},
@@ -738,7 +738,7 @@ export default {
 			{
 				id: "ananas",
 				co2: 1.29,
-        image: require("@/assets/images/fruits/ananas.svg"),
+        image: require("@/assets/images/fruit/ananas.svg"),
 				label: {
 					FR: "Ananas",
 				},
@@ -746,7 +746,7 @@ export default {
 			{
 				id: "avocat",
 				co2: 1.48,
-        image: require("@/assets/images/fruits/avocat.svg"),
+        image: require("@/assets/images/fruit/avocat.svg"),
 				label: {
 					FR: "Avocat",
 				},
@@ -754,7 +754,7 @@ export default {
 			{
 				id: "mangue",
 				co2: 10.6,
-        image: require("@/assets/images/fruits/mangue.svg"),
+        image: require("@/assets/images/fruit/mangue.svg"),
 				label: {
 					FR: "Mangue",
 				},
@@ -766,7 +766,7 @@ export default {
 			{
 				id: "navet",
 				co2: 0.36,
-        image: require("@/assets/images/vegetables/navet.svg"),
+        image: require("@/assets/images/vegetable/navet.svg"),
 				label: {
 					FR: "Navet",
 				},
@@ -774,7 +774,7 @@ export default {
 			{
 				id: "oignon",
 				co2: 0.39,
-        image: require("@/assets/images/vegetables/oignon.svg"),
+        image: require("@/assets/images/vegetable/oignon.svg"),
 				label: {
 					FR: "Oignon",
 				},
@@ -782,7 +782,7 @@ export default {
 			{
 				id: "epinard",
 				co2: 0.39,
-        image: require("@/assets/images/vegetables/epinard.svg"),
+        image: require("@/assets/images/vegetable/epinard.svg"),
 				label: {
 					FR: "Épinard",
 				},
@@ -790,7 +790,7 @@ export default {
 			{
 				id: "champignon",
 				co2: 0.49,
-        image: require("@/assets/images/vegetables/champignon.svg"),
+        image: require("@/assets/images/vegetable/champignon.svg"),
 				label: {
 					FR: "Champignon",
 				},
@@ -798,7 +798,7 @@ export default {
 			{
 				id: "radis",
 				co2: 0.61,
-        image: require("@/assets/images/vegetables/radis.svg"),
+        image: require("@/assets/images/vegetable/radis.svg"),
 				label: {
 					FR: "Radis",
 				},
@@ -806,7 +806,7 @@ export default {
 			{
 				id: "rhubarbe",
 				co2: 0.72,
-        image: require("@/assets/images/vegetables/rhubarbe.svg"),
+        image: require("@/assets/images/vegetable/rhubarbe.svg"),
 				label: {
 					FR: "Rhubarbe",
 				},
@@ -814,7 +814,7 @@ export default {
 			{
 				id: "poireau",
 				co2: 0.77,
-        image: require("@/assets/images/vegetables/poireau.svg"),
+        image: require("@/assets/images/vegetable/poireau.svg"),
 				label: {
 					FR: "Poireau",
 				},
@@ -822,7 +822,7 @@ export default {
 			{
 				id: "endive",
 				co2: 0.94,
-        image: require("@/assets/images/vegetables/endive.svg"),
+        image: require("@/assets/images/vegetable/endive.svg"),
 				label: {
 					FR: "Endive",
 				},
@@ -830,7 +830,7 @@ export default {
 			{
 				id: "cresson",
 				co2: 0.94,
-        image: require("@/assets/images/vegetables/cresson.svg"),
+        image: require("@/assets/images/vegetable/cresson.svg"),
 				label: {
 					FR: "Cresson",
 				},
@@ -838,7 +838,7 @@ export default {
 			{
 				id: "fenouil",
 				co2: 0.96,
-        image: require("@/assets/images/vegetables/fenouil.svg"),
+        image: require("@/assets/images/vegetable/fenouil.svg"),
 				label: {
 					FR: "Fenouil",
 				},
@@ -846,7 +846,7 @@ export default {
 			{
 				id: "asperge",
 				co2: 1.56,
-        image: require("@/assets/images/vegetables/asperge.svg"),
+        image: require("@/assets/images/vegetable/asperge.svg"),
 				label: {
 					FR: "Asperge",
 				},
@@ -856,7 +856,7 @@ export default {
 			{
 				id: "pomme",
 				co2: 0.41,
-        image: require("@/assets/images/fruits/pomme.svg"),
+        image: require("@/assets/images/fruit/pomme.svg"),
 				label: {
 					FR: "Pomme",
 				},
@@ -864,7 +864,7 @@ export default {
 			{
 				id: "pamplemousse",
 				co2: 0.87,
-        image: require("@/assets/images/fruits/pamplemousse.svg"),
+        image: require("@/assets/images/fruit/pamplemousse.svg"),
 				label: {
 					FR: "Pamplemousse",
 				},
@@ -872,7 +872,7 @@ export default {
 			{
 				id: "banane",
 				co2: 0.88,
-        image: require("@/assets/images/fruits/banane.svg"),
+        image: require("@/assets/images/fruit/banane.svg"),
 				label: {
 					FR: "Banane",
 				},
@@ -880,7 +880,7 @@ export default {
 			{
 				id: "fruit_passion",
 				co2: 0.89,
-        image: require("@/assets/images/fruits/fruit_passion.svg"),
+        image: require("@/assets/images/fruit/fruit_passion.svg"),
 				label: {
 					FR: "Fruit de la passion",
 				},
@@ -888,7 +888,7 @@ export default {
 			{
 				id: "ananas",
 				co2: 1.29,
-        image: require("@/assets/images/fruits/ananas.svg"),
+        image: require("@/assets/images/fruit/ananas.svg"),
 				label: {
 					FR: "Ananas",
 				},
@@ -896,7 +896,7 @@ export default {
 			{
 				id: "avocat",
 				co2: 1.48,
-        image: require("@/assets/images/fruits/avocat.svg"),
+        image: require("@/assets/images/fruit/avocat.svg"),
 				label: {
 					FR: "Avocat",
 				},
@@ -904,7 +904,7 @@ export default {
 			{
 				id: "mangue",
 				co2: 10.6,
-        image: require("@/assets/images/fruits/mangue.svg"),
+        image: require("@/assets/images/fruit/mangue.svg"),
 				label: {
 					FR: "Mangue",
 				},
@@ -916,7 +916,7 @@ export default {
 			{
 				id: "navet",
 				co2: 0.36,
-        image: require("@/assets/images/vegetables/navet.svg"),
+        image: require("@/assets/images/vegetable/navet.svg"),
 				label: {
 					FR: "Navet",
 				},
@@ -924,7 +924,7 @@ export default {
 			{
 				id: "epinard",
 				co2: 0.39,
-        image: require("@/assets/images/vegetables/epinard.svg"),
+        image: require("@/assets/images/vegetable/epinard.svg"),
 				label: {
 					FR: "Épinard",
 				},
@@ -932,7 +932,7 @@ export default {
 			{
 				id: "concombre",
 				co2: 0.47,
-        image: require("@/assets/images/vegetables/concombre.svg"),
+        image: require("@/assets/images/vegetable/concombre.svg"),
 				  label: {
 					FR: "Concombre",
 				},
@@ -940,7 +940,7 @@ export default {
 			{
 				id: "courgette",
 				co2: 0.48,
-        image: require("@/assets/images/vegetables/courgette.svg"),
+        image: require("@/assets/images/vegetable/courgette.svg"),
 				label: {
 					FR: "Courgette",
 				},
@@ -948,7 +948,7 @@ export default {
 			{
 				id: "champignon",
 				co2: 0.49,
-        image: require("@/assets/images/vegetables/champignon.svg"),
+        image: require("@/assets/images/vegetable/champignon.svg"),
 				label: {
 					FR: "Champignon",
 				},
@@ -956,7 +956,7 @@ export default {
 			{
 				id: "radis",
 				co2: 0.61,
-        image: require("@/assets/images/vegetables/radis.svg"),
+        image: require("@/assets/images/vegetable/radis.svg"),
 				label: {
 					FR: "Radis",
 				},
@@ -964,7 +964,7 @@ export default {
 			{
 				id: "petit_pois",
 				co2: 0.67,
-        image: require("@/assets/images/vegetables/petit_pois.svg"),
+        image: require("@/assets/images/vegetable/petit_pois.svg"),
 				label: {
 					FR: "Petit pois",
 				},
@@ -972,7 +972,7 @@ export default {
 			{
 				id: "rhubarbe",
 				co2: 0.72,
-        image: require("@/assets/images/vegetables/rhubarbe.svg"),
+        image: require("@/assets/images/vegetable/rhubarbe.svg"),
 				label: {
 					FR: "Rhubarbe",
 				},
@@ -980,7 +980,7 @@ export default {
 			{
 				id: "endive",
 				co2: 0.94,
-        image: require("@/assets/images/vegetables/endive.svg"),
+        image: require("@/assets/images/vegetable/endive.svg"),
 				label: {
 					FR: "Endive",
 				},
@@ -988,7 +988,7 @@ export default {
 			{
 				id: "cresson",
 				co2: 0.94,
-        image: require("@/assets/images/vegetables/cresson.svg"),
+        image: require("@/assets/images/vegetable/cresson.svg"),
 				label: {
 					FR: "Cresson",
 				},
@@ -996,7 +996,7 @@ export default {
 			{
 				id: "laitue",
 				co2: 0.94,
-        image: require("@/assets/images/vegetables/laitue.svg"),
+        image: require("@/assets/images/vegetable/laitue.svg"),
 				label: {
 					FR: "Laitue",
 				},
@@ -1004,7 +1004,7 @@ export default {
 			{
 				id: "asperge",
 				co2: 1.56,
-        image: require("@/assets/images/vegetables/asperge.svg"),
+        image: require("@/assets/images/vegetable/asperge.svg"),
 				label: {
 					FR: "Asperge",
 				},
@@ -1012,7 +1012,7 @@ export default {
 			{
 				id: "artichaut",
 				co2: 3.88,
-        image: require("@/assets/images/vegetables/artichaut.svg"),
+        image: require("@/assets/images/vegetable/artichaut.svg"),
 				label: {
 					FR: "Artichaut",
 				},
@@ -1022,7 +1022,7 @@ export default {
 			{
 				id: "fraise",
 				co2: 0.48,
-        image: require("@/assets/images/fruits/fraise.svg"),
+        image: require("@/assets/images/fruit/fraise.svg"),
 				label: {
 					FR: "Fraise",
 				},
@@ -1030,7 +1030,7 @@ export default {
 			{
 				id: "pamplemousse",
 				co2: 0.87,
-        image: require("@/assets/images/fruits/pamplemousse.svg"),
+        image: require("@/assets/images/fruit/pamplemousse.svg"),
 				label: {
 					FR: "Pamplemousse",
 				},
@@ -1038,7 +1038,7 @@ export default {
 			{
 				id: "banane",
 				co2: 0.88,
-        image: require("@/assets/images/fruits/banane.svg"),
+        image: require("@/assets/images/fruit/banane.svg"),
 				label: {
 					FR: "Banane",
 				},
@@ -1046,7 +1046,7 @@ export default {
 			{
 				id: "fruit_passion",
 				co2: 0.89,
-        image: require("@/assets/images/fruits/fruit_passion.svg"),
+        image: require("@/assets/images/fruit/fruit_passion.svg"),
 				label: {
 					FR: "Fruit de la passion",
 				},
@@ -1054,7 +1054,7 @@ export default {
 			{
 				id: "ananas",
 				co2: 1.29,
-        image: require("@/assets/images/fruits/ananas.svg"),
+        image: require("@/assets/images/fruit/ananas.svg"),
 				label: {
 					FR: "Ananas",
 				},
@@ -1062,7 +1062,7 @@ export default {
 			{
 				id: "avocat",
 				co2: 1.48,
-        image: require("@/assets/images/fruits/avocat.svg"),
+        image: require("@/assets/images/fruit/avocat.svg"),
 				label: {
 					FR: "Avocat",
 				},
@@ -1070,7 +1070,7 @@ export default {
 			{
 				id: "mangue",
 				co2: 10.6,
-        image: require("@/assets/images/fruits/mangue.svg"),
+        image: require("@/assets/images/fruit/mangue.svg"),
 				label: {
 					FR: "Mangue",
 				},
@@ -1082,7 +1082,7 @@ export default {
 			{
 				id: "haricot_vert",
 				co2: 0.41,
-        image: require("@/assets/images/vegetables/haricot_vert.svg"),
+        image: require("@/assets/images/vegetable/haricot_vert.svg"),
 				label: {
 					FR: "Haricot vert",
 				},
@@ -1090,7 +1090,7 @@ export default {
 			{
 				id: "aubergine",
 				co2: 0.46,
-        image: require("@/assets/images/vegetables/aubergine.svg"),
+        image: require("@/assets/images/vegetable/aubergine.svg"),
 				label: {
 					FR: "Aubergine",
 				},
@@ -1098,7 +1098,7 @@ export default {
 			{
 				id: "concombre",
 				co2: 0.47,
-				image: require("@/assets/images/vegetables/concombre.svg"),
+				image: require("@/assets/images/vegetable/concombre.svg"),
 				label: {
 					FR: "Concombre",
 				},
@@ -1106,7 +1106,7 @@ export default {
 			{
 				id: "courgette",
 				co2: 0.48,
-				image: require("@/assets/images/vegetables/courgette.svg"),
+				image: require("@/assets/images/vegetable/courgette.svg"),
 				label: {
 					FR: "Courgette",
 				},
@@ -1114,7 +1114,7 @@ export default {
 			{
 				id: "champignon",
 				co2: 0.49,
-				image: require("@/assets/images/vegetables/champignon.svg"),
+				image: require("@/assets/images/vegetable/champignon.svg"),
 				label: {
 					FR: "Champignon",
 				},
@@ -1122,7 +1122,7 @@ export default {
 			{
 				id: "blette",
 				co2: 0.54,
-				image: require("@/assets/images/vegetables/blette.svg"),
+				image: require("@/assets/images/vegetable/blette.svg"),
 				label: {
 					FR: "Blette",
 				},
@@ -1130,7 +1130,7 @@ export default {
 			{
 				id: "tomate",
 				co2: 0.58,
-				image: require("@/assets/images/vegetables/tomate.svg"),
+				image: require("@/assets/images/vegetable/tomate.svg"),
 				label: {
 					FR: "Tomate",
 				},
@@ -1138,7 +1138,7 @@ export default {
 			{
 				id: "radis",
 				co2: 0.61,
-				image: require("@/assets/images/vegetables/radis.svg"),
+				image: require("@/assets/images/vegetable/radis.svg"),
 				label: {
 					FR: "Radis",
 				},
@@ -1146,7 +1146,7 @@ export default {
 			{
 				id: "pasteque",
 				co2: 0.64,
-				image: require("@/assets/images/vegetables/pasteque.svg"),
+				image: require("@/assets/images/vegetable/pasteque.svg"),
 				label: {
 					FR: "Pastèque",
 				},
@@ -1154,7 +1154,7 @@ export default {
 			{
 				id: "petit_pois",
 				co2: 0.67,
-				image: require("@/assets/images/vegetables/petit_pois.svg"),
+				image: require("@/assets/images/vegetable/petit_pois.svg"),
 				label: {
 					FR: "Petit pois",
 				},
@@ -1162,7 +1162,7 @@ export default {
 			{
 				id: "rhubarbe",
 				co2: 0.72,
-				image: require("@/assets/images/vegetables/rhubarbe.svg"),
+				image: require("@/assets/images/vegetable/rhubarbe.svg"),
 				label: {
 					FR: "Rhubarbe",
 				},
@@ -1170,7 +1170,7 @@ export default {
 			{
 				id: "cresson",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/cresson.svg"),
+				image: require("@/assets/images/vegetable/cresson.svg"),
 				label: {
 						FR: "Cresson",
 				},
@@ -1178,7 +1178,7 @@ export default {
 			{
 				id: "laitue",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/laitue.svg"),
+				image: require("@/assets/images/vegetable/laitue.svg"),
 				label: {
 					FR: "Laitue",
 				},
@@ -1186,7 +1186,7 @@ export default {
 			{
 				id: "fenouil",
 				co2: 0.96,
-				image: require("@/assets/images/vegetables/fenouil.svg"),
+				image: require("@/assets/images/vegetable/fenouil.svg"),
 				label: {
 					FR: "Fenouil",
 				},
@@ -1194,7 +1194,7 @@ export default {
 			{
 				id: "poivron",
 				co2: 1.18,
-				image: require("@/assets/images/vegetables/poivron.svg"),
+				image: require("@/assets/images/vegetable/poivron.svg"),
 				label: {
 					FR: "Poivron",
 				},
@@ -1202,7 +1202,7 @@ export default {
 			{
 				id: "asperge",
 				co2: 1.56,
-				image: require("@/assets/images/vegetables/asperge.svg"),
+				image: require("@/assets/images/vegetable/asperge.svg"),
 				label: {
 					FR: "Asperge",
 				},
@@ -1210,7 +1210,7 @@ export default {
 			{
 				id: "artichaut",
 				co2: 3.88,
-				image: require("@/assets/images/vegetables/artichaut.svg"),
+				image: require("@/assets/images/vegetable/artichaut.svg"),
 				label: {
 					FR: "Artichaut",
 				},
@@ -1220,7 +1220,7 @@ export default {
 			{
 				id: "fraise",
 				co2: 0.48,
-				image: require("@/assets/images/fruits/fraise.svg"),
+				image: require("@/assets/images/fruit/fraise.svg"),
 				label: {
 					FR: "Fraise",
 				},
@@ -1228,7 +1228,7 @@ export default {
 			{
 				id: "peche",
 				co2: 0.61,
-				image: require("@/assets/images/fruits/peche.svg"),
+				image: require("@/assets/images/fruit/peche.svg"),
 				label: {
 					FR: "Pêche",
 				},
@@ -1236,7 +1236,7 @@ export default {
 			{
 				id: "pamplemousse",
 				co2: 0.87,
-				image: require("@/assets/images/fruits/pamplemousse.svg"),
+				image: require("@/assets/images/fruit/pamplemousse.svg"),
 				label: {
 					FR: "Pamplemousse",
 				},
@@ -1244,7 +1244,7 @@ export default {
 			{
 				id: "banane",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/banane.svg"),
+				image: require("@/assets/images/fruit/banane.svg"),
 				label: {
 					FR: "Banane",
 				},
@@ -1252,7 +1252,7 @@ export default {
 			{
 				id: "abricot",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/abricot.svg"),
+				image: require("@/assets/images/fruit/abricot.svg"),
 				label: {
 					FR: "Abricot",
 				},
@@ -1260,7 +1260,7 @@ export default {
 			{
 				id: "fruit_passion",
 				co2: 0.89,
-				image: require("@/assets/images/fruits/fruit_passion.svg"),
+				image: require("@/assets/images/fruit/fruit_passion.svg"),
 				label: {
 					FR: "Fruit de la passion",
 				},
@@ -1268,7 +1268,7 @@ export default {
 			{
 				id: "melon",
 				co2: 0.93,
-				image: require("@/assets/images/fruits/melon.svg"),
+				image: require("@/assets/images/fruit/melon.svg"),
 				label: {
 					FR: "Melon",
 				},
@@ -1276,7 +1276,7 @@ export default {
 			{
 				id: "ananas",
 				co2: 1.29,
-				image: require("@/assets/images/fruits/ananas.svg"),
+				image: require("@/assets/images/fruit/ananas.svg"),
 				label: {
 					FR: "Ananas",
 				},
@@ -1284,7 +1284,7 @@ export default {
 			{
 				id: "cerise",
 				co2: 1.34,
-				image: require("@/assets/images/fruits/cerise.svg"),
+				image: require("@/assets/images/fruit/cerise.svg"),
 				label: {
 					FR: "Cerise",
 				},
@@ -1292,7 +1292,7 @@ export default {
 			{
 				id: "framboise",
 				co2: 1.48,
-				image: require("@/assets/images/fruits/framboise.svg"),
+				image: require("@/assets/images/fruit/framboise.svg"),
 				label: {
 					FR: "Framboise",
 				},
@@ -1300,7 +1300,7 @@ export default {
 			{
 				id: "avocat",
 				co2: 1.48,
-				image: require("@/assets/images/fruits/avocat.svg"),
+				image: require("@/assets/images/fruit/avocat.svg"),
 				label: {
 					FR: "Avocat",
 				},
@@ -1308,7 +1308,7 @@ export default {
 			{
 				id: "groseille",
 				co2: 1.79,
-				image: require("@/assets/images/fruits/groseille.svg"),
+				image: require("@/assets/images/fruit/groseille.svg"),
 				label: {
 					FR: "Groseille",
 				},
@@ -1316,7 +1316,7 @@ export default {
 			{
 				id: "cassis",
 				co2: 1.8,
-				image: require("@/assets/images/fruits/cassis.svg"),
+				image: require("@/assets/images/fruit/cassis.svg"),
 				label: {
 					FR: "Cassis",
 				},
@@ -1324,7 +1324,7 @@ export default {
 			{
 				id: "mangue",
 				co2: 10.6,
-				image: require("@/assets/images/fruits/mangue.svg"),
+				image: require("@/assets/images/fruit/mangue.svg"),
 				label: {
 					FR: "Mangue",
 				},
@@ -1336,7 +1336,7 @@ export default {
 			{
 				id: "ail",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/ail.svg"),
+				image: require("@/assets/images/vegetable/ail.svg"),
 				label: {
 					FR: "Ail",
 				},
@@ -1344,7 +1344,7 @@ export default {
 			{
 				id: "haricot_vert",
 				co2: 0.41,
-				image: require("@/assets/images/vegetables/haricot_vert.svg"),
+				image: require("@/assets/images/vegetable/haricot_vert.svg"),
 				label: {
 					FR: "Haricot vert",
 				},
@@ -1352,7 +1352,7 @@ export default {
 			{
 				id: "aubergine",
 				co2: 0.46,
-				image: require("@/assets/images/vegetables/aubergine.svg"),
+				image: require("@/assets/images/vegetable/aubergine.svg"),
 				label: {
 					FR: "Aubergine",
 				},
@@ -1360,7 +1360,7 @@ export default {
 			{
 				id: "concombre",
 				co2: 0.47,
-				image: require("@/assets/images/vegetables/concombre.svg"),
+				image: require("@/assets/images/vegetable/concombre.svg"),
 				label: {
 					FR: "Concombre",
 				},
@@ -1368,7 +1368,7 @@ export default {
 			{
 				id: "courgette",
 				co2: 0.48,
-				image: require("@/assets/images/vegetables/courgette.svg"),
+				image: require("@/assets/images/vegetable/courgette.svg"),
 				label: {
 					FR: "Courgette",
 				},
@@ -1376,7 +1376,7 @@ export default {
 			{
 				id: "champignon",
 				co2: 0.49,
-				image: require("@/assets/images/vegetables/champignon.svg"),
+				image: require("@/assets/images/vegetable/champignon.svg"),
 				label: {
 					FR: "Champignon",
 				},
@@ -1384,7 +1384,7 @@ export default {
 			{
 				id: "blette",
 				co2: 0.54,
-				image: require("@/assets/images/vegetables/blette.svg"),
+				image: require("@/assets/images/vegetable/blette.svg"),
 				label: {
 					FR: "Blette",
 				},
@@ -1392,7 +1392,7 @@ export default {
 			{
 				id: "tomate",
 				co2: 0.58,
-				image: require("@/assets/images/vegetables/tomate.svg"),
+				image: require("@/assets/images/vegetable/tomate.svg"),
 				label: {
 					FR: "Tomate",
 				},
@@ -1400,7 +1400,7 @@ export default {
 			{
 				id: "pasteque",
 				co2: 0.64,
-				image: require("@/assets/images/vegetables/pasteque.svg"),
+				image: require("@/assets/images/vegetable/pasteque.svg"),
 				label: {
 					FR: "Pastèque",
 				},
@@ -1408,7 +1408,7 @@ export default {
 			{
 				id: "petit_pois",
 				co2: 0.67,
-				image: require("@/assets/images/vegetables/petit_pois.svg"),
+				image: require("@/assets/images/vegetable/petit_pois.svg"),
 				label: {
 					FR: "Petit pois",
 				},
@@ -1416,7 +1416,7 @@ export default {
 			{
 				id: "mais",
 				co2: 0.81,
-				image: require("@/assets/images/vegetables/mais.svg"),
+				image: require("@/assets/images/vegetable/mais.svg"),
 				label: {
 					FR: "Maïs",
 				},
@@ -1424,7 +1424,7 @@ export default {
 			{
 				id: "cresson",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/cresson.svg"),
+				image: require("@/assets/images/vegetable/cresson.svg"),
 				label: {
 					FR: "Cresson",
 				},
@@ -1432,7 +1432,7 @@ export default {
 			{
 				id: "laitue",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/laitue.svg"),
+				image: require("@/assets/images/vegetable/laitue.svg"),
 				label: {
 					FR: "Laitue",
 				},
@@ -1440,7 +1440,7 @@ export default {
 			{
 				id: "fenouil",
 				co2: 0.96,
-				image: require("@/assets/images/vegetables/fenouil.svg"),
+				image: require("@/assets/images/vegetable/fenouil.svg"),
 				label: {
 					FR: "Fenouil",
 				},
@@ -1448,7 +1448,7 @@ export default {
 			{
 				id: "poivron",
 				co2: 1.18,
-				image: require("@/assets/images/vegetables/poivron.svg"),
+				image: require("@/assets/images/vegetable/poivron.svg"),
 				label: {
 					FR: "Poivron",
 				},
@@ -1456,7 +1456,7 @@ export default {
 			{
 				id: "artichaut",
 				co2: 3.88,
-				image: require("@/assets/images/vegetables/artichaut.svg"),
+				image: require("@/assets/images/vegetable/artichaut.svg"),
 				label: {
 					FR: "Artichaut",
 				},
@@ -1466,7 +1466,7 @@ export default {
 			{
 				id: "fraise",
 				co2: 0.48,
-				image: require("@/assets/images/fruits/fraise.svg"),
+				image: require("@/assets/images/fruit/fraise.svg"),
 				label: {
 					FR: "Fraise",
 				},
@@ -1474,7 +1474,7 @@ export default {
 			{
 				id: "peche",
 				co2: 0.61,
-				image: require("@/assets/images/fruits/peche.svg"),
+				image: require("@/assets/images/fruit/peche.svg"),
 				label: {
 					FR: "Pêche",
 				},
@@ -1482,7 +1482,7 @@ export default {
 			{
 				id: "figue",
 				co2: 0.61,
-				image: require("@/assets/images/fruits/figue.svg"),
+				image: require("@/assets/images/fruit/figue.svg"),
 				label: {
 					FR: "Figue",
 				},
@@ -1490,7 +1490,7 @@ export default {
 			{
 				id: "banane",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/banane.svg"),
+				image: require("@/assets/images/fruit/banane.svg"),
 				label: {
 					FR: "Banane",
 				},
@@ -1498,7 +1498,7 @@ export default {
 			{
 				id: "abricot",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/abricot.svg"),
+				image: require("@/assets/images/fruit/abricot.svg"),
 				label: {
 					FR: "Abricot",
 				},
@@ -1506,7 +1506,7 @@ export default {
 			{
 				id: "myrtille",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/myrtille.svg"),
+				image: require("@/assets/images/fruit/myrtille.svg"),
 				label: {
 					FR: "Myrtille",
 				},
@@ -1514,7 +1514,7 @@ export default {
 			{
 				id: "fruit_passion",
 				co2: 0.89,
-				image: require("@/assets/images/fruits/fruit_passion.svg"),
+				image: require("@/assets/images/fruit/fruit_passion.svg"),
 				label: {
 					FR: "Fruit de la passion",
 				},
@@ -1522,7 +1522,7 @@ export default {
 			{
 				id: "melon",
 				co2: 0.93,
-				image: require("@/assets/images/fruits/melon.svg"),
+				image: require("@/assets/images/fruit/melon.svg"),
 				label: {
 					FR: "Melon",
 				},
@@ -1530,7 +1530,7 @@ export default {
 			{
 				id: "ananas",
 				co2: 1.29,
-				image: require("@/assets/images/fruits/ananas.svg"),
+				image: require("@/assets/images/fruit/ananas.svg"),
 				label: {
 					FR: "Ananas",
 				},
@@ -1538,7 +1538,7 @@ export default {
 			{
 				id: "cerise",
 				co2: 1.34,
-				image: require("@/assets/images/fruits/cerise.svg"),
+				image: require("@/assets/images/fruit/cerise.svg"),
 				label: {
 					FR: "Cerise",
 				},
@@ -1546,7 +1546,7 @@ export default {
 			{
 				id: "framboise",
 				co2: 1.48,
-				image: require("@/assets/images/fruits/framboise.svg"),
+				image: require("@/assets/images/fruit/framboise.svg"),
 				label: {
 					FR: "Framboise",
 				},
@@ -1554,7 +1554,7 @@ export default {
 			{
 				id: "avocat",
 				co2: 1.48,
-				image: require("@/assets/images/fruits/avocat.svg"),
+				image: require("@/assets/images/fruit/avocat.svg"),
 				label: {
 					FR: "Avocat",
 				},
@@ -1562,7 +1562,7 @@ export default {
 			{
 				id: "groseille",
 				co2: 1.79,
-				image: require("@/assets/images/fruits/groseille.svg"),
+				image: require("@/assets/images/fruit/groseille.svg"),
 				label: {
 					FR: "Groseille",
 				},
@@ -1570,7 +1570,7 @@ export default {
 			{
 				id: "cassis",
 				co2: 1.8,
-				image: require("@/assets/images/fruits/cassis.svg"),
+				image: require("@/assets/images/fruit/cassis.svg"),
 				label: {
 					FR: "Cassis",
 				},
@@ -1578,7 +1578,7 @@ export default {
 			{
 				id: "mangue",
 				co2: 10.6,
-				image: require("@/assets/images/fruits/mangue.svg"),
+				image: require("@/assets/images/fruit/mangue.svg"),
 				label: {
 					FR: "Mangue",
 				},
@@ -1590,7 +1590,7 @@ export default {
 			{
 				id: "ail",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/ail.svg"),
+				image: require("@/assets/images/vegetable/ail.svg"),
 				label: {
 					FR: "Ail",
 				},
@@ -1598,7 +1598,7 @@ export default {
 			{
 				id: "haricot_vert",
 				co2: 0.41,
-				image: require("@/assets/images/vegetables/haricot_vert.svg"),
+				image: require("@/assets/images/vegetable/haricot_vert.svg"),
 				label: {
 					FR: "Haricot vert",
 				},
@@ -1606,7 +1606,7 @@ export default {
 			{
 				id: "aubergine",
 				co2: 0.46,
-				image: require("@/assets/images/vegetables/aubergine.svg"),
+				image: require("@/assets/images/vegetable/aubergine.svg"),
 				label: {
 					FR: "Aubergine",
 				},
@@ -1614,7 +1614,7 @@ export default {
 			{
 				id: "concombre",
 				co2: 0.47,
-				image: require("@/assets/images/vegetables/concombre.svg"),
+				image: require("@/assets/images/vegetable/concombre.svg"),
 				label: {
 					FR: "Concombre",
 				},
@@ -1622,7 +1622,7 @@ export default {
 			{
 				id: "courgette",
 				co2: 0.48,
-				image: require("@/assets/images/vegetables/courgette.svg"),
+				image: require("@/assets/images/vegetable/courgette.svg"),
 				label: {
 					FR: "Courgette",
 				},
@@ -1630,7 +1630,7 @@ export default {
 			{
 				id: "champignon",
 				co2: 0.49,
-				image: require("@/assets/images/vegetables/champignon.svg"),
+				image: require("@/assets/images/vegetable/champignon.svg"),
 				label: {
 					FR: "Champignon",
 				},
@@ -1638,7 +1638,7 @@ export default {
 			{
 				id: "blette",
 				co2: 0.54,
-				image: require("@/assets/images/vegetables/blette.svg"),
+				image: require("@/assets/images/vegetable/blette.svg"),
 				label: {
 					FR: "Blette",
 				},
@@ -1646,7 +1646,7 @@ export default {
 			{
 				id: "tomate",
 				co2: 0.58,
-				image: require("@/assets/images/vegetables/tomate.svg"),
+				image: require("@/assets/images/vegetable/tomate.svg"),
 					label: {
 					FR: "Tomate",
 				},
@@ -1654,7 +1654,7 @@ export default {
 			{
 				id: "pasteque",
 				co2: 0.64,
-				image: require("@/assets/images/vegetables/pasteque.svg"),
+				image: require("@/assets/images/vegetable/pasteque.svg"),
 				label: {
 					FR: "Pastèque",
 				},
@@ -1662,7 +1662,7 @@ export default {
 			{
 				id: "mais",
 				co2: 0.81,
-				image: require("@/assets/images/vegetables/mais.svg"),
+				image: require("@/assets/images/vegetable/mais.svg"),
 					label: {
 					FR: "Maïs",
 				},
@@ -1670,7 +1670,7 @@ export default {
 			{
 				id: "cresson",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/cresson.svg"),
+				image: require("@/assets/images/vegetable/cresson.svg"),
 				label: {
 					FR: "Cresson",
 				},
@@ -1678,7 +1678,7 @@ export default {
 			{
 				id: "laitue",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/laitue.svg"),
+				image: require("@/assets/images/vegetable/laitue.svg"),
 				label: {
 					FR: "Laitue",
 				},
@@ -1686,7 +1686,7 @@ export default {
 			{
 				id: "fenouil",
 				co2: 0.96,
-				image: require("@/assets/images/vegetables/fenouil.svg"),
+				image: require("@/assets/images/vegetable/fenouil.svg"),
 				label: {
 					FR: "Fenouil",
 				},
@@ -1694,7 +1694,7 @@ export default {
 			{
 				id: "poivron",
 				co2: 1.18,
-				image: require("@/assets/images/vegetables/poivron.svg"),
+				image: require("@/assets/images/vegetable/poivron.svg"),
 				label: {
 					FR: "Poivron",
 				},
@@ -1702,7 +1702,7 @@ export default {
 			{
 				id: "artichaut",
 				co2: 3.88,
-				image: require("@/assets/images/vegetables/artichaut.svg"),
+				image: require("@/assets/images/vegetable/artichaut.svg"),
 				label: {
 					FR: "Artichaut",
 				},
@@ -1712,7 +1712,7 @@ export default {
 			{
 				id: "poire",
 				co2: 0.36,
-				image: require("@/assets/images/fruits/poire.svg"),
+				image: require("@/assets/images/fruit/poire.svg"),
 					label: {
 					FR: "Poire",
 				},
@@ -1720,7 +1720,7 @@ export default {
 			{
 				id: "pomme",
 				co2: 0.41,
-				image: require("@/assets/images/fruits/pomme.svg"),
+				image: require("@/assets/images/fruit/pomme.svg"),
 				label: {
 					FR: "Pomme",
 				},
@@ -1728,7 +1728,7 @@ export default {
 			{
 				id: "peche",
 				co2: 0.61,
-				image: require("@/assets/images/fruits/peche.svg"),
+				image: require("@/assets/images/fruit/peche.svg"),
 				label: {
 					FR: "Pêche",
 				},
@@ -1736,7 +1736,7 @@ export default {
 			{
 				id: "figue",
 				co2: 0.61,
-				image: require("@/assets/images/fruits/figue.svg"),
+				image: require("@/assets/images/fruit/figue.svg"),
 				label: {
 					FR: "Figue",
 				},
@@ -1744,7 +1744,7 @@ export default {
 			{
 				id: "nectarine",
 				co2: 0.64,
-				image: require("@/assets/images/fruits/nectarine.svg"),
+				image: require("@/assets/images/fruit/nectarine.svg"),
 				label: {
 					FR: "Nectarine",
 				},
@@ -1752,7 +1752,7 @@ export default {
 			{
 				id: "banane",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/banane.svg"),
+				image: require("@/assets/images/fruit/banane.svg"),
 				label: {
 					FR: "Banane",
 				},
@@ -1760,7 +1760,7 @@ export default {
 			{
 				id: "abricot",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/abricot.svg"),
+				image: require("@/assets/images/fruit/abricot.svg"),
 				label: {
 					FR: "Abricot",
 				},
@@ -1768,7 +1768,7 @@ export default {
 			{
 				id: "myrtille",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/myrtille.svg"),
+				image: require("@/assets/images/fruit/myrtille.svg"),
 				label: {
 					FR: "Myrtille",
 				},
@@ -1776,7 +1776,7 @@ export default {
 			{
 				id: "fruit_passion",
 				co2: 0.89,
-				image: require("@/assets/images/fruits/fruit_passion.svg"),
+				image: require("@/assets/images/fruit/fruit_passion.svg"),
 				label: {
 					FR: "Fruit de la passion",
 				},
@@ -1784,7 +1784,7 @@ export default {
 			{
 				id: "melon",
 				co2: 0.93,
-				image: require("@/assets/images/fruits/melon.svg"),
+				image: require("@/assets/images/fruit/melon.svg"),
 				label: {
 					FR: "Melon",
 				},
@@ -1792,7 +1792,7 @@ export default {
 			{
 				id: "prune",
 				co2: 0.96,
-				image: require("@/assets/images/fruits/prune.svg"),
+				image: require("@/assets/images/fruit/prune.svg"),
 				label: {
 					FR: "Prune",
 				},
@@ -1800,7 +1800,7 @@ export default {
 			{
 				id: "mure",
 				co2: 1.21,
-				image: require("@/assets/images/fruits/mure.svg"),
+				image: require("@/assets/images/fruit/mure.svg"),
 				label: {
 					FR: "Mûre",
 				},
@@ -1808,7 +1808,7 @@ export default {
 			{
 				id: "ananas",
 				co2: 1.29,
-				image: require("@/assets/images/fruits/ananas.svg"),
+				image: require("@/assets/images/fruit/ananas.svg"),
 				label: {
 					FR: "Ananas",
 				},
@@ -1816,7 +1816,7 @@ export default {
 			{
 				id: "framboise",
 				co2: 1.48,
-				image: require("@/assets/images/fruits/framboise.svg"),
+				image: require("@/assets/images/fruit/framboise.svg"),
 				label: {
 					FR: "Framboise",
 				},
@@ -1824,7 +1824,7 @@ export default {
 			{
 				id: "avocat",
 				co2: 1.48,
-				image: require("@/assets/images/fruits/avocat.svg"),
+				image: require("@/assets/images/fruit/avocat.svg"),
 				label: {
 					FR: "Avocat",
 				},
@@ -1832,7 +1832,7 @@ export default {
 			{
 				id: "groseille",
 				co2: 1.79,
-				image: require("@/assets/images/fruits/groseille.svg"),
+				image: require("@/assets/images/fruit/groseille.svg"),
 				label: {
 					FR: "Groseille",
 				},
@@ -1840,7 +1840,7 @@ export default {
 			{
 				id: "cassis",
 				co2: 1.8,
-				image: require("@/assets/images/fruits/cassis.svg"),
+				image: require("@/assets/images/fruit/cassis.svg"),
 				label: {
 					FR: "Cassis",
 				},
@@ -1848,7 +1848,7 @@ export default {
 			{
 				id: "mangue",
 				co2: 10.6,
-				image: require("@/assets/images/fruits/mangue.svg"),
+				image: require("@/assets/images/fruit/mangue.svg"),
 				label: {
 					FR: "Mangue",
 				},
@@ -1860,7 +1860,7 @@ export default {
 			{
 				id: "ail",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/ail.svg"),
+				image: require("@/assets/images/vegetable/ail.svg"),
 				label: {
 					FR: "Ail",
 				},
@@ -1868,7 +1868,7 @@ export default {
 			{
 				id: "carotte",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/carotte.svg"),
+				image: require("@/assets/images/vegetable/carotte.svg"),
 				label: {
 					FR: "Carotte",
 				},
@@ -1876,7 +1876,7 @@ export default {
 			{
 				id: "oignon",
 				co2: 0.39,
-				image: require("@/assets/images/vegetables/oignon.svg"),
+				image: require("@/assets/images/vegetable/oignon.svg"),
 				label: {
 					FR: "Oignon",
 				},
@@ -1884,7 +1884,7 @@ export default {
 			{
 				id: "epinard",
 				co2: 0.39,
-				image: require("@/assets/images/vegetables/epinard.svg"),
+				image: require("@/assets/images/vegetable/epinard.svg"),
 				label: {
 					FR: "Épinard",
 				},
@@ -1892,7 +1892,7 @@ export default {
 			{
 				id: "haricot_vert",
 				co2: 0.41,
-				image: require("@/assets/images/vegetables/haricot_vert.svg"),
+				image: require("@/assets/images/vegetable/haricot_vert.svg"),
 				label: {
 					FR: "Haricot vert",
 				},
@@ -1900,7 +1900,7 @@ export default {
 			{
 				id: "aubergine",
 				co2: 0.46,
-				image: require("@/assets/images/vegetables/aubergine.svg"),
+				image: require("@/assets/images/vegetable/aubergine.svg"),
 				label: {
 					FR: "Aubergine",
 				},
@@ -1908,7 +1908,7 @@ export default {
 			{
 				id: "concombre",
 				co2: 0.47,
-				image: require("@/assets/images/vegetables/concombre.svg"),
+				image: require("@/assets/images/vegetable/concombre.svg"),
 				label: {
 					FR: "Concombre",
 				},
@@ -1916,7 +1916,7 @@ export default {
 			{
 				id: "courgette",
 				co2: 0.48,
-				image: require("@/assets/images/vegetables/courgette.svg"),
+				image: require("@/assets/images/vegetable/courgette.svg"),
 				label: {
 					FR: "Courgette",
 				},
@@ -1924,7 +1924,7 @@ export default {
 			{
 				id: "champignon",
 				co2: 0.49,
-				image: require("@/assets/images/vegetables/champignon.svg"),
+				image: require("@/assets/images/vegetable/champignon.svg"),
 				label: {
 					FR: "Champignon",
 				},
@@ -1932,7 +1932,7 @@ export default {
 			{
 				id: "blette",
 				co2: 0.54,
-				image: require("@/assets/images/vegetables/blette.svg"),
+				image: require("@/assets/images/vegetable/blette.svg"),
 				label: {
 					FR: "Blette",
 				},
@@ -1940,7 +1940,7 @@ export default {
 			{
 				id: "tomate",
 				co2: 0.58,
-				image: require("@/assets/images/vegetables/tomate.svg"),
+				image: require("@/assets/images/vegetable/tomate.svg"),
 				label: {
 					FR: "Tomate",
 				},
@@ -1948,7 +1948,7 @@ export default {
 			{
 				id: "courge",
 				co2: 0.62,
-				image: require("@/assets/images/vegetables/courge.svg"),
+				image: require("@/assets/images/vegetable/courge.svg"),
 				label: {
 					FR: "Courge",
 				},
@@ -1956,7 +1956,7 @@ export default {
 			{
 				id: "potiron",
 				co2: 0.62,
-				image: require("@/assets/images/vegetables/potiron.svg"),
+				image: require("@/assets/images/vegetable/potiron.svg"),
 				label: {
 					FR: "Potiron",
 				},
@@ -1964,7 +1964,7 @@ export default {
 			{
 				id: "pasteque",
 				co2: 0.64,
-				image: require("@/assets/images/vegetables/pasteque.svg"),
+				image: require("@/assets/images/vegetable/pasteque.svg"),
 				label: {
 					FR: "Pastèque",
 				},
@@ -1972,7 +1972,7 @@ export default {
 			{
 				id: "chou_fleur",
 				co2: 0.74,
-				image: require("@/assets/images/vegetables/chou_fleur.svg"),
+				image: require("@/assets/images/vegetable/chou_fleur.svg"),
 				label: {
 					FR: "Chou-fleur",
 				},
@@ -1980,7 +1980,7 @@ export default {
 			{
 				id: "poireau",
 				co2: 0.77,
-				image: require("@/assets/images/vegetables/poireau.svg"),
+				image: require("@/assets/images/vegetable/poireau.svg"),
 				label: {
 					FR: "Poireau",
 				},
@@ -1988,7 +1988,7 @@ export default {
 			{
 				id: "mais",
 				co2: 0.81,
-				image: require("@/assets/images/vegetables/mais.svg"),
+				image: require("@/assets/images/vegetable/mais.svg"),
 				label: {
 					FR: "Maïs",
 				},
@@ -1996,7 +1996,7 @@ export default {
 			{
 				id: "brocoli",
 				co2: 0.9,
-				image: require("@/assets/images/vegetables/brocoli.svg"),
+				image: require("@/assets/images/vegetable/brocoli.svg"),
 				label: {
 					FR: "Brocoli",
 				},
@@ -2004,7 +2004,7 @@ export default {
 			{
 				id: "cresson",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/cresson.svg"),
+				image: require("@/assets/images/vegetable/cresson.svg"),
 				label: {
 					FR: "Cresson",
 				},
@@ -2012,7 +2012,7 @@ export default {
 			{
 				id: "laitue",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/laitue.svg"),
+				image: require("@/assets/images/vegetable/laitue.svg"),
 				label: {
 					FR: "Laitue",
 				},
@@ -2020,7 +2020,7 @@ export default {
 			{
 				id: "fenouil",
 				co2: 0.96,
-				image: require("@/assets/images/vegetables/fenouil.svg"),
+				image: require("@/assets/images/vegetable/fenouil.svg"),
 				label: {
 					FR: "Fenouil",
 				},
@@ -2028,7 +2028,7 @@ export default {
 			{
 				id: "artichaut",
 				co2: 3.88,
-				image: require("@/assets/images/vegetables/artichaut.svg"),
+				image: require("@/assets/images/vegetable/artichaut.svg"),
 				label: {
 					FR: "Artichaut",
 				},
@@ -2038,7 +2038,7 @@ export default {
 			{
 				id: "poire",
 				co2: 0.36,
-				image: require("@/assets/images/fruits/poire.svg"),
+				image: require("@/assets/images/fruit/poire.svg"),
 				label: {
 					FR: "Poire",
 				},
@@ -2046,7 +2046,7 @@ export default {
 			{
 				id: "pomme",
 				co2: 0.41,
-				image: require("@/assets/images/fruits/pomme.svg"),
+				image: require("@/assets/images/fruit/pomme.svg"),
 				label: {
 					FR: "Pomme",
 				},
@@ -2054,7 +2054,7 @@ export default {
 			{
 				id: "raisin",
 				co2: 0.46,
-				image: require("@/assets/images/fruits/raisin.svg"),
+				image: require("@/assets/images/fruit/raisin.svg"),
 				label: {
 					FR: "Raisin",
 				},
@@ -2062,7 +2062,7 @@ export default {
 			{
 				id: "peche",
 				co2: 0.61,
-				image: require("@/assets/images/fruits/peche.svg"),
+				image: require("@/assets/images/fruit/peche.svg"),
 				label: {
 					FR: "Pêche",
 				},
@@ -2070,7 +2070,7 @@ export default {
 			{
 				id: "figue",
 				co2: 0.61,
-				image: require("@/assets/images/fruits/figue.svg"),
+				image: require("@/assets/images/fruit/figue.svg"),
 				label: {
 					FR: "Figue",
 				},
@@ -2078,7 +2078,7 @@ export default {
 			{
 				id: "nectarine",
 				co2: 0.64,
-				image: require("@/assets/images/fruits/nectarine.svg"),
+				image: require("@/assets/images/fruit/nectarine.svg"),
 				label: {
 					FR: "Nectarine",
 				},
@@ -2086,7 +2086,7 @@ export default {
 			{
 				id: "banane",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/banane.svg"),
+				image: require("@/assets/images/fruit/banane.svg"),
 				label: {
 					FR: "Banane",
 				},
@@ -2094,7 +2094,7 @@ export default {
 			{
 				id: "abricot",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/abricot.svg"),
+				image: require("@/assets/images/fruit/abricot.svg"),
 				label: {
 					FR: "Abricot",
 				},
@@ -2102,7 +2102,7 @@ export default {
 			{
 				id: "myrtille",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/myrtille.svg"),
+				image: require("@/assets/images/fruit/myrtille.svg"),
 				label: {
 					FR: "Myrtille",
 				},
@@ -2110,7 +2110,7 @@ export default {
 			{
 				id: "fruit_passion",
 				co2: 0.89,
-				image: require("@/assets/images/fruits/fruit_passion.svg"),
+				image: require("@/assets/images/fruit/fruit_passion.svg"),
 				label: {
 					FR: "Fruit de la passion",
 				},
@@ -2118,7 +2118,7 @@ export default {
 			{
 				id: "melon",
 				co2: 0.93,
-				image: require("@/assets/images/fruits/melon.svg"),
+				image: require("@/assets/images/fruit/melon.svg"),
 				label: {
 					FR: "Melon",
 				},
@@ -2126,7 +2126,7 @@ export default {
 			{
 				id: "prune",
 				co2: 0.96,
-				image: require("@/assets/images/fruits/prune.svg"),
+				image: require("@/assets/images/fruit/prune.svg"),
 				label: {
 					FR: "Prune",
 				},
@@ -2134,7 +2134,7 @@ export default {
 			{
 				id: "reine_claude",
 				co2: 0.97,
-				image: require("@/assets/images/fruits/reine_claude.svg"),
+				image: require("@/assets/images/fruit/reine_claude.svg"),
 				label: {
 					FR: "Reine claude",
 				},
@@ -2142,7 +2142,7 @@ export default {
 			{
 				id: "mure",
 				co2: 1.21,
-				image: require("@/assets/images/fruits/mure.svg"),
+				image: require("@/assets/images/fruit/mure.svg"),
 				label: {
 					FR: "Mûre",
 				},
@@ -2150,7 +2150,7 @@ export default {
 			{
 				id: "ananas",
 				co2: 1.29,
-				image: require("@/assets/images/fruits/ananas.svg"),
+				image: require("@/assets/images/fruit/ananas.svg"),
 				label: {
 					FR: "Ananas",
 				},
@@ -2158,7 +2158,7 @@ export default {
 			{
 				id: "avocat",
 				co2: 1.48,
-				image: require("@/assets/images/fruits/avocat.svg"),
+				image: require("@/assets/images/fruit/avocat.svg"),
 				label: {
 					FR: "Avocat",
 				},
@@ -2166,7 +2166,7 @@ export default {
 			{
 				id: "noix",
 				co2: 4.16,
-				image: require("@/assets/images/fruits/noix.svg"),
+				image: require("@/assets/images/fruit/noix.svg"),
 				label: {
 					FR: "Noix",
 				},
@@ -2174,7 +2174,7 @@ export default {
 			{
 				id: "noisette",
 				co2: 4.65,
-				image: require("@/assets/images/fruits/noisette.svg"),
+				image: require("@/assets/images/fruit/noisette.svg"),
 				label: {
 					FR: "Noisette",
 				},
@@ -2182,7 +2182,7 @@ export default {
 			{
 				id: "mangue",
 				co2: 10.6,
-				image: require("@/assets/images/fruits/mangue.svg"),
+				image: require("@/assets/images/fruit/mangue.svg"),
 				label: {
 					FR: "Mangue",
 				},
@@ -2194,7 +2194,7 @@ export default {
 			{
 				id: "ail",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/ail.svg"),
+				image: require("@/assets/images/vegetable/ail.svg"),
 				label: {
 					FR: "Ail",
 				},
@@ -2202,7 +2202,7 @@ export default {
 			{
 				id: "betterave",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/betterave.svg"),
+				image: require("@/assets/images/vegetable/betterave.svg"),
 				label: {
 					FR: "Betterave",
 				},
@@ -2210,7 +2210,7 @@ export default {
 			{
 				id: "carotte",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/carotte.svg"),
+				image: require("@/assets/images/vegetable/carotte.svg"),
 				label: {
 					FR: "Carotte",
 				},
@@ -2218,7 +2218,7 @@ export default {
 			{
 				id: "navet",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/navet.svg"),
+				image: require("@/assets/images/vegetable/navet.svg"),
 				label: {
 					FR: "Navet",
 				},
@@ -2226,7 +2226,7 @@ export default {
 			{
 				id: "echalote",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/echalote.svg"),
+				image: require("@/assets/images/vegetable/echalote.svg"),
 				label: {
 					FR: "Échalote",
 				},
@@ -2234,7 +2234,7 @@ export default {
 			{
 				id: "oignon",
 				co2: 0.39,
-				image: require("@/assets/images/vegetables/oignon.svg"),
+				image: require("@/assets/images/vegetable/oignon.svg"),
 				label: {
 					FR: "Oignon",
 				},
@@ -2242,7 +2242,7 @@ export default {
 			{
 				id: "epinard",
 				co2: 0.39,
-				image: require("@/assets/images/vegetables/epinard.svg"),
+				image: require("@/assets/images/vegetable/epinard.svg"),
 				label: {
 					FR: "Épinard",
 				},
@@ -2250,7 +2250,7 @@ export default {
 			{
 				id: "haricot_vert",
 				co2: 0.41,
-				image: require("@/assets/images/vegetables/haricot_vert.svg"),
+				image: require("@/assets/images/vegetable/haricot_vert.svg"),
 				label: {
 					FR: "Haricot vert",
 				},
@@ -2258,7 +2258,7 @@ export default {
 			{
 				id: "panais",
 				co2: 0.46,
-				image: require("@/assets/images/vegetables/panais.svg"),
+				image: require("@/assets/images/vegetable/panais.svg"),
 				label: {
 					FR: "Panais",
 				},
@@ -2266,7 +2266,7 @@ export default {
 			{
 				id: "concombre",
 				co2: 0.47,
-				image: require("@/assets/images/vegetables/concombre.svg"),
+				image: require("@/assets/images/vegetable/concombre.svg"),
 				label: {
 					FR: "Concombre",
 				},
@@ -2274,7 +2274,7 @@ export default {
 			{
 				id: "courgette",
 				co2: 0.48,
-				image: require("@/assets/images/vegetables/courgette.svg"),
+				image: require("@/assets/images/vegetable/courgette.svg"),
 				label: {
 					FR: "Courgette",
 				},
@@ -2282,7 +2282,7 @@ export default {
 			{
 				id: "champignon",
 				co2: 0.49,
-				image: require("@/assets/images/vegetables/champignon.svg"),
+				image: require("@/assets/images/vegetable/champignon.svg"),
 				label: {
 					FR: "Champignon",
 				},
@@ -2290,7 +2290,7 @@ export default {
 			{
 				id: "blette",
 				co2: 0.54,
-				image: require("@/assets/images/vegetables/blette.svg"),
+				image: require("@/assets/images/vegetable/blette.svg"),
 				label: {
 					FR: "Blette",
 				},
@@ -2298,7 +2298,7 @@ export default {
 			{
 				id: "chou_bruxelles",
 				co2: 0.58,
-				image: require("@/assets/images/vegetables/chou_bruxelles.svg"),
+				image: require("@/assets/images/vegetable/chou_bruxelles.svg"),
 				label: {
 					FR: "Chou de Bruxelles",
 				},
@@ -2306,7 +2306,7 @@ export default {
 			{
 				id: "courge",
 				co2: 0.62,
-				image: require("@/assets/images/vegetables/courge.svg"),
+				image: require("@/assets/images/vegetable/courge.svg"),
 				label: {
 					FR: "Courge",
 				},
@@ -2314,7 +2314,7 @@ export default {
 			{
 				id: "potiron",
 				co2: 0.62,
-				image: require("@/assets/images/vegetables/potiron.svg"),
+				image: require("@/assets/images/vegetable/potiron.svg"),
 				label: {
 					FR: "Potiron",
 				},
@@ -2322,7 +2322,7 @@ export default {
 			{
 				id: "celeri",
 				co2: 0.68,
-				image: require("@/assets/images/vegetables/celeri.svg"),
+				image: require("@/assets/images/vegetable/celeri.svg"),
 				label: {
 					FR: "Céleri",
 				},
@@ -2330,7 +2330,7 @@ export default {
 			{
 				id: "chou_fleur",
 				co2: 0.74,
-				image: require("@/assets/images/vegetables/chou_fleur.svg"),
+				image: require("@/assets/images/vegetable/chou_fleur.svg"),
 				label: {
 					FR: "Chou-fleur",
 				},
@@ -2338,7 +2338,7 @@ export default {
 			{
 				id: "poireau",
 				co2: 0.77,
-				image: require("@/assets/images/vegetables/poireau.svg"),
+				image: require("@/assets/images/vegetable/poireau.svg"),
 				label: {
 					FR: "Poireau",
 				},
@@ -2346,7 +2346,7 @@ export default {
 			{
 				id: "chou",
 				co2: 0.86,
-				image: require("@/assets/images/vegetables/chou.svg"),
+				image: require("@/assets/images/vegetable/chou.svg"),
 				label: {
 					FR: "Chou",
 				},
@@ -2354,7 +2354,7 @@ export default {
 			{
 				id: "brocoli",
 				co2: 0.9,
-				image: require("@/assets/images/vegetables/brocoli.svg"),
+				image: require("@/assets/images/vegetable/brocoli.svg"),
 				label: {
 					FR: "Brocoli",
 				},
@@ -2362,7 +2362,7 @@ export default {
 			{
 				id: "endive",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/endive.svg"),
+				image: require("@/assets/images/vegetable/endive.svg"),
 				label: {
 					FR: "Endive",
 				},
@@ -2370,7 +2370,7 @@ export default {
 			{
 				id: "cresson",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/cresson.svg"),
+				image: require("@/assets/images/vegetable/cresson.svg"),
 				label: {
 					FR: "Cresson",
 				},
@@ -2378,7 +2378,7 @@ export default {
 			{
 				id: "mache",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/mache.svg"),
+				image: require("@/assets/images/vegetable/mache.svg"),
 				label: {
 					FR: "Mâche",
 				},
@@ -2386,7 +2386,7 @@ export default {
 			{
 				id: "fenouil",
 				co2: 0.96,
-				image: require("@/assets/images/vegetables/fenouil.svg"),
+				image: require("@/assets/images/vegetable/fenouil.svg"),
 				label: {
 					FR: "Fenouil",
 				},
@@ -2394,7 +2394,7 @@ export default {
 			{
 				id: "poivron",
 				co2: 1.18,
-				image: require("@/assets/images/vegetables/poivron.svg"),
+				image: require("@/assets/images/vegetable/poivron.svg"),
 				label: {
 					FR: "Poivron",
 				},
@@ -2404,7 +2404,7 @@ export default {
 			{
 				id: "poire",
 				co2: 0.36,
-				image: require("@/assets/images/fruits/poire.svg"),
+				image: require("@/assets/images/fruit/poire.svg"),
 				label: {
 					FR: "Poire",
 				},
@@ -2412,7 +2412,7 @@ export default {
 			{
 				id: "pomme",
 				co2: 0.41,
-				image: require("@/assets/images/fruits/pomme.svg"),
+				image: require("@/assets/images/fruit/pomme.svg"),
 				label: {
 					FR: "Pomme",
 				},
@@ -2420,7 +2420,7 @@ export default {
 			{
 				id: "raisin",
 				co2: 0.46,
-				image: require("@/assets/images/fruits/raisin.svg"),
+				image: require("@/assets/images/fruit/raisin.svg"),
 				label: {
 					FR: "Raisin",
 				},
@@ -2428,7 +2428,7 @@ export default {
 			{
 				id: "coing",
 				co2: 0.54,
-				image: require("@/assets/images/fruits/coing.svg"),
+				image: require("@/assets/images/fruit/coing.svg"),
 				label: {
 					FR: "Coing",
 				},
@@ -2436,7 +2436,7 @@ export default {
 			{
 				id: "figue",
 				co2: 0.61,
-				image: require("@/assets/images/fruits/figue.svg"),
+				image: require("@/assets/images/fruit/figue.svg"),
 				label: {
 					FR: "Figue",
 				},
@@ -2444,7 +2444,7 @@ export default {
 			{
 				id: "banane",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/banane.svg"),
+				image: require("@/assets/images/fruit/banane.svg"),
 				label: {
 					FR: "Banane",
 				},
@@ -2452,7 +2452,7 @@ export default {
 			{
 				id: "fruit_passion",
 				co2: 0.89,
-				image: require("@/assets/images/fruits/fruit_passion.svg"),
+				image: require("@/assets/images/fruit/fruit_passion.svg"),
 				label: {
 					FR: "Fruit de la passion",
 				},
@@ -2460,7 +2460,7 @@ export default {
 			{
 				id: "kaki",
 				co2: 0.9,
-				image: require("@/assets/images/fruits/kaki.svg"),
+				image: require("@/assets/images/fruit/kaki.svg"),
 				label: {
 					FR: "Kaki",
 				},
@@ -2468,7 +2468,7 @@ export default {
 			{
 				id: "reine_claude",
 				co2: 0.97,
-				image: require("@/assets/images/fruits/reine_claude.svg"),
+				image: require("@/assets/images/fruit/reine_claude.svg"),
 				label: {
 					FR: "Reine claude",
 				},
@@ -2476,7 +2476,7 @@ export default {
 			{
 				id: "ananas",
 				co2: 1.29,
-				image: require("@/assets/images/fruits/ananas.svg"),
+				image: require("@/assets/images/fruit/ananas.svg"),
 				label: {
 					FR: "Ananas",
 				},
@@ -2484,7 +2484,7 @@ export default {
 			{
 				id: "avocat",
 				co2: 1.48,
-				image: require("@/assets/images/fruits/avocat.svg"),
+				image: require("@/assets/images/fruit/avocat.svg"),
 				label: {
 					FR: "Avocat",
 				},
@@ -2492,7 +2492,7 @@ export default {
 			{
 				id: "chataigne",
 				co2: 1.88,
-				image: require("@/assets/images/fruits/chataigne.svg"),
+				image: require("@/assets/images/fruit/chataigne.svg"),
 				label: {
 					FR: "Châtaigne",
 				},
@@ -2500,7 +2500,7 @@ export default {
 			{
 				id: "datte",
 				co2: 2.76,
-				image: require("@/assets/images/fruits/datte.svg"),
+				image: require("@/assets/images/fruit/datte.svg"),
 				label: {
 					FR: "Datte",
 				},
@@ -2508,7 +2508,7 @@ export default {
 			{
 				id: "noix",
 				co2: 4.16,
-				image: require("@/assets/images/fruits/noix.svg"),
+				image: require("@/assets/images/fruit/noix.svg"),
 				label: {
 					FR: "Noix",
 				},
@@ -2516,7 +2516,7 @@ export default {
 			{
 				id: "noisette",
 				co2: 4.65,
-				image: require("@/assets/images/fruits/noisette.svg"),
+				image: require("@/assets/images/fruit/noisette.svg"),
 				label: {
 					FR: "Noisette",
 				},
@@ -2524,7 +2524,7 @@ export default {
 			{
 				id: "mangue",
 				co2: 10.6,
-				image: require("@/assets/images/fruits/mangue.svg"),
+				image: require("@/assets/images/fruit/mangue.svg"),
 				label: {
 					FR: "Mangue",
 				},
@@ -2536,7 +2536,7 @@ export default {
 			{
 				id: "ail",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/ail.svg"),
+				image: require("@/assets/images/vegetable/ail.svg"),
 				label: {
 					FR: "Ail",
 				},
@@ -2544,7 +2544,7 @@ export default {
 			{
 				id: "betterave",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/betterave.svg"),
+				image: require("@/assets/images/vegetable/betterave.svg"),
 				label: {
 					FR: "Betterave",
 				},
@@ -2552,7 +2552,7 @@ export default {
 			{
 				id: "carotte",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/carotte.svg"),
+				image: require("@/assets/images/vegetable/carotte.svg"),
 				label: {
 					FR: "Carotte",
 				},
@@ -2560,7 +2560,7 @@ export default {
 			{
 				id: "navet",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/navet.svg"),
+				image: require("@/assets/images/vegetable/navet.svg"),
 				label: {
 					FR: "Navet",
 				},
@@ -2568,7 +2568,7 @@ export default {
 			{
 				id: "echalote",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/echalote.svg"),
+				image: require("@/assets/images/vegetable/echalote.svg"),
 				label: {
 					FR: "Échalote",
 				},
@@ -2576,7 +2576,7 @@ export default {
 			{
 				id: "oignon",
 				co2: 0.39,
-				image: require("@/assets/images/vegetables/oignon.svg"),
+				image: require("@/assets/images/vegetable/oignon.svg"),
 				label: {
 					FR: "Oignon",
 				},
@@ -2584,7 +2584,7 @@ export default {
 			{
 				id: "epinard",
 				co2: 0.39,
-				image: require("@/assets/images/vegetables/epinard.svg"),
+				image: require("@/assets/images/vegetable/epinard.svg"),
 				label: {
 					FR: "Épinard",
 				},
@@ -2592,7 +2592,7 @@ export default {
 			{
 				id: "panais",
 				co2: 0.46,
-				image: require("@/assets/images/vegetables/panais.svg"),
+				image: require("@/assets/images/vegetable/panais.svg"),
 				label: {
 					FR: "Panais",
 				},
@@ -2600,7 +2600,7 @@ export default {
 			{
 				id: "salsifis",
 				co2: 0.46,
-				image: require("@/assets/images/vegetables/salsifis.svg"),
+				image: require("@/assets/images/vegetable/salsifis.svg"),
 				label: {
 					FR: "Salsifis",
 				},
@@ -2608,7 +2608,7 @@ export default {
 			{
 				id: "champignon",
 				co2: 0.49,
-				image: require("@/assets/images/vegetables/champignon.svg"),
+				image: require("@/assets/images/vegetable/champignon.svg"),
 				label: {
 					FR: "Champignon",
 				},
@@ -2616,7 +2616,7 @@ export default {
 			{
 				id: "topinambour",
 				co2: 0.51,
-				image: require("@/assets/images/vegetables/topinambour.svg"),
+				image: require("@/assets/images/vegetable/topinambour.svg"),
 				label: {
 					FR: "Topinambour",
 				},
@@ -2624,7 +2624,7 @@ export default {
 			{
 				id: "blette",
 				co2: 0.54,
-				image: require("@/assets/images/vegetables/blette.svg"),
+				image: require("@/assets/images/vegetable/blette.svg"),
 				label: {
 					FR: "Blette",
 				},
@@ -2632,7 +2632,7 @@ export default {
 			{
 				id: "chou_bruxelles",
 				co2: 0.58,
-				image: require("@/assets/images/vegetables/chou_bruxelles.svg"),
+				image: require("@/assets/images/vegetable/chou_bruxelles.svg"),
 				label: {
 					FR: "Chou de Bruxelles",
 				},
@@ -2640,7 +2640,7 @@ export default {
 			{
 				id: "courge",
 				co2: 0.62,
-				image: require("@/assets/images/vegetables/courge.svg"),
+				image: require("@/assets/images/vegetable/courge.svg"),
 				label: {
 					FR: "Courge",
 				},
@@ -2648,7 +2648,7 @@ export default {
 			{
 				id: "potiron",
 				co2: 0.62,
-				image: require("@/assets/images/vegetables/potiron.svg"),
+				image: require("@/assets/images/vegetable/potiron.svg"),
 				label: {
 					FR: "Potiron",
 				},
@@ -2656,7 +2656,7 @@ export default {
 			{
 				id: "celeri",
 				co2: 0.68,
-				image: require("@/assets/images/vegetables/celeri.svg"),
+				image: require("@/assets/images/vegetable/celeri.svg"),
 				label: {
 					FR: "Céleri",
 				},
@@ -2664,7 +2664,7 @@ export default {
 			{
 				id: "chou_fleur",
 				co2: 0.74,
-				image: require("@/assets/images/vegetables/chou_fleur.svg"),
+				image: require("@/assets/images/vegetable/chou_fleur.svg"),
 				label: {
 					FR: "Chou-fleur",
 				},
@@ -2672,7 +2672,7 @@ export default {
 			{
 				id: "poireau",
 				co2: 0.77,
-				image: require("@/assets/images/vegetables/poireau.svg"),
+				image: require("@/assets/images/vegetable/poireau.svg"),
 				label: {
 					FR: "Poireau",
 				},
@@ -2680,7 +2680,7 @@ export default {
 			{
 				id: "chou",
 				co2: 0.86,
-				image: require("@/assets/images/vegetables/chou.svg"),
+				image: require("@/assets/images/vegetable/chou.svg"),
 				label: {
 					FR: "Chou",
 				},
@@ -2688,7 +2688,7 @@ export default {
 			{
 				id: "brocoli",
 				co2: 0.9,
-				image: require("@/assets/images/vegetables/brocoli.svg"),
+				image: require("@/assets/images/vegetable/brocoli.svg"),
 				label: {
 					FR: "Brocoli",
 				},
@@ -2696,7 +2696,7 @@ export default {
 			{
 				id: "endive",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/endive.svg"),
+				image: require("@/assets/images/vegetable/endive.svg"),
 				label: {
 					FR: "Endive",
 				},
@@ -2704,7 +2704,7 @@ export default {
 			{
 				id: "cresson",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/cresson.svg"),
+				image: require("@/assets/images/vegetable/cresson.svg"),
 				label: {
 					FR: "Cresson",
 				},
@@ -2712,7 +2712,7 @@ export default {
 			{
 				id: "mache",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/mache.svg"),
+				image: require("@/assets/images/vegetable/mache.svg"),
 				label: {
 					FR: "Mâche",
 				},
@@ -2720,7 +2720,7 @@ export default {
 			{
 				id: "fenouil",
 				co2: 0.96,
-				image: require("@/assets/images/vegetables/fenouil.svg"),
+				image: require("@/assets/images/vegetable/fenouil.svg"),
 				label: {
 					FR: "Fenouil",
 				},
@@ -2730,7 +2730,7 @@ export default {
 			{
 				id: "poire",
 				co2: 0.36,
-				image: require("@/assets/images/fruits/poire.svg"),
+				image: require("@/assets/images/fruit/poire.svg"),
 				label: {
 					FR: "Poire",
 				},
@@ -2738,7 +2738,7 @@ export default {
 			{
 				id: "pomme",
 				co2: 0.41,
-				image: require("@/assets/images/fruits/pomme.svg"),
+				image: require("@/assets/images/fruit/pomme.svg"),
 				label: {
 					FR: "Pomme",
 				},
@@ -2746,7 +2746,7 @@ export default {
 			{
 				id: "mandarine",
 				co2: 0.42,
-				image: require("@/assets/images/fruits/mandarine.svg"),
+				image: require("@/assets/images/fruit/mandarine.svg"),
 				label: {
 					FR: "Mandarine",
 				},
@@ -2754,7 +2754,7 @@ export default {
 			{
 				id: "grenade",
 				co2: 0.49,
-				image: require("@/assets/images/fruits/grenade.svg"),
+				image: require("@/assets/images/fruit/grenade.svg"),
 				label: {
 					FR: "Grenade",
 				},
@@ -2762,7 +2762,7 @@ export default {
 			{
 				id: "carambole",
 				co2: 0.53,
-				image: require("@/assets/images/fruits/carambole.svg"),
+				image: require("@/assets/images/fruit/carambole.svg"),
 				label: {
 					FR: "Carambole",
 				},
@@ -2770,7 +2770,7 @@ export default {
 			{
 				id: "banane",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/banane.svg"),
+				image: require("@/assets/images/fruit/banane.svg"),
 				label: {
 					FR: "Banane",
 				},
@@ -2778,7 +2778,7 @@ export default {
 			{
 				id: "fruit_passion",
 				co2: 0.89,
-				image: require("@/assets/images/fruits/fruit_passion.svg"),
+				image: require("@/assets/images/fruit/fruit_passion.svg"),
 				label: {
 					FR: "Fruit de la passion",
 				},
@@ -2786,7 +2786,7 @@ export default {
 			{
 				id: "kaki",
 				co2: 0.9,
-				image: require("@/assets/images/fruits/kaki.svg"),
+				image: require("@/assets/images/fruit/kaki.svg"),
 				label: {
 					FR: "Kaki",
 				},
@@ -2794,7 +2794,7 @@ export default {
 			{
 				id: "kiwi",
 				co2: 0.98,
-				image: require("@/assets/images/fruits/kiwi.svg"),
+				image: require("@/assets/images/fruit/kiwi.svg"),
 				label: {
 					FR: "Kiwi",
 				},
@@ -2802,7 +2802,7 @@ export default {
 			{
 				id: "clementine",
 				co2: 1.22,
-				image: require("@/assets/images/fruits/clementine.svg"),
+				image: require("@/assets/images/fruit/clementine.svg"),
 				label: {
 					FR: "Clémentine",
 				},
@@ -2810,7 +2810,7 @@ export default {
 			{
 				id: "ananas",
 				co2: 1.29,
-				image: require("@/assets/images/fruits/ananas.svg"),
+				image: require("@/assets/images/fruit/ananas.svg"),
 				label: {
 					FR: "Ananas",
 				},
@@ -2818,7 +2818,7 @@ export default {
 			{
 				id: "avocat",
 				co2: 1.48,
-				image: require("@/assets/images/fruits/avocat.svg"),
+				image: require("@/assets/images/fruit/avocat.svg"),
 				label: {
 					FR: "Avocat",
 				},
@@ -2826,7 +2826,7 @@ export default {
 			{
 				id: "chataigne",
 				co2: 1.88,
-				image: require("@/assets/images/fruits/chataigne.svg"),
+				image: require("@/assets/images/fruit/chataigne.svg"),
 				label: {
 					FR: "Châtaigne",
 				},
@@ -2834,7 +2834,7 @@ export default {
 			{
 				id: "noix_coco",
 				co2: 2.49,
-				image: require("@/assets/images/fruits/noix_coco.svg"),
+				image: require("@/assets/images/fruit/noix_coco.svg"),
 				label: {
 					FR: "Noix de coco",
 				},
@@ -2842,7 +2842,7 @@ export default {
 			{
 				id: "datte",
 				co2: 2.76,
-				image: require("@/assets/images/fruits/datte.svg"),
+				image: require("@/assets/images/fruit/datte.svg"),
 				label: {
 					FR: "Datte",
 				},
@@ -2850,7 +2850,7 @@ export default {
 			{
 				id: "noisette",
 				co2: 4.65,
-				image: require("@/assets/images/fruits/noisette.svg"),
+				image: require("@/assets/images/fruit/noisette.svg"),
 				label: {
 					FR: "Noisette",
 				},
@@ -2858,7 +2858,7 @@ export default {
 			{
 				id: "mangue",
 				co2: 10.6,
-				image: require("@/assets/images/fruits/mangue.svg"),
+				image: require("@/assets/images/fruit/mangue.svg"),
 				label: {
 					FR: "Mangue",
 				},
@@ -2871,7 +2871,7 @@ export default {
 			{
 				id: "ail",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/ail.svg"),
+				image: require("@/assets/images/vegetable/ail.svg"),
 				label: {
 					FR: "Ail",
 				},
@@ -2879,7 +2879,7 @@ export default {
 			{
 				id: "betterave",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/betterave.svg"),
+				image: require("@/assets/images/vegetable/betterave.svg"),
 				label: {
 					FR: "Betterave",
 				},
@@ -2887,7 +2887,7 @@ export default {
 			{
 				id: "carotte",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/carotte.svg"),
+				image: require("@/assets/images/vegetable/carotte.svg"),
 				label: {
 					FR: "Carotte",
 				},
@@ -2895,7 +2895,7 @@ export default {
 			{
 				id: "navet",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/navet.svg"),
+				image: require("@/assets/images/vegetable/navet.svg"),
 				label: {
 					FR: "Navet",
 				},
@@ -2903,7 +2903,7 @@ export default {
 			{
 				id: "echalote",
 				co2: 0.36,
-				image: require("@/assets/images/vegetables/echalote.svg"),
+				image: require("@/assets/images/vegetable/echalote.svg"),
 				label: {
 					FR: "Échalote",
 				},
@@ -2911,7 +2911,7 @@ export default {
 			{
 				id: "oignon",
 				co2: 0.39,
-				image: require("@/assets/images/vegetables/oignon.svg"),
+				image: require("@/assets/images/vegetable/oignon.svg"),
 				label: {
 					FR: "Oignon",
 				},
@@ -2919,7 +2919,7 @@ export default {
 			{
 				id: "epinard",
 				co2: 0.39,
-				image: require("@/assets/images/vegetables/epinard.svg"),
+				image: require("@/assets/images/vegetable/epinard.svg"),
 				label: {
 					FR: "Épinard",
 				},
@@ -2927,7 +2927,7 @@ export default {
 			{
 				id: "panais",
 				co2: 0.46,
-				image: require("@/assets/images/vegetables/panais.svg"),
+				image: require("@/assets/images/vegetable/panais.svg"),
 				label: {
 					FR: "Panais",
 				},
@@ -2935,7 +2935,7 @@ export default {
 			{
 				id: "salsifis",
 				co2: 0.46,
-				image: require("@/assets/images/vegetables/salsifis.svg"),
+				image: require("@/assets/images/vegetable/salsifis.svg"),
 				label: {
 					FR: "Salsifis",
 				},
@@ -2943,7 +2943,7 @@ export default {
 			{
 				id: "champignon",
 				co2: 0.49,
-				image: require("@/assets/images/vegetables/champignon.svg"),	
+				image: require("@/assets/images/vegetable/champignon.svg"),	
 				label: {
 					FR: "Champignon",
 				},
@@ -2951,7 +2951,7 @@ export default {
 			{
 				id: "topinambour",
 				co2: 0.51,
-				image: require("@/assets/images/vegetables/topinambour.svg"),
+				image: require("@/assets/images/vegetable/topinambour.svg"),
 				label: {
 					FR: "Topinambour",
 				},
@@ -2959,7 +2959,7 @@ export default {
 			{
 				id: "chou_bruxelles",
 				co2: 0.58,
-				image: require("@/assets/images/vegetables/chou_bruxelles.svg"),
+				image: require("@/assets/images/vegetable/chou_bruxelles.svg"),
 				label: {
 					FR: "Chou de Bruxelles",
 				},
@@ -2967,7 +2967,7 @@ export default {
 			{
 				id: "courge",
 				co2: 0.62,
-				image: require("@/assets/images/vegetables/courge.svg"),
+				image: require("@/assets/images/vegetable/courge.svg"),
 				label: {
 					FR: "Courge",
 				},
@@ -2975,7 +2975,7 @@ export default {
 			{
 				id: "potiron",
 				co2: 0.62,
-				image: require("@/assets/images/vegetables/potiron.svg"),
+				image: require("@/assets/images/vegetable/potiron.svg"),
 				label: {
 					FR: "Potiron",
 				},
@@ -2983,7 +2983,7 @@ export default {
 			{
 				id: "celeri",
 				co2: 0.68,
-				image: require("@/assets/images/vegetables/celeri.svg"),
+				image: require("@/assets/images/vegetable/celeri.svg"),
 				label: {
 					FR: "Céleri",
 				},
@@ -2991,7 +2991,7 @@ export default {
 			{
 				id: "chou_fleur",
 				co2: 0.74,
-				image: require("@/assets/images/vegetables/chou_fleur.svg"),
+				image: require("@/assets/images/vegetable/chou_fleur.svg"),
 				label: {
 					FR: "Chou-fleur",
 				},
@@ -2999,7 +2999,7 @@ export default {
 			{
 				id: "poireau",
 				co2: 0.77,
-				image: require("@/assets/images/vegetables/poireau.svg"),
+				image: require("@/assets/images/vegetable/poireau.svg"),
 				label: {
 					FR: "Poireau",
 				},
@@ -3007,7 +3007,7 @@ export default {
 			{
 				id: "chou",
 				co2: 0.86,
-				image: require("@/assets/images/vegetables/chou.svg"),
+				image: require("@/assets/images/vegetable/chou.svg"),
 				label: {
 					FR: "Chou",
 				},
@@ -3015,7 +3015,7 @@ export default {
 			{
 				id: "cresson",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/cresson.svg"),
+				image: require("@/assets/images/vegetable/cresson.svg"),
 				label: {
 					FR: "Cresson",
 				},
@@ -3023,7 +3023,7 @@ export default {
 			{
 				id: "mache",
 				co2: 0.94,
-				image: require("@/assets/images/vegetables/mache.svg"),
+				image: require("@/assets/images/vegetable/mache.svg"),
 				label: {
 					FR: "Mâche",
 				},
@@ -3033,7 +3033,7 @@ export default {
 			{
 				id: "poire",
 				co2: 0.36,
-				image: require("@/assets/images/fruits/poire.svg"),
+				image: require("@/assets/images/fruit/poire.svg"),
 				label: {
 					FR: "Poire",
 				},
@@ -3041,7 +3041,7 @@ export default {
 			{
 				id: "pomme",
 				co2: 0.41,
-				image: require("@/assets/images/fruits/pomme.svg"),
+				image: require("@/assets/images/fruit/pomme.svg"),
 				label: {
 					FR: "Pomme",
 				},
@@ -3049,7 +3049,7 @@ export default {
 			{
 				id: "mandarine",
 				co2: 0.42,
-				image: require("@/assets/images/fruits/mandarine.svg"),
+				image: require("@/assets/images/fruit/mandarine.svg"),
 				label: {
 					FR: "Mandarine",
 				},
@@ -3057,7 +3057,7 @@ export default {
 			{
 				id: "grenade",
 				co2: 0.49,
-				image: require("@/assets/images/fruits/grenade.svg"),
+				image: require("@/assets/images/fruit/grenade.svg"),
 				label: {
 					FR: "Grenade",
 				},
@@ -3065,7 +3065,7 @@ export default {
 			{
 				id: "carambole",
 				co2: 0.53,
-				image: require("@/assets/images/fruits/carambole.svg"),
+				image: require("@/assets/images/fruit/carambole.svg"),
 				label: {
 					FR: "Carambole",
 				},
@@ -3073,7 +3073,7 @@ export default {
 			{
 				id: "banane",
 				co2: 0.88,
-				image: require("@/assets/images/fruits/banane.svg"),
+				image: require("@/assets/images/fruit/banane.svg"),
 				label: {
 					FR: "Banane",
 				},
@@ -3081,7 +3081,7 @@ export default {
 			{
 				id: "fruit_passion",
 				co2: 0.89,
-				image: require("@/assets/images/fruits/fruit_passion.svg"),
+				image: require("@/assets/images/fruit/fruit_passion.svg"),
 				label: {
 					FR: "Fruit de la passion",
 				},
@@ -3089,7 +3089,7 @@ export default {
 			{
 				id: "kaki",
 				co2: 0.9,
-				image: require("@/assets/images/fruits/kaki.svg"),
+				image: require("@/assets/images/fruit/kaki.svg"),
 				label: {
 					FR: "Kaki",
 				},
@@ -3097,7 +3097,7 @@ export default {
 			{
 				id: "kiwi",
 				co2: 0.98,
-				image: require("@/assets/images/fruits/kiwi.svg"),
+				image: require("@/assets/images/fruit/kiwi.svg"),
 				label: {
 					FR: "Kiwi",
 				},
@@ -3105,7 +3105,7 @@ export default {
 			{
 				id: "clementine",
 				co2: 1.22,
-				image: require("@/assets/images/fruits/clementine.svg"),
+				image: require("@/assets/images/fruit/clementine.svg"),
 				label: {
 					FR: "Clémentine",
 				},
@@ -3113,7 +3113,7 @@ export default {
 			{
 				id: "ananas",
 				co2: 1.29,
-				image: require("@/assets/images/fruits/ananas.svg"),
+				image: require("@/assets/images/fruit/ananas.svg"),
 				label: {
 					FR: "Ananas",
 				},
@@ -3121,7 +3121,7 @@ export default {
 			{
 				id: "avocat",
 				co2: 1.48,
-				image: require("@/assets/images/fruits/avocat.svg"),
+				image: require("@/assets/images/fruit/avocat.svg"),
 				label: {
 					FR: "Avocat",
 				},
@@ -3129,7 +3129,7 @@ export default {
 			{
 				id: "noix_coco",
 				co2: 2.49,
-				image: require("@/assets/images/fruits/noix_coco.svg"),
+				image: require("@/assets/images/fruit/noix_coco.svg"),
 				label: {
 					FR: "Noix de coco",
 				},
@@ -3137,7 +3137,7 @@ export default {
 			{
 				id: "datte",
 				co2: 2.76,
-				image: require("@/assets/images/fruits/datte.svg"),
+				image: require("@/assets/images/fruit/datte.svg"),
 				label: {
 					FR: "Datte",
 				},
@@ -3145,7 +3145,7 @@ export default {
 			{
 				id: "mangue",
 				co2: 10.6,
-				image: require("@/assets/images/fruits/mangue.svg"),
+				image: require("@/assets/images/fruit/mangue.svg"),
 				label: {
 					FR: "Mangue",
 				},

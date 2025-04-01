@@ -70,8 +70,9 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 		);
 
 		const renderItem = useCallback(
-			({ item }: { item: FoodItem }) => {
+			({ item, section }: { item: FoodItem; section: { data: FoodItem[] } }) => {
 				const isSelected = selectedIds.some((selectedItem) => selectedItem.id === item.id);
+				const isLastItem = section.data[section.data.length - 1].id === item.id;
 
 				return (
 					<Pressable
@@ -80,6 +81,9 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 							styles.itemContainer,
 							isSelected && {
 								backgroundColor: themeColors[themeColor].primary,
+							},
+							isLastItem && {
+								marginBottom: 25,
 							},
 						]}
 						onPress={() => {
@@ -343,48 +347,48 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 // 	);
 // }
 
-function ItemComponentFlashList({
-	item,
-	selectedIds,
-	setSelectedIds,
-	themeColor,
-}: {
-	item: FoodItem;
-	selectedIds: FoodItem[];
-	setSelectedIds: Dispatch<SetStateAction<FoodItem[]>>;
-	themeColor: keyof typeof themeColors;
-}) {
-	const isSelected = selectedIds.some((selectedItem) => selectedItem.id === item.id);
+// function ItemComponentFlashList({
+// 	item,
+// 	selectedIds,
+// 	setSelectedIds,
+// 	themeColor,
+// }: {
+// 	item: FoodItem;
+// 	selectedIds: FoodItem[];
+// 	setSelectedIds: Dispatch<SetStateAction<FoodItem[]>>;
+// 	themeColor: keyof typeof themeColors;
+// }) {
+// 	const isSelected = selectedIds.some((selectedItem) => selectedItem.id === item.id);
 
-	return (
-		<Pressable
-			key={item.id}
-			style={[
-				styles.itemContainer,
-				isSelected && {
-					backgroundColor: themeColors[themeColor].primary,
-				},
-			]}
-			onPress={() => {
-				if (isSelected) {
-					setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
-				} else {
-					setSelectedIds((prev) => [...prev, item]);
-				}
-			}}
-		>
-			<Image
-				placeholder={require("@/assets/images/fridge.png")}
-				placeholderContentFit="contain"
-				style={styles.itemImage}
-				contentFit="contain"
-				source={item.image}
-				alt={item.label.FR}
-			/>
-			<Text style={[styles.itemText, isSelected && styles.selectedItemText]}>{item.label.FR}</Text>
-		</Pressable>
-	);
-}
+// 	return (
+// 		<Pressable
+// 			key={item.id}
+// 			style={[
+// 				styles.itemContainer,
+// 				isSelected && {
+// 					backgroundColor: themeColors[themeColor].primary,
+// 				},
+// 			]}
+// 			onPress={() => {
+// 				if (isSelected) {
+// 					setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
+// 				} else {
+// 					setSelectedIds((prev) => [...prev, item]);
+// 				}
+// 			}}
+// 		>
+// 			<Image
+// 				placeholder={require("@/assets/images/fridge.png")}
+// 				placeholderContentFit="contain"
+// 				style={styles.itemImage}
+// 				contentFit="contain"
+// 				source={item.image}
+// 				alt={item.label.FR}
+// 			/>
+// 			<Text style={[styles.itemText, isSelected && styles.selectedItemText]}>{item.label.FR}</Text>
+// 		</Pressable>
+// 	);
+// }
 
 const styles = StyleSheet.create({
 	sectionHeaderContainer: {

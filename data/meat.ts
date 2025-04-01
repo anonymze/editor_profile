@@ -2,7 +2,7 @@ export default [
 	{
 		id: "meat_lamb",
 		co2: 0.39,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Agneau",
 		},
@@ -10,7 +10,7 @@ export default [
 	{
 		id: "meat_andouille",
 		co2: 0.36,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Andouille",
 		},
@@ -18,7 +18,7 @@ export default [
 	{
 		id: "meat_andouillette",
 		co2: 0.36,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Andouillette",
 		},
@@ -26,7 +26,7 @@ export default [
 	{
 		id: "meat_bacon",
 		co2: 0.36,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Bacon",
 		},
@@ -34,7 +34,7 @@ export default [
 	{
 		id: "meat_beef",
 		co2: 0.36,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Boeuf",
 		},
@@ -42,7 +42,7 @@ export default [
 	{
 		id: "meat_boudin_blanc",
 		co2: 0.35,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Boudin blanc",
 		},
@@ -50,7 +50,7 @@ export default [
 	{
 		id: "meat_boudin_noir",
 		co2: 0.35,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Boudin noir",
 		},
@@ -58,7 +58,7 @@ export default [
 	{
 		id: "meat_quail",
 		co2: 0.33,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Caille",
 		},
@@ -66,7 +66,7 @@ export default [
 	{
 		id: "meat_duck",
 		co2: 0.35,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Canard",
 		},
@@ -74,7 +74,7 @@ export default [
 	{
 		id: "meat_horse",
 		co2: 0.36,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Cheval",
 		},
@@ -82,7 +82,7 @@ export default [
 	{
 		id: "meat_venison",
 		co2: 0.34,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Chevreuil",
 		},
@@ -90,7 +90,7 @@ export default [
 	{
 		id: "meat_chipolata",
 		co2: 0.36,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Chipolata",
 		},
@@ -98,7 +98,7 @@ export default [
 	{
 		id: "meat_chorizo",
 		co2: 0.36,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Chorizo",
 		},
@@ -106,7 +106,7 @@ export default [
 	{
 		id: "meat_turkey",
 		co2: 0.34,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Dinde",
 		},
@@ -114,7 +114,7 @@ export default [
 	{
 		id: "meat_pheasant",
 		co2: 0.34,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Faisan",
 		},
@@ -122,7 +122,7 @@ export default [
 	{
 		id: "meat_foie_gras",
 		co2: 0.38,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Foie gras",
 		},
@@ -130,7 +130,7 @@ export default [
 	{
 		id: "meat_ham",
 		co2: 0.35,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Jambon",
 		},
@@ -138,7 +138,7 @@ export default [
 	{
 		id: "meat_rabbit",
 		co2: 0.33,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Lapin",
 		},
@@ -146,7 +146,7 @@ export default [
 	{
 		id: "meat_merguez",
 		co2: 0.36,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Merguez",
 		},
@@ -154,7 +154,7 @@ export default [
 	{
 		id: "meat_goose",
 		co2: 0.35,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Oie",
 		},
@@ -162,7 +162,7 @@ export default [
 	{
 		id: "meat_pate",
 		co2: 0.36,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Pâté",
 		},
@@ -170,7 +170,7 @@ export default [
 	{
 		id: "meat_guinea_fowl",
 		co2: 0.34,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Pintade",
 		},
@@ -178,7 +178,7 @@ export default [
 	{
 		id: "meat_pork",
 		co2: 0.35,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Porc",
 		},
@@ -186,7 +186,7 @@ export default [
 	{
 		id: "meat_chicken",
 		co2: 0.36,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Poulet",
 		},
@@ -194,7 +194,7 @@ export default [
 	{
 		id: "meat_rillettes",
 		co2: 0.36,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Rillettes",
 		},
@@ -202,7 +202,7 @@ export default [
 	{
 		id: "meat_salami",
 		co2: 0.36,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Saucisson",
 		},
@@ -210,7 +210,7 @@ export default [
 	{
 		id: "meat_sausage",
 		co2: 0.36,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Saucisse",
 		},
@@ -218,7 +218,7 @@ export default [
 	{
 		id: "meat_wild_boar",
 		co2: 0.35,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Sanglier",
 		},
@@ -226,7 +226,7 @@ export default [
 	{
 		id: "meat_terrine",
 		co2: 0.36,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Terrine",
 		},
@@ -234,7 +234,7 @@ export default [
 	{
 		id: "meat_tripe",
 		co2: 0.34,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Tripes",
 		},
@@ -242,7 +242,7 @@ export default [
 	{
 		id: "meat_veal",
 		co2: 0.37,
-		image: null,
+		image: require("../assets/images/meat/viande.svg"),
 		label: {
 			FR: "Veau",
 		},

@@ -5,15 +5,15 @@ import { Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-nativ
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
-import BottomSheet, { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { ButtonRadialGradient } from "@/components/radial-gradient";
 import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
 import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { useCustomer } from "@/context/customer";
 import * as Application from "expo-application";
-import vegetables from "@/data/vegetables";
+import BottomSheet from "@gorhom/bottom-sheet";
 import ingredient from "@/data/ingredient";
+import vegetables from "@/data/vegetable";
 import { router } from "expo-router";
 import cheese from "@/data/cheese";
 import { Image } from "expo-image";
