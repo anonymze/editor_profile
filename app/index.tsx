@@ -327,6 +327,13 @@ export default function Page() {
 				</Fragment>
 			) : null}
 
+			<Button
+				title="Try!"
+				onPress={() => {
+					Sentry.captureException(new Error("First error"));
+				}}
+			/>
+
 			{selectedValues.length >= 3 && (
 				<Animated.View
 					style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
