@@ -83,7 +83,7 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 								backgroundColor: themeColors[themeColor].primary,
 							},
 							isLastItem && {
-								marginBottom: 25,
+								marginBottom: 18,
 							},
 						]}
 						onPress={() => {
@@ -394,7 +394,7 @@ const styles = StyleSheet.create({
 	sectionHeaderContainer: {
 		flexDirection: "row",
 		paddingVertical: 0,
-		marginBottom: 3,
+		marginBottom: 8,
 		borderRadius: 8,
 	},
 	sectionHeaderText: {
