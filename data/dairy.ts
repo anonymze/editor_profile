@@ -58,7 +58,7 @@ export default [
 	{
 		id: "dairy_lait_concentre",
 		co2: 0.27,
-		image: null,
+		image: require("../assets/images/dairy/lait_concentre.svg"),
 		label: {
 			FR: "Lait concentré",
 		},
