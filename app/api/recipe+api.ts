@@ -64,7 +64,7 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		Tu dois retourner uniquement un objet JSON avec la structure suivante :
 		
 		{
-			"presentation": "Bonjour [Nom de l'utilisateur], voici votre recette :",
+			"presentation": "[Nom de l'utilisateur], voici votre recette :",
 			"titleRecipe": "Titre de la recette",
 			"prepTime": "X minutes", // (optionnel, null si non applicable)
 			"cookTime": "X minutes", // (optionnel, null si non applicable)
@@ -105,9 +105,9 @@ const generateRecipe = (ingredients: string[], numberOfPeople: number, username:
 		- Les ingrédients doivent être présentés dans l'ordre alphabétique, avec les ingrédients optionnels en dernier.
 		- Tu dois expliquer tous les termes techniques que tu emplois, imagine que tu parles à un adolescent de 20 ans.
 		- Le titre de la recette doit être original et non redondant.
-		- Tu dois undiquer si c'est une entrée, un plat ou un dessert.
+		- Tu dois indiquer si c'est une entrée, un plat ou un dessert.
 		- Tu dois au maximum proposer des recettes de saison si les ingrédients te le permettent.
-		- Tu dois retourner UNIQUEMENT l'objet JSON, sans aucun texte supplémentaire, commentaire ou explication.
+		- Tu dois retourner UNIQUEMENT l'objet en JSON, sans aucun texte supplémentaire, commentaire ou explication.
 		- NE PAS UTILISER DE BLOC DE CODE MARKDOWN pour le json (\`\`\`json ou autre markdown), tu dois retourner le json en format brut.
 		`,
 		prompt: `La recette sera pour ${numberOfPeople} personne(s). Voici les ingrédients que l'utilisateur a indiqué : ${ingredients} et le nom de l'utilisateur est ${username}`,

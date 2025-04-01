@@ -150,6 +150,7 @@ export default function Page() {
 
 const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe; themeColor: keyof typeof themeColors }) => (
 	<View style={styles.containerPrompt}>
+		<Text style={styles.presentation}>{recipe.presentation}</Text>
 		<Text style={styles.titleRecipe}>{recipe.titleRecipe}</Text>
 
 		{/* Time and servings row */}
@@ -267,6 +268,12 @@ const styles = StyleSheet.create({
 		paddingBottom: 40,
 		paddingHorizontal: 15,
 	},
+	presentation: {
+		fontSize: 18,
+		fontWeight: "semibold",
+		color: "#fff",
+		marginBottom: 10,
+	},
 	titleRecipe: {
 		fontSize: 24,
 		fontWeight: "bold",
@@ -356,6 +363,8 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		color: "#fff",
 		marginTop: 5,
+		marginLeft: 5,
+		marginBottom: 5,
 		fontStyle: "italic",
 	},
 	bubbleText: {
