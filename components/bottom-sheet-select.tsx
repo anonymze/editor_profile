@@ -1,8 +1,8 @@
-import BottomSheet, { BottomSheetFlashList, BottomSheetSectionList } from "@gorhom/bottom-sheet";
 import { Text, StyleSheet, Platform, TextInput, View, Pressable } from "react-native";
-import React, { Dispatch, SetStateAction, forwardRef } from "react";
+import BottomSheet, { BottomSheetSectionList } from "@gorhom/bottom-sheet";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { themeColors } from "@/theme/theme-storage";
+import React, { forwardRef } from "react";
 import { useCallback } from "react";
 import { Image } from "expo-image";
 
