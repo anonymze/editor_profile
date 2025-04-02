@@ -41,16 +41,8 @@ npx expo export --platform web
 eas deploy --alias dev
 eas deploy --prod
 
-// update app only js / assets / styles / api
+// update app only js / assets / styles / api (need expo-updates)
 eas update --channel production --message "Update js code"
-
-
-// FOR UPDATES
-{
-  "updates": {
-    "url": "https://u.expo.dev/0706ee30-c626-47b7-90cc-c5f1f4a2703d"
-  }
-}
 
 The native config files Expo.plist & AndroidManifest.xml must be updated to support EAS Update. Learn more: https://expo.fyi/eas-update-config.md#native-configuration
 
