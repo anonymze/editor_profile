@@ -29,8 +29,7 @@ eas submit --platform ios --latest
 // register devices to test internally (use .ipa (Ad Hoc) for exemple on the device registered)
 eas device:create
 
-// create consistent alias url hosted
-eas deploy --alias dev
+
 
 // test server,locally (api routes)
 npx expo serve 
@@ -38,6 +37,12 @@ npx expo serve
 // export web
 npx expo export --platform web
 
+// create consistent alias url hosted
+eas deploy --alias dev
+eas deploy --prod
+
+// update app only js / env / assets / styles / api
+eas update --channel production --message "Update env vars"
 
 "preview": {
 			"ios": {
