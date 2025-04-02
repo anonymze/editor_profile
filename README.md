@@ -44,15 +44,17 @@ eas deploy --prod
 // update app only js / assets / styles / api
 eas update --channel production --message "Update js code"
 
-"preview": {
-			"ios": {
-				"appleId": "anodevfr@gmail.com",
-				"ascAppId": "xxxxxx",
-				"companyName": "Ano"
-			}
-		}
 
-eas submit --non-interactive for CI/CD pipelines
+// FOR UPDATES
+{
+  "updates": {
+    "url": "https://u.expo.dev/0706ee30-c626-47b7-90cc-c5f1f4a2703d"
+  }
+}
+
+The native config files Expo.plist & AndroidManifest.xml must be updated to support EAS Update. Learn more: https://expo.fyi/eas-update-config.md#native-configuration
+
+
 
 pnpx expo-doctor
 
