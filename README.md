@@ -42,7 +42,7 @@ eas deploy --alias dev
 eas deploy --prod
 
 // update app only js / assets / styles / api
-eas update --channel production --message "Update env vars"
+eas update --channel production --message "Update js code"
 
 "preview": {
 			"ios": {

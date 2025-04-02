@@ -8,6 +8,9 @@ module.exports = () => ({
 		scheme: "myapp",
 		userInterfaceStyle: "automatic",
 		newArchEnabled: true,
+		updates: {
+			enabled: true,
+		},
 		ios: {
 			supportsTablet: true,
 			bundleIdentifier: "com.anonymze.fridgy",
