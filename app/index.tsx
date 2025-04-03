@@ -72,7 +72,7 @@ const initialSections = [
 ];
 
 export default function Page() {
-	const { customer } = useCustomer();
+	const { customer, setCustomer } = useCustomer();
 	const bottomSheetRef = useRef<BottomSheet>(null);
 	const [selectedValues, setSelectedValues] = useState<FoodItem[]>([]);
 	const [showTooltip, setShowTooltip] = useState(false);
@@ -212,7 +212,8 @@ export default function Page() {
 				<Animated.View style={[styles.tooltipActionsAbsolute, { opacity: buttonsOpacity }]}>
 					<ButtonRadialGradient
 						onPress={async () => {
-							await purchaseFirstSubscriptionAvailable();
+							const result = await purchaseFirstSubscriptionAvailable();
+							if (result?.customerInfo) setCustomer(result.customerInfo);
 						}}
 						disabled={customerAppStoreHasSubscriptions(customer)}
 						text="Je m'abonne"
