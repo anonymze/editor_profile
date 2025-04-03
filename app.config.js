@@ -5,9 +5,10 @@ module.exports = () => ({
 		version: "1.0.0",
 		orientation: "portrait",
 		icon: "./assets/images/icon.png",
-		scheme: "myapp",
-		userInterfaceStyle: "automatic",
+		scheme: "automatic",
 		newArchEnabled: true,
+		// theme
+		userInterfaceStyle: "light",
 		updates: {
 			enabled: true,
 		},

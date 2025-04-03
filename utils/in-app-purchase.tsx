@@ -70,7 +70,7 @@ export const purchaseFirstSubscriptionAvailable = async (offerings?: PurchasesOf
 		return Purchases.purchasePackage(firstOffering);
 	} catch (error: unknown) {
 		if (isPurchasesError(error)) {
-			Sentry.captureException(error);
+			// Sentry.captureException(error);
 		}
 		return undefined;
 	}
@@ -91,7 +91,7 @@ export const purchaseSubscription = async (offeringIdentifier: string, offerings
 		return Purchases.purchasePackage(offering);
 	} catch (error: unknown) {
 		if (isPurchasesError(error)) {
-			Sentry.captureException(error);
+			// Sentry.captureException(error);
 		}
 		return undefined;
 	}
