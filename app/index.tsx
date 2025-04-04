@@ -12,6 +12,7 @@ import { Pressable } from "react-native-gesture-handler";
 import { useCustomer } from "@/context/customer";
 import * as Application from "expo-application";
 import BottomSheet from "@gorhom/bottom-sheet";
+import * as Sentry from "@sentry/react-native";
 import ingredient from "@/data/ingredient";
 import vegetables from "@/data/vegetable";
 import { router } from "expo-router";
@@ -236,7 +237,28 @@ export default function Page() {
 							purchaseFirstSubscriptionAvailable()
 								.then((result) => {
 									// result can be undefined if for some reason the purchase is not available (on emulator, for example)
-									if (result?.customerInfo) setCustomer(result.customerInfo);
+									if (result?.customerInfo) {
+										Sentry.addBreadcrumb({
+											category: 'subscription',
+											message: 'Subscription purchase successful',
+											level: 'info',
+										});
+
+										Sentry.captureMessage('Subscription purchase completed', {
+											level: 'info',
+											tags: {
+												subscriptionStatus: result.customerInfo.entitlements.active ? 'active' : 'inactive',
+											},
+											// Only include non-sensitive customer info
+											extra: {
+												hasActiveSubscription: !!result.customerInfo.entitlements.active,
+												originalAppUserId: result.customerInfo.originalAppUserId,
+												// Add other relevant non-sensitive fields
+											},
+										});
+										
+										setCustomer(result.customerInfo);
+									};
 								})
 								.catch(() => {})
 								.finally(() => {
