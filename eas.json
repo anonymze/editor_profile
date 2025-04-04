@@ -12,7 +12,7 @@
 		"preview": {
 			"distribution": "internal",
 			"channel": "preview",
-      "autoIncrement": true
+			"autoIncrement": true
 		},
 		"production": {
 			"channel": "production",
@@ -20,11 +20,12 @@
 		}
 	},
 	"submit": {
-		"production": {},
-		"preview": {
+		"production": {
 			"ios": {
-
+				"ascAppId": "6729844989"
 			}
+		},
+		"preview": {
 		}
 	}
 }
