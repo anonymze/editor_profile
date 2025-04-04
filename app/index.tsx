@@ -1,7 +1,7 @@
 import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS, } from "react-native-reanimated";
 import { customerAppStoreHasSubscriptions, purchaseFirstSubscriptionAvailable, } from "@/utils/in-app-purchase";
+import { ActivityIndicator, Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { getStorageColor, getStorageLimitedAction, themeColors } from "@/theme/theme-storage";
-import { Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
@@ -78,7 +78,9 @@ export default function Page() {
 	const [showTooltip, setShowTooltip] = useState(false);
 	const [isTooltipAnimating, setIsTooltipAnimating] = useState(false);
 	const latestBatchRef = useRef<FoodItem[]>([]);
+	const [purchasing, setPurchasing] = useState(false);
 	const themeColor = getStorageColor();
+
 	const {
 		enteringAnimationLeft,
 		// enteringAnimationRight,
@@ -160,6 +162,24 @@ export default function Page() {
 
 	return (
 		<LayoutBackground color={themeColor} centeredContent={false}>
+			{purchasing && (
+				<Animated.View
+					entering={FadeIn.duration(400)}
+					style={{
+						position: "absolute",
+						top: 0,
+						left: 0,
+						right: 0,
+						bottom: 0,
+						zIndex: 999,
+						backgroundColor: "rgba(255, 255, 255, 0.4)",
+						justifyContent: "center",
+						alignItems: "center",
+					}}
+				>
+					<ActivityIndicator color="#000" />
+				</Animated.View>
+			)}
 			<Animated.View
 				style={StyleSheet.flatten([
 					stylesLayout.topButtons,
@@ -211,16 +231,24 @@ export default function Page() {
 
 				<Animated.View style={[styles.tooltipActionsAbsolute, { opacity: buttonsOpacity }]}>
 					<ButtonRadialGradient
-						onPress={async () => {
-							const result = await purchaseFirstSubscriptionAvailable();
-							if (result?.customerInfo) setCustomer(result.customerInfo);
+						onPress={() => {
+							setPurchasing(true);
+							purchaseFirstSubscriptionAvailable()
+								.then((result) => {
+									// result can be undefined if for some reason the purchase is not available (on emulator, for example)
+									if (result?.customerInfo) setCustomer(result.customerInfo);
+								})
+								.catch(() => {})
+								.finally(() => {
+									setPurchasing(false);
+								});
 						}}
-						disabled={customerAppStoreHasSubscriptions(customer)}
-						text="Je m'abonne"
+						disabled={customerAppStoreHasSubscriptions(customer) || purchasing}
+						text={"Je m'abonne"}
 						color={themeColors[themeColor].primaryLight}
 						isAction
 						style={{ opacity: customerAppStoreHasSubscriptions(customer) ? 0.6 : 1 }}
-					/>
+					></ButtonRadialGradient>
 
 					<ButtonRadialGradient
 						text="Compris !"

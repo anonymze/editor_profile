@@ -78,90 +78,20 @@ export default Sentry.wrap(function RootLayout() {
 			<GestureHandlerRootView>
 				<KeyboardProvider>
 					<SafeAreaProvider>
-						<ThemeProvider
-							value={{
-								dark: false,
-								colors: {
-									primary: "rgb(10, 132, 255)",
-									background: "rgb(1, 1, 1)",
-									card: "rgb(18, 18, 18)",
-									text: "rgb(229, 229, 231)",
-									border: "rgb(39, 39, 41)",
-									notification: "rgb(255, 69, 58)",
-								},
-								fonts: Platform.select({
-									web: {
-										regular: {
-											fontFamily: WEB_FONT_STACK,
-											fontWeight: "400",
-										},
-										medium: {
-											fontFamily: WEB_FONT_STACK,
-											fontWeight: "500",
-										},
-										bold: {
-											fontFamily: WEB_FONT_STACK,
-											fontWeight: "600",
-										},
-										heavy: {
-											fontFamily: WEB_FONT_STACK,
-											fontWeight: "700",
-										},
-									},
-									ios: {
-										regular: {
-											fontFamily: "System",
-											fontWeight: "400",
-										},
-										medium: {
-											fontFamily: "System",
-											fontWeight: "500",
-										},
-										bold: {
-											fontFamily: "System",
-											fontWeight: "600",
-										},
-										heavy: {
-											fontFamily: "System",
-											fontWeight: "700",
-										},
-									},
-									default: {
-										regular: {
-											fontFamily: "sans-serif",
-											fontWeight: "normal",
-										},
-										medium: {
-											fontFamily: "sans-serif-medium",
-											fontWeight: "normal",
-										},
-										bold: {
-											fontFamily: "sans-serif",
-											fontWeight: "600",
-										},
-										heavy: {
-											fontFamily: "sans-serif",
-											fontWeight: "700",
-										},
-									},
-								}),
-							}}
+						<StatusBar translucent style="light" />
+						<SafeAreaView
+							edges={["right", "left", "top"]}
+							style={{ flex: 1, backgroundColor: themeColors[themeColorFinal].primaryLight }}
 						>
-							<StatusBar translucent style="light" />
-							<SafeAreaView
-								edges={["right", "left", "top"]}
-								style={{ flex: 1 }}
+							<Stack
+								screenOptions={{
+									headerShown: false,
+									animation: "none",
+								}}
 							>
-								<Stack
-									screenOptions={{
-										headerShown: false,
-										animation: "none",
-									}}
-								>
-									<Stack.Screen options={{ animation: "fade_from_bottom" }} name="recipe" />
-								</Stack>
-							</SafeAreaView>
-						</ThemeProvider>
+								<Stack.Screen options={{ animation: "fade_from_bottom" }} name="recipe" />
+							</Stack>
+						</SafeAreaView>
 					</SafeAreaProvider>
 				</KeyboardProvider>
 			</GestureHandlerRootView>
