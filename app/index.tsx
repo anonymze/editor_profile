@@ -247,11 +247,11 @@ export default function Page() {
 										Sentry.captureMessage('Subscription purchase completed', {
 											level: 'info',
 											tags: {
-												subscriptionStatus: result.customerInfo.entitlements.active ? 'active' : 'inactive',
+												subscriptionStatus: result.customerInfo.activeSubscriptions.length > 0 ? 'active' : 'inactive'
 											},
 											// Only include non-sensitive customer info
 											extra: {
-												hasActiveSubscription: !!result.customerInfo.entitlements.active,
+												subscriptions: result.customerInfo.entitlements.active,
 												originalAppUserId: result.customerInfo.originalAppUserId,
 												// Add other relevant non-sensitive fields
 											},
