@@ -61,6 +61,14 @@ export default Sentry.wrap(function RootLayout() {
 		const fetchAsync = async () => {
 			const customer = await getCustomerAppStore();
 			setCustomer(customer);
+
+			Sentry.captureMessage("Customer info fetched", {
+				level: "info",
+				extra: {
+					customerInfo: customer,
+				},
+			});
+
 			setCustomerLoaded(true);
 		};
 
