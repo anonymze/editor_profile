@@ -5,10 +5,10 @@ module.exports = () => ({
 		version: "1.0.0",
 		orientation: "portrait",
 		icon: "./assets/images/icon.png",
-		scheme: "automatic",
+		scheme: "fridgy",
 		newArchEnabled: true,
 		// theme
-		userInterfaceStyle: "light",
+		userInterfaceStyle: "automatic",
 		updates: {
 			enabled: true,
 		},

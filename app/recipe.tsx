@@ -47,10 +47,10 @@ export default function Page() {
 				setSplashScreen(false);
 				setStorageLimitedAction(getStorageLimitedAction() - 1);
 			} catch (error) {
-				console.log(error);
-				if (error instanceof Error && error.name === "AbortError") return;
+				if (abortController.signal.aborted) return;
 
 				Sentry.captureException(error);
+				
 				Alert.alert("Erreur", "Un problème est survenu lors de la génération de la recette.", [
 					{ text: "OK" },
 				]);
