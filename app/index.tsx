@@ -237,25 +237,22 @@ export default function Page() {
 							purchaseFirstSubscriptionAvailable()
 								.then((result) => {
 									// result can be undefined if for some reason the purchase is not available (on emulator, for example)
-									if (result?.customerInfo) {
-										Sentry.addBreadcrumb({
-											category: 'subscription',
-											message: 'Subscription purchase successful',
-											level: 'info',
-										});
+									if (result?.customerInfo) {										// Sentry.addBreadcrumb({
+										// 	category: 'subscription',
+										// 	message: 'Subscription purchase successful',
+										// 	level: 'info',
+										// });
 
-										Sentry.captureMessage('Subscription purchase completed', {
-											level: 'info',
-											tags: {
-												subscriptionStatus: result.customerInfo.activeSubscriptions.length > 0 ? 'active' : 'inactive'
-											},
-											// Only include non-sensitive customer info
-											extra: {
-												subscriptions: result.customerInfo.entitlements.active,
-												originalAppUserId: result.customerInfo.originalAppUserId,
-												// Add other relevant non-sensitive fields
-											},
-										});
+										// Sentry.captureMessage('Subscription purchase completed', {
+										// 	level: 'info',
+										// 	tags: {
+										// 		subscriptionStatus: result.customerInfo.activeSubscriptions.length > 0 ? 'active' : 'inactive'
+										// 	},
+										// 	extra: {
+										// 		subscriptions: result.customerInfo.entitlements.active,
+										// 		originalAppUserId: result.customerInfo.originalAppUserId,
+										// 	},
+										// });
 										
 										setCustomer(result.customerInfo);
 									};
