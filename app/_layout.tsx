@@ -38,13 +38,13 @@ SplashScreen.setOptions({
 // ignore warning logs
 LogBox.ignoreLogs(["Warning: ..."]);
 
-export default function RootLayout() {
+export default Sentry.wrap(function RootLayout() {
 	return (
 		<CustomerProvider>
 			<Layout />
 		</CustomerProvider>
 	);
-}
+});
 
 const Layout = () => {
 	const [customerLoaded, setCustomerLoaded] = React.useState(false);
