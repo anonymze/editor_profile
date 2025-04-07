@@ -1,6 +1,7 @@
-import { Text, StyleSheet, Platform, TextInput, View, Pressable } from "react-native";
 import BottomSheet, { BottomSheetSectionList } from "@gorhom/bottom-sheet";
+import { Text, StyleSheet, Platform, TextInput, View } from "react-native";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
+import { Pressable } from "react-native-gesture-handler";
 import { themeColors } from "@/theme/theme-storage";
 import React, { forwardRef } from "react";
 import { useCallback } from "react";
@@ -83,7 +84,7 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 								backgroundColor: themeColors[themeColor].primary,
 							},
 							isLastItem && {
-								marginBottom: 18,
+								marginBottom: Platform.OS === "ios" ? 15 : 0,
 							},
 						]}
 						onPress={() => {
@@ -191,6 +192,7 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 						autoCapitalize="none"
 						autoCorrect={true}
 						placeholder={placeholderSearch}
+						placeholderTextColor="rgba(0, 0, 0, 0.5)"
 						style={styles.searchInput}
 						onSubmitEditing={(event) => {
 							setSearchQuery(
@@ -209,6 +211,7 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 						autoCapitalize="none"
 						autoCorrect={true}
 						placeholder={placeholderSearch}
+						placeholderTextColor="rgba(0, 0, 0, 0.5)"
 						style={styles.searchInput}
 						onSubmitEditing={(event) => {
 							setSearchQuery(
@@ -405,6 +408,7 @@ const styles = StyleSheet.create({
 		borderRadius: 6,
 	},
 	itemContainer: {
+		width: "100%",
 		flexDirection: "row",
 		gap: 20,
 		alignItems: "center",
