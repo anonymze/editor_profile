@@ -51,6 +51,6 @@ The native config files Expo.plist & AndroidManifest.xml must be updated to supp
 pnpx expo-doctor
 
 // setup sentry for native part and config
-pnpx @sentry/wizard@latest -i reactNative --saas --org yann-metier --project react-native
+pnpx @sentry/wizard@latest -i reactNative --saas --org yann-metier --project fridgy
 
-// TODO BETTER BOTTOM SHEET (legend list ?)  + icones + route api ai + set customer updated after purchase
+
