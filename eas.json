@@ -10,11 +10,13 @@
 			"channel": "development"
 		},
 		"preview": {
+			"developmentClient": false,
 			"distribution": "internal",
 			"channel": "preview",
 			"autoIncrement": true
 		},
 		"production": {
+			"developmentClient": false,
 			"channel": "production",
 			"autoIncrement": true
 		}
