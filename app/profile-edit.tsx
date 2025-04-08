@@ -48,15 +48,15 @@ export default function Page() {
 	);
 
 	useEffect(() => {
-		const animationFrame = requestAnimationFrame(() => {
+		// const animationFrame = requestAnimationFrame(() => {
 			setTimeout(() => {
 				inputRef.current?.focus();
-			}, 600);
-		});
+			}, 700);
+		// });
 
-		return () => {
-			cancelAnimationFrame(animationFrame);
-		};
+		// return () => {
+		// 	cancelAnimationFrame(animationFrame);
+		// };
 	}, []);
 
 	const handleThemeChange = useCallback(
@@ -152,7 +152,7 @@ export default function Page() {
 						style={StyleSheet.flatten([stylesLayout.bottomButton, styles.buttons])}
 						entering={enteringAnimation()}
 						exiting={FadeOut.duration(600)}
-						intensity={70}
+						intensity={10}
 					>
 						{getKeysTypedObject(themeColors).map((color) => (
 							<CircleRadialGradient
