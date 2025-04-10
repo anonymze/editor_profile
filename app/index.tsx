@@ -1,6 +1,6 @@
 import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS, } from "react-native-reanimated";
-import { customerAppStoreHasSubscriptions, getOfferingsAppStore, purchaseFirstSubscriptionAvailable, } from "@/utils/in-app-purchase";
 import { ActivityIndicator, Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
+import { customerAppStoreHasSubscriptions, getOfferingsAppStore } from "@/utils/in-app-purchase";
 import { getStorageColor, getStorageLimitedAction, themeColors } from "@/theme/theme-storage";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
@@ -214,7 +214,8 @@ export default function Page() {
 					<ButtonRadialGradient
 						onPress={async () => {
 							const offerings = await getOfferingsAppStore();
-							
+							if (!offerings) return;
+
 							router.push({
 								pathname: "/subscription",
 								params: {
