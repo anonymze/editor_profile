@@ -24,8 +24,6 @@ const PRIVACY_URL = "https://www.privacypolicies.com/live/fc87e6e8-e4d5-4250-8ee
 export default function Subscription() {
 	const { offerings } = useLocalSearchParams<{ offerings: string }>();
 	const offeringsParsed = JSON.parse(offerings);
-
-	console.log(offeringsParsed.current.monthly.product);
 	const [purchasing, setPurchasing] = React.useState(false);
 	const themeColor = getStorageColor();
 	const { customer, setCustomer } = useCustomer();
@@ -41,7 +39,7 @@ export default function Subscription() {
 				.onEnd((event) => {
 					// swipe left only
 					if (event.translationX > 50) {
-						runOnJS(router.push)("/");
+						runOnJS(router.replace)("/");
 					}
 				}),
 		[]
@@ -71,10 +69,11 @@ export default function Subscription() {
 					// });
 
 					setCustomer(result.customerInfo);
+					router.replace("/", );
+					// setPurchasing(false);
 				}
 			})
-			.catch(() => {})
-			.finally(() => {
+			.catch(() => {
 				setPurchasing(false);
 			});
 	}, []);
@@ -101,7 +100,7 @@ export default function Subscription() {
 					>
 						<Pressable
 							onPress={() => {
-								router.push("/");
+								router.replace("/");
 							}}
 							style={stylesLayout.paddingTopButtons}
 						>

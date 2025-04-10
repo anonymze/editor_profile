@@ -24,7 +24,7 @@ export default function Page() {
 				.onEnd((event) => {
 					// swipe left only
 					if (event.translationX > 50) {
-						runOnJS(router.push)("/");
+						runOnJS(router.replace)("/");
 					}
 				}),
 		[]
@@ -88,7 +88,7 @@ export default function Page() {
 
 					<Animated.View style={stylesLayout.bottomButton} entering={enteringBottomAnimation()}>
 						<ButtonRadialGradient
-							onPress={() => router.push("/")}
+							onPress={() => router.replace("/")}
 							text="Continuer"
 							color={themeColors[themeColor].primaryLight}
 						/>
