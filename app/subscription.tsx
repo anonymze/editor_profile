@@ -22,7 +22,7 @@ const TERMS_URL =
 const PRIVACY_URL = "https://www.privacypolicies.com/live/fc87e6e8-e4d5-4250-8ee1-fa0b1af85a2e";
 
 export default function Subscription() {
-	const { offerings} = useLocalSearchParams<{offerings: string}>();	
+	const { offerings } = useLocalSearchParams<{ offerings: string }>();
 	const offeringsParsed = JSON.parse(offerings);
 
 	console.log(offeringsParsed.current.monthly.product);
@@ -126,11 +126,19 @@ export default function Subscription() {
 								<View>
 									<Text style={styles.planName}>{offeringsParsed.current.serverDescription}</Text>
 									<View style={styles.priceContainer}>
-										<Text style={styles.price}>{offeringsParsed.current.monthly.product.pricePerMonthString}</Text>
+										<Text style={styles.price}>
+											{offeringsParsed.current.monthly.product.pricePerMonthString}
+										</Text>
 										<Text style={styles.period}>/ mois</Text>
 									</View>
 								</View>
 							</View>
+
+							{/* <Text style={styles.autorenewal}>
+								{offeringsParsed.current.monthly.product.productType === "AUTO_RENEWABLE_SUBSCRIPTION"
+									? "Renouvellement automatique"
+									: ""}
+							</Text> */}
 
 							<View style={styles.featuresList}>
 								<View style={styles.featureItem}>
@@ -199,7 +207,6 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		gap: 15,
-		marginBottom: 30,
 	},
 	planName: {
 		fontSize: 24,
@@ -223,8 +230,14 @@ const styles = StyleSheet.create({
 		color: "#fff",
 		opacity: 0.7,
 	},
+	autorenewal: {
+		fontSize: 14,
+		color: "#fff",
+		opacity: 0.7,
+	},
 	featuresList: {
 		gap: 16,
+		marginTop: 30,
 		marginBottom: 20,
 	},
 	featureItem: {
