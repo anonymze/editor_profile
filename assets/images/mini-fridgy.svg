@@ -1,0 +1,39 @@
+    <svg 
+      viewBox="0 0 200 240" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <!-- Fridge shadow -->
+      <ellipse cx="100" cy="220" rx="70" ry="10" fill="rgba(0,0,0,0.2)" />
+
+      {/* Fridge body */}
+      <rect x="30" y="20" width="140" height="200" rx="15" fill="#D1E5E9" />
+      <rect x="30" y="20" width="140" height="200" rx="15" stroke="#A0C4CF" stroke-width="4" />
+
+      {/* Fridge divider */}
+      <rect x="30" y="90" width="140" height="5" fill="#A0C4CF" />
+
+      {/* Handles */}
+      <rect x="125" y="130" width="10" height="25" rx="3" fill="#A0C4CF" />
+
+      {/* Eyes */}
+      <g>
+        <circle cx="70" cy="55" r="10" fill="#FF9999" />
+       
+        <circle cx="130" cy="55" r="10" fill="#FF9999" />
+      </g>
+
+      {/* Smile */}
+      <path
+        d="M85 70 Q100 80 115 70"
+        stroke="#FF7777"
+        stroke-width="3"
+        stroke-linecap="round"
+      />
+
+      {/* Sparkles */}
+      <g>
+        <path d="M40 40 L45 35 L50 40 L45 45 Z" fill="#FFFF00" />
+        <path d="M150 140 L155 135 L160 140 L155 145 Z" fill="#FFFF00" />
+      </g>
+    </svg>

@@ -97,6 +97,7 @@ const Layout = () => {
 							}}
 						>
 							<Stack.Screen name="index" />
+							<Stack.Screen name="subscription" />
 							<Stack.Screen name="profile" />
 							<Stack.Screen name="profile-edit" />
 							<Stack.Screen options={{ animation: "fade_from_bottom" }} name="recipe" />

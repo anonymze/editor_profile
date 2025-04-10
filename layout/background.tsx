@@ -23,7 +23,6 @@ export default function LayoutBackground(props: {
 					<Circle key={star.id} cx={star.left} cy={star.top} r="1.5" fill="white" opacity={star.opacity} />
 				))}
 			</Svg>
-
 			{props.children}
 		</LinearGradient>
 	);

@@ -47,8 +47,8 @@ export default function Page() {
 									placeholder={{ uri: DEFAULT_IMAGE_URI }}
 									placeholderContentFit="cover"
 									transition={{
-										duration: 100,
-										effect: "cross-dissolve",
+										duration: 300,
+										// effect: "cross-dissolve",
 									}}
 								/>
 							</View>

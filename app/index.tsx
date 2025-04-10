@@ -12,7 +12,6 @@ import { Pressable } from "react-native-gesture-handler";
 import { useCustomer } from "@/context/customer";
 import * as Application from "expo-application";
 import BottomSheet from "@gorhom/bottom-sheet";
-import * as Sentry from "@sentry/react-native";
 import ingredient from "@/data/ingredient";
 import vegetables from "@/data/vegetable";
 import { router } from "expo-router";
@@ -73,13 +72,12 @@ const initialSections = [
 ];
 
 export default function Page() {
-	const { customer, setCustomer } = useCustomer();
+	const { customer } = useCustomer();
 	const bottomSheetRef = useRef<BottomSheet>(null);
 	const [selectedValues, setSelectedValues] = useState<FoodItem[]>([]);
 	const [showTooltip, setShowTooltip] = useState(false);
 	const [isTooltipAnimating, setIsTooltipAnimating] = useState(false);
 	const latestBatchRef = useRef<FoodItem[]>([]);
-	const [purchasing, setPurchasing] = useState(false);
 	const themeColor = getStorageColor();
 
 	const {
@@ -163,24 +161,6 @@ export default function Page() {
 
 	return (
 		<LayoutBackground color={themeColor} centeredContent={false}>
-			{purchasing && (
-				<Animated.View
-					entering={FadeIn.duration(400)}
-					style={{
-						position: "absolute",
-						top: 0,
-						left: 0,
-						right: 0,
-						bottom: 0,
-						zIndex: 999,
-						backgroundColor: "rgba(255, 255, 255, 0.4)",
-						justifyContent: "center",
-						alignItems: "center",
-					}}
-				>
-					<ActivityIndicator color="#000" />
-				</Animated.View>
-			)}
 			<Animated.View
 				style={StyleSheet.flatten([
 					stylesLayout.topButtons,
@@ -233,36 +213,9 @@ export default function Page() {
 				<Animated.View style={[styles.tooltipActionsAbsolute, { opacity: buttonsOpacity }]}>
 					<ButtonRadialGradient
 						onPress={() => {
-							setPurchasing(true);
-							purchaseFirstSubscriptionAvailable()
-								.then((result) => {
-									// result can be undefined if for some reason the purchase is not available (on emulator, for example)
-									if (result?.customerInfo) {										// Sentry.addBreadcrumb({
-										// 	category: 'subscription',
-										// 	message: 'Subscription purchase successful',
-										// 	level: 'info',
-										// });
-
-										// Sentry.captureMessage('Subscription purchase completed', {
-										// 	level: 'info',
-										// 	tags: {
-										// 		subscriptionStatus: result.customerInfo.activeSubscriptions.length > 0 ? 'active' : 'inactive'
-										// 	},
-										// 	extra: {
-										// 		subscriptions: result.customerInfo.entitlements.active,
-										// 		originalAppUserId: result.customerInfo.originalAppUserId,
-										// 	},
-										// });
-										
-										setCustomer(result.customerInfo);
-									};
-								})
-								.catch(() => {})
-								.finally(() => {
-									setPurchasing(false);
-								});
+							router.push("/subscription");
 						}}
-						disabled={customerAppStoreHasSubscriptions(customer) || purchasing}
+						disabled={customerAppStoreHasSubscriptions(customer)}
 						text={"Je m'abonne"}
 						color={themeColors[themeColor].primaryLight}
 						isAction
