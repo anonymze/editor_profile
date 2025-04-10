@@ -1,14 +1,16 @@
-import { customerAppStoreHasSubscriptions, purchaseFirstSubscriptionAvailable, } from "@/utils/in-app-purchase";
+import { customerAppStoreHasSubscriptions, getOfferingsAppStore, purchaseFirstSubscriptionAvailable, } from "@/utils/in-app-purchase";
 import { ActivityIndicator, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { ArrowLeftIcon, CheckIcon, StarIcon, UserRoundIcon } from "lucide-react-native";
 import Animated, { FadeIn, FadeInDown, runOnJS } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
+import { Redirect, router, useLocalSearchParams } from "expo-router";
 import { getStorageColor, themeColors } from "@/theme/theme-storage";
+import { PurchasesOfferings } from "react-native-purchases";
 import { useCustomer } from "@/context/customer";
-import * as WebBrowser from 'expo-web-browser';
-import { Redirect, router } from "expo-router";
+import * as WebBrowser from "expo-web-browser";
 import React, { useMemo } from "react";
+import { BlurView } from "expo-blur";
 import { Image } from "expo-image";
 
 
@@ -17,9 +19,13 @@ const TERMS_URL =
 		? "https://www.apple.com/legal/internet-services/itunes/us/terms.html"
 		: "https://play.google.com/intl/en-us_us/about/play-terms/index.html";
 
-		const PRIVACY_URL = "https://www.privacypolicies.com/live/fc87e6e8-e4d5-4250-8ee1-fa0b1af85a2e";
+const PRIVACY_URL = "https://www.privacypolicies.com/live/fc87e6e8-e4d5-4250-8ee1-fa0b1af85a2e";
 
 export default function Subscription() {
+	const { offerings} = useLocalSearchParams<{offerings: string}>();	
+	const offeringsParsed = JSON.parse(offerings);
+
+	console.log(offeringsParsed.current.monthly.product);
 	const [purchasing, setPurchasing] = React.useState(false);
 	const themeColor = getStorageColor();
 	const { customer, setCustomer } = useCustomer();
@@ -41,7 +47,7 @@ export default function Subscription() {
 		[]
 	);
 
-	const purchase = React.useCallback(() => {
+	const purchase = React.useCallback(async () => {
 		setPurchasing(true);
 		purchaseFirstSubscriptionAvailable()
 			.then((result) => {
@@ -75,71 +81,81 @@ export default function Subscription() {
 
 	return (
 		<GestureDetector gesture={panGesture}>
-			<LayoutBackground color={themeColor} centeredContent={true}>
-				{purchasing && (
-					<Animated.View entering={FadeIn.duration(400)} style={styles.subscriptionContainer}>
-						<ActivityIndicator color="#000" />
-					</Animated.View>
-				)}
+			<View style={{ flex: 1 }} collapsable={false}>
+				<LayoutBackground color={themeColor} centeredContent={true}>
+					{purchasing && (
+						<Animated.View entering={FadeIn.duration(400)} style={styles.subscriptionContainer}>
+							<ActivityIndicator color="#000" />
+						</Animated.View>
+					)}
 
-				<Animated.View
-					style={StyleSheet.flatten([
-						stylesLayout.topButtons,
-						stylesLayout.topRightButton,
-						{
-							backgroundColor: themeColors[themeColor].secondary,
-						},
-					])}
-					entering={FadeInDown.duration(800).delay(200).springify()}
-				>
-					<Pressable
-						onPress={() => {
-							router.push("/");
-						}}
-						style={stylesLayout.paddingTopButtons}
+					<Animated.View
+						style={StyleSheet.flatten([
+							stylesLayout.topButtons,
+							stylesLayout.topRightButton,
+							{
+								backgroundColor: themeColors[themeColor].secondary,
+							},
+						])}
+						entering={FadeInDown.duration(800).delay(200).springify()}
 					>
-						<ArrowLeftIcon size={26} color="#fff" />
-					</Pressable>
-				</Animated.View>
+						<Pressable
+							onPress={() => {
+								router.push("/");
+							}}
+							style={stylesLayout.paddingTopButtons}
+						>
+							<ArrowLeftIcon size={26} color="#fff" />
+						</Pressable>
+					</Animated.View>
 
-				<View style={styles.titleContainer}>
-					<StarIcon size={20} color="#fde047" />
-					<Text style={styles.titleText}>Avantages Premium</Text>
-					<StarIcon size={20} color="#fde047" />
-				</View>
-				<View style={styles.planCard}>
-					<View style={styles.headerContainer}>
-						<View>
-							<Text style={styles.planName}>PRO</Text>
-							<View style={styles.priceContainer}>
-								<Text style={styles.price}>0.99 €</Text>
-								<Text style={styles.period}>/ mois</Text>
+					<Animated.View
+						style={{
+							width: "100%",
+							alignItems: "center",
+						}}
+						entering={FadeInDown.duration(800).delay(200).springify()}
+					>
+						<View style={styles.titleContainer}>
+							<StarIcon size={20} color="#fde047" />
+							<Text style={styles.titleText}>Avantages Premium</Text>
+							<StarIcon size={20} color="#fde047" />
+						</View>
+						<BlurView intensity={10} style={styles.planCard}>
+							<View style={styles.headerContainer}>
+								<View>
+									<Text style={styles.planName}>{offeringsParsed.current.serverDescription}</Text>
+									<View style={styles.priceContainer}>
+										<Text style={styles.price}>{offeringsParsed.current.monthly.product.pricePerMonthString}</Text>
+										<Text style={styles.period}>/ mois</Text>
+									</View>
+								</View>
 							</View>
-						</View>
-					</View>
 
-					<View style={styles.featuresList}>
-						<View style={styles.featureItem}>
-							<CheckIcon size={20} color="#fff" />
-							<Text style={styles.featureText}>Recettes illimitées</Text>
-						</View>
-					</View>
+							<View style={styles.featuresList}>
+								<View style={styles.featureItem}>
+									<CheckIcon size={20} color="#fff" />
+									<Text style={styles.featureText}>Recettes illimitées</Text>
+								</View>
+							</View>
 
-					<View style={styles.divider} />
+							<View style={styles.divider} />
 
-					<Pressable disabled={purchasing} style={styles.selectButton} onPress={purchase}>
-						<Text style={styles.selectButtonText}>S'abonner</Text>
-					</Pressable>
-				</View>
+							<Pressable disabled={purchasing} style={styles.selectButton} onPress={purchase}>
+								<Text style={styles.selectButtonText}>S'abonner</Text>
+							</Pressable>
+						</BlurView>
 
-				<Pressable style={styles.linkContainer} onPress={() => WebBrowser.openBrowserAsync(TERMS_URL)}>
-					<Text style={styles.link}>Voir les conditions d'abonnement</Text>
-				</Pressable>
+						<Pressable style={styles.linkContainer} onPress={() => WebBrowser.openBrowserAsync(TERMS_URL)}>
+							<Text style={styles.link}>Voir les conditions d'abonnement</Text>
+						</Pressable>
 
-				<Pressable style={styles.linkContainer} onPress={() => WebBrowser.openBrowserAsync(PRIVACY_URL)}>
-					<Text style={styles.link}>Politique de confidentialité</Text>
-				</Pressable>
-			</LayoutBackground>
+						<Pressable style={styles.linkContainer} onPress={() => WebBrowser.openBrowserAsync(PRIVACY_URL)}>
+							<Text style={styles.link}>Politique de confidentialité</Text>
+						</Pressable>
+					</Animated.View>
+				</LayoutBackground>
+			</View>
 		</GestureDetector>
 	);
 }
@@ -176,7 +192,8 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		borderRadius: 20,
 		padding: 24,
-		backgroundColor: "rgba(255, 255, 255, 0.1)",
+		backgroundColor: "rgba(255, 255, 255, 0.15)",
+		overflow: "hidden",
 	},
 	headerContainer: {
 		flexDirection: "row",

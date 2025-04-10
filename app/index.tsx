@@ -1,5 +1,5 @@
 import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS, } from "react-native-reanimated";
-import { customerAppStoreHasSubscriptions, purchaseFirstSubscriptionAvailable, } from "@/utils/in-app-purchase";
+import { customerAppStoreHasSubscriptions, getOfferingsAppStore, purchaseFirstSubscriptionAvailable, } from "@/utils/in-app-purchase";
 import { ActivityIndicator, Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { getStorageColor, getStorageLimitedAction, themeColors } from "@/theme/theme-storage";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
@@ -212,8 +212,15 @@ export default function Page() {
 
 				<Animated.View style={[styles.tooltipActionsAbsolute, { opacity: buttonsOpacity }]}>
 					<ButtonRadialGradient
-						onPress={() => {
-							router.push("/subscription");
+						onPress={async () => {
+							const offerings = await getOfferingsAppStore();
+							
+							router.push({
+								pathname: "/subscription",
+								params: {
+									offerings: JSON.stringify(offerings),
+								},
+							});
 						}}
 						disabled={customerAppStoreHasSubscriptions(customer)}
 						text={"Je m'abonne"}
