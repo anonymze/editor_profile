@@ -7,7 +7,6 @@ import { Alert, Platform, StyleSheet, Text, View } from "react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
-import * as Sentry from "@sentry/react-native";
 import type { Recipe } from "@/types/recipe";
 import React from "react";
 
@@ -48,8 +47,6 @@ export default function Page() {
 				setStorageLimitedAction(getStorageLimitedAction() - 1);
 			} catch (error) {
 				if (abortController.signal.aborted) return;
-
-				Sentry.captureException(error);
 				
 				Alert.alert("Erreur", "Un problème est survenu lors de la génération de la recette.", [
 					{ text: "OK" },

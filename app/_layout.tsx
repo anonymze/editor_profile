@@ -10,18 +10,11 @@ import { getCustomerAppStore } from "@/utils/in-app-purchase";
 import * as SplashScreen from "expo-splash-screen";
 import { useMMKVString } from "react-native-mmkv";
 import { LogBox, Platform } from "react-native";
-import * as Sentry from "@sentry/react-native";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import React from "react";
 
-
-Sentry.init({
-	dsn: "https://2f333f7f1fee3d45eb91b8a9bf66ad26@o4509069379043328.ingest.de.sentry.io/4509069385728080",
-	// uncomment the line below to enable Spotlight (https://spotlightjs.com)
-	// spotlight: __DEV__,
-});
 
 const apiKeyRevenueCat = Platform.select({
 	ios: process.env.EXPO_PUBLIC_REVENUECAT_IOS_API_KEY,
@@ -38,13 +31,13 @@ SplashScreen.setOptions({
 // ignore warning logs
 LogBox.ignoreLogs(["Warning: ..."]);
 
-export default Sentry.wrap(function RootLayout() {
+export default function RootLayout() {
 	return (
 		<CustomerProvider>
 			<Layout />
 		</CustomerProvider>
 	);
-});
+};
 
 const Layout = () => {
 	const [customerLoaded, setCustomerLoaded] = React.useState(false);

@@ -43,14 +43,6 @@ module.exports = () => ({
 				},
 			],
 			[
-				"@sentry/react-native/expo",
-				{
-					url: "https://sentry.io/",
-					project: "fridgy",
-					organization: "yann-metier",
-				},
-			],
-			[
 				"expo-image-picker",
 				{
 					photosPermission: "Autoriser l'accès à vos photos",
