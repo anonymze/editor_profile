@@ -16,8 +16,8 @@ import { Image } from "expo-image";
 
 const TERMS_URL =
 	Platform.OS === "ios"
-		? "https://www.apple.com/legal/internet-services/itunes/us/terms.html"
-		: "https://play.google.com/intl/en-us_us/about/play-terms/index.html";
+		? "https://www.apple.com/legal/internet-services/itunes/fr/terms.html"
+		: "https://play.google.com/intl/fr-fr_fr/about/play-terms/index.html";
 
 const PRIVACY_URL = "https://www.privacypolicies.com/live/fc87e6e8-e4d5-4250-8ee1-fa0b1af85a2e";
 
@@ -154,7 +154,7 @@ export default function Subscription() {
 						</BlurView>
 
 						<Pressable style={styles.linkContainer} onPress={() => WebBrowser.openBrowserAsync(TERMS_URL)}>
-							<Text style={styles.link}>Voir les conditions d'abonnement</Text>
+							<Text style={styles.link}>Conditions générales d'utilisation</Text>
 						</Pressable>
 
 						<Pressable style={styles.linkContainer} onPress={() => WebBrowser.openBrowserAsync(PRIVACY_URL)}>
