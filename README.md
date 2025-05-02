@@ -53,4 +53,6 @@ pnpx expo-doctor
 // setup sentry for native part and config
 pnpx @sentry/wizard@latest -i reactNative --saas --org yann-metier --project fridgy
 
-
+pnpx expo install --check
+pnpx expo install expo@^53.0.0 --fix
+pnpx expo-doctor@latest

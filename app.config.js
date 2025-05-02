@@ -10,17 +10,18 @@ module.exports = () => ({
 		// theme
 		userInterfaceStyle: "automatic",
 		updates: {
-			enabled: true,
+			enabled: false,
 		},
 		ios: {
 			supportsTablet: true,
 			bundleIdentifier: "com.anonymze.fridgy",
 		},
 		android: {
-			adaptiveIcon: {
-				foregroundImage: "./assets/images/adaptive-icon.png",
-				backgroundColor: "#ffffff",
-			},
+			edgeToEdgeEnabled: false,
+			// adaptiveIcon: {
+			// 	foregroundImage: "./assets/images/adaptive-icon.png",
+			// 	backgroundColor: "#ffffff",
+			// },
 			package: "com.anonymze.fridgy",
 		},
 		web: {

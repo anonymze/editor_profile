@@ -106,7 +106,7 @@ export default function Page() {
 			return;
 		}
 
-		// Check if adding new values would exceed max of 8
+		// Check if adding new values would exceed max of 10
 		const uniqueNewValues = [...new Set([...selectedValues, ...values])];
 
 		if (uniqueNewValues.length > 10) {
