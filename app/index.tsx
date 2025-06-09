@@ -649,6 +649,5 @@ const styles = StyleSheet.create({
 	},
 	tooltipViewAbsolute: {
 		width: width - 80,
-		flex: 1,
 	},
 });
