@@ -17,7 +17,7 @@ module.exports = () => ({
 			bundleIdentifier: "com.anonymze.fridgy",
 		},
 		android: {
-			edgeToEdgeEnabled: false,
+			edgeToEdgeEnabled: true,
 			// adaptiveIcon: {
 			// 	foregroundImage: "./assets/images/adaptive-icon.png",
 			// 	backgroundColor: "#ffffff",
@@ -30,6 +30,8 @@ module.exports = () => ({
 			favicon: "./assets/images/favicon.png",
 		},
 		plugins: [
+			"expo-font",
+			"expo-web-browser",
 			"expo-router",
 			[
 				"expo-splash-screen",

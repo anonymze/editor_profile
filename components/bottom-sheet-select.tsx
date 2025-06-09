@@ -143,6 +143,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 			)}
 
 			<LegendList
+				showsVerticalScrollIndicator={false}
 				contentContainerStyle={{
 					paddingBottom: 70,
 				}}

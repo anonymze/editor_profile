@@ -43,4 +43,4 @@ yarn-error.*
 x/
 .env.local
 
-resources/
+/resources/
