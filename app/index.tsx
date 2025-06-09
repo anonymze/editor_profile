@@ -1,6 +1,7 @@
-import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS, } from "react-native-reanimated";
+import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS, FadeOutDown, } from "react-native-reanimated";
 import { customerAppStoreHasSubscriptions, getOfferingsAppStore } from "@/utils/in-app-purchase";
 import { getStorageColor, getStorageLimitedAction, themeColors } from "@/theme/theme-storage";
+import BottomSheet, { BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
 import { Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
@@ -11,7 +12,6 @@ import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { useCustomer } from "@/context/customer";
 import * as Application from "expo-application";
-import BottomSheet from "@gorhom/bottom-sheet";
 import ingredient from "@/data/ingredient";
 import vegetables from "@/data/vegetable";
 import { router } from "expo-router";
@@ -73,7 +73,7 @@ const initialSections = [
 
 export default function Page() {
 	const { customer } = useCustomer();
-	const bottomSheetRef = useRef<BottomSheet>(null);
+	const bottomSheetRef = useRef<BottomSheetModal>(null);
 	const [selectedValues, setSelectedValues] = useState<FoodItem[]>([]);
 	const [showTooltip, setShowTooltip] = useState(false);
 	const [isTooltipAnimating, setIsTooltipAnimating] = useState(false);
@@ -287,7 +287,7 @@ export default function Page() {
 				>
 					<Pressable
 						onPress={() => {
-							bottomSheetRef.current?.expand();
+							bottomSheetRef.current?.present();
 						}}
 					>
 						<Animated.View style={StyleSheet.flatten([stylesLayout.centerContent, bounceStyle])}>
@@ -319,6 +319,7 @@ export default function Page() {
 						{selectedValues.map((value) => (
 							<Animated.View
 								key={value.id}
+								exiting={FadeOutDown.duration(300)}
 								entering={FadeInDown.duration(300)
 									.delay(latestBatchRef.current.indexOf(value) * 100)
 									.springify()}

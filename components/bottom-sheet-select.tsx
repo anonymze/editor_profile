@@ -1,10 +1,10 @@
-import BottomSheet, { BottomSheetSectionList } from "@gorhom/bottom-sheet";
 import { Text, StyleSheet, Platform, TextInput, View } from "react-native";
+import { LegendList, LegendListRenderItemProps } from "@legendapp/list";
+import React, { Dispatch, forwardRef, SetStateAction } from "react";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { Pressable } from "react-native-gesture-handler";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { themeColors } from "@/theme/theme-storage";
-import React, { forwardRef } from "react";
-import { useCallback } from "react";
 import { Image } from "expo-image";
 
 
@@ -29,7 +29,7 @@ interface Props {
 
 const snapPoints = ["75%"];
 
-export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
+export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 	({ onSelect, placeholderSearch, data, themeColor }, ref) => {
 		const [searchQuery, setSearchQuery] = React.useState("");
 		const [selectedIds, setSelectedIds] = React.useState<FoodItem[]>([]);
@@ -52,63 +52,63 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 				.filter((section) => section?.data?.length > 0); // Remove empty sections
 		}, [searchQuery]);
 
-		const renderSectionHeader = useCallback(
-			({ section }: { section: { title: string; data: FoodItem[] } }) => {
-				return (
-					<View style={styles.sectionHeaderContainer}>
-						<Text
-							style={StyleSheet.flatten([
-								styles.sectionHeaderText,
-								{ backgroundColor: themeColors[themeColor].primary },
-							])}
-						>
-							{section.title}
-						</Text>
-					</View>
-				);
-			},
-			[themeColor]
-		);
+		// const renderSectionHeader = useCallback(
+		// 	({ section }: { section: { title: string; data: FoodItem[] } }) => {
+		// 		return (
+		// 			<View style={styles.sectionHeaderContainer}>
+		// 				<Text
+		// 					style={StyleSheet.flatten([
+		// 						styles.sectionHeaderText,
+		// 						{ backgroundColor: themeColors[themeColor].primary },
+		// 					])}
+		// 				>
+		// 					{section.title}
+		// 				</Text>
+		// 			</View>
+		// 		);
+		// 	},
+		// 	[themeColor]
+		// );
 
-		const renderItem = useCallback(
-			({ item, section }: { item: FoodItem; section: { data: FoodItem[] } }) => {
-				const isSelected = selectedIds.some((selectedItem) => selectedItem.id === item.id);
-				const isLastItem = section.data[section.data.length - 1].id === item.id;
+		// const renderItem = useCallback(
+		// 	({ item, section }: { item: FoodItem; section: { data: FoodItem[] } }) => {
+		// 		const isSelected = selectedIds.some((selectedItem) => selectedItem.id === item.id);
+		// 		const isLastItem = section.data[section.data.length - 1].id === item.id;
 
-				return (
-					<Pressable
-						key={item.id}
-						style={[
-							styles.itemContainer,
-							isSelected && {
-								backgroundColor: themeColors[themeColor].primary,
-							},
-							isLastItem && {
-								marginBottom: Platform.OS === "ios" ? 15 : 0,
-							},
-						]}
-						onPress={() => {
-							if (isSelected) {
-								setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
-							} else {
-								setSelectedIds((prev) => [...prev, item]);
-							}
-						}}
-					>
-						<Image
-							placeholder={require("@/assets/images/fridge.png")}
-							placeholderContentFit="contain"
-							style={styles.itemImage}
-							contentFit="contain"
-							source={item.image}
-							alt={item.label.FR}
-						/>
-						<Text style={[styles.itemText, isSelected && styles.selectedItemText]}>{item.label.FR}</Text>
-					</Pressable>
-				);
-			},
-			[selectedIds, themeColor, setSelectedIds]
-		);
+		// 		return (
+		// 			<Pressable
+		// 				key={item.id}
+		// 				style={[
+		// 					styles.itemContainer,
+		// 					isSelected && {
+		// 						backgroundColor: themeColors[themeColor].primary,
+		// 					},
+		// 					isLastItem && {
+		// 						marginBottom: Platform.OS === "ios" ? 15 : 0,
+		// 					},
+		// 				]}
+		// 				onPress={() => {
+		// 					if (isSelected) {
+		// 						setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
+		// 					} else {
+		// 						setSelectedIds((prev) => [...prev, item]);
+		// 					}
+		// 				}}
+		// 			>
+		// 				<Image
+		// 					placeholder={require("@/assets/images/fridge.png")}
+		// 					placeholderContentFit="contain"
+		// 					style={styles.itemImage}
+		// 					contentFit="contain"
+		// 					source={item.image}
+		// 					alt={item.label.FR}
+		// 				/>
+		// 				<Text style={[styles.itemText, isSelected && styles.selectedItemText]}>{item.label.FR}</Text>
+		// 			</Pressable>
+		// 		);
+		// 	},
+		// 	[selectedIds, themeColor, setSelectedIds]
+		// );
 
 		// const renderFooter = React.useCallback(
 		// 	(props: BottomSheetFooterProps) => (
@@ -169,108 +169,124 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 			}
 		}, []);
 
-		return (
-			<BottomSheet
-				// initially closed
-				index={-1}
-				onClose={resetSearchInput}
-				ref={ref}
-				enablePanDownToClose={true}
-				enableDynamicSizing={false}
-				snapPoints={snapPoints}
-				// footerComponent={renderFooter}
-				keyboardBehavior="extend"
-				keyboardBlurBehavior="restore"
-				android_keyboardInputMode="adjustResize"
-				style={styles.paddingSheet}
-				backgroundStyle={{ backgroundColor: "#fff" }}
-				handleStyle={{ backgroundColor: "#fff" }}
-				handleIndicatorStyle={{ backgroundColor: themeColors[themeColor].primary }}
-			>
-				{Platform.OS === "android" ? (
-					<BottomSheetTextInput
-						autoCapitalize="none"
-						autoCorrect={true}
-						placeholder={placeholderSearch}
-						placeholderTextColor="rgba(0, 0, 0, 0.5)"
-						style={styles.searchInput}
-						onSubmitEditing={(event) => {
-							setSearchQuery(
-								event.nativeEvent.text
-									.toLowerCase()
-									.normalize("NFD") // Decompose characters into base + combining marks
-									.replace(/[\u0300-\u036f]/g, "") // Remove all the combining marks
-							);
-						}}
-						returnKeyType="search"
-					/>
-				) : (
-					// needed because bottom sheet text input is pushing the bottom sheet up when keyboard open
-					<TextInput
-						ref={searchInputRef}
-						autoCapitalize="none"
-						autoCorrect={true}
-						placeholder={placeholderSearch}
-						placeholderTextColor="rgba(0, 0, 0, 0.5)"
-						style={styles.searchInput}
-						onSubmitEditing={(event) => {
-							setSearchQuery(
-								event.nativeEvent.text
-									.toLowerCase()
-									.normalize("NFD") // Decompose characters into base + combining marks
-									.replace(/[\u0300-\u036f]/g, "") // Remove all the combining marks
-							);
-						}}
-						returnKeyType="search"
-					/>
-				)}
+			// flatten sections into a single array with headers and items
+	const flattenedData = React.useMemo(() => {
+		const result: Array<
+			| { type: "header"; title: string; id: string }
+			| { type: "item"; item: FoodItem; id: string }
+		> = [];
 
-				{/* <BottomSheetScrollView style={styles.bottomSheetContent}> */}
-				{/* <BottomSheetFlashList
-					contentContainerStyle={{
-						paddingBottom: 75,
+		filteredSections.forEach((section) => {
+			if (section.data.length > 0) {
+				// add section header
+				result.push({
+					type: "header",
+					title: section.title,
+					id: `header-${section.title}`,
+				});
+
+				// add section items
+				section.data.forEach((item) => {
+					result.push({
+						type: "item",
+						item,
+						id: item.id,
+					});
+				});
+			}
+		});
+
+		return result;
+	}, [filteredSections]);
+
+	return (
+		<BottomSheetModal
+			onDismiss={resetSearchInput}
+			ref={ref}
+			enablePanDownToClose={true}
+			enableDynamicSizing={false}
+			snapPoints={snapPoints}
+			keyboardBehavior="extend"
+			keyboardBlurBehavior="restore"
+			android_keyboardInputMode="adjustResize"
+			style={styles.paddingSheet}
+			backgroundStyle={{ backgroundColor: "#fff" }}
+			handleStyle={{ backgroundColor: "#fff" }}
+			handleIndicatorStyle={{ backgroundColor: themeColors[themeColor].primary }}
+		>
+			{Platform.OS === "android" ? (
+				<BottomSheetTextInput
+					autoCapitalize="none"
+					autoCorrect={true}
+					placeholder={placeholderSearch}
+					placeholderTextColor="rgba(0, 0, 0, 0.5)"
+					style={styles.searchInput}
+					onSubmitEditing={(event) => {
+						setSearchQuery(
+							event.nativeEvent.text
+								.toLowerCase()
+								.normalize("NFD") // Decompose characters into base + combining marks
+								.replace(/[\u0300-\u036f]/g, "") // Remove all the combining marks
+						);
 					}}
-					data={filteredSections?.[0]?.data ?? []}
-					keyExtractor={(item) => item.id}
-					renderItem={({ item }) => (
-						<ItemComponentFlashList
-							item={item}
-							selectedIds={selectedIds}
-							setSelectedIds={setSelectedIds}
-							themeColor={themeColor}
-						/>
-					)}
-					estimatedItemSize={45}
-					extraData={selectedIds}
-					drawDistance={360}
-				/> */}
-				<BottomSheetSectionList
-					sections={filteredSections}
-					keyExtractor={(item) => item.id}
-					renderSectionHeader={renderSectionHeader}
-					renderItem={renderItem}
-					extraData={selectedIds}
-					contentContainerStyle={{
-						paddingBottom: 75,
-					}}
+					returnKeyType="search"
 				/>
-				{/* <LegendList
-					recycleItems={false}
-					data={filteredSections?.[0]?.data ?? []}
-					renderItem={(props) => (
-						<ItemComponent
-							{...props}
-							selectedIds={selectedIds}
-							setSelectedIds={setSelectedIds}
-							themeColor={themeColor}
-						/>
-					)}
-					keyExtractor={(item) => item.id}
-					estimatedItemSize={50}
-					extraData={selectedIds}
-					drawDistance={350}
-				/> */}
-				{/* </BottomSheetScrollView> */}
+			) : (
+				// needed because bottom sheet text input is pushing the bottom sheet up when keyboard open
+				<TextInput
+					ref={searchInputRef}
+					autoCapitalize="none"
+					autoCorrect={true}
+					placeholder={placeholderSearch}
+					placeholderTextColor="rgba(0, 0, 0, 0.5)"
+					style={styles.searchInput}
+					onSubmitEditing={(event) => {
+						setSearchQuery(
+							event.nativeEvent.text
+								.toLowerCase()
+								.normalize("NFD") // Decompose characters into base + combining marks
+								.replace(/[\u0300-\u036f]/g, "") // Remove all the combining marks
+						);
+					}}
+					returnKeyType="search"
+				/>
+			)}
+
+			<LegendList
+				contentContainerStyle={{
+					paddingBottom: 70,
+				}}
+				recycleItems={true}
+				data={flattenedData}
+				renderItem={(props) => {
+					if (props.item.type === "header") {
+						return (
+							<View style={styles.sectionHeaderContainer}>
+								<Text
+									style={[
+										styles.sectionHeaderText,
+										{ backgroundColor: themeColors[themeColor].primary },
+									]}
+								>
+									{props.item.title}
+								</Text>
+							</View>
+						);
+					} else {
+						return (
+							<ItemComponent
+								item={props.item.item}
+								selectedIds={selectedIds}
+								setSelectedIds={setSelectedIds}
+								themeColor={themeColor}
+							/>
+						);
+					}
+				}}
+				keyExtractor={(item) => item.id}
+				estimatedItemSize={50}
+				extraData={selectedIds}
+			/>
 
 				{/* there is a visual glitch on iOS with bottom sheet footer */}
 				<View style={styles.footerContainer}>
@@ -299,105 +315,58 @@ export const BottomSheetSelect = forwardRef<BottomSheet, Props>(
 						<Text style={[styles.textBottomSheet, { color: themeColors[themeColor].primary }]}>Ajouter</Text>
 					</Pressable>
 				</View>
-			</BottomSheet>
+			</BottomSheetModal>
 		);
 	}
 );
 
-// function ItemComponent<T extends FoodItem>({
-// 	item,
-// 	useRecyclingEffect,
-// 	useRecyclingState,
-// 	selectedIds,
-// 	setSelectedIds,
-// 	themeColor,
-// }: {
-// 	item: T;
-// 	useRecyclingEffect: LegendListRenderItemProps<T>["useRecyclingEffect"];
-// 	useRecyclingState: LegendListRenderItemProps<T>["useRecyclingState"];
-// 	selectedIds: FoodItem[];
-// 	setSelectedIds: Dispatch<SetStateAction<FoodItem[]>>;
-// 	themeColor: keyof typeof themeColors;
-// }) {
-// 	const isSelected = selectedIds.some((selectedItem) => selectedItem.id === item.id);
-// 	return (
-// 		<Pressable
-// 			key={item.id}
-// 			style={[
-// 				styles.itemContainer,
-// 				isSelected && {
-// 					backgroundColor: themeColors[themeColor].primary,
-// 				},
-// 			]}
-// 			onPress={() => {
-// 				if (selectedIds.find((id) => id.id === item.id)) {
-// 					setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
-// 				} else {
-// 					setSelectedIds((prev) => [...prev, item]);
-// 				}
-// 			}}
-// 		>
-// 			<Image
-// 				placeholder={require("@/assets/images/fridge.png")}
-// 				placeholderContentFit="contain"
-// 				style={styles.itemImage}
-// 				contentFit="contain"
-// 				source={item.image}
-// 				alt={item.label.FR}
-// 			/>
-// 			<Text style={[styles.itemText, isSelected && styles.selectedItemText]}>{item.label.FR}</Text>
-// 		</Pressable>
-// 	);
-// }
-
-// function ItemComponentFlashList({
-// 	item,
-// 	selectedIds,
-// 	setSelectedIds,
-// 	themeColor,
-// }: {
-// 	item: FoodItem;
-// 	selectedIds: FoodItem[];
-// 	setSelectedIds: Dispatch<SetStateAction<FoodItem[]>>;
-// 	themeColor: keyof typeof themeColors;
-// }) {
-// 	const isSelected = selectedIds.some((selectedItem) => selectedItem.id === item.id);
-
-// 	return (
-// 		<Pressable
-// 			key={item.id}
-// 			style={[
-// 				styles.itemContainer,
-// 				isSelected && {
-// 					backgroundColor: themeColors[themeColor].primary,
-// 				},
-// 			]}
-// 			onPress={() => {
-// 				if (isSelected) {
-// 					setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
-// 				} else {
-// 					setSelectedIds((prev) => [...prev, item]);
-// 				}
-// 			}}
-// 		>
-// 			<Image
-// 				placeholder={require("@/assets/images/fridge.png")}
-// 				placeholderContentFit="contain"
-// 				style={styles.itemImage}
-// 				contentFit="contain"
-// 				source={item.image}
-// 				alt={item.label.FR}
-// 			/>
-// 			<Text style={[styles.itemText, isSelected && styles.selectedItemText]}>{item.label.FR}</Text>
-// 		</Pressable>
-// 	);
-// }
+function ItemComponent<T extends FoodItem>({
+	item,
+	selectedIds,
+	setSelectedIds,
+	themeColor,
+}: {
+	item: T;
+	selectedIds: FoodItem[];
+	setSelectedIds: Dispatch<SetStateAction<FoodItem[]>>;
+	themeColor: keyof typeof themeColors;
+}) {
+	const isSelected = selectedIds.some((selectedItem) => selectedItem.id === item.id);
+	return (
+		<Pressable
+			key={item.id}
+			style={[
+				styles.itemContainer,
+				isSelected && {
+					backgroundColor: themeColors[themeColor].primary,
+				},
+			]}
+			onPress={() => {
+				if (selectedIds.find((id) => id.id === item.id)) {
+					setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
+				} else {
+					setSelectedIds((prev) => [...prev, item]);
+				}
+			}}
+		>
+			<Image
+				placeholder={require("@/assets/images/fridge.png")}
+				placeholderContentFit="contain"
+				style={styles.itemImage}
+				contentFit="contain"
+				source={item.image}
+				alt={item.label.FR}
+			/>
+			<Text style={[styles.itemText, isSelected && styles.selectedItemText]}>{item.label.FR}</Text>
+		</Pressable>
+	);
+}
 
 const styles = StyleSheet.create({
 	sectionHeaderContainer: {
 		flexDirection: "row",
-		paddingVertical: 0,
-		marginBottom: 8,
+		alignItems: "center",
+		height: 50,
 		borderRadius: 8,
 	},
 	sectionHeaderText: {

@@ -5,6 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import { CustomerProvider, useCustomer } from "@/context/customer";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import Purchases, { LOG_LEVEL } from "react-native-purchases";
 import { getCustomerAppStore } from "@/utils/in-app-purchase";
 import * as SplashScreen from "expo-splash-screen";
@@ -37,7 +38,7 @@ export default function RootLayout() {
 			<Layout />
 		</CustomerProvider>
 	);
-};
+}
 
 const Layout = () => {
 	const [customerLoaded, setCustomerLoaded] = React.useState(false);
@@ -75,29 +76,31 @@ const Layout = () => {
 
 	return (
 		<GestureHandlerRootView>
-			<KeyboardProvider>
-				<SafeAreaProvider>
-					<StatusBar translucent style="light" />
-					<SafeAreaView
-						edges={["right", "left", "top"]}
-						style={{ flex: 1, backgroundColor: themeColors[themeColorFinal].primaryLight }}
-					>
-						<Stack
-							initialRouteName="index"
-							screenOptions={{
-								headerShown: false,
-								animation: "none",
-							}}
+			<BottomSheetModalProvider>
+				<KeyboardProvider>
+					<SafeAreaProvider>
+						<StatusBar translucent style="light" />
+						<SafeAreaView
+							edges={["right", "left", "top"]}
+							style={{ flex: 1, backgroundColor: themeColors[themeColorFinal].primaryLight }}
 						>
-							<Stack.Screen name="index" />
-							<Stack.Screen name="subscription" />
-							<Stack.Screen name="profile" />
-							<Stack.Screen name="profile-edit" />
-							<Stack.Screen options={{ animation: "fade_from_bottom" }} name="recipe" />
-						</Stack>
-					</SafeAreaView>
-				</SafeAreaProvider>
-			</KeyboardProvider>
+							<Stack
+								initialRouteName="index"
+								screenOptions={{
+									headerShown: false,
+									animation: "none",
+								}}
+							>
+								<Stack.Screen name="index" />
+								<Stack.Screen name="subscription" />
+								<Stack.Screen name="profile" />
+								<Stack.Screen name="profile-edit" />
+								<Stack.Screen options={{ animation: "fade_from_bottom" }} name="recipe" />
+							</Stack>
+						</SafeAreaView>
+					</SafeAreaProvider>
+				</KeyboardProvider>
+			</BottomSheetModalProvider>
 		</GestureHandlerRootView>
 	);
 };
