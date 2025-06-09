@@ -1,8 +1,8 @@
 import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS, FadeOutDown, } from "react-native-reanimated";
 import { customerAppStoreHasSubscriptions, getOfferingsAppStore } from "@/utils/in-app-purchase";
+import { Alert, Dimensions, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { getStorageColor, getStorageLimitedAction, themeColors } from "@/theme/theme-storage";
 import BottomSheet, { BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
-import { Alert, Dimensions, Platform, StyleSheet, Text, View } from "react-native";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
@@ -109,8 +109,8 @@ export default function Page() {
 		// Check if adding new values would exceed max of 10
 		const uniqueNewValues = [...new Set([...selectedValues, ...values])];
 
-		if (uniqueNewValues.length > 8) {
-			Alert.alert("Attention", "Vous ne pouvez pas ajouter plus de 8 ingrédients", [{ text: "OK" }]);
+		if (uniqueNewValues.length > 10) {
+			Alert.alert("Attention", "Vous ne pouvez pas ajouter plus de 10 ingrédients", [{ text: "OK" }]);
 			return;
 		}
 
@@ -161,220 +161,221 @@ export default function Page() {
 
 	return (
 		<LayoutBackground color={themeColor} centeredContent={false}>
-			<Animated.View
-				style={StyleSheet.flatten([
-					stylesLayout.topButtons,
-					stylesLayout.topRightButton,
-					{
-						backgroundColor: themeColors[themeColor].secondary,
-					},
-				])}
-				entering={FadeInDown.duration(800).delay(200).springify()}
-			>
-				<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/profile")}>
-					<UserRoundIcon size={24} color="#fff" />
-				</Pressable>
-			</Animated.View>
-
-			<Animated.View
-				style={StyleSheet.flatten([
-					styles.tooltip,
-					{
-						backgroundColor: themeColors[themeColor].secondaryRgba(0.96),
-						width: widthTooltip,
-						height: heightTooltip,
-						opacity: opacityTooltip,
-					},
-				])}
-			>
-				<View style={styles.tooltipViewAbsolute}>
-					<Text style={styles.tooltipTextTitle}>Bienvenue sur {Application.applicationName}.</Text>
-					<Text style={styles.tooltipText}>
-						En appuyant sur le <Text style={styles.tooltipUnderlineText}>frigo</Text> vous pouvez ajoutez des
-						ingrédients.
-					</Text>
-
-					<Text style={styles.tooltipText}>
-						Un <Text style={styles.tooltipUnderlineText}>minimum de 3 ingrédients</Text> est requis pour
-						trouver une recette.
-					</Text>
-
-					<Text style={styles.tooltipText}>
-						En version gratuite, vous êtes limité sur vos recettes. Il vous en reste :
-					</Text>
-					<TextGradient
-						color={themeColor}
-						text={customerAppStoreHasSubscriptions(customer) ? "∞" : getStorageLimitedAction()}
-						home
-						style={{ fontSize: 60, marginTop: -13 }}
-					/>
-				</View>
-
-				<Animated.View style={[styles.tooltipActionsAbsolute, { opacity: buttonsOpacity }]}>
-					<ButtonRadialGradient
-						onPress={async () => {
-							const offerings = await getOfferingsAppStore();
-							if (!offerings) return;
-
-							router.push({
-								pathname: "/subscription",
-								params: {
-									offerings: JSON.stringify(offerings),
-								},
-							});
-						}}
-						disabled={customerAppStoreHasSubscriptions(customer)}
-						text={"Je m'abonne"}
-						color={themeColors[themeColor].primaryLight}
-						isAction
-						style={{ opacity: customerAppStoreHasSubscriptions(customer) ? 0.6 : 1 }}
-					></ButtonRadialGradient>
-
-					<ButtonRadialGradient
-						text="Compris !"
-						color={themeColors[themeColor].primaryLight}
-						isAction
-						onPress={() => {
-							setShowTooltip(false);
-							hideTooltip();
-						}}
-					/>
-				</Animated.View>
-			</Animated.View>
-
-			<Animated.View entering={FadeInDown.duration(800).delay(200).springify()}>
+			<ScrollView contentContainerStyle={{ paddingBottom: 120 }}>
 				<Animated.View
 					style={StyleSheet.flatten([
 						stylesLayout.topButtons,
-						stylesLayout.topLeftButton,
+						stylesLayout.topRightButton,
 						{
 							backgroundColor: themeColors[themeColor].secondary,
-							borderRadius: 99,
-							opacity: isTooltipAnimating ? 0.7 : 1,
+						},
+					])}
+					entering={FadeInDown.duration(800).delay(200).springify()}
+				>
+					<Pressable style={stylesLayout.paddingTopButtons} onPress={() => router.push("/profile")}>
+						<UserRoundIcon size={24} color="#fff" />
+					</Pressable>
+				</Animated.View>
+
+				<Animated.View
+					style={StyleSheet.flatten([
+						styles.tooltip,
+						{
+							backgroundColor: themeColors[themeColor].secondaryRgba(0.96),
+							width: widthTooltip,
+							height: heightTooltip,
+							opacity: opacityTooltip,
 						},
 					])}
 				>
-					<Pressable
-						style={stylesLayout.paddingTopButtons}
-						onPress={() => {
-							if (!isTooltipAnimating) {
-								if (showTooltip) {
-									hideTooltip();
-								} else {
-									animateTooltip();
-								}
-								setShowTooltip(!showTooltip);
-							}
-						}}
-					>
-						<BadgeInfoIcon size={26} color="#fff" />
-					</Pressable>
-				</Animated.View>
-			</Animated.View>
+					<View style={styles.tooltipViewAbsolute}>
+						<Text style={styles.tooltipTextTitle}>Bienvenue sur {Application.applicationName}.</Text>
+						<Text style={styles.tooltipText}>
+							En appuyant sur le <Text style={styles.tooltipUnderlineText}>frigo</Text> vous pouvez ajoutez
+							des ingrédients.
+						</Text>
 
-			<View style={styles.highPaddingTop}>
-				<Animated.View entering={enteringAnimationLeft()}>
-					<TextGradient
-						color={themeColor}
-						text={`${Application.applicationName?.toUpperCase()} !`}
-						style={{ fontSize: height < 630 || width < 400 ? 60 : 75 }}
-					/>
-				</Animated.View>
+						<Text style={styles.tooltipText}>
+							Un <Text style={styles.tooltipUnderlineText}>minimum de 3 ingrédients</Text> est requis pour
+							trouver une recette.
+						</Text>
 
-				<Animated.View
-					style={stylesLayout.centerContent}
-					entering={FadeInDown.duration(800).delay(400).springify()}
-				>
-					<Pressable
-						onPress={() => {
-							bottomSheetRef.current?.present();
-						}}
-					>
-						<Animated.View style={StyleSheet.flatten([stylesLayout.centerContent, bounceStyle])}>
-							<Animated.View style={[styles.halo, pulseStyle1]} />
-							<Animated.View style={[styles.halo, pulseStyle2]} />
-							<Image
-								style={[stylesLayout.imageHome]}
-								source={require("@/assets/images/fridge.png")}
-								cachePolicy="memory-disk"
-								contentFit="contain"
-							/>
-						</Animated.View>
-					</Pressable>
-				</Animated.View>
-			</View>
-
-			{selectedValues.length > 0 ? (
-				<Fragment>
-					<Animated.View entering={FadeIn} style={styles.mediumPaddingTop}>
+						<Text style={styles.tooltipText}>
+							En version gratuite, vous êtes limité sur vos recettes. Il vous en reste :
+						</Text>
 						<TextGradient
-							lowShadow
 							color={themeColor}
-							text={"Vos ingrédients :"}
-							style={styles.ingredientsText}
+							text={customerAppStoreHasSubscriptions(customer) ? "∞" : getStorageLimitedAction()}
+							home
+							style={{ fontSize: 60, marginTop: -13 }}
+						/>
+					</View>
+
+					<Animated.View style={[styles.tooltipActionsAbsolute, { opacity: buttonsOpacity }]}>
+						<ButtonRadialGradient
+							onPress={async () => {
+								const offerings = await getOfferingsAppStore();
+								if (!offerings) return;
+
+								router.push({
+									pathname: "/subscription",
+									params: {
+										offerings: JSON.stringify(offerings),
+									},
+								});
+							}}
+							disabled={customerAppStoreHasSubscriptions(customer)}
+							text={"Je m'abonne"}
+							color={themeColors[themeColor].primaryLight}
+							isAction
+							style={{ opacity: customerAppStoreHasSubscriptions(customer) ? 0.6 : 1 }}
+						></ButtonRadialGradient>
+
+						<ButtonRadialGradient
+							text="Compris !"
+							color={themeColors[themeColor].primaryLight}
+							isAction
+							onPress={() => {
+								setShowTooltip(false);
+								hideTooltip();
+							}}
+						/>
+					</Animated.View>
+				</Animated.View>
+
+				<Animated.View entering={FadeInDown.duration(800).delay(200).springify()}>
+					<Animated.View
+						style={StyleSheet.flatten([
+							stylesLayout.topButtons,
+							stylesLayout.topLeftButton,
+							{
+								backgroundColor: themeColors[themeColor].secondary,
+								borderRadius: 99,
+								opacity: isTooltipAnimating ? 0.7 : 1,
+							},
+						])}
+					>
+						<Pressable
+							style={stylesLayout.paddingTopButtons}
+							onPress={() => {
+								if (!isTooltipAnimating) {
+									if (showTooltip) {
+										hideTooltip();
+									} else {
+										animateTooltip();
+									}
+									setShowTooltip(!showTooltip);
+								}
+							}}
+						>
+							<BadgeInfoIcon size={26} color="#fff" />
+						</Pressable>
+					</Animated.View>
+				</Animated.View>
+
+				<View style={styles.highPaddingTop}>
+					<Animated.View entering={enteringAnimationLeft()}>
+						<TextGradient
+							color={themeColor}
+							text={`${Application.applicationName?.toUpperCase()} !`}
+							style={{ fontSize: height < 630 || width < 400 ? 60 : 75 }}
 						/>
 					</Animated.View>
 
-					<View style={styles.containerIngredients}>
-						{selectedValues.map((value) => (
-							<Animated.View
-								style={styles.ingredientItem}
-								key={value.id}
-								exiting={FadeOutDown.duration(300)}
-								entering={FadeInDown.duration(300)
-									.delay(latestBatchRef.current.indexOf(value) * 100)
-									.springify()}
-							>
+					<Animated.View
+						style={stylesLayout.centerContent}
+						entering={FadeInDown.duration(800).delay(400).springify()}
+					>
+						<Pressable
+							onPress={() => {
+								bottomSheetRef.current?.present();
+							}}
+						>
+							<Animated.View style={StyleSheet.flatten([stylesLayout.centerContent, bounceStyle])}>
+								<Animated.View style={[styles.halo, pulseStyle1]} />
+								<Animated.View style={[styles.halo, pulseStyle2]} />
 								<Image
-									placeholderContentFit="contain"
-									placeholder={require("@/assets/images/fridge.png")}
-									source={value.image}
-									style={styles.imageIngredients}
+									style={[stylesLayout.imageHome]}
+									source={require("@/assets/images/fridge.png")}
+									cachePolicy="memory-disk"
+									contentFit="contain"
 								/>
-								<Text style={styles.ingredientItemText}>{value.label.FR}</Text>
 							</Animated.View>
-						))}
-					</View>
-				</Fragment>
-			) : null}
+						</Pressable>
+					</Animated.View>
+				</View>
 
+				{selectedValues.length > 0 ? (
+					<Fragment>
+						<Animated.View entering={FadeIn} style={styles.mediumPaddingTop}>
+							<TextGradient
+								lowShadow
+								color={themeColor}
+								text={"Vos ingrédients :"}
+								style={styles.ingredientsText}
+							/>
+						</Animated.View>
+
+						<View style={styles.containerIngredients}>
+							{selectedValues.map((value) => (
+								<Animated.View
+									style={styles.ingredientItem}
+									key={value.id}
+									exiting={FadeOutDown.duration(300)}
+									entering={FadeInDown.duration(300)
+										.delay(latestBatchRef.current.indexOf(value) * 100)
+										.springify()}
+								>
+									<Image
+										placeholderContentFit="contain"
+										placeholder={require("@/assets/images/fridge.png")}
+										source={value.image}
+										style={styles.imageIngredients}
+									/>
+									<Text style={styles.ingredientItemText}>{value.label.FR}</Text>
+								</Animated.View>
+							))}
+						</View>
+					</Fragment>
+				) : null}
+
+				<BottomSheetSelect
+					onSelect={getSelectecValues}
+					data={initialSections}
+					placeholderSearch="Chercher des ingrédients"
+					ref={bottomSheetRef}
+					themeColor={themeColor}
+				/>
+			</ScrollView>
 			{selectedValues.length >= 3 && (
-				<Animated.View
-					style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
-					entering={enteringAnimation()}
-				>
-					<ButtonRadialGradient
-						onPress={async () => {
-							if (getStorageLimitedAction() < 1) {
-								animateTooltip();
-								return;
-							}
+					<Animated.View
+						style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
+						entering={enteringAnimation()}
+					>
+						<ButtonRadialGradient
+							onPress={async () => {
+								if (getStorageLimitedAction() < 1) {
+									animateTooltip();
+									return;
+								}
 
-							router.push({
-								pathname: "/recipe",
-								params: {
-									customerID: customer?.originalAppUserId,
-									prompt: selectedValues.map((value) => value.label.FR).join(","),
-									vendorId:
-										Platform.OS === "ios"
-											? await Application.getIosIdForVendorAsync()
-											: Application.getAndroidId(),
-								},
-							});
-						}}
-						text="Trouver ma recette"
-						color={themeColors[themeColor].primaryLight}
-					/>
-				</Animated.View>
-			)}
-
-			<BottomSheetSelect
-				onSelect={getSelectecValues}
-				data={initialSections}
-				placeholderSearch="Chercher des ingrédients"
-				ref={bottomSheetRef}
-				themeColor={themeColor}
-			/>
+								router.push({
+									pathname: "/recipe",
+									params: {
+										customerID: customer?.originalAppUserId,
+										prompt: selectedValues.map((value) => value.label.FR).join(","),
+										vendorId:
+											Platform.OS === "ios"
+												? await Application.getIosIdForVendorAsync()
+												: Application.getAndroidId(),
+									},
+								});
+							}}
+							text="Trouver ma recette"
+							color={themeColors[themeColor].primaryLight}
+						/>
+					</Animated.View>
+				)}
 		</LayoutBackground>
 	);
 }
@@ -583,7 +584,7 @@ const styles = StyleSheet.create({
 		gap: 5,
 	},
 	ingredientItemText: {
-		fontSize: 12,
+		fontSize: 13,
 		fontWeight: "600",
 		color: "#fff",
 	},
