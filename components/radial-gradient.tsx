@@ -16,6 +16,7 @@ export function ButtonRadialGradient({
 }: PressableProps & { text: string; color: string; isAction?: boolean }) {
 	return (
 		<Pressable
+			// hitSlop={100}
 			{...props}
 			style={StyleSheet.flatten([
 				styles.containerButton,

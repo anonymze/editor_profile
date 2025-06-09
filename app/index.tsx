@@ -93,7 +93,7 @@ export default function Page() {
 		translateY,
 		opacityTooltip,
 		widthTooltip,
-		heightTooltip,
+		// heightTooltip,
 		animateTooltip,
 		hideTooltip,
 		buttonsOpacity,
@@ -183,7 +183,7 @@ export default function Page() {
 						{
 							backgroundColor: themeColors[themeColor].secondaryRgba(0.96),
 							width: widthTooltip,
-							height: heightTooltip,
+							// height: heightTooltip,
 							opacity: opacityTooltip,
 						},
 					])}
@@ -228,13 +228,21 @@ export default function Page() {
 							text={"Je m'abonne"}
 							color={themeColors[themeColor].primaryLight}
 							isAction
-							style={{ opacity: customerAppStoreHasSubscriptions(customer) ? 0.6 : 1 }}
+							style={{ 
+								opacity: customerAppStoreHasSubscriptions(customer) ? 0.6 : 1, 
+								height: 100,  // Use height instead of minHeight
+								flex: 1
+							}}
 						></ButtonRadialGradient>
 
 						<ButtonRadialGradient
 							text="Compris !"
 							color={themeColors[themeColor].primaryLight}
 							isAction
+							style={{ 
+								height: 100,  // Use height instead of minHeight
+								flex: 1
+							}}
 							onPress={() => {
 								setShowTooltip(false);
 								hideTooltip();
@@ -251,7 +259,7 @@ export default function Page() {
 							{
 								backgroundColor: themeColors[themeColor].secondary,
 								borderRadius: 99,
-								opacity: isTooltipAnimating ? 0.7 : 1,
+								// opacity: isTooltipAnimating ? 0.7 : 1,
 							},
 						])}
 					>
@@ -387,7 +395,7 @@ const useAnimations = (setIsAnimating: React.Dispatch<React.SetStateAction<boole
 	const translateY = useSharedValue(0);
 	const opacityTooltip = useSharedValue(0);
 	const widthTooltip = useSharedValue(0);
-	const heightTooltip = useSharedValue(0);
+	// const heightTooltip = useSharedValue(0);
 	const buttonsOpacity = useSharedValue(0);
 
 	const animateTooltip = () => {
@@ -401,18 +409,21 @@ const useAnimations = (setIsAnimating: React.Dispatch<React.SetStateAction<boole
 		widthTooltip.value = withTiming(width - 40, {
 			duration: 280,
 			easing: Easing.elastic(1.1),
+		},
+		() => {
+			runOnJS(setIsAnimating)(false);
 		});
 
-		heightTooltip.value = withTiming(
-			425,
-			{
-				duration: 280,
-				easing: Easing.elastic(1.1),
-			},
-			() => {
-				runOnJS(setIsAnimating)(false);
-			}
-		);
+		// heightTooltip.value = withTiming(
+		// 	425,
+		// 	{
+		// 		duration: 280,
+		// 		easing: Easing.elastic(1.1),
+		// 	},
+		// 	() => {
+		// 		runOnJS(setIsAnimating)(false);
+		// 	}
+		// );
 
 		buttonsOpacity.value = withTiming(1, {
 			duration: 280,
@@ -450,28 +461,29 @@ const useAnimations = (setIsAnimating: React.Dispatch<React.SetStateAction<boole
 					duration: 200,
 					easing: Easing.out(Easing.ease),
 				});
+				runOnJS(setIsAnimating)(false);
 			}
 		);
 
-		heightTooltip.value = withTiming(
-			initialHeight * 1.06,
-			{
-				duration: 110,
-				easing: Easing.out(Easing.ease),
-			},
-			() => {
-				heightTooltip.value = withTiming(
-					0,
-					{
-						duration: 200,
-						easing: Easing.out(Easing.ease),
-					},
-					() => {
-						runOnJS(setIsAnimating)(false);
-					}
-				);
-			}
-		);
+		// heightTooltip.value = withTiming(
+		// 	initialHeight * 1.06,
+		// 	{
+		// 		duration: 110,
+		// 		easing: Easing.out(Easing.ease),
+		// 	},
+		// 	() => {
+		// 		heightTooltip.value = withTiming(
+		// 			0,
+		// 			{
+		// 				duration: 200,
+		// 				easing: Easing.out(Easing.ease),
+		// 			},
+		// 			() => {
+		// 				runOnJS(setIsAnimating)(false);
+		// 			}
+		// 		);
+		// 	}
+		// );
 	};
 
 	const enteringAnimation = useCallback(
@@ -542,7 +554,7 @@ const useAnimations = (setIsAnimating: React.Dispatch<React.SetStateAction<boole
 		translateY,
 		opacityTooltip,
 		widthTooltip,
-		heightTooltip,
+		// heightTooltip,
 		buttonsOpacity,
 		animateTooltip,
 		hideTooltip,
@@ -596,9 +608,10 @@ const styles = StyleSheet.create({
 		position: "absolute",
 		top: 90,
 		left: 20,
-		zIndex: 99,
+		zIndex: 9,
 		borderRadius: 20,
-		padding: 26,
+		padding: 20,
+		overflow: "hidden",
 	},
 	tooltipText: {
 		color: "#fff",
@@ -631,20 +644,14 @@ const styles = StyleSheet.create({
 		textDecorationLine: "underline",
 	},
 	tooltipViewAbsolute: {
-		position: "absolute",
-		top: 20,
-		left: 20,
-		zIndex: 100,
 		width: width - 80,
 	},
 	tooltipActionsAbsolute: {
 		flexDirection: "row",
 		justifyContent: "space-between",
+		alignSelf: "center",
 		gap: 20,
-		position: "absolute",
-		bottom: 20,
-		left: 20,
-		zIndex: 100,
 		width: width - 80,
+		marginTop: "auto",
 	},
 });
