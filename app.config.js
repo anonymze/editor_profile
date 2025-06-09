@@ -15,6 +15,9 @@ module.exports = () => ({
 		ios: {
 			supportsTablet: true,
 			bundleIdentifier: "com.anonymze.fridgy",
+			infoPlist: {
+				ITSAppUsesNonExemptEncryption: false,
+			},
 		},
 		android: {
 			edgeToEdgeEnabled: true,
