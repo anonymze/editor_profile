@@ -52,116 +52,6 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 				.filter((section) => section?.data?.length > 0); // Remove empty sections
 		}, [searchQuery]);
 
-		// const renderSectionHeader = useCallback(
-		// 	({ section }: { section: { title: string; data: FoodItem[] } }) => {
-		// 		return (
-		// 			<View style={styles.sectionHeaderContainer}>
-		// 				<Text
-		// 					style={StyleSheet.flatten([
-		// 						styles.sectionHeaderText,
-		// 						{ backgroundColor: themeColors[themeColor].primary },
-		// 					])}
-		// 				>
-		// 					{section.title}
-		// 				</Text>
-		// 			</View>
-		// 		);
-		// 	},
-		// 	[themeColor]
-		// );
-
-		// const renderItem = useCallback(
-		// 	({ item, section }: { item: FoodItem; section: { data: FoodItem[] } }) => {
-		// 		const isSelected = selectedIds.some((selectedItem) => selectedItem.id === item.id);
-		// 		const isLastItem = section.data[section.data.length - 1].id === item.id;
-
-		// 		return (
-		// 			<Pressable
-		// 				key={item.id}
-		// 				style={[
-		// 					styles.itemContainer,
-		// 					isSelected && {
-		// 						backgroundColor: themeColors[themeColor].primary,
-		// 					},
-		// 					isLastItem && {
-		// 						marginBottom: Platform.OS === "ios" ? 15 : 0,
-		// 					},
-		// 				]}
-		// 				onPress={() => {
-		// 					if (isSelected) {
-		// 						setSelectedIds(selectedIds.filter((selected) => selected.id !== item.id));
-		// 					} else {
-		// 						setSelectedIds((prev) => [...prev, item]);
-		// 					}
-		// 				}}
-		// 			>
-		// 				<Image
-		// 					placeholder={require("@/assets/images/fridge.png")}
-		// 					placeholderContentFit="contain"
-		// 					style={styles.itemImage}
-		// 					contentFit="contain"
-		// 					source={item.image}
-		// 					alt={item.label.FR}
-		// 				/>
-		// 				<Text style={[styles.itemText, isSelected && styles.selectedItemText]}>{item.label.FR}</Text>
-		// 			</Pressable>
-		// 		);
-		// 	},
-		// 	[selectedIds, themeColor, setSelectedIds]
-		// );
-
-		// const renderFooter = React.useCallback(
-		// 	(props: BottomSheetFooterProps) => (
-		// 		<BottomSheetFooter {...props} style={styles.footerContainer}>
-		// 			<Pressable
-		// 				style={styles.containerTextBottom}
-		// 				onPress={() => {
-		// 					onSelect(null);
-		// 					setSelectedIds([]);
-		// 					if (ref && "current" in ref) {
-		// 						ref?.current?.close();
-		// 					}
-		// 				}}
-		// 			>
-		// 				{({ pressed }) => {
-		// 					return (
-		// 						<Text
-		// 							style={StyleSheet.flatten([
-		// 								styles.textBottomSheet,
-		// 								{ color: themeColors[themeColor].primary, opacity: pressed ? 0.5 : 1 },
-		// 							])}
-		// 						>
-		// 							Effacer
-		// 						</Text>
-		// 					);
-		// 				}}
-		// 			</Pressable>
-		// 			<Pressable
-		// 				style={styles.containerTextBottom}
-		// 				onPress={() => {
-		// 					onSelect(selectedIds);
-		// 					setSelectedIds([]);
-		// 					if (ref && "current" in ref) {
-		// 						ref?.current?.close();
-		// 					}
-		// 				}}
-		// 			>
-		// 				{({ pressed }) => (
-		// 					<Text
-		// 						style={StyleSheet.flatten([
-		// 							styles.textBottomSheet,
-		// 							{ color: themeColors[themeColor].primary, opacity: pressed ? 0.5 : 1 },
-		// 						])}
-		// 					>
-		// 						Ajouter
-		// 					</Text>
-		// 				)}
-		// 			</Pressable>
-		// 		</BottomSheetFooter>
-		// 	),
-		// 	[onSelect, selectedIds]
-		// );
-
 		const resetSearchInput = React.useCallback(() => {
 			setSearchQuery("");
 			if (searchInputRef.current) {
@@ -240,12 +130,12 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 					placeholder={placeholderSearch}
 					placeholderTextColor="rgba(0, 0, 0, 0.5)"
 					style={styles.searchInput}
-					onSubmitEditing={(event) => {
+					onChangeText={(text) => {
 						setSearchQuery(
-							event.nativeEvent.text
+							text
 								.toLowerCase()
-								.normalize("NFD") // Decompose characters into base + combining marks
-								.replace(/[\u0300-\u036f]/g, "") // Remove all the combining marks
+								.normalize("NFD")
+								.replace(/[\u0300-\u036f]/g, "")
 						);
 					}}
 					returnKeyType="search"
@@ -284,8 +174,9 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 					}
 				}}
 				keyExtractor={(item) => item.id}
-				estimatedItemSize={50}
+				estimatedItemSize={52}
 				extraData={selectedIds}
+				// drawDistance={00}
 			/>
 
 				{/* there is a visual glitch on iOS with bottom sheet footer */}

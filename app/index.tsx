@@ -109,8 +109,8 @@ export default function Page() {
 		// Check if adding new values would exceed max of 10
 		const uniqueNewValues = [...new Set([...selectedValues, ...values])];
 
-		if (uniqueNewValues.length > 10) {
-			Alert.alert("Attention", "Vous ne pouvez pas ajouter plus de 10 ingrédients", [{ text: "OK" }]);
+		if (uniqueNewValues.length > 8) {
+			Alert.alert("Attention", "Vous ne pouvez pas ajouter plus de 8 ingrédients", [{ text: "OK" }]);
 			return;
 		}
 
@@ -318,6 +318,7 @@ export default function Page() {
 					<View style={styles.containerIngredients}>
 						{selectedValues.map((value) => (
 							<Animated.View
+								style={styles.ingredientItem}
 								key={value.id}
 								exiting={FadeOutDown.duration(300)}
 								entering={FadeInDown.duration(300)
@@ -330,6 +331,7 @@ export default function Page() {
 									source={value.image}
 									style={styles.imageIngredients}
 								/>
+								<Text style={styles.ingredientItemText}>{value.label.FR}</Text>
 							</Animated.View>
 						))}
 					</View>
@@ -575,6 +577,15 @@ const styles = StyleSheet.create({
 		columnGap: 20,
 		paddingLeft: 20,
 		paddingTop: 18,
+	},
+	ingredientItem: {
+		alignItems: "center",
+		gap: 5,
+	},
+	ingredientItemText: {
+		fontSize: 12,
+		fontWeight: "600",
+		color: "#fff",
 	},
 	imageIngredients: {
 		width: height > 660 ? 50 : 40,
