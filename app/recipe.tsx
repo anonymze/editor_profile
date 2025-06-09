@@ -1,10 +1,10 @@
-import { DEFAULT_KEY_IMAGE_URI, getStorageColor, getStorageLimitedAction, getStorageName, setStorageLimitedAction, themeColors, } from "@/theme/theme-storage";
+import { DEFAULT_IMAGE_URI, DEFAULT_KEY_IMAGE_URI, getStorageColor, getStorageLimitedAction, getStorageName, setStorageLimitedAction, themeColors, } from "@/theme/theme-storage";
 import { ArrowLeftIcon, BookAIcon, CarrotIcon, ChefHatIcon, ClockIcon, DotIcon, MinusIcon, UsersRoundIcon, } from "lucide-react-native";
 import Animated, { FadeIn, FadeInDown, FadeOut, runOnJS } from "react-native-reanimated";
 import { Gesture, GestureDetector, Pressable } from "react-native-gesture-handler";
 import SplashScreenAnimation from "@/components/splashscreen-animation";
-import { Alert, Platform, StyleSheet, Text, View } from "react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import { useMMKVString } from "react-native-mmkv";
@@ -90,7 +90,14 @@ export default function Page() {
 					}}
 					entering={FadeInDown.duration(800).delay(200).springify()}
 				>
-					<Image source={{ uri: imageUri }} contentFit="cover" style={{ width: 50, height: 50, borderRadius: 99 }} />
+					<Image
+						source={imageUri ?? DEFAULT_IMAGE_URI}
+						placeholder={{ uri: DEFAULT_IMAGE_URI }}
+						placeholderContentFit="cover"
+						contentPosition="center"
+						contentFit="cover"
+						style={{ width: 50, height: 50, borderRadius: 99 }}
+					/>
 				</Animated.View>
 				<Animated.View
 					style={StyleSheet.flatten([
