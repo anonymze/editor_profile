@@ -53,7 +53,6 @@ export async function POST(request: Request) {
 
 const generateRecipe = (ingredients: string[], numberOfPeople: number, username: string) => {
 	return generateText({
-		// @ts-expect-error
 		model: mistral("mistral-small-latest", {
 			safePrompt: true,
 		}),

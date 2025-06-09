@@ -1,4 +1,4 @@
-import { getStorageColor, getStorageLimitedAction, getStorageName, setStorageLimitedAction, themeColors, } from "@/theme/theme-storage";
+import { DEFAULT_KEY_IMAGE_URI, getStorageColor, getStorageLimitedAction, getStorageName, setStorageLimitedAction, themeColors, } from "@/theme/theme-storage";
 import { ArrowLeftIcon, BookAIcon, CarrotIcon, ChefHatIcon, ClockIcon, DotIcon, MinusIcon, UsersRoundIcon, } from "lucide-react-native";
 import Animated, { FadeIn, FadeInDown, FadeOut, runOnJS } from "react-native-reanimated";
 import { Gesture, GestureDetector, Pressable } from "react-native-gesture-handler";
@@ -7,11 +7,14 @@ import { Alert, Platform, StyleSheet, Text, View } from "react-native";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
+import { useMMKVString } from "react-native-mmkv";
 import type { Recipe } from "@/types/recipe";
+import { Image } from "expo-image";
 import React from "react";
 
 
 export default function Page() {
+	const [imageUri] = useMMKVString(DEFAULT_KEY_IMAGE_URI);
 	const themeColor = getStorageColor();
 	const [splashScreen, setSplashScreen] = useState(true);
 	const [response, setResponse] = useState<Recipe | null>(null);
@@ -47,7 +50,7 @@ export default function Page() {
 				setStorageLimitedAction(getStorageLimitedAction() - 1);
 			} catch (error) {
 				if (abortController.signal.aborted) return;
-				
+
 				Alert.alert("Erreur", "Un problème est survenu lors de la génération de la recette.", [
 					{ text: "OK" },
 				]);
@@ -76,73 +79,50 @@ export default function Page() {
 
 	return (
 		<GestureDetector gesture={panGesture}>
-			{Platform.OS === "android" ? (
-				<View collapsable={false} style={stylesLayout.flex}>
-					<LayoutBackground color={themeColor} centeredContent={false}>
-						<Animated.View
-							style={StyleSheet.flatten([
-								stylesLayout.topButtons,
-								stylesLayout.topRightButton,
-								{
-									backgroundColor: themeColors[themeColor].secondary,
-									zIndex: 1000,
-								},
-							])}
-							entering={FadeInDown.duration(800).delay(200).springify()}
-						>
-							<Pressable
-								onPress={() => {
-									router.back();
-								}}
-								style={stylesLayout.paddingTopButtons}
-							>
-								<ArrowLeftIcon size={26} color="#fff" />
-							</Pressable>
-						</Animated.View>
-						{splashScreen ? (
-							<Animated.View style={stylesLayout.container} exiting={FadeOut.duration(400)}>
-								<SplashScreenAnimation />
-							</Animated.View>
-						) : (
-							<Animated.ScrollView style={stylesLayout.flex} entering={FadeIn}>
-								{response && <RecipeContent themeColor={themeColor} recipe={response} />}
-							</Animated.ScrollView>
-						)}
-					</LayoutBackground>
-				</View>
-			) : (
-				<LayoutBackground color={themeColor} centeredContent={false}>
-					<Animated.View
-						style={StyleSheet.flatten([
-							stylesLayout.topButtons,
-							stylesLayout.topRightButton,
-							{
-								backgroundColor: themeColors[themeColor].secondary,
-								zIndex: 1000,
-							},
-						])}
-						entering={FadeInDown.duration(800).delay(200).springify()}
+			{/* <View collapsable={false} style={stylesLayout.flex}> */}
+			<LayoutBackground color={themeColor} centeredContent={false}>
+				<Animated.View
+					style={{
+						position: "absolute",
+						top: 30,
+						left: 30,
+						zIndex: 1000,
+					}}
+					entering={FadeInDown.duration(800).delay(200).springify()}
+				>
+					<Image source={{ uri: imageUri }} contentFit="cover" style={{ width: 50, height: 50, borderRadius: 99 }} />
+				</Animated.View>
+				<Animated.View
+					style={StyleSheet.flatten([
+						stylesLayout.topButtons,
+						stylesLayout.topRightButton,
+						{
+							backgroundColor: themeColors[themeColor].secondary,
+							zIndex: 1000,
+						},
+					])}
+					entering={FadeInDown.duration(800).delay(200).springify()}
+				>
+					<Pressable
+						onPress={() => {
+							router.back();
+						}}
+						style={stylesLayout.paddingTopButtons}
 					>
-						<Pressable
-							onPress={() => {
-								router.back();
-							}}
-							style={stylesLayout.paddingTopButtons}
-						>
-							<ArrowLeftIcon size={26} color="#fff" />
-						</Pressable>
+						<ArrowLeftIcon size={26} color="#fff" />
+					</Pressable>
+				</Animated.View>
+				{splashScreen ? (
+					<Animated.View style={stylesLayout.container} exiting={FadeOut.duration(400)}>
+						<SplashScreenAnimation />
 					</Animated.View>
-					{splashScreen ? (
-						<Animated.View style={stylesLayout.container} exiting={FadeOut.duration(400)}>
-							<SplashScreenAnimation />
-						</Animated.View>
-					) : (
-						<Animated.ScrollView style={stylesLayout.flex} entering={FadeIn}>
-							{response && <RecipeContent themeColor={themeColor} recipe={response} />}
-						</Animated.ScrollView>
-					)}
-				</LayoutBackground>
-			)}
+				) : (
+					<Animated.ScrollView style={stylesLayout.flex} entering={FadeIn}>
+						{response && <RecipeContent themeColor={themeColor} recipe={response} />}
+					</Animated.ScrollView>
+				)}
+			</LayoutBackground>
+			{/* </View> */}
 		</GestureDetector>
 	);
 }
@@ -154,7 +134,7 @@ const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe; themeColor: key
 
 		{/* Time and servings row */}
 		<View style={styles.infoRow}>
-		{recipe.type && (
+			{recipe.type && (
 				<View style={styles.infoItem}>
 					<View
 						style={StyleSheet.flatten([styles.bubble, { backgroundColor: themeColors[themeColor].primary }])}
@@ -174,8 +154,6 @@ const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe; themeColor: key
 				<UsersRoundIcon size={26} color="#fff" />
 				<Text style={styles.infoText}>{recipe.servings || "4 personnes"}</Text>
 			</View>
-
-
 		</View>
 
 		{/* Ingredients */}
@@ -263,7 +241,7 @@ const RecipeContent = ({ recipe, themeColor }: { recipe: Recipe; themeColor: key
 const styles = StyleSheet.create({
 	containerPrompt: {
 		flex: 1,
-		paddingTop: 88,
+		paddingTop: 95,
 		paddingBottom: 40,
 		paddingHorizontal: 15,
 	},
@@ -376,6 +354,6 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 12,
 		paddingVertical: 4,
 		borderColor: "#fff",
-		borderWidth: 1
+		borderWidth: 1,
 	},
 });
