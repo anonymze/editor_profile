@@ -161,7 +161,7 @@ export default function Page() {
 
 	return (
 		<LayoutBackground color={themeColor} centeredContent={false}>
-			<ScrollView contentContainerStyle={{ paddingBottom: 120 }}>
+			<ScrollView contentContainerStyle={{ paddingBottom: 120, flexGrow: 1 }}>
 				<Animated.View
 					style={StyleSheet.flatten([
 						stylesLayout.topButtons,
@@ -178,13 +178,43 @@ export default function Page() {
 				</Animated.View>
 
 				<Animated.View
+					entering={FadeInDown.duration(800).delay(200).springify()}
+					style={StyleSheet.flatten([
+						stylesLayout.topButtons,
+						stylesLayout.topLeftButton,
+						{
+							backgroundColor: themeColors[themeColor].secondary,
+							borderRadius: 99,
+							// opacity: isTooltipAnimating ? 0.7 : 1,
+						},
+					])}
+				>
+					<Pressable
+						style={stylesLayout.paddingTopButtons}
+						onPress={() => {
+							if (!isTooltipAnimating) {
+								if (showTooltip) {
+									hideTooltip();
+								} else {
+									animateTooltip();
+								}
+								setShowTooltip(!showTooltip);
+							}
+						}}
+					>
+						<BadgeInfoIcon size={26} color="#fff" />
+					</Pressable>
+				</Animated.View>
+
+
+				<Animated.View
 					style={StyleSheet.flatten([
 						styles.tooltip,
 						{
 							backgroundColor: themeColors[themeColor].secondaryRgba(0.96),
 							width: widthTooltip,
-							// height: heightTooltip,
 							opacity: opacityTooltip,
+							flex: 1,
 						},
 					])}
 				>
@@ -207,12 +237,19 @@ export default function Page() {
 							color={themeColor}
 							text={customerAppStoreHasSubscriptions(customer) ? "∞" : getStorageLimitedAction()}
 							home
-							style={{ fontSize: 60, marginTop: -13 }}
+							style={{ fontSize: 60, marginTop: 0 }}
 						/>
 					</View>
 
-					<Animated.View style={[styles.tooltipActionsAbsolute, { opacity: buttonsOpacity }]}>
+					<Animated.View style={{
+						flexDirection: "row",
+						justifyContent: "space-between",
+						alignItems: "center",
+						gap: 20,
+						opacity: buttonsOpacity,
+					}}>
 						<ButtonRadialGradient
+							noSvg
 							onPress={async () => {
 								const offerings = await getOfferingsAppStore();
 								if (!offerings) return;
@@ -224,60 +261,25 @@ export default function Page() {
 									},
 								});
 							}}
-							disabled={customerAppStoreHasSubscriptions(customer)}
+							disabled={customerAppStoreHasSubscriptions(customer) ?? true}
 							text={"Je m'abonne"}
 							color={themeColors[themeColor].primaryLight}
 							isAction
-							style={{ 
-								opacity: customerAppStoreHasSubscriptions(customer) ? 0.6 : 1, 
-								height: 100,  // Use height instead of minHeight
-								flex: 1
+							style={{
+								opacity: customerAppStoreHasSubscriptions(customer) ? 0.6 : 1,
 							}}
 						></ButtonRadialGradient>
 
 						<ButtonRadialGradient
+							noSvg
 							text="Compris !"
 							color={themeColors[themeColor].primaryLight}
 							isAction
-							style={{ 
-								height: 100,  // Use height instead of minHeight
-								flex: 1
-							}}
 							onPress={() => {
 								setShowTooltip(false);
 								hideTooltip();
 							}}
 						/>
-					</Animated.View>
-				</Animated.View>
-
-				<Animated.View entering={FadeInDown.duration(800).delay(200).springify()}>
-					<Animated.View
-						style={StyleSheet.flatten([
-							stylesLayout.topButtons,
-							stylesLayout.topLeftButton,
-							{
-								backgroundColor: themeColors[themeColor].secondary,
-								borderRadius: 99,
-								// opacity: isTooltipAnimating ? 0.7 : 1,
-							},
-						])}
-					>
-						<Pressable
-							style={stylesLayout.paddingTopButtons}
-							onPress={() => {
-								if (!isTooltipAnimating) {
-									if (showTooltip) {
-										hideTooltip();
-									} else {
-										animateTooltip();
-									}
-									setShowTooltip(!showTooltip);
-								}
-							}}
-						>
-							<BadgeInfoIcon size={26} color="#fff" />
-						</Pressable>
 					</Animated.View>
 				</Animated.View>
 
@@ -356,34 +358,34 @@ export default function Page() {
 				/>
 			</ScrollView>
 			{selectedValues.length >= 3 && (
-					<Animated.View
-						style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
-						entering={enteringAnimation()}
-					>
-						<ButtonRadialGradient
-							onPress={async () => {
-								if (getStorageLimitedAction() < 1) {
-									animateTooltip();
-									return;
-								}
+				<Animated.View
+					style={StyleSheet.flatten([stylesLayout.bottomButton, { alignSelf: "center" }])}
+					entering={enteringAnimation()}
+				>
+					<ButtonRadialGradient
+						onPress={async () => {
+							if (getStorageLimitedAction() < 1) {
+								animateTooltip();
+								return;
+							}
 
-								router.push({
-									pathname: "/recipe",
-									params: {
-										customerID: customer?.originalAppUserId,
-										prompt: selectedValues.map((value) => value.label.FR).join(","),
-										vendorId:
-											Platform.OS === "ios"
-												? await Application.getIosIdForVendorAsync()
-												: Application.getAndroidId(),
-									},
-								});
-							}}
-							text="Trouver ma recette"
-							color={themeColors[themeColor].primaryLight}
-						/>
-					</Animated.View>
-				)}
+							router.push({
+								pathname: "/recipe",
+								params: {
+									customerID: customer?.originalAppUserId,
+									prompt: selectedValues.map((value) => value.label.FR).join(","),
+									vendorId:
+										Platform.OS === "ios"
+											? await Application.getIosIdForVendorAsync()
+											: Application.getAndroidId(),
+								},
+							});
+						}}
+						text="Trouver ma recette"
+						color={themeColors[themeColor].primaryLight}
+					/>
+				</Animated.View>
+			)}
 		</LayoutBackground>
 	);
 }
@@ -406,13 +408,16 @@ const useAnimations = (setIsAnimating: React.Dispatch<React.SetStateAction<boole
 			easing: Easing.linear,
 		});
 
-		widthTooltip.value = withTiming(width - 40, {
-			duration: 280,
-			easing: Easing.elastic(1.1),
-		},
-		() => {
-			runOnJS(setIsAnimating)(false);
-		});
+		widthTooltip.value = withTiming(
+			width - 40,
+			{
+				duration: 280,
+				easing: Easing.elastic(1.1),
+			},
+			() => {
+				runOnJS(setIsAnimating)(false);
+			}
+		);
 
 		// heightTooltip.value = withTiming(
 		// 	425,
@@ -448,7 +453,6 @@ const useAnimations = (setIsAnimating: React.Dispatch<React.SetStateAction<boole
 		);
 
 		const initialWidth = width - 40;
-		const initialHeight = 425;
 
 		widthTooltip.value = withTiming(
 			initialWidth * 1.06,
@@ -645,13 +649,6 @@ const styles = StyleSheet.create({
 	},
 	tooltipViewAbsolute: {
 		width: width - 80,
-	},
-	tooltipActionsAbsolute: {
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignSelf: "center",
-		gap: 20,
-		width: width - 80,
-		marginTop: "auto",
+		flex: 1,
 	},
 });

@@ -1,7 +1,7 @@
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withSequence, withTiming, } from "react-native-reanimated";
+import { StyleSheet, Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import Svg, { Defs, RadialGradient, Stop, Rect, Circle } from "react-native-svg";
 import { Pressable, PressableProps } from "react-native-gesture-handler";
-import { StyleSheet, Text } from "react-native";
 import { useEffect } from "react";
 
 
@@ -12,11 +12,11 @@ export function ButtonRadialGradient({
 	color,
 	style,
 	isAction = false,
+	noSvg = false,
 	...props
-}: PressableProps & { text: string; color: string; isAction?: boolean }) {
+}: TouchableOpacityProps & { text: string; color: string; isAction?: boolean; noSvg?: boolean }) {
 	return (
-		<Pressable
-			// hitSlop={100}
+		<TouchableOpacity
 			{...props}
 			style={StyleSheet.flatten([
 				styles.containerButton,
@@ -30,32 +30,34 @@ export function ButtonRadialGradient({
 					: undefined,
 			])}
 		>
-			<Svg style={styles.absoluteFull}>
-				<Defs>
-					<RadialGradient
-						id="grad"
-						cx="50%"
-						cy="0%"
-						rx="100%"
-						ry="100%"
-						fx="50%"
-						fy="0%"
-						// gradientUnits="userSpaceOnUse"
-					>
-						<Stop offset="0%" stopColor="#fff" stopOpacity="0.7" />
-						<Stop offset="60%" stopColor={color} stopOpacity="0.8" />
-					</RadialGradient>
-				</Defs>
-				<Rect
-					x="0"
-					y="0"
-					width="100%"
-					height="100%"
-					fill="url(#grad)"
-					rx={isAction ? 12 : 27.5}
-					ry={isAction ? 12 : 27.5}
-				/>
-			</Svg>
+			{!noSvg && (
+				<Svg style={styles.absoluteFull}>
+					<Defs>
+						<RadialGradient
+							id="grad"
+							cx="50%"
+							cy="0%"
+							rx="100%"
+							ry="100%"
+							fx="50%"
+							fy="0%"
+							// gradientUnits="userSpaceOnUse"
+						>
+							<Stop offset="0%" stopColor="#fff" stopOpacity="0.7" />
+							<Stop offset="60%" stopColor={color} stopOpacity="0.8" />
+						</RadialGradient>
+					</Defs>
+					<Rect
+						x="0"
+						y="0"
+						width="100%"
+						height="100%"
+						fill="url(#grad)"
+						rx={isAction ? 12 : 27.5}
+						ry={isAction ? 12 : 27.5}
+					/>
+				</Svg>
+			)}
 			<Text
 				style={StyleSheet.flatten([
 					styles.text,
@@ -66,7 +68,7 @@ export function ButtonRadialGradient({
 			>
 				{text}
 			</Text>
-		</Pressable>
+		</TouchableOpacity>
 	);
 }
 
