@@ -1,6 +1,6 @@
 import Animated, { Easing, FadeIn, FadeInDown, FadeInLeft, FadeInRight, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming, runOnJS, FadeOutDown, } from "react-native-reanimated";
+import { Alert, Dimensions, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from "react-native";
 import { customerAppStoreHasSubscriptions, getOfferingsAppStore } from "@/utils/in-app-purchase";
-import { Alert, Dimensions, Platform, ScrollView, StyleSheet, Text, View } from "react-native";
 import { getStorageColor, getStorageLimitedAction, themeColors } from "@/theme/theme-storage";
 import BottomSheet, { BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
@@ -206,7 +206,6 @@ export default function Page() {
 					</Pressable>
 				</Animated.View>
 
-
 				<Animated.View
 					style={StyleSheet.flatten([
 						styles.tooltip,
@@ -241,15 +240,17 @@ export default function Page() {
 						/>
 					</View>
 
-					<Animated.View style={{
-						flexDirection: "row",
-						justifyContent: "space-between",
-						alignItems: "center",
-						gap: 20,
-						opacity: buttonsOpacity,
-					}}>
-						<ButtonRadialGradient
-							noSvg
+					<Animated.View
+						style={{
+							flexDirection: "row",
+							justifyContent: "space-between",
+							alignItems: "center",
+							gap: 20,
+							opacity: buttonsOpacity,
+						}}
+					>
+						<TouchableOpacity
+							disabled={customerAppStoreHasSubscriptions(customer) ?? true}
 							onPress={async () => {
 								const offerings = await getOfferingsAppStore();
 								if (!offerings) return;
@@ -261,25 +262,50 @@ export default function Page() {
 									},
 								});
 							}}
-							disabled={customerAppStoreHasSubscriptions(customer) ?? true}
-							text={"Je m'abonne"}
-							color={themeColors[themeColor].primaryLight}
-							isAction
 							style={{
 								opacity: customerAppStoreHasSubscriptions(customer) ? 0.6 : 1,
+								backgroundColor: "rgba(255, 255, 255, 0.15)",
+								padding: 12,
+								borderRadius: 10,
+								alignItems: "center",
+								flex: 1,
 							}}
-						></ButtonRadialGradient>
+						>
+							<Text
+								style={{
+									color: "#fff",
+									fontSize: 16,
+									fontWeight: "600",
+								}}
+							>
+								Je m'abonne
+							</Text>
+						</TouchableOpacity>
 
-						<ButtonRadialGradient
-							noSvg
-							text="Compris !"
-							color={themeColors[themeColor].primaryLight}
-							isAction
+						<TouchableOpacity
+							disabled={customerAppStoreHasSubscriptions(customer) ?? true}
 							onPress={() => {
 								setShowTooltip(false);
 								hideTooltip();
 							}}
-						/>
+							style={{
+								backgroundColor: "rgba(255, 255, 255, 0.1)",
+								padding: 12,
+								borderRadius: 10,
+								alignItems: "center",
+								flex: 1,
+							}}
+						>
+							<Text
+								style={{
+									color: "#fff",
+									fontSize: 16,
+									fontWeight: "500",
+								}}
+							>
+								Compris
+							</Text>
+						</TouchableOpacity>
 					</Animated.View>
 				</Animated.View>
 
