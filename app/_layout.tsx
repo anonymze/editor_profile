@@ -12,6 +12,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useMMKVString } from "react-native-mmkv";
 import { LogBox, Platform } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import * as Updates from "expo-updates";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import React from "react";
@@ -50,6 +51,7 @@ const Layout = () => {
 		// AtkinsonBold: require("@/assets/fonts/atkinson/Atkinson-Hyperlegible-Bold-102a.woff2"),
 		// AtkinsonItalic: require("@/assets/fonts/atkinson/Atkinson-Hyperlegible-Italic-102a.woff2"),
 	});
+	const { isUpdateAvailable, isUpdatePending } = Updates.useUpdates();
 
 	// initialize RevenueCat (can do it only when component is mounted)
 	React.useEffect(() => {
@@ -67,6 +69,20 @@ const Layout = () => {
 
 		fetchAsync();
 	}, []);
+
+	// TODO
+	React.useEffect(() => {
+		if (isUpdatePending) {
+			Updates.reloadAsync();
+		}
+	}, [isUpdatePending]);
+
+	// TODO
+	React.useEffect(() => {
+		if (isUpdateAvailable) {
+			Updates.fetchUpdateAsync();
+		}
+	}, [isUpdateAvailable]);
 
 	React.useEffect(() => {
 		if (loaded && customerLoaded) SplashScreen.hideAsync();
