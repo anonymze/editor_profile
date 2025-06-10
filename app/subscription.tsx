@@ -1,17 +1,15 @@
-import { customerAppStoreHasSubscriptions, getOfferingsAppStore, purchaseFirstSubscriptionAvailable, } from "@/utils/in-app-purchase";
+import { customerAppStoreHasSubscriptions, purchaseFirstSubscriptionAvailable, restorePurchases } from "@/utils/in-app-purchase";
 import { ActivityIndicator, Platform, Pressable, StyleSheet, Text, View } from "react-native";
-import { ArrowLeftIcon, CheckIcon, StarIcon, UserRoundIcon } from "lucide-react-native";
+import { ArrowLeftIcon, CheckIcon, StarIcon, RotateCcwIcon } from "lucide-react-native";
 import Animated, { FadeIn, FadeInDown, runOnJS } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { Redirect, router, useLocalSearchParams } from "expo-router";
 import { getStorageColor, themeColors } from "@/theme/theme-storage";
-import { PurchasesOfferings } from "react-native-purchases";
 import { useCustomer } from "@/context/customer";
 import * as WebBrowser from "expo-web-browser";
 import React, { useMemo } from "react";
 import { BlurView } from "expo-blur";
-import { Image } from "expo-image";
 
 
 const TERMS_URL =
@@ -69,8 +67,24 @@ export default function Subscription() {
 					// });
 
 					setCustomer(result.customerInfo);
-					router.replace("/", );
-					// setPurchasing(false);
+					router.replace("/");
+					setPurchasing(false);
+				}
+			})
+			.catch(() => {
+				setPurchasing(false);
+			});
+	}, []);
+
+	const restore = React.useCallback(async () => {
+		setPurchasing(true);
+		restorePurchases()
+			.then((customerInfo) => {
+				// result can be null if for some reason the purchase is not available (on emulator, for example)
+				if (customerInfo) {
+					setCustomer(customerInfo);
+					router.replace("/");
+					setPurchasing(false);
 				}
 			})
 			.catch(() => {
@@ -150,6 +164,15 @@ export default function Subscription() {
 
 							<Pressable disabled={purchasing} style={styles.selectButton} onPress={purchase}>
 								<Text style={styles.selectButtonText}>S'abonner</Text>
+							</Pressable>
+
+							<Pressable
+								disabled={purchasing}
+								style={[styles.restoreButton, { opacity: purchasing ? 0.5 : 1 }]}
+								onPress={restore}
+							>
+								<RotateCcwIcon size={16} color="#fff" />
+								<Text style={styles.restoreButtonText}>Restaurer mes achats</Text>
 							</Pressable>
 						</BlurView>
 
@@ -273,5 +296,22 @@ const styles = StyleSheet.create({
 	},
 	linkContainer: {
 		marginTop: 15,
+	},
+	restoreButton: {
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "center",
+		gap: 8,
+		backgroundColor: "rgba(255, 255, 255, 0.1)",
+		padding: 12,
+		borderRadius: 8,
+		marginTop: 16,
+		borderWidth: 1,
+		borderColor: "rgba(255, 255, 255, 0.2)",
+	},
+	restoreButtonText: {
+		color: "#fff",
+		fontSize: 14,
+		fontWeight: "500",
 	},
 });

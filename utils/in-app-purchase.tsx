@@ -93,3 +93,14 @@ export const purchaseSubscription = async (offeringIdentifier: string, offerings
 		return undefined;
 	}
 };
+
+export const restorePurchases = async () => {
+	try {
+		return Purchases.restorePurchases();
+	} catch (error: unknown) {
+		if (isPurchasesError(error)) {
+			// handle error
+		}
+		return null;
+	}
+};
