@@ -66,9 +66,9 @@ export default function Subscription() {
 					// 	},
 					// });
 
+					setPurchasing(false);
 					setCustomer(result.customerInfo);
 					router.replace("/");
-					setPurchasing(false);
 				}
 			})
 			.catch(() => {
@@ -82,9 +82,9 @@ export default function Subscription() {
 			.then((customerInfo) => {
 				// result can be null if for some reason the purchase is not available (on emulator, for example)
 				if (customerInfo) {
+					setPurchasing(false);
 					setCustomer(customerInfo);
 					router.replace("/");
-					setPurchasing(false);
 				}
 			})
 			.catch(() => {

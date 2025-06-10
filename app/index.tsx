@@ -283,7 +283,6 @@ export default function Page() {
 						</TouchableOpacity>
 
 						<TouchableOpacity
-							disabled={customerAppStoreHasSubscriptions(customer) ?? true}
 							onPress={() => {
 								setShowTooltip(false);
 								hideTooltip();

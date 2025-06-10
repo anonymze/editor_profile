@@ -67,4 +67,7 @@ module.exports = () => ({
 		},
 		runtimeVersion: "1.0.0",
 	},
+	updates: {
+		url: "https://u.expo.dev/0706ee30-c626-47b7-90cc-c5f1f4a2703d",
+	},
 });

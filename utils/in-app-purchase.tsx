@@ -68,6 +68,7 @@ export const purchaseFirstSubscriptionAvailable = async (offerings?: PurchasesOf
 		const firstOffering = offeringsInfo.current.availablePackages[0];
 		return Purchases.purchasePackage(firstOffering);
 	} catch (error: unknown) {
+		console.log(error);
 		if (isPurchasesError(error)) {
 		}
 		return undefined;
@@ -88,6 +89,7 @@ export const purchaseSubscription = async (offeringIdentifier: string, offerings
 
 		return Purchases.purchasePackage(offering);
 	} catch (error: unknown) {
+		console.log(error);
 		if (isPurchasesError(error)) {
 		}
 		return undefined;
@@ -98,9 +100,10 @@ export const restorePurchases = async () => {
 	try {
 		return Purchases.restorePurchases();
 	} catch (error: unknown) {
+		console.log(error);
 		if (isPurchasesError(error)) {
 			// handle error
 		}
-		return null;
+		return undefined;
 	}
 };
