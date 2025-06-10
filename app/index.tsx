@@ -265,7 +265,7 @@ export default function Page() {
 							style={{
 								opacity: customerAppStoreHasSubscriptions(customer) ? 0.6 : 1,
 								backgroundColor: "rgba(255, 255, 255, 0.15)",
-								padding: 12,
+								padding: 11,
 								borderRadius: 10,
 								alignItems: "center",
 								flex: 1,
@@ -289,7 +289,7 @@ export default function Page() {
 							}}
 							style={{
 								backgroundColor: "rgba(255, 255, 255, 0.1)",
-								padding: 12,
+								padding: 11,
 								borderRadius: 10,
 								alignItems: "center",
 								flex: 1,
