@@ -1,4 +1,4 @@
-import { customerAppStoreHasSubscriptions, purchaseFirstSubscriptionAvailable, restorePurchases } from "@/utils/in-app-purchase";
+import { customerAppStoreHasSubscriptions, purchaseFirstSubscriptionAvailable, restorePurchases, } from "@/utils/in-app-purchase";
 import { ActivityIndicator, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { ArrowLeftIcon, CheckIcon, StarIcon, RotateCcwIcon } from "lucide-react-native";
 import Animated, { FadeIn, FadeInDown, runOnJS } from "react-native-reanimated";
@@ -46,7 +46,7 @@ export default function Subscription() {
 	const purchase = React.useCallback(async () => {
 		setPurchasing(true);
 
-	purchaseFirstSubscriptionAvailable()
+		purchaseFirstSubscriptionAvailable()
 			.then((result) => {
 				// result can be undefined if for some reason the purchase is not available (on emulator, for example)
 				if (result?.customerInfo) {
@@ -55,7 +55,6 @@ export default function Subscription() {
 					// 	message: 'Subscription purchase successful',
 					// 	level: 'info',
 					// });
-
 					// Sentry.captureMessage('Subscription purchase completed', {
 					// 	level: 'info',
 					// 	tags: {
@@ -66,10 +65,9 @@ export default function Subscription() {
 					// 		originalAppUserId: result.customerInfo.originalAppUserId,
 					// 	},
 					// });
-
-					setPurchasing(false);
+					// setPurchasing(false);
 					// setCustomer(result.customerInfo);
-					router.replace("/");
+					// router.replace("/");
 				}
 			})
 			.catch(() => {
