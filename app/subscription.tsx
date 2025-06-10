@@ -45,7 +45,8 @@ export default function Subscription() {
 
 	const purchase = React.useCallback(async () => {
 		setPurchasing(true);
-		purchaseFirstSubscriptionAvailable()
+
+	purchaseFirstSubscriptionAvailable()
 			.then((result) => {
 				// result can be undefined if for some reason the purchase is not available (on emulator, for example)
 				if (result?.customerInfo) {
@@ -67,8 +68,8 @@ export default function Subscription() {
 					// });
 
 					setPurchasing(false);
-					setCustomer(result.customerInfo);
-					// router.replace("/");
+					// setCustomer(result.customerInfo);
+					router.replace("/");
 				}
 			})
 			.catch(() => {

@@ -274,7 +274,7 @@ export default function Page() {
 							<Text
 								style={{
 									color: "#fff",
-									fontSize: 16,
+									fontSize: 15,
 									fontWeight: "600",
 								}}
 							>
@@ -298,7 +298,7 @@ export default function Page() {
 							<Text
 								style={{
 									color: "#fff",
-									fontSize: 16,
+									fontSize: 15,
 									fontWeight: "500",
 								}}
 							>
