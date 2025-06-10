@@ -68,7 +68,7 @@ export default function Subscription() {
 
 					setPurchasing(false);
 					setCustomer(result.customerInfo);
-					router.replace("/");
+					// router.replace("/");
 				}
 			})
 			.catch(() => {
@@ -84,7 +84,7 @@ export default function Subscription() {
 				if (customerInfo) {
 					setPurchasing(false);
 					setCustomer(customerInfo);
-					router.replace("/");
+					// router.replace("/");
 				}
 			})
 			.catch(() => {

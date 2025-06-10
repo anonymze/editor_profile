@@ -7,29 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00EB6520F014BE78A7EF9B8D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A079296A4D47DF0232498B7C /* PrivacyInfo.xcprivacy */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		693F9C85F7DEE1126CCA86B2 /* libPods-Fridgy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB154FDFC1D48AD2983FBC41 /* libPods-Fridgy.a */; };
+		4D26DABCE79805FFCC3876EF /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105A10879E5D70A74B555023 /* ExpoModulesProvider.swift */; };
+		69C87907857AF5FA212013B0 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BBA318AA37CE26D4A6FD4BED /* PrivacyInfo.xcprivacy */; };
+		8FD79B5CAB57A15CFB408536 /* libPods-Fridgy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A61C53B1189DEF490B1ADA0 /* libPods-Fridgy.a */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
-		F524EB630DE9619F4F2C2BE4 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DB6F9D654700209AB08B53 /* ExpoModulesProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		104457BB034D83898D5E9950 /* Pods-Fridgy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fridgy.release.xcconfig"; path = "Target Support Files/Pods-Fridgy/Pods-Fridgy.release.xcconfig"; sourceTree = "<group>"; };
+		105A10879E5D70A74B555023 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Fridgy/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Fridgy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fridgy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Fridgy/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Fridgy/Info.plist; sourceTree = "<group>"; };
-		32DB6F9D654700209AB08B53 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Fridgy/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		A079296A4D47DF0232498B7C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Fridgy/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		900E6AF85D7281D692F00513 /* Pods-Fridgy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fridgy.debug.xcconfig"; path = "Target Support Files/Pods-Fridgy/Pods-Fridgy.debug.xcconfig"; sourceTree = "<group>"; };
+		9A61C53B1189DEF490B1ADA0 /* libPods-Fridgy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fridgy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = Fridgy/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		CBBE7153C4B0CBD993E49736 /* Pods-Fridgy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fridgy.debug.xcconfig"; path = "Target Support Files/Pods-Fridgy/Pods-Fridgy.debug.xcconfig"; sourceTree = "<group>"; };
-		DB154FDFC1D48AD2983FBC41 /* libPods-Fridgy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fridgy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBA318AA37CE26D4A6FD4BED /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Fridgy/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Fridgy/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* Fridgy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Fridgy-Bridging-Header.h"; path = "Fridgy/Fridgy-Bridging-Header.h"; sourceTree = "<group>"; };
-		F9CA0031AD7E7ED1F6168786 /* Pods-Fridgy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fridgy.release.xcconfig"; path = "Target Support Files/Pods-Fridgy/Pods-Fridgy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				693F9C85F7DEE1126CCA86B2 /* libPods-Fridgy.a in Frameworks */,
+				8FD79B5CAB57A15CFB408536 /* libPods-Fridgy.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,36 +53,36 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				A079296A4D47DF0232498B7C /* PrivacyInfo.xcprivacy */,
+				BBA318AA37CE26D4A6FD4BED /* PrivacyInfo.xcprivacy */,
 			);
 			name = Fridgy;
-			sourceTree = "<group>";
-		};
-		2C43B781020F5DEC837BD994 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CBBE7153C4B0CBD993E49736 /* Pods-Fridgy.debug.xcconfig */,
-				F9CA0031AD7E7ED1F6168786 /* Pods-Fridgy.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				DB154FDFC1D48AD2983FBC41 /* libPods-Fridgy.a */,
+				9A61C53B1189DEF490B1ADA0 /* libPods-Fridgy.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		68EFEE5324DFF02AFA9C87EA /* ExpoModulesProviders */ = {
+		343B715CD0C101CBF7B1CAE4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BF0654EEE81221B971735C0E /* Fridgy */,
+				900E6AF85D7281D692F00513 /* Pods-Fridgy.debug.xcconfig */,
+				104457BB034D83898D5E9950 /* Pods-Fridgy.release.xcconfig */,
 			);
-			name = ExpoModulesProviders;
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		7F148AFC0FFF646672C3AFA5 /* Fridgy */ = {
+			isa = PBXGroup;
+			children = (
+				105A10879E5D70A74B555023 /* ExpoModulesProvider.swift */,
+			);
+			name = Fridgy;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -99,8 +99,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				2C43B781020F5DEC837BD994 /* Pods */,
-				68EFEE5324DFF02AFA9C87EA /* ExpoModulesProviders */,
+				343B715CD0C101CBF7B1CAE4 /* Pods */,
+				F56A053E223FDDF2E42DA741 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -124,12 +124,12 @@
 			path = Fridgy/Supporting;
 			sourceTree = "<group>";
 		};
-		BF0654EEE81221B971735C0E /* Fridgy */ = {
+		F56A053E223FDDF2E42DA741 /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				32DB6F9D654700209AB08B53 /* ExpoModulesProvider.swift */,
+				7F148AFC0FFF646672C3AFA5 /* Fridgy */,
 			);
-			name = Fridgy;
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Fridgy" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				CED70D28E214CE7218E31624 /* [Expo] Configure project */,
+				EE7137621FCD4B6B130CEAC8 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				8E34F5D12CE47A33F43D3731 /* [CP] Embed Pods Frameworks */,
+				63B49C83EE4479680DE32F62 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,7 +196,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				00EB6520F014BE78A7EF9B8D /* PrivacyInfo.xcprivacy in Resources */,
+				69C87907857AF5FA212013B0 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +238,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63B49C83EE4479680DE32F62 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Fridgy/Pods-Fridgy-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fridgy/Pods-Fridgy-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
@@ -288,25 +306,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fridgy/Pods-Fridgy-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8E34F5D12CE47A33F43D3731 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Fridgy/Pods-Fridgy-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fridgy/Pods-Fridgy-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CED70D28E214CE7218E31624 /* [Expo] Configure project */ = {
+		EE7137621FCD4B6B130CEAC8 /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -333,7 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				F524EB630DE9619F4F2C2BE4 /* ExpoModulesProvider.swift in Sources */,
+				4D26DABCE79805FFCC3876EF /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,7 +342,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBBE7153C4B0CBD993E49736 /* Pods-Fridgy.debug.xcconfig */;
+			baseConfigurationReference = 900E6AF85D7281D692F00513 /* Pods-Fridgy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -378,7 +378,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F9CA0031AD7E7ED1F6168786 /* Pods-Fridgy.release.xcconfig */;
+			baseConfigurationReference = 104457BB034D83898D5E9950 /* Pods-Fridgy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
