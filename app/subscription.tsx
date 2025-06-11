@@ -47,11 +47,11 @@ export default function Subscription() {
 		setPurchasing(true);
 
 		const result = await purchaseFirstSubscriptionAvailable();
-		setPurchasing(false);
+		// setPurchasing(false);
 
 		if (result?.customerInfo) {
 			setCustomer(result.customerInfo);
-			router.replace("/");
+			// router.replace("/");
 		}
 
 
@@ -82,17 +82,17 @@ export default function Subscription() {
 		// 	setPurchasing(false);
 		// });
 
-		setPurchasing(false);
+		// setPurchasing(false);
 	}, []);
 
 	const restore = React.useCallback(async () => {
 		setPurchasing(true);
 		const customerInfo = await restorePurchases();
-		setPurchasing(false);
+		// setPurchasing(false);
 
 		if (customerInfo) {
 			setCustomer(customerInfo);
-			router.replace("/");
+			// router.replace("/");
 		}
 	}, []);
 
