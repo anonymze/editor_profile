@@ -51,7 +51,7 @@ export default function Subscription() {
 
 		if (result?.customerInfo) {
 			setCustomer(result.customerInfo);
-			// router.replace("/");
+			router.replace("/");
 		}
 
 
@@ -81,8 +81,6 @@ export default function Subscription() {
 		// .catch(() => {
 		// 	setPurchasing(false);
 		// });
-
-		// setPurchasing(false);
 	}, []);
 
 	const restore = React.useCallback(async () => {
@@ -92,7 +90,7 @@ export default function Subscription() {
 
 		if (customerInfo) {
 			setCustomer(customerInfo);
-			// router.replace("/");
+			router.replace("/");
 		}
 	}, []);
 
