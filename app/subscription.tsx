@@ -47,9 +47,9 @@ export default function Subscription() {
 		setPurchasing(true);
 
 		purchaseFirstSubscriptionAvailable()
-			.then((result) => {
+			// .then((result) => {
 				// result can be undefined if for some reason the purchase is not available (on emulator, for example)
-				if (result?.customerInfo) {
+				// if (result?.customerInfo) {
 					// Sentry.addBreadcrumb({
 					// 	category: 'subscription',
 					// 	message: 'Subscription purchase successful',
@@ -68,27 +68,17 @@ export default function Subscription() {
 					// setPurchasing(false);
 					// setCustomer(result.customerInfo);
 					// router.replace("/");
-				}
-			})
-			.catch(() => {
-				setPurchasing(false);
-			});
+			// 	}
+			// })
+			// .catch(() => {
+			// 	setPurchasing(false);
+			// });
 	}, []);
 
 	const restore = React.useCallback(async () => {
 		setPurchasing(true);
 		restorePurchases()
-			.then((customerInfo) => {
-				// result can be null if for some reason the purchase is not available (on emulator, for example)
-				if (customerInfo) {
-					setPurchasing(false);
-					setCustomer(customerInfo);
-					// router.replace("/");
-				}
-			})
-			.catch(() => {
-				setPurchasing(false);
-			});
+
 	}, []);
 
 	return (
