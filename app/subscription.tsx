@@ -1,5 +1,5 @@
 import { customerAppStoreHasSubscriptions, purchaseFirstSubscriptionAvailable, restorePurchases, } from "@/utils/in-app-purchase";
-import { ActivityIndicator, Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Alert, Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { ArrowLeftIcon, CheckIcon, StarIcon, RotateCcwIcon } from "lucide-react-native";
 import Animated, { FadeIn, FadeInDown, runOnJS } from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
@@ -51,9 +51,9 @@ export default function Subscription() {
 
 		if (result?.customerInfo) {
 			setCustomer(result.customerInfo);
-			router.replace("/");
 		}
-
+		
+		router.replace("/");
 
 		// .then((result) => {
 		// result can be undefined if for some reason the purchase is not available (on emulator, for example)
@@ -90,8 +90,9 @@ export default function Subscription() {
 
 		if (customerInfo) {
 			setCustomer(customerInfo);
-			router.replace("/");
 		}
+		
+		router.replace("/");
 	}, []);
 
 	return (
