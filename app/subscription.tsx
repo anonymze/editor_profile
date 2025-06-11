@@ -46,41 +46,54 @@ export default function Subscription() {
 	const purchase = React.useCallback(async () => {
 		setPurchasing(true);
 
-		await purchaseFirstSubscriptionAvailable()
-			// .then((result) => {
-				// result can be undefined if for some reason the purchase is not available (on emulator, for example)
-				// if (result?.customerInfo) {
-					// Sentry.addBreadcrumb({
-					// 	category: 'subscription',
-					// 	message: 'Subscription purchase successful',
-					// 	level: 'info',
-					// });
-					// Sentry.captureMessage('Subscription purchase completed', {
-					// 	level: 'info',
-					// 	tags: {
-					// 		subscriptionStatus: result.customerInfo.activeSubscriptions.length > 0 ? 'active' : 'inactive'
-					// 	},
-					// 	extra: {
-					// 		subscriptions: result.customerInfo.entitlements.active,
-					// 		originalAppUserId: result.customerInfo.originalAppUserId,
-					// 	},
-					// });
-					// setPurchasing(false);
-					// setCustomer(result.customerInfo);
-					// router.replace("/");
-			// 	}
-			// })
-			// .catch(() => {
-			// 	setPurchasing(false);
-			// });
+		const result = await purchaseFirstSubscriptionAvailable();
+		setPurchasing(false);
 
-			setPurchasing(false);
+		if (result?.customerInfo) {
+			setCustomer(result.customerInfo);
+			router.replace("/");
+		}
+
+
+		// .then((result) => {
+		// result can be undefined if for some reason the purchase is not available (on emulator, for example)
+		// if (result?.customerInfo) {
+		// Sentry.addBreadcrumb({
+		// 	category: 'subscription',
+		// 	message: 'Subscription purchase successful',
+		// 	level: 'info',
+		// });
+		// Sentry.captureMessage('Subscription purchase completed', {
+		// 	level: 'info',
+		// 	tags: {
+		// 		subscriptionStatus: result.customerInfo.activeSubscriptions.length > 0 ? 'active' : 'inactive'
+		// 	},
+		// 	extra: {
+		// 		subscriptions: result.customerInfo.entitlements.active,
+		// 		originalAppUserId: result.customerInfo.originalAppUserId,
+		// 	},
+		// });
+		// setPurchasing(false);
+		// setCustomer(result.customerInfo);
+		// router.replace("/");
+		// 	}
+		// })
+		// .catch(() => {
+		// 	setPurchasing(false);
+		// });
+
+		setPurchasing(false);
 	}, []);
 
 	const restore = React.useCallback(async () => {
 		setPurchasing(true);
-		await restorePurchases()
+		const customerInfo = await restorePurchases();
 		setPurchasing(false);
+
+		if (customerInfo) {
+			setCustomer(customerInfo);
+			router.replace("/");
+		}
 	}, []);
 
 	return (
