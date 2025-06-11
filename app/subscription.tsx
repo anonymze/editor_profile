@@ -26,9 +26,9 @@ export default function Subscription() {
 	const themeColor = getStorageColor();
 	const { customer, setCustomer } = useCustomer();
 
-	if (customerAppStoreHasSubscriptions(customer)) {
-		return <Redirect href="../" />;
-	}
+	// if (customerAppStoreHasSubscriptions(customer)) {
+	// 	return <Redirect href="../" />;
+	// }
 
 	const panGesture = useMemo(
 		() =>
@@ -91,7 +91,7 @@ export default function Subscription() {
 		if (customerInfo) {
 			setCustomer(customerInfo);
 		}
-		
+
 		router.replace("/");
 	}, []);
 
