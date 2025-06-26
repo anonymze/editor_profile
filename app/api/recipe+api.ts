@@ -18,7 +18,7 @@ export async function POST(request: Request) {
   console.log(origin, vendorId, customerId);
 
   // vendor id
-  // CBAD5FB9-C5E1-4641-AAE1-B257E2580A1B
+  // CBAD5FB9-C5E1-4641-AAE1-B257E2580A1B ;
 
   if (!origin || !vendorId) {
     return new Response("KO", { status: 401 });
@@ -51,8 +51,10 @@ export async function POST(request: Request) {
   );
 
   // await incrementVendorRequest(vendorId);
+  // console.log("LOG");
+  // console.log(result);
 
-  return Response.json(JSON.parse(result.text));
+  return Response.json(JSON.parse(result));
 }
 
 const generateRecipe = (
