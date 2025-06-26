@@ -34,6 +34,7 @@ export async function POST(request: Request) {
     isSubscribed = await checkUserSubscription(customerId);
   }
 
+  console.log("is sub ??");
   console.log(isSubscribed);
 
   if (!data?.prompt) {
