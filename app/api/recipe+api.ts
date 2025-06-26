@@ -76,12 +76,12 @@ const generateRecipeWithOpenRouter = async (
       method: "POST",
       headers: {
         Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        "HTTP-Referer": process.env.EXPO_PUBLIC_ORIGIN_MOBILE || "",
-        "X-Title": "Recipe Generator",
+        // "HTTP-Referer": process.env.EXPO_PUBLIC_ORIGIN_MOBILE || "",
+        // "X-Title": "Recipe Generator",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "openai/gpt-4o-mini", // or any other model available on OpenRouter
+        model: "mistralai/mistral-large-2411", // or any other model available on OpenRouter
         messages: [
           {
             role: "system",
@@ -131,7 +131,7 @@ const generateRecipeWithOpenRouter = async (
 		- Tu ne dois pas proposer une recette qui nécessite des ingrédients qu'il n'a pas dans son frigo, à l'exception
 		de certains ingrédients qui sont très très facilement trouvables dans une cuisine, exemple : huile, sel, beurre, poivre...
 		- Les ingrédients doivent être présentés dans l'ordre alphabétique, avec les ingrédients optionnels en dernier.
-		- Tu dois expliquer tous les termes techniques peu commun que tu emplois, imagine que tu parles à un adolescent de 20 ans.
+		- Tu dois expliquer tous les termes techniques vraiment peu commun que tu emplois, imagine que tu parles à un adolescent de 20 ans.
 		- Le titre de la recette doit être original et non redondant.
 		- Tu dois indiquer si c'est une entrée, un plat ou un dessert.
 		- Tu dois au maximum proposer des recettes de saison si les ingrédients te le permettent.
