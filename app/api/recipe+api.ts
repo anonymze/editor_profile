@@ -1,5 +1,3 @@
-import { mistral } from "@ai-sdk/mistral";
-import { generateText } from "ai";
 import { checkUserSubscription } from "./_utils/revenu-cat";
 
 // import { getVendorRequestCount, hasReachedRequestLimit, incrementVendorRequest, } from "./_utils/request-tracker";
