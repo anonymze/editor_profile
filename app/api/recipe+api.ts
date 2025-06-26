@@ -1,5 +1,6 @@
 import { mistral } from "@ai-sdk/mistral";
 import { generateText } from "ai";
+import { checkUserSubscription } from "./_utils/revenu-cat";
 
 // import { getVendorRequestCount, hasReachedRequestLimit, incrementVendorRequest, } from "./_utils/request-tracker";
 
@@ -14,6 +15,7 @@ export async function POST(request: Request) {
   const origin = headers.get("X-Origin");
   const vendorId = headers.get("X-Vendor-Id");
   const customerId = headers.get("X-Customer-Id");
+  let isSubscribed = false;
 
   console.log(origin, vendorId, customerId);
 
@@ -27,6 +29,12 @@ export async function POST(request: Request) {
   if (origin !== process.env.EXPO_PUBLIC_ORIGIN_MOBILE) {
     return new Response("KO", { status: 401 });
   }
+
+  if (customerId) {
+    isSubscribed = await checkUserSubscription(customerId);
+  }
+
+  console.log(isSubscribed);
 
   if (!data?.prompt) {
     return new Response("KO", { status: 400 });
