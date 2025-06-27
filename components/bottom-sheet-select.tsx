@@ -227,6 +227,26 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
                 Annuler
               </Text>
             </Pressable>
+            <Pressable
+              style={({ pressed }) => [
+                styles.containerTextBottom,
+                { opacity: pressed ? 0.5 : 1 },
+              ]}
+              onPress={() => {
+                if (ref && "current" in ref) {
+                  ref?.current?.close();
+                }
+              }}
+            >
+              <Text
+                style={[
+                  styles.textBottomSheet,
+                  { color: themeColors[themeColor].primary },
+                ]}
+              >
+                Fermer
+              </Text>
+            </Pressable>
           </View>
         </View>
       </BottomSheetModal>
