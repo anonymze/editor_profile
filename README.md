@@ -4,6 +4,10 @@ pnpm run android --device
 
 cd android && ./gradlew clean
 
+// bundle .aab with already signed keystore
+https://reactnative.dev/docs/signed-apk-android
+./gradlew bundleRelease
+
 // FORCE KOTLIN VERSION
 subprojects { project ->
     project.configurations.all {
@@ -32,7 +36,7 @@ eas device:create
 
 
 // test server,locally (api routes)
-npx expo serve 
+npx expo serve
 
 // export web
 npx expo export --platform web
