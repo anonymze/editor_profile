@@ -60,3 +60,12 @@ pnpx @sentry/wizard@latest -i reactNative --saas --org yann-metier --project fri
 pnpx expo install --check
 pnpx expo install expo@^53.0.0 --fix
 pnpx expo-doctor@latest
+
+rappelle des selections
+combien de personnes
+plus de détails sur les viandes ? boeuf de quoi ?
+grand vide optimisation ? frigo plus grand centré + déplacé
+supprimer qu'un ingrédient
+recette du jour  version pro ?
+bug tourne dans le vide
+changer yann metier

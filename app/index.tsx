@@ -262,7 +262,7 @@ export default function Page() {
             <Text style={styles.tooltipText}>
               En appuyant sur le{" "}
               <Text style={styles.tooltipUnderlineText}>frigo</Text> vous pouvez
-              ajoutez des ingrédients.
+              ajouter des ingrédients.
             </Text>
 
             <Text style={styles.tooltipText}>
