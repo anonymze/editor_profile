@@ -31,12 +31,17 @@ import {
   getStorageLimitedAction,
   themeColors,
 } from "@/theme/theme-storage";
-import BottomSheet, {
-  BottomSheetModal,
-  useBottomSheetModal,
-} from "@gorhom/bottom-sheet";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
-import { Fragment, useCallback, useEffect, useRef, useState } from "react";
+import {
+  ActionDispatch,
+  Fragment,
+  useCallback,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 import LayoutBackground, { stylesLayout } from "@/layout/background";
 import { ButtonRadialGradient } from "@/components/radial-gradient";
 import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
@@ -102,10 +107,52 @@ const initialSections = [
   },
 ];
 
+function selectionReducer(
+  oldState: Map<FoodItem["id"], FoodItem>,
+  action: ActionReducerFoodItems,
+): Map<FoodItem["id"], FoodItem> {
+  const newState = new Map(oldState);
+
+  switch (action.type) {
+    case "ADD":
+      if (newState.size === 10) {
+        Alert.alert(
+          "Attention",
+          "Vous ne pouvez pas ajouter plus de 10 ingrédients",
+          [{ text: "OK" }],
+        );
+        break;
+      }
+      newState.set(action.item.id, action.item);
+      break;
+    case "REMOVE":
+      newState.delete(action.item.id);
+      break;
+    case "CLEAR":
+      newState.clear();
+      break;
+  }
+
+  return newState;
+}
+
+export type ActionReducerFoodItems =
+  | {
+      type: "ADD" | "REMOVE";
+      item: FoodItem;
+    }
+  | {
+      type: "CLEAR";
+      item?: never;
+    };
+
 export default function Page() {
   const { customer } = useCustomer();
   const bottomSheetRef = useRef<BottomSheetModal>(null);
-  const [selectedValues, setSelectedValues] = useState<FoodItem[]>([]);
+  const [selectedValues, dispatch] = useReducer<
+    Map<FoodItem["id"], FoodItem>,
+    [ActionReducerFoodItems]
+  >(selectionReducer, new Map());
   const [showTooltip, setShowTooltip] = useState(false);
   const [isTooltipAnimating, setIsTooltipAnimating] = useState(false);
   const latestBatchRef = useRef<FoodItem[]>([]);
@@ -129,29 +176,6 @@ export default function Page() {
     hideTooltip,
     buttonsOpacity,
   } = useAnimations(setIsTooltipAnimating);
-
-  const getSelectecValues = (values: FoodItem[] | null) => {
-    if (values === null) {
-      latestBatchRef.current = [];
-      setSelectedValues([]);
-      return;
-    }
-
-    // Check if adding new values would exceed max of 10
-    const uniqueNewValues = [...new Set([...selectedValues, ...values])];
-
-    if (uniqueNewValues.length > 10) {
-      Alert.alert(
-        "Attention",
-        "Vous ne pouvez pas ajouter plus de 10 ingrédients",
-        [{ text: "OK" }],
-      );
-      return;
-    }
-
-    latestBatchRef.current = values;
-    setSelectedValues(uniqueNewValues);
-  };
 
   useEffect(() => {
     scale1.value = withRepeat(
@@ -399,7 +423,7 @@ export default function Page() {
           </Animated.View>
         </View>
 
-        {selectedValues.length > 0 ? (
+        {selectedValues.size > 0 ? (
           <Fragment>
             <Animated.View entering={FadeIn} style={styles.mediumPaddingTop}>
               <TextGradient
@@ -411,7 +435,7 @@ export default function Page() {
             </Animated.View>
 
             <View style={styles.containerIngredients}>
-              {selectedValues.map((value) => (
+              {Array.from(selectedValues.values()).map((value) => (
                 <Animated.View
                   style={styles.ingredientItem}
                   key={value.id}
@@ -436,14 +460,15 @@ export default function Page() {
         ) : null}
 
         <BottomSheetSelect
-          onSelect={getSelectecValues}
+          selectedValues={selectedValues}
+          dispatch={dispatch}
           data={initialSections}
           placeholderSearch="Chercher des ingrédients"
           ref={bottomSheetRef}
           themeColor={themeColor}
         />
       </ScrollView>
-      {selectedValues.length >= 3 && (
+      {selectedValues.size >= 3 && (
         <Animated.View
           style={StyleSheet.flatten([
             stylesLayout.bottomButton,
@@ -462,7 +487,7 @@ export default function Page() {
                 pathname: "/recipe",
                 params: {
                   customerID: customer?.originalAppUserId,
-                  prompt: selectedValues
+                  prompt: Array.from(selectedValues.values())
                     .map((value) => value.label.FR)
                     .join(","),
                   vendorId:

@@ -1,11 +1,17 @@
 import { Text, StyleSheet, Platform, TextInput, View } from "react-native";
-import React, { Dispatch, forwardRef, SetStateAction } from "react";
+import React, {
+  ActionDispatch,
+  Dispatch,
+  forwardRef,
+  SetStateAction,
+} from "react";
 import { FlashList } from "@shopify/flash-list";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { Pressable } from "react-native-gesture-handler";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { themeColors } from "@/theme/theme-storage";
 import { Image } from "expo-image";
+import { ActionReducerFoodItems } from "@/app";
 
 export type FoodItem = {
   id: string;
@@ -22,16 +28,16 @@ interface Props {
     title: string;
     data: FoodItem[];
   }[];
-  onSelect: (values: FoodItem[] | null) => void;
+  selectedValues: Map<string, FoodItem>;
+  dispatch: ActionDispatch<[ActionReducerFoodItems]>;
   themeColor: keyof typeof themeColors;
 }
 
 const snapPoints = ["75%"];
 
 export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
-  ({ onSelect, placeholderSearch, data, themeColor }, ref) => {
+  ({ selectedValues, dispatch, placeholderSearch, data, themeColor }, ref) => {
     const [searchQuery, setSearchQuery] = React.useState("");
-    const [selectedIds, setSelectedIds] = React.useState<FoodItem[]>([]);
     const searchInputRef = React.useRef<TextInput>(null);
 
     // filter sections based on search query
@@ -147,6 +153,15 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
             />
           )}
 
+          <Text
+            style={{
+              color: "#888",
+              marginBottom: 6,
+            }}
+          >
+            Sélectionnez plusieurs ingrédients
+          </Text>
+
           <View style={styles.listContainer}>
             <FlashList
               showsVerticalScrollIndicator={false}
@@ -175,15 +190,15 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
                   return (
                     <ItemComponent
                       item={item.item}
-                      selectedIds={selectedIds}
-                      setSelectedIds={setSelectedIds}
+                      isSelected={selectedValues.has(item.item.id)}
+                      dispatch={dispatch}
                       themeColor={themeColor}
                     />
                   );
                 }
               }}
               keyExtractor={(item) => item.id}
-              extraData={selectedIds}
+              extraData={selectedValues}
             />
           </View>
 
@@ -195,8 +210,9 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
                 { opacity: pressed ? 0.5 : 1 },
               ]}
               onPress={() => {
-                onSelect(null);
-                setSelectedIds([]);
+                dispatch({
+                  type: "CLEAR",
+                });
                 if (ref && "current" in ref) {
                   ref?.current?.close();
                 }
@@ -208,29 +224,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
                   { color: themeColors[themeColor].primary },
                 ]}
               >
-                Effacer
-              </Text>
-            </Pressable>
-            <Pressable
-              style={({ pressed }) => [
-                styles.containerTextBottom,
-                { opacity: pressed ? 0.5 : 1 },
-              ]}
-              onPress={() => {
-                onSelect(selectedIds);
-                setSelectedIds([]);
-                if (ref && "current" in ref) {
-                  ref?.current?.close();
-                }
-              }}
-            >
-              <Text
-                style={[
-                  styles.textBottomSheet,
-                  { color: themeColors[themeColor].primary },
-                ]}
-              >
-                Ajouter
+                Annuler
               </Text>
             </Pressable>
           </View>
@@ -242,18 +236,15 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 
 function ItemComponent<T extends FoodItem>({
   item,
-  selectedIds,
-  setSelectedIds,
+  isSelected,
+  dispatch,
   themeColor,
 }: {
   item: T;
-  selectedIds: FoodItem[];
-  setSelectedIds: Dispatch<SetStateAction<FoodItem[]>>;
+  isSelected: boolean;
+  dispatch: ActionDispatch<[ActionReducerFoodItems]>;
   themeColor: keyof typeof themeColors;
 }) {
-  const isSelected = selectedIds.some(
-    (selectedItem) => selectedItem.id === item.id,
-  );
   return (
     <Pressable
       key={item.id}
@@ -264,12 +255,16 @@ function ItemComponent<T extends FoodItem>({
         },
       ]}
       onPress={() => {
-        if (selectedIds.find((id) => id.id === item.id)) {
-          setSelectedIds(
-            selectedIds.filter((selected) => selected.id !== item.id),
-          );
+        if (isSelected) {
+          dispatch({
+            type: "REMOVE",
+            item,
+          });
         } else {
-          setSelectedIds((prev) => [...prev, item]);
+          dispatch({
+            type: "ADD",
+            item,
+          });
         }
       }}
     >
@@ -327,7 +322,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   searchInput: {
-    marginBottom: 15,
+    marginBottom: 10,
     marginTop: 15,
     padding: 14,
     borderRadius: 10,
