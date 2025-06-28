@@ -55,7 +55,7 @@ import { initialSections } from "@/data/sections";
 
 const { width, height } = Dimensions.get("window");
 
-const DEFAULT_TRANSLATE_FRIDGE = 100;
+const DEFAULT_TRANSLATE_FRIDGE = 110;
 const DEFAULT_SCALE_FRIDGE = 1.3;
 
 function selectionReducer(
