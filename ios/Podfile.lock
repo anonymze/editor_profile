@@ -392,8 +392,8 @@ PODS:
   - libwebp/sharpyuv (1.5.0)
   - libwebp/webp (1.5.0):
     - libwebp/sharpyuv
-  - PurchasesHybridCommon (13.38.1):
-    - RevenueCat (= 5.29.0)
+  - PurchasesHybridCommon (13.28.0):
+    - RevenueCat (= 5.21.0)
   - RCT-Folly (2024.11.18.00):
     - boost
     - DoubleConversion
@@ -1719,32 +1719,7 @@ PODS:
     - React-jsiexecutor
     - React-RCTFBReactNativeSpec
     - ReactCommon/turbomodule/core
-  - react-native-keyboard-controller (1.17.5):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.11.18.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-hermes
-    - React-ImageManager
-    - React-jsi
-    - react-native-keyboard-controller/common (= 1.17.5)
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-renderercss
-    - React-rendererdebug
-    - React-utils
-    - ReactCodegen
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - Yoga
-  - react-native-keyboard-controller/common (1.17.5):
+  - react-native-keyboard-controller (1.16.8):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1768,7 +1743,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-mmkv (3.3.0):
+  - react-native-mmkv (3.2.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2213,7 +2188,7 @@ PODS:
     - React-logger (= 0.79.4)
     - React-perflogger (= 0.79.4)
     - React-utils (= 0.79.4)
-  - RevenueCat (5.29.0)
+  - RevenueCat (5.21.0)
   - RNCMaskedView (0.3.2):
     - DoubleConversion
     - glog
@@ -2286,8 +2261,8 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNPurchases (8.11.7):
-    - PurchasesHybridCommon (= 13.38.1)
+  - RNPurchases (8.9.4):
+    - PurchasesHybridCommon (= 13.28.0)
     - React-Core
   - RNReanimated (3.17.5):
     - DoubleConversion
@@ -2922,7 +2897,7 @@ SPEC CHECKSUMS:
   libavif: 84bbb62fb232c3018d6f1bab79beea87e35de7b7
   libdav1d: 23581a4d8ec811ff171ed5e2e05cd27bad64c39f
   libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
-  PurchasesHybridCommon: 5a46c67f78680dee9289783edbcebd983ff7bd9c
+  PurchasesHybridCommon: f0d344e7073314988b3d98fbb9da69db85aaff38
   RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: 0418ac97b9f53b2e37f473da1663ef3061e46beb
   RCTRequired: b9fde7f981b11aa898f03a70d3d4d36b80f1b16d
@@ -2955,8 +2930,8 @@ SPEC CHECKSUMS:
   React-logger: 694787b12186eeeadccdfdc6769890e9080c1f11
   React-Mapbuffer: a0ee08ac29b8a2c08692aa0d51cefa1c88860e17
   React-microtasksnativemodule: ef2292ca147fa8793305e4693586ad0caf3afad3
-  react-native-keyboard-controller: 46ff1d24f868d895763d2043dac37909bc07c6fa
-  react-native-mmkv: fb6fdab2e83b892959e32586b7814078fe6c1a6a
+  react-native-keyboard-controller: b4b14e5d041639e6850cbd895879edf267ad7f0c
+  react-native-mmkv: d3cc73d2554fafa20dc5b86386359034d1faf8ff
   react-native-safe-area-context: 562163222d999b79a51577eda2ea8ad2c32b4d06
   react-native-webview: 520bcb79c3f2af91e157cdd695732a34ab5f25c8
   React-NativeModulesApple: da60186ad0aafff031a9bc86b048711d34acc813
@@ -2990,11 +2965,11 @@ SPEC CHECKSUMS:
   ReactAppDependencyProvider: bf62814e0fde923f73fc64b7e82d76c63c284da9
   ReactCodegen: f891084749d03b8af8a244cefaa492e491b763fd
   ReactCommon: c7d636ec1b9801ff4ee83cce8e0bf74a1610fc3f
-  RevenueCat: 5fa12c42c14b390dd2423897e925f407f474b8fa
+  RevenueCat: 57028a8673201fdaacd1354065e8adbcba5739a4
   RNCMaskedView: ae521efb1c6c2b183ae0f8479487db03c826184c
   RNFlashList: aa7ca75463ace03c43e658562ef3e5ce05d9243b
   RNGestureHandler: 7d0931a61d7ba0259f32db0ba7d0963c3ed15d2b
-  RNPurchases: 5f508be6d4237128d78b69fb17958ab07ae5380f
+  RNPurchases: 6fdd1000ce7cf8168ed6407d4f9166068906d2f2
   RNReanimated: 2313402fe27fecb7237619e9c6fcee3177f08a65
   RNScreens: 482e9707f9826230810c92e765751af53826d509
   RNSVG: 794f269526df9ddc1f79b3d1a202b619df0368e3

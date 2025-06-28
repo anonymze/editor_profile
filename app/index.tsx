@@ -55,7 +55,7 @@ import { initialSections } from "@/data/sections";
 
 const { width, height } = Dimensions.get("window");
 
-const DEFAULT_TRANSLATE_FRIDGE = 120;
+const DEFAULT_TRANSLATE_FRIDGE = 110;
 const DEFAULT_SCALE_FRIDGE = 1.3;
 
 function selectionReducer(
@@ -69,7 +69,7 @@ function selectionReducer(
       if (newState.size === 10) {
         Alert.alert(
           "Attention",
-          "Vous ne pouvez pas ajouter plus de 10 ingrédients",
+          "Vous ne pouvez pas ajouter plus de 10 ingrédients.",
           [{ text: "OK" }],
         );
         break;
