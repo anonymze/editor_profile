@@ -1,0 +1,14 @@
+{
+  "apiRoutes": [
+    {
+      "file": "_expo/functions/api/recipe+api.js",
+      "page": "/api/recipe",
+      "namedRegex": "^/api/recipe(?:/)?$",
+      "routeKeys": {}
+    }
+  ],
+  "htmlRoutes": [],
+  "notFoundRoutes": [],
+  "redirects": [],
+  "rewrites": []
+}
