@@ -11,6 +11,7 @@ import Animated, {
   withTiming,
   runOnJS,
   FadeOutDown,
+  withSpring,
 } from "react-native-reanimated";
 import {
   Alert,
@@ -34,7 +35,6 @@ import {
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
 import {
-  ActionDispatch,
   Fragment,
   useCallback,
   useEffect,
@@ -49,63 +49,14 @@ import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
 import { useCustomer } from "@/context/customer";
 import * as Application from "expo-application";
-import ingredient from "@/data/ingredient";
-import vegetables from "@/data/vegetable";
-import { router } from "expo-router";
-import cheese from "@/data/cheese";
 import { Image } from "expo-image";
-import fruits from "@/data/fruit";
-import pasta from "@/data/pasta";
-import dough from "@/data/dough";
-import dairy from "@/data/dairy";
-import rice from "@/data/rice";
-import meat from "@/data/meat";
-import fish from "@/data/fish";
+import { router } from "expo-router";
+import { initialSections } from "@/data/sections";
 
 const { width, height } = Dimensions.get("window");
 
-const initialSections = [
-  {
-    title: "Fromages",
-    data: cheese,
-  },
-  {
-    title: "Fruits",
-    data: fruits,
-  },
-  {
-    title: "Ingrédients",
-    data: ingredient,
-  },
-  {
-    title: "Légumes",
-    data: vegetables,
-  },
-  {
-    title: "Pâtes",
-    data: pasta,
-  },
-  {
-    title: "Pâtes préparées",
-    data: dough,
-  },
-  {
-    title: "Produits laitiers",
-    data: dairy,
-  },
-  {
-    title: "Poissons",
-    data: fish,
-  },
-  {
-    title: "Riz",
-    data: rice,
-  },
-  {
-    title: "Viandes",
-    data: meat,
-  },
-];
+const DEFAULT_TRANSLATE_FRIDGE = 100;
+const DEFAULT_SCALE_FRIDGE = 1.3;
 
 function selectionReducer(
   oldState: Map<FoodItem["id"], FoodItem>,
@@ -175,7 +126,23 @@ export default function Page() {
     animateTooltip,
     hideTooltip,
     buttonsOpacity,
+    fridgeStyle,
+    translateYFridge,
+    scaleFridge,
   } = useAnimations(setIsTooltipAnimating);
+
+  // Watch for changes in selected items
+  useEffect(() => {
+    if (selectedValues.size > 0) {
+      // Animate back to original position
+      translateYFridge.value = 0;
+      scaleFridge.value = 1;
+    } else {
+      // Move down when no items are selected
+      translateYFridge.value = DEFAULT_TRANSLATE_FRIDGE;
+      scaleFridge.value = DEFAULT_SCALE_FRIDGE;
+    }
+  }, [selectedValues]);
 
   useEffect(() => {
     scale1.value = withRepeat(
@@ -395,31 +362,33 @@ export default function Page() {
             />
           </Animated.View>
 
-          <Animated.View
-            style={stylesLayout.centerContent}
-            entering={FadeInDown.duration(800).delay(400).springify()}
-          >
-            <Pressable
-              onPress={() => {
-                bottomSheetRef.current?.present();
-              }}
+          <Animated.View style={fridgeStyle}>
+            <Animated.View
+              style={stylesLayout.centerContent}
+              entering={FadeInDown.duration(800).delay(400).springify()}
             >
-              <Animated.View
-                style={StyleSheet.flatten([
-                  stylesLayout.centerContent,
-                  bounceStyle,
-                ])}
+              <Pressable
+                onPress={() => {
+                  bottomSheetRef.current?.present();
+                }}
               >
-                <Animated.View style={[styles.halo, pulseStyle1]} />
-                <Animated.View style={[styles.halo, pulseStyle2]} />
-                <Image
-                  style={[stylesLayout.imageHome]}
-                  source={require("@/assets/images/fridge.png")}
-                  cachePolicy="memory-disk"
-                  contentFit="contain"
-                />
-              </Animated.View>
-            </Pressable>
+                <Animated.View
+                  style={StyleSheet.flatten([
+                    stylesLayout.centerContent,
+                    bounceStyle,
+                  ])}
+                >
+                  <Animated.View style={[styles.halo, pulseStyle1]} />
+                  <Animated.View style={[styles.halo, pulseStyle2]} />
+                  <Image
+                    style={[stylesLayout.imageHome]}
+                    source={require("@/assets/images/fridge.png")}
+                    cachePolicy="memory-disk"
+                    contentFit="contain"
+                  />
+                </Animated.View>
+              </Pressable>
+            </Animated.View>
           </Animated.View>
         </View>
 
@@ -517,6 +486,8 @@ const useAnimations = (
   const widthTooltip = useSharedValue(0);
   // const heightTooltip = useSharedValue(0);
   const buttonsOpacity = useSharedValue(0);
+  const translateYFridge = useSharedValue(DEFAULT_TRANSLATE_FRIDGE);
+  const scaleFridge = useSharedValue(DEFAULT_SCALE_FRIDGE);
 
   const animateTooltip = () => {
     runOnJS(setIsAnimating)(true);
@@ -536,17 +507,6 @@ const useAnimations = (
         runOnJS(setIsAnimating)(false);
       },
     );
-
-    // heightTooltip.value = withTiming(
-    // 	425,
-    // 	{
-    // 		duration: 280,
-    // 		easing: Easing.elastic(1.1),
-    // 	},
-    // 	() => {
-    // 		runOnJS(setIsAnimating)(false);
-    // 	}
-    // );
 
     buttonsOpacity.value = withTiming(1, {
       duration: 280,
@@ -586,26 +546,6 @@ const useAnimations = (
         runOnJS(setIsAnimating)(false);
       },
     );
-
-    // heightTooltip.value = withTiming(
-    // 	initialHeight * 1.06,
-    // 	{
-    // 		duration: 110,
-    // 		easing: Easing.out(Easing.ease),
-    // 	},
-    // 	() => {
-    // 		heightTooltip.value = withTiming(
-    // 			0,
-    // 			{
-    // 				duration: 200,
-    // 				easing: Easing.out(Easing.ease),
-    // 			},
-    // 			() => {
-    // 				runOnJS(setIsAnimating)(false);
-    // 			}
-    // 		);
-    // 	}
-    // );
   };
 
   const enteringAnimation = useCallback(
@@ -663,6 +603,25 @@ const useAnimations = (
     transform: [{ translateY: translateY.value }],
   }));
 
+  const fridgeStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateY: withSpring(translateYFridge.value, {
+            damping: 15,
+            stiffness: 100,
+          }),
+        },
+        {
+          scale: withSpring(scaleFridge.value, {
+            damping: 15,
+            stiffness: 100,
+          }),
+        },
+      ],
+    };
+  });
+
   return {
     enteringAnimationRight,
     enteringAnimationLeft,
@@ -676,10 +635,13 @@ const useAnimations = (
     translateY,
     opacityTooltip,
     widthTooltip,
+    translateYFridge,
     // heightTooltip,
     buttonsOpacity,
     animateTooltip,
     hideTooltip,
+    fridgeStyle,
+    scaleFridge,
   };
 };
 
@@ -697,7 +659,7 @@ const styles = StyleSheet.create({
   },
   halo: {
     position: "absolute",
-    width: height > 700 ? 160 : height > 630 ? 130 : 115,
+    width: 180,
     aspectRatio: 1,
     borderRadius: 99,
     borderWidth: 2,

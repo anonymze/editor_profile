@@ -33,7 +33,7 @@ interface Props {
   themeColor: keyof typeof themeColors;
 }
 
-const snapPoints = ["75%"];
+const snapPoints = ["70%"];
 
 export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
   ({ selectedValues, dispatch, placeholderSearch, data, themeColor }, ref) => {
