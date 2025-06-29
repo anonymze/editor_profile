@@ -4,6 +4,8 @@ pnpm run android --device
 
 cd android && ./gradlew clean
 
+eas build:version:set
+
 // bundle .aab with already signed keystore
 https://reactnative.dev/docs/signed-apk-android
 ./gradlew bundleRelease
