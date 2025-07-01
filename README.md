@@ -65,7 +65,8 @@ pnpx expo-doctor@latest
 
 combien de personnes
 plus de détails sur les viandes ? boeuf de quoi ?
-grand vide optimisation ? frigo plus grand centré + déplacé
 recette du jour  version pro ?
-bug tourne dans le vide
 changer yann metier
+image de la recette par IA
+
+[scrollbar-color:--alpha(var(--foreground)/20%)_transparent] [scrollbar-width:thin]
