@@ -68,5 +68,7 @@ plus de détails sur les viandes ? boeuf de quoi ?
 recette du jour  version pro ?
 changer yann metier
 image de la recette par IA
+carottes
+crevettes
 
 [scrollbar-color:--alpha(var(--foreground)/20%)_transparent] [scrollbar-width:thin]
