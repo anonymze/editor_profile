@@ -38,10 +38,8 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
 
     const dynamicFooterStyle = {
       ...styles.footerContainer,
-      height:
-        Platform.OS === "android" ? 50 + insets.bottom : 70 + insets.bottom,
-      paddingBottom:
-        Platform.OS === "android" ? 10 + insets.bottom : 15 + insets.bottom,
+      height: Platform.OS === "android" ? 50 + insets.bottom : 70,
+      paddingBottom: Platform.OS === "android" ? 10 + insets.bottom : 15,
     };
 
     // filter sections based on search query
