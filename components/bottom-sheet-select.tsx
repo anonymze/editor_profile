@@ -1,17 +1,12 @@
-import { Text, StyleSheet, Platform, TextInput, View } from "react-native";
-import React, {
-  ActionDispatch,
-  Dispatch,
-  forwardRef,
-  SetStateAction,
-} from "react";
-import { FlashList } from "@shopify/flash-list";
-import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
-import { Pressable } from "react-native-gesture-handler";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { themeColors } from "@/theme/theme-storage";
-import { Image } from "expo-image";
 import { ActionReducerFoodItems } from "@/app";
+import { themeColors } from "@/theme/theme-storage";
+import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
+import { FlashList } from "@shopify/flash-list";
+import { Image } from "expo-image";
+import React, { ActionDispatch, forwardRef } from "react";
+import { Platform, StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable } from "react-native-gesture-handler";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export type FoodItem = {
   id: string;
@@ -39,6 +34,15 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
   ({ selectedValues, dispatch, placeholderSearch, data, themeColor }, ref) => {
     const [searchQuery, setSearchQuery] = React.useState("");
     const searchInputRef = React.useRef<TextInput>(null);
+    const insets = useSafeAreaInsets();
+
+    const dynamicFooterStyle = {
+      ...styles.footerContainer,
+      height:
+        Platform.OS === "android" ? 50 + insets.bottom : 70 + insets.bottom,
+      paddingBottom:
+        Platform.OS === "android" ? 10 + insets.bottom : 15 + insets.bottom,
+    };
 
     // filter sections based on search query
     const filteredSections = React.useMemo(() => {
@@ -203,7 +207,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
           </View>
 
           {/* there is a visual glitch on iOS with bottom sheet footer */}
-          <View style={styles.footerContainer}>
+          <View style={dynamicFooterStyle}>
             <Pressable
               style={({ pressed }) => [
                 styles.containerTextBottom,
