@@ -1,18 +1,31 @@
-import Animated, {
-  Easing,
-  FadeIn,
-  FadeInDown,
-  FadeInLeft,
-  FadeInRight,
-  useAnimatedStyle,
-  useSharedValue,
-  withDelay,
-  withRepeat,
-  withTiming,
-  runOnJS,
-  FadeOutDown,
-  withSpring,
-} from "react-native-reanimated";
+import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
+import { ButtonRadialGradient } from "@/components/radial-gradient";
+import { TextGradient } from "@/components/text-gradient";
+import { useCustomer } from "@/context/customer";
+import { initialSections } from "@/data/sections";
+import LayoutBackground, { stylesLayout } from "@/layout/background";
+import {
+  getStorageColor,
+  getStorageLimitedAction,
+  themeColors,
+} from "@/theme/theme-storage";
+import {
+  customerAppStoreHasSubscriptions,
+  getOfferingsAppStore,
+} from "@/utils/in-app-purchase";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import * as Application from "expo-application";
+import { Image } from "expo-image";
+import { router } from "expo-router";
+import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
+import {
+  Fragment,
+  useCallback,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 import {
   Alert,
   Dimensions,
@@ -23,35 +36,23 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import {
-  customerAppStoreHasSubscriptions,
-  getOfferingsAppStore,
-} from "@/utils/in-app-purchase";
-import {
-  getStorageColor,
-  getStorageLimitedAction,
-  themeColors,
-} from "@/theme/theme-storage";
-import { BottomSheetModal } from "@gorhom/bottom-sheet";
-import { BottomSheetSelect, FoodItem } from "@/components/bottom-sheet-select";
-import {
-  Fragment,
-  useCallback,
-  useEffect,
-  useReducer,
-  useRef,
-  useState,
-} from "react";
-import LayoutBackground, { stylesLayout } from "@/layout/background";
-import { ButtonRadialGradient } from "@/components/radial-gradient";
-import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
-import { TextGradient } from "@/components/text-gradient";
 import { Pressable } from "react-native-gesture-handler";
-import { useCustomer } from "@/context/customer";
-import * as Application from "expo-application";
-import { Image } from "expo-image";
-import { router } from "expo-router";
-import { initialSections } from "@/data/sections";
+import Animated, {
+  Easing,
+  FadeIn,
+  FadeInDown,
+  FadeInLeft,
+  FadeInRight,
+  FadeOutDown,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withRepeat,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const { width, height } = Dimensions.get("window");
 
@@ -98,6 +99,7 @@ export type ActionReducerFoodItems =
     };
 
 export default function Page() {
+  const insets = useSafeAreaInsets();
   const { customer } = useCustomer();
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const [selectedValues, dispatch] = useReducer<
@@ -441,7 +443,10 @@ export default function Page() {
         <Animated.View
           style={StyleSheet.flatten([
             stylesLayout.bottomButton,
-            { alignSelf: "center" },
+            {
+              alignSelf: "center",
+              marginBottom: Platform.OS === "ios" ? 0 : insets.bottom / 2,
+            },
           ])}
           entering={enteringAnimation()}
         >
