@@ -161,7 +161,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
               marginBottom: 6,
             }}
           >
-            Sélectionnez plusieurs ingrédients
+            Sélectionnez au moins 3 ingrédients
           </Text>
 
           <View style={styles.listContainer}>
@@ -226,7 +226,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
                   { color: themeColors[themeColor].primary },
                 ]}
               >
-                Annuler
+                Tout enlever
               </Text>
             </Pressable>
             <Pressable

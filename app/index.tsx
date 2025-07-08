@@ -17,7 +17,7 @@ import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import * as Application from "expo-application";
 import { Image } from "expo-image";
 import { router, useFocusEffect } from "expo-router";
-import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
+import { BadgeInfoIcon, MinusIcon, UserRoundIcon } from "lucide-react-native";
 import {
   Fragment,
   useCallback,
@@ -185,7 +185,7 @@ export default function Page() {
     translateY.value = withDelay(
       600,
       withRepeat(
-        withTiming(8, {
+        withTiming(0, {
           duration: 1200,
           easing: Easing.inOut(Easing.ease),
         }),
@@ -197,7 +197,7 @@ export default function Page() {
 
   return (
     <LayoutBackground color={themeColor} centeredContent={false}>
-      <ScrollView contentContainerStyle={{ paddingBottom: 120, flexGrow: 1 }}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 135, flexGrow: 1 }}>
         <Animated.View
           style={StyleSheet.flatten([
             stylesLayout.topButtons,
@@ -415,24 +415,14 @@ export default function Page() {
 
             <View style={styles.containerIngredients}>
               {Array.from(selectedValues.values()).map((value) => (
-                <Animated.View
-                  style={styles.ingredientItem}
+                <WiggleIngredient
                   key={value.id}
-                  exiting={FadeOutDown.duration(300)}
-                  entering={FadeInDown.duration(300)
-                    .delay(latestBatchRef.current.indexOf(value) * 100)
-                    .springify()}
-                >
-                  <Image
-                    placeholderContentFit="contain"
-                    placeholder={require("@/assets/images/fridge.png")}
-                    source={value.image}
-                    style={styles.imageIngredients}
-                  />
-                  <Text style={styles.ingredientItemText}>
-                    {value.label.FR}
-                  </Text>
-                </Animated.View>
+                  value={value}
+                  dispatch={dispatch}
+                  themeColor={themeColor}
+                  wiggleRotation={null}
+                  latestBatchRef={latestBatchRef}
+                />
               ))}
             </View>
           </Fragment>
@@ -487,6 +477,75 @@ export default function Page() {
     </LayoutBackground>
   );
 }
+
+const WiggleIngredient = ({
+  value,
+  dispatch,
+  themeColor,
+  wiggleRotation,
+  latestBatchRef,
+}: {
+  value: FoodItem;
+  dispatch: React.Dispatch<ActionReducerFoodItems>;
+  themeColor: any;
+  wiggleRotation: any;
+  latestBatchRef: React.MutableRefObject<FoodItem[]>;
+}) => {
+  const rotation = useSharedValue(0);
+
+  useEffect(() => {
+    const randomDelay = Math.random() * 200;
+    setTimeout(() => {
+      rotation.value = withRepeat(
+        withTiming(1, {
+          duration: 150,
+          easing: Easing.out(Easing.ease),
+        }),
+        -1,
+        true,
+      );
+    }, randomDelay);
+  }, []);
+
+  const wiggleStyle = useAnimatedStyle(() => ({
+    transform: [{ rotate: `${rotation.value}deg` }],
+  }));
+
+  return (
+    <Animated.View
+      style={styles.ingredientItem}
+      exiting={FadeOutDown.duration(300)}
+      entering={FadeInDown.duration(300)
+        .delay(latestBatchRef.current.indexOf(value) * 100)
+        .springify()}
+    >
+      <Animated.View style={wiggleStyle}>
+        <Pressable
+          onPress={() => dispatch({ type: "REMOVE", item: value })}
+          style={styles.ingredientPressable}
+        >
+          <View style={styles.ingredientContent}>
+            <Image
+              placeholderContentFit="contain"
+              placeholder={require("@/assets/images/fridge.png")}
+              source={value.image}
+              style={styles.imageIngredients}
+            />
+            <Text style={styles.ingredientItemText}>{value.label.FR}</Text>
+          </View>
+          <View
+            style={[
+              styles.minusIcon,
+              { backgroundColor: themeColors[themeColor].secondary },
+            ]}
+          >
+            <MinusIcon size={14} color="#fff" />
+          </View>
+        </Pressable>
+      </Animated.View>
+    </Animated.View>
+  );
+};
 
 const useAnimations = (
   setIsAnimating: React.Dispatch<React.SetStateAction<boolean>>,
@@ -683,12 +742,21 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
-    rowGap: 8,
-    columnGap: 20,
+    rowGap: 15,
+    columnGap: 30,
     paddingLeft: 20,
     paddingTop: 18,
   },
   ingredientItem: {
+    alignItems: "center",
+    gap: 5,
+  },
+  ingredientPressable: {
+    alignItems: "center",
+    position: "relative",
+    transform: [{ scale: 1 }],
+  },
+  ingredientContent: {
     alignItems: "center",
     gap: 5,
   },
@@ -700,6 +768,21 @@ const styles = StyleSheet.create({
   imageIngredients: {
     width: height > 660 ? 50 : 40,
     height: height > 660 ? 50 : 40,
+  },
+  minusIcon: {
+    position: "absolute",
+    top: -5,
+    right: -5,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   tooltip: {
     position: "absolute",
