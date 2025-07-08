@@ -70,5 +70,18 @@ changer yann metier
 image de la recette par IA
 carottes
 crevettes
+recherche de mot plus strict
+nom par catégorie -> riz -> tous les riz
+
+recette trop longue
+
+catgeories selectionnables pour filtrer
+
+simenu ouvert changer d epage menu toujorus ouvert
+
+menu plus grand 85% ?
+
+choux rouges / carottes
+
 
 [scrollbar-color:--alpha(var(--foreground)/20%)_transparent] [scrollbar-width:thin]

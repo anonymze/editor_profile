@@ -16,7 +16,7 @@ import {
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import * as Application from "expo-application";
 import { Image } from "expo-image";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 import { BadgeInfoIcon, UserRoundIcon } from "lucide-react-native";
 import {
   Fragment,
@@ -57,7 +57,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 const { width, height } = Dimensions.get("window");
 
 const DEFAULT_TRANSLATE_FRIDGE = 110;
-const DEFAULT_SCALE_FRIDGE = 1.3;
+const DEFAULT_SCALE_FRIDGE = 1.22;
 
 function selectionReducer(
   oldState: Map<FoodItem["id"], FoodItem>,
@@ -145,6 +145,14 @@ export default function Page() {
       scaleFridge.value = DEFAULT_SCALE_FRIDGE;
     }
   }, [selectedValues]);
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => {
+        bottomSheetRef.current?.close();
+      };
+    }, []),
+  );
 
   useEffect(() => {
     scale1.value = withRepeat(

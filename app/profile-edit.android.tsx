@@ -15,7 +15,7 @@ import { BlurView } from "expo-blur";
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
 import { router } from "expo-router";
-import { ArrowLeftIcon, CameraIcon, CheckIcon } from "lucide-react-native";
+import { CameraIcon, CheckIcon } from "lucide-react-native";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import {
@@ -183,7 +183,7 @@ export default function Page() {
                 }}
                 style={stylesLayout.paddingTopButtons}
               >
-                <ArrowLeftIcon size={26} color="#fff" />
+                <CheckIcon size={26} color="#fff" />
               </Pressable>
             </Animated.View>
 
