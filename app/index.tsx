@@ -185,7 +185,7 @@ export default function Page() {
     translateY.value = withDelay(
       600,
       withRepeat(
-        withTiming(0, {
+        withTiming(8, {
           duration: 1200,
           easing: Easing.inOut(Easing.ease),
         }),
@@ -399,6 +399,19 @@ export default function Page() {
                 </Animated.View>
               </Pressable>
             </Animated.View>
+
+            {selectedValues.size === 0 && (
+              <Animated.View
+                style={styles.arrowIndicator}
+                entering={FadeInLeft.duration(600).delay(900).springify()}
+              >
+                <Image
+                  source={require("@/assets/images/arrow.svg")}
+                  style={styles.arrowImage}
+                  contentFit="contain"
+                />
+              </Animated.View>
+            )}
           </Animated.View>
         </View>
 
@@ -536,6 +549,7 @@ const WiggleIngredient = ({
           <View
             style={[
               styles.minusIcon,
+              //@ts-ignore
               { backgroundColor: themeColors[themeColor].secondary },
             ]}
           >
@@ -826,5 +840,18 @@ const styles = StyleSheet.create({
   },
   tooltipViewAbsolute: {
     width: width - 80,
+  },
+  arrowIndicator: {
+    position: "absolute",
+    left: 60,
+    top: 95,
+    transform: [{ translateY: 0 }],
+    zIndex: 100,
+    width: 5,
+    height: 5,
+  },
+  arrowImage: {
+    width: 40,
+    height: 40,
   },
 });

@@ -118,7 +118,7 @@ export default function Page() {
         >
           <ButtonRadialGradient
             onPress={() => router.replace("/")}
-            text="Trouver une recette"
+            text="Recettes"
             color={themeColors[themeColor].primaryLight}
           />
         </Animated.View>
