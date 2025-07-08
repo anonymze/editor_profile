@@ -245,17 +245,18 @@ export default function Page() {
           </Pressable>
         </Animated.View>
 
-        <Animated.View
-          style={StyleSheet.flatten([
-            styles.tooltip,
-            {
-              backgroundColor: themeColors[themeColor].secondaryRgba(0.96),
-              width: widthTooltip,
-              opacity: opacityTooltip,
-              flex: 1,
-            },
-          ])}
-        >
+        {showTooltip && (
+          <Animated.View
+            style={StyleSheet.flatten([
+              styles.tooltip,
+              {
+                backgroundColor: themeColors[themeColor].secondaryRgba(0.96),
+                width: widthTooltip,
+                opacity: opacityTooltip,
+                flex: 1,
+              },
+            ])}
+          >
           <View style={styles.tooltipViewAbsolute}>
             <Text style={styles.tooltipTextTitle}>
               Bienvenue sur {Application.applicationName}.
@@ -300,7 +301,7 @@ export default function Page() {
             }}
           >
             <TouchableOpacity
-              disabled={customerAppStoreHasSubscriptions(customer) ?? true}
+              disabled={!showTooltip || (customerAppStoreHasSubscriptions(customer) ?? true)}
               onPress={async () => {
                 const offerings = await getOfferingsAppStore();
                 if (!offerings) return;
@@ -362,6 +363,7 @@ export default function Page() {
             </TouchableOpacity>
           </Animated.View>
         </Animated.View>
+        )}
 
         <View style={styles.highPaddingTop}>
           <Animated.View entering={enteringAnimationLeft()}>

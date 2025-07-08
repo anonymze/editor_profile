@@ -28,7 +28,7 @@ interface Props {
   themeColor: keyof typeof themeColors;
 }
 
-const snapPoints = ["78%"];
+const snapPoints = ["80%"];
 
 export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
   ({ selectedValues, dispatch, placeholderSearch, data, themeColor }, ref) => {
@@ -39,7 +39,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
     const dynamicFooterStyle = {
       ...styles.footerContainer,
       height: Platform.OS === "android" ? 50 + insets.bottom : 70,
-      paddingBottom: Platform.OS === "android" ? 10 + insets.bottom : 15,
+      paddingBottom: Platform.OS === "android" ? 0 + insets.bottom : 15,
     };
 
     // filter sections based on search query
