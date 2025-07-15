@@ -10,7 +10,6 @@ const subscriptionCache = new Map<
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 export async function checkUserSubscription(userId: string): Promise<boolean> {
-  return false;
   const cached = subscriptionCache.get(userId);
   if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
     return cached.status;
