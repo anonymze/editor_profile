@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@vercel/node':
-        specifier: ^3.0.0
+        specifier: ^3.2.29
         version: 3.2.29
     devDependencies:
       '@types/node':

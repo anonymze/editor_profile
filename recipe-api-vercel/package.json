@@ -9,14 +9,11 @@
     "deploy": "vercel --prod"
   },
   "dependencies": {
-    "@vercel/node": "^3.0.0"
+    "@vercel/node": "^3.2.29"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0",
     "vercel": "^44.4.1"
-  },
-  "engines": {
-    "node": ">=18.0.0"
   }
 }
