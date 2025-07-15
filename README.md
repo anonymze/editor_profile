@@ -77,11 +77,6 @@ recette trop longue
 
 catgeories selectionnables pour filtrer
 
-simenu ouvert changer d epage menu toujorus ouvert
-
-menu plus grand 85% ?
-
-choux rouges / carottes
-
+intuitif ajouter ingredient animation
 
 [scrollbar-color:--alpha(var(--foreground)/20%)_transparent] [scrollbar-width:thin]
