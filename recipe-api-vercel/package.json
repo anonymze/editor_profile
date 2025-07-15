@@ -1,0 +1,22 @@
+{
+  "name": "recipe-api-vercel",
+  "version": "1.0.0",
+  "description": "Recipe API for Vercel deployment",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "tsc",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@vercel/node": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "vercel": "^44.4.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
