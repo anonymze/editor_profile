@@ -12,12 +12,12 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   console.log(process.env.VERCEL_URL);
-  
+
   // Handle warmup ping
-  if (req.query.warmup === 'true') {
-    return res.status(200).json({ status: 'warm' });
+  if (req.query.warmup === "true") {
+    return res.status(200).json({ status: "warm" });
   }
-  
+
   // Enable CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -168,6 +168,8 @@ export async function checkUserSubscription(userId: string): Promise<boolean> {
     return cached.status;
   }
 
+  return false;
+
   try {
     const response = await fetch(
       `${REVENUECAT_API_URL}/subscribers/${userId}`,
@@ -179,8 +181,6 @@ export async function checkUserSubscription(userId: string): Promise<boolean> {
         },
       },
     );
-
-    console.log(response);
 
     if (!response.ok) {
       console.error("RevenueCat API error:", response.statusText);
