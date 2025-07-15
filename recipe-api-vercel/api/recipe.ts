@@ -11,8 +11,6 @@ const subscriptionCache = new Map<
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  console.log(process.env.VERCEL_URL_PROD);
-
   // Handle warmup ping
   if (req.query.warmup === "true") {
     console.log("warmup");
