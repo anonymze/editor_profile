@@ -44,3 +44,5 @@ x/
 .env.local
 
 /resources/
+
+/recipe-api-vercel/
