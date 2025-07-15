@@ -1,12 +1,13 @@
-import { VercelRequest } from "@vercel/node";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 
-export async function GET(req: VercelRequest) {
-  console.log("cron job started");
-  console.log(req.headers.authorization);
-  console.log(process.env.CRON_SECRET);
-
-  if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
-    return new Response("KO", { status: 401 });
+export async function GET(req: VercelRequest, res: VercelResponse) {
+  // @ts-ignore
+  const authHeader = req.headers.get("authorization");
+  if (
+    !process.env.CRON_SECRET ||
+    authHeader !== `Bearer ${process.env.CRON_SECRET}`
+  ) {
+    return res.status(401).json({ success: false });
   }
 
   // Ping recipe endpoint to keep it warm
