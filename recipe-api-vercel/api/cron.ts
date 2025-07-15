@@ -8,7 +8,7 @@ export async function GET(req: VercelRequest) {
   // Ping recipe endpoint to keep it warm
   try {
     await fetch(
-      `${process.env.VERCEL_URL || "https://recipe-api-xi-liard.vercel.app"}/api/recipe?warmup=true`,
+      `"https://recipe-api-xi-liard.vercel.app"/api/recipe?warmup=true`,
     );
   } catch (error) {
     console.log("Warmup ping failed:", error);
