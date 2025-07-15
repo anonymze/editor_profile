@@ -1,6 +1,10 @@
 import { VercelRequest } from "@vercel/node";
 
 export async function GET(req: VercelRequest) {
+  console.log("cron job started");
+  console.log(req.headers.authorization);
+  console.log(process.env.CRON_SECRET);
+
   if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
     return new Response("KO", { status: 401 });
   }
