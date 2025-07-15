@@ -3,7 +3,8 @@
   "version": 2,
   "functions": {
     "api/**/*.ts": {
-      "runtime": "@vercel/node@3.2.29"
+      "runtime": "@vercel/node@3.2.29",
+      "maxDuration": 20
     }
   },
   "crons": [
