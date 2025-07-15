@@ -131,7 +131,7 @@ const generateRecipeWithOpenRouter = async (
                 "footer": "Fridgy vous souhaite une excellente cuisine!"
               }
 
-              Règles: français, vouvoyer, utiliser uniquement les ingrédients fournis à l'exception de certains ingrédients très communs dans une cuisine française (eau, poivre, huile, beurre...), pas de markdown. Ajoute au lexicon seulement les termes techniques peu communs imagine parler à une personne de 16 ans.`,
+              Règles: français, vouvoyer, utiliser uniquement les ingrédients fournis à l'exception de certains ingrédients de type condiment très communs dans une cuisine française (eau, poivre, huile, beurre...), pas de markdown. Ajoute au lexicon seulement les termes techniques peu communs imagine parler à une personne de 16 ans.`,
             },
             {
               role: "user",
