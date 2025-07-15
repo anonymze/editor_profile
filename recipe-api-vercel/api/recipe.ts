@@ -155,7 +155,7 @@ const generateRecipeWithOpenRouter = async (
 		- Tu ne dois pas proposer une recette qui nécessite des ingrédients que tu n'as pas reçu, à l'exception
 		de certains condiments qui sont très facilement trouvables dans une cuisine française : huile, beurre, sel, poivre...
 		- Les ingrédients doivent être présentés dans l'ordre alphabétique, avec les ingrédients optionnels en dernier
-		- Tu dois expliquer les termes techniques peu commun que tu emplois, imagine que tu parles à un adolescent de 20 ans
+		- Tu dois expliquer les termes techniques peu commun que tu emplois, imagine que tu parles à une personne de 20 ans
 		- Le titre de la recette doit être original et non redondant
 		- Tu dois retourner UNIQUEMENT l'objet en JSON, sans aucun texte supplémentaire, commentaire ou explication
 		- NE PAS UTILISER DE BLOC DE CODE MARKDOWN pour le json (\`\`\`json ou autre markdown), tu dois retourner le json en format brut.
