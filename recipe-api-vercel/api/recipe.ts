@@ -152,7 +152,7 @@ const generateRecipeWithOpenRouter = async (
 		Règles à respecter :
 		- Réponds en français
 		- Vouvoie l'utilisateur
-		- Tu dois être STRICT sur la recette que tu proposes, tu dois respecter uniquement les ingrédients que tu as reçu et tu ne dois pas en rajouter d'autres. Tu es autorisé à proposer quelques condiments supplémentaires qui sont facilement trouvables dans une cuisine française pour agrémenter la recette mais pas plus
+		- Tu dois être STRICT sur la recette que tu proposes, tu ne dois pas en rajouter d'autres, tu dois proposer une recette avec UNIQUEMENT les ingrédients que tu reçois, rien de plus.
 		de certains condiments qui sont très facilement trouvables dans une cuisine française : huile, beurre, sel, poivre... fais attention quand tu proposes des ingredients supplémentaires que ce soit bien des condiments
 		- Les ingrédients doivent être présentés dans l'ordre alphabétique, avec les ingrédients optionnels en dernier
 		- Tu dois expliquer les termes techniques peu commun que tu emplois, imagine que tu parles à une personne de 20 ans
