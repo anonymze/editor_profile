@@ -53,7 +53,7 @@ export default function Page() {
           `${
             process.env.NODE_ENV === "development"
               ? "http://localhost:8081"
-              : process.env.EXPO_PUBLIC_API_URL
+              : "https://recipe-api-xi-liard.vercel.app"
           }${process.env.EXPO_PUBLIC_API_URL_RECIPE_URL}`,
           {
             method: "POST",
