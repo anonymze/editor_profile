@@ -116,7 +116,7 @@ const generateRecipeWithOpenRouter = async (
           messages: [
             {
               role: "system",
-              content: `Crée une recette simple et original avec les ingrédients fournis. Réponds UNIQUEMENT en JSON:
+              content: `Crée une recette simple et original avec les ingrédients fournis. Réponds UNIQUEMENT en respecant ce format JSON:
 
               {
                 "presentation": "[Nom], voici votre recette:",
