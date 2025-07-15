@@ -11,10 +11,11 @@ const subscriptionCache = new Map<
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  console.log(process.env.VERCEL_URL);
+  console.log(process.env.VERCEL_URL_PROD);
 
   // Handle warmup ping
   if (req.query.warmup === "true") {
+    console.log("warmup");
     return res.status(200).json({ status: "warm" });
   }
 
@@ -128,7 +129,7 @@ const generateRecipeWithOpenRouter = async (
   "ingredients": ["ingrédient + quantité", "..."],
   "instructions": ["étape 1", "étape 2", "..."],
   "lexicon": [{"term": "terme technique", "definition": "explication simple"}],
-  "footer": "Fridgy vous souhaite une excellente cuisine!"
+  "footer": "Fridgy vous souhaite une excellente cuisine !"
 }
 
 Règles: français, vouvoyer, utiliser uniquement les ingrédients fournis à l'exception de certains ingrédients très communs dans une cuisine française (eau, poivre, huile, beurre...), pas de markdown, respecte bien le format du json, n'ajoute pas du texte que je n'ai pas mis dans le json. Ajoute au lexicon seulement les termes techniques peu communs imagine parler à une personne de 16 ans.`,
