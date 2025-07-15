@@ -100,8 +100,6 @@ const generateRecipeWithOpenRouter = async (
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 20000);
 
-  console.log("BITCHHHHH");
-
   try {
     const response = await fetch(
       "https://openrouter.ai/api/v1/chat/completions",
@@ -113,7 +111,8 @@ const generateRecipeWithOpenRouter = async (
         },
         signal: controller.signal,
         body: JSON.stringify({
-          model: "mistralai/mistral-7b-instruct",
+          // model: "mistralai/mistral-7b-instruct",
+          model: "mistralai/mistral-large-2411",
           messages: [
             {
               role: "system",
