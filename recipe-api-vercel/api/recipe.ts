@@ -153,7 +153,7 @@ const generateRecipeWithOpenRouter = async (
 		- Réponds en français
 		- Vouvoie l'utilisateur
 		- Tu ne dois pas proposer une recette qui nécessite des ingrédients que tu n'as pas reçu, à l'exception
-		de certains ingrédients qui sont très facilement trouvables dans une cuisine française : huile, sel, beurre, poivre...
+		de certains condiments qui sont très facilement trouvables dans une cuisine française : huile, beurre, sel, poivre...
 		- Les ingrédients doivent être présentés dans l'ordre alphabétique, avec les ingrédients optionnels en dernier
 		- Tu dois expliquer les termes techniques peu commun que tu emplois, imagine que tu parles à un adolescent de 20 ans
 		- Le titre de la recette doit être original et non redondant
