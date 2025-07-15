@@ -118,7 +118,6 @@ const generateRecipeWithOpenRouter = async (
               content: `Avec les ingrédients que tu recevras, tu dois proposer une recette simple et originale.
 
 		Tu dois retourner uniquement un objet JSON avec la structure suivante :
-
 		{
 			"presentation": "[Nom de l'utilisateur], voici votre recette :",
 			"titleRecipe": "Titre de la recette",

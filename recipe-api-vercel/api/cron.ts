@@ -1,7 +1,6 @@
 import { VercelRequest } from "@vercel/node";
 
 export async function GET(req: VercelRequest) {
-  req.headers.authorization;
   if (req.headers.authorization !== `Bearer ${process.env.CRON_SECRET}`) {
     return new Response("KO", { status: 401 });
   }
