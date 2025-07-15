@@ -3,6 +3,9 @@ import { VercelRequest, VercelResponse } from "@vercel/node";
 export async function GET(req: VercelRequest, res: VercelResponse) {
   // @ts-ignore
   const authHeader = req.headers.get("authorization");
+
+  console.log("authHeader:", authHeader);
+  console.log("process.env.CRON_SECRET:", process.env.CRON_SECRET);
   if (
     !process.env.CRON_SECRET ||
     authHeader !== `Bearer ${process.env.CRON_SECRET}`
