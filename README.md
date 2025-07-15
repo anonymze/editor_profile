@@ -75,8 +75,6 @@ nom par catégorie -> riz -> tous les riz
 
 recette trop longue
 
-catgeories selectionnables pour filtrer
-
 intuitif ajouter ingredient animation
 
 [scrollbar-color:--alpha(var(--foreground)/20%)_transparent] [scrollbar-width:thin]
