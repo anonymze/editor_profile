@@ -12,6 +12,12 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   console.log(process.env.VERCEL_URL);
+  
+  // Handle warmup ping
+  if (req.query.warmup === 'true') {
+    return res.status(200).json({ status: 'warm' });
+  }
+  
   // Enable CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
