@@ -47,15 +47,26 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
       if (!searchQuery) return data;
 
       return data
-        .map((section) => ({
-          title: section.title,
-          data: section.data.filter((item) =>
-            item.label.FR.toLowerCase()
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-              .includes(searchQuery),
-          ),
-        }))
+        .map((section) => {
+          // Check if search query matches section title
+          const normalizedTitle = section.title.toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "");
+          
+          const titleMatches = normalizedTitle.includes(searchQuery);
+          
+          return {
+            title: section.title,
+            data: titleMatches 
+              ? section.data // If title matches, include all items from this section
+              : section.data.filter((item) =>
+                  item.label.FR.toLowerCase()
+                    .normalize("NFD")
+                    .replace(/[\u0300-\u036f]/g, "")
+                    .includes(searchQuery),
+                ),
+          };
+        })
         .filter((section) => section?.data?.length > 0); // Remove empty sections
     }, [searchQuery]);
 

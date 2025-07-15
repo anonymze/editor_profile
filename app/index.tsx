@@ -257,112 +257,115 @@ export default function Page() {
               },
             ])}
           >
-          <View style={styles.tooltipViewAbsolute}>
-            <Text style={styles.tooltipTextTitle}>
-              Bienvenue sur {Application.applicationName}.
-            </Text>
-            <Text style={styles.tooltipText}>
-              En appuyant sur le{" "}
-              <Text style={styles.tooltipUnderlineText}>frigo</Text> vous pouvez
-              ajouter des ingrédients.
-            </Text>
+            <View style={styles.tooltipViewAbsolute}>
+              <Text style={styles.tooltipTextTitle}>
+                Bienvenue sur {Application.applicationName}.
+              </Text>
+              <Text style={styles.tooltipText}>
+                En appuyant sur le{" "}
+                <Text style={styles.tooltipUnderlineText}>frigo</Text> vous
+                pouvez ajouter des ingrédients.
+              </Text>
 
-            <Text style={styles.tooltipText}>
-              Un{" "}
-              <Text style={styles.tooltipUnderlineText}>
-                minimum de 3 ingrédients
-              </Text>{" "}
-              est requis pour trouver une recette.
-            </Text>
+              <Text style={styles.tooltipText}>
+                Un{" "}
+                <Text style={styles.tooltipUnderlineText}>
+                  minimum de 3 ingrédients
+                </Text>{" "}
+                est requis pour trouver une recette.
+              </Text>
 
-            <Text style={styles.tooltipText}>
-              En version gratuite, vous êtes limité sur vos recettes. Il vous en
-              reste :
-            </Text>
-            <TextGradient
-              color={themeColor}
-              text={
-                customerAppStoreHasSubscriptions(customer)
-                  ? "∞"
-                  : getStorageLimitedAction()
-              }
-              home
-              style={{ fontSize: 60, marginTop: 0 }}
-            />
-          </View>
+              <Text style={styles.tooltipText}>
+                En version gratuite, vous êtes limité sur vos recettes. Il vous
+                en reste :
+              </Text>
+              <TextGradient
+                color={themeColor}
+                text={
+                  customerAppStoreHasSubscriptions(customer)
+                    ? "∞"
+                    : getStorageLimitedAction()
+                }
+                home
+                style={{ fontSize: 60, marginTop: 0 }}
+              />
+            </View>
 
-          <Animated.View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: 20,
-              opacity: buttonsOpacity,
-            }}
-          >
-            <TouchableOpacity
-              disabled={!showTooltip || (customerAppStoreHasSubscriptions(customer) ?? true)}
-              onPress={async () => {
-                const offerings = await getOfferingsAppStore();
-                if (!offerings) return;
-
-                router.push({
-                  pathname: "/subscription",
-                  params: {
-                    offerings: JSON.stringify(offerings),
-                  },
-                });
-              }}
+            <Animated.View
               style={{
-                opacity:
-                  customerAppStoreHasSubscriptions(customer) === null
-                    ? 0.6
-                    : customerAppStoreHasSubscriptions(customer)
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                gap: 20,
+                opacity: buttonsOpacity,
+              }}
+            >
+              <TouchableOpacity
+                disabled={
+                  !showTooltip ||
+                  (customerAppStoreHasSubscriptions(customer) ?? true)
+                }
+                onPress={async () => {
+                  const offerings = await getOfferingsAppStore();
+                  if (!offerings) return;
+
+                  router.push({
+                    pathname: "/subscription",
+                    params: {
+                      offerings: JSON.stringify(offerings),
+                    },
+                  });
+                }}
+                style={{
+                  opacity:
+                    customerAppStoreHasSubscriptions(customer) === null
                       ? 0.6
-                      : 1,
-                backgroundColor: "rgba(255, 255, 255, 0.15)",
-                padding: 11,
-                borderRadius: 10,
-                alignItems: "center",
-                flex: 1,
-              }}
-            >
-              <Text
-                style={{
-                  color: "#fff",
-                  fontSize: 15,
-                  fontWeight: "600",
+                      : customerAppStoreHasSubscriptions(customer)
+                        ? 0.6
+                        : 1,
+                  backgroundColor: "rgba(255, 255, 255, 0.15)",
+                  padding: 11,
+                  borderRadius: 10,
+                  alignItems: "center",
+                  flex: 1,
                 }}
               >
-                Je m'abonne
-              </Text>
-            </TouchableOpacity>
+                <Text
+                  style={{
+                    color: "#fff",
+                    fontSize: 15,
+                    fontWeight: "600",
+                  }}
+                >
+                  Je m'abonne
+                </Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => {
-                setShowTooltip(false);
-                hideTooltip();
-              }}
-              style={{
-                backgroundColor: "rgba(255, 255, 255, 0.1)",
-                padding: 11,
-                borderRadius: 10,
-                alignItems: "center",
-                flex: 1,
-              }}
-            >
-              <Text
+              <TouchableOpacity
+                onPress={() => {
+                  setShowTooltip(false);
+                  hideTooltip();
+                }}
                 style={{
-                  color: "#fff",
-                  fontSize: 15,
-                  fontWeight: "500",
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  padding: 11,
+                  borderRadius: 10,
+                  alignItems: "center",
+                  flex: 1,
                 }}
               >
-                Compris
-              </Text>
-            </TouchableOpacity>
+                <Text
+                  style={{
+                    color: "#fff",
+                    fontSize: 15,
+                    fontWeight: "500",
+                  }}
+                >
+                  Compris
+                </Text>
+              </TouchableOpacity>
+            </Animated.View>
           </Animated.View>
-        </Animated.View>
         )}
 
         <View style={styles.highPaddingTop}>
@@ -504,7 +507,7 @@ const WiggleIngredient = ({
   dispatch: React.Dispatch<ActionReducerFoodItems>;
   themeColor: any;
   wiggleRotation: any;
-  latestBatchRef: React.MutableRefObject<FoodItem[]>;
+  latestBatchRef: React.RefObject<FoodItem[]>;
 }) => {
   const rotation = useSharedValue(0);
 
