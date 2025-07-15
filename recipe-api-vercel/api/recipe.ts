@@ -128,7 +128,7 @@ const generateRecipeWithOpenRouter = async (
                 "ingredients": ["ingrédient + quantité", "..."],
                 "instructions": ["étape 1", "étape 2", "..."],
                 "lexicon": [{"term": "terme technique", "definition": "explication simple"}],
-                "footer": "Fridgy vous souhaite une excellente cuisine!"
+                "footer": "Fridgy vous souhaite une excellente cuisine !"
               }
 
               Règles: français, vouvoyer, utiliser uniquement les ingrédients fournis à l'exception de certains ingrédients de type condiment très communs dans une cuisine française (eau, poivre, huile, beurre...), pas de markdown. Ajoute au lexicon seulement les termes techniques peu communs imagine parler à une personne de 16 ans.`,
