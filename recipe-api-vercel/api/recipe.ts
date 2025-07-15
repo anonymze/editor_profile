@@ -131,7 +131,7 @@ const generateRecipeWithOpenRouter = async (
   "footer": "Fridgy vous souhaite une excellente cuisine!"
 }
 
-Règles: français, vouvoyer, utiliser uniquement les ingrédients fournis à l'exception de certains ingrédients très communs dans une cuisine française (eau, poivre, huile, beurre...), pas de markdown, respecte bien le format du json. Ajoute au lexicon seulement les termes techniques peu communs imagine parler à une personne de 16 ans.`,
+Règles: français, vouvoyer, utiliser uniquement les ingrédients fournis à l'exception de certains ingrédients très communs dans une cuisine française (eau, poivre, huile, beurre...), pas de markdown, respecte bien le format du json, n'ajoute pas du texte que je n'ai pas mis dans le json. Ajoute au lexicon seulement les termes techniques peu communs imagine parler à une personne de 16 ans.`,
             },
             {
               role: "user",
