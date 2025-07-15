@@ -1,4 +1,4 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
+import { VercelRequest, VercelResponse } from "@vercel/node";
 
 const REVENUECAT_API_KEY = process.env.REVENUECAT_API_KEY;
 const REVENUECAT_API_URL = "https://api.revenuecat.com/v2";
@@ -38,7 +38,8 @@ export async function checkUserSubscription(userId: string): Promise<boolean> {
 
     const data = await response.json();
 
-    const entitlements = data.subscriber?.entitlements || {};
+    // @ts-ignore
+    const entitlements = data?.subscriber?.entitlements || {};
 
     const hasActiveSubscription = Object.keys(entitlements).some(
       (key) =>
@@ -59,26 +60,30 @@ export async function checkUserSubscription(userId: string): Promise<boolean> {
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Enable CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Origin, X-Vendor-Id, X-Customer-Id');
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS",
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, X-Origin, X-Vendor-Id, X-Customer-Id",
+  );
 
-  if (req.method === 'OPTIONS') {
+  if (req.method === "OPTIONS") {
     res.status(200).end();
     return;
   }
 
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
   }
 
   try {
-    const data = req.body as
-      | { prompt: string; username: string }
-      | undefined;
-    const origin = req.headers['x-origin'] as string;
-    const vendorId = req.headers['x-vendor-id'] as string;
-    const customerId = req.headers['x-customer-id'] as string;
+    const data = req.body as { prompt: string; username: string } | undefined;
+    const origin = req.headers["x-origin"] as string;
+    const vendorId = req.headers["x-vendor-id"] as string;
+    const customerId = req.headers["x-customer-id"] as string;
     let isSubscribed = false;
 
     console.log(origin, vendorId, customerId);
@@ -186,6 +191,7 @@ Règles: français, vouvoyer, utiliser uniquement les ingrédients fournis à l'
       throw new Error(`OpenRouter API error: ${response.statusText}`);
     }
 
+    // @ts-ignore
     const data = await response.json();
     return data.choices[0].message.content;
   } catch (error) {
