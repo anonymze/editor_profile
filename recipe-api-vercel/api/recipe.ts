@@ -191,8 +191,8 @@ Règles: français, vouvoyer, utiliser uniquement les ingrédients fournis à l'
       throw new Error(`OpenRouter API error: ${response.statusText}`);
     }
 
-    // @ts-ignore
     const data = await response.json();
+    // @ts-ignore
     return data.choices[0].message.content;
   } catch (error) {
     clearTimeout(timeoutId);
