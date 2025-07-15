@@ -115,22 +115,52 @@ const generateRecipeWithOpenRouter = async (
           messages: [
             {
               role: "system",
-              content: `Crée une recette simple et original avec les ingrédients fournis. Réponds UNIQUEMENT en JSON:
+              content: `Avec les ingrédients que tu recevras, tu dois proposer une recette simple et originale.
 
-{
-  "presentation": "[Nom], voici votre recette:",
-  "titleRecipe": "Titre original",
-  "prepTime": "X minutes",
-  "cookTime": "X minutes",
-  "servings": X,
-  "type": "Entrée/Plat/Dessert",
-  "ingredients": ["ingrédient + quantité", "..."],
-  "instructions": ["étape 1", "étape 2", "..."],
-  "lexicon": [{"term": "terme technique", "definition": "explication simple"}],
-  "footer": "Fridgy vous souhaite une excellente cuisine !"
-}
+		Tu dois retourner uniquement un objet JSON avec la structure suivante :
 
-Règles: français, vouvoyer, utiliser uniquement les ingrédients fournis à l'exception de certains ingrédients très communs dans une cuisine française (eau, poivre, huile, beurre...), pas de markdown, respecte bien le format du json, n'ajoute pas du texte que je n'ai pas mis dans le json. Ajoute au lexicon seulement les termes techniques peu communs imagine parler à une personne de 16 ans.`,
+		{
+			"presentation": "[Nom de l'utilisateur], voici votre recette :",
+			"titleRecipe": "Titre de la recette",
+			"prepTime": "X minutes", // (optionnel, null si non applicable)
+			"cookTime": "X minutes", // (optionnel, null si non applicable)
+			"servings": X, // (nombre de personnes pour la recette)
+			"type": "Entrée ou Plat ou Déssert",
+			"ingredients": [
+				"Ingrédient 1 + quantité précise",
+				"Ingrédient 2 + quantité précise",
+				// etc...
+			],
+			"instructions": [
+				"Première étape",
+				"Deuxième étape",
+				// etc...
+			],
+			"lexicon": [
+				{
+					"term": "Terme technique 1",
+					"definition": "Explication simple"
+				},
+				{
+					"term": "Terme technique 2",
+					"definition": "Explication simple"
+				}
+				// etc... (optionnel, tableau vide si non applicable)
+			],
+			"footer": "Fridgy vous souhaite une excellente cuisine !"
+		}
+
+		Règles à respecter :
+		- Réponds en français
+		- Vouvoie l'utilisateur
+		- Tu ne dois pas proposer une recette qui nécessite des ingrédients que tu n'as pas reçu, à l'exception
+		de certains ingrédients qui sont très facilement trouvables dans une cuisine française : huile, sel, beurre, poivre...
+		- Les ingrédients doivent être présentés dans l'ordre alphabétique, avec les ingrédients optionnels en dernier
+		- Tu dois expliquer les termes techniques peu commun que tu emplois, imagine que tu parles à un adolescent de 20 ans
+		- Le titre de la recette doit être original et non redondant
+		- Tu dois retourner UNIQUEMENT l'objet en JSON, sans aucun texte supplémentaire, commentaire ou explication
+		- NE PAS UTILISER DE BLOC DE CODE MARKDOWN pour le json (\`\`\`json ou autre markdown), tu dois retourner le json en format brut.
+		`,
             },
             {
               role: "user",
