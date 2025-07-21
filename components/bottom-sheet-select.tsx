@@ -4,9 +4,25 @@ import { BottomSheetModal, BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { FlashList } from "@shopify/flash-list";
 import { Image } from "expo-image";
 import React, { ActionDispatch, forwardRef } from "react";
-import { Platform, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Dimensions,
+  Platform,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { Pressable } from "react-native-gesture-handler";
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+const { width, height } = Dimensions.get("window");
 
 export type FoodItem = {
   id: string;
@@ -28,6 +44,13 @@ interface Props {
   themeColor: keyof typeof themeColors;
 }
 
+interface FlyingIngredient {
+  id: string;
+  image: string | null;
+  label: string;
+  startPosition: { x: number; y: number };
+}
+
 const snapPoints = ["80%"];
 
 export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
@@ -35,6 +58,9 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
     const [searchQuery, setSearchQuery] = React.useState("");
     const searchInputRef = React.useRef<TextInput>(null);
     const insets = useSafeAreaInsets();
+    const [flyingIngredients, setFlyingIngredients] = React.useState<
+      FlyingIngredient[]
+    >([]);
 
     const dynamicFooterStyle = {
       ...styles.footerContainer,
@@ -49,15 +75,16 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
       return data
         .map((section) => {
           // Check if search query matches section title
-          const normalizedTitle = section.title.toLowerCase()
+          const normalizedTitle = section.title
+            .toLowerCase()
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "");
-          
+
           const titleMatches = normalizedTitle.includes(searchQuery);
-          
+
           return {
             title: section.title,
-            data: titleMatches 
+            data: titleMatches
               ? section.data // If title matches, include all items from this section
               : section.data.filter((item) =>
                   item.label.FR.toLowerCase()
@@ -76,6 +103,27 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
         searchInputRef.current.clear();
       }
     }, []);
+
+    const triggerFlyingAnimation = React.useCallback(
+      (item: FoodItem, startX: number, startY: number) => {
+        const newFlyingIngredient: FlyingIngredient = {
+          id: `flying-${item.id}-${Date.now()}`,
+          image: item.image,
+          label: item.label.FR,
+          startPosition: { x: startX, y: startY },
+        };
+
+        setFlyingIngredients((prev) => [...prev, newFlyingIngredient]);
+
+        // Remove the flying ingredient after animation completes (visual only)
+        setTimeout(() => {
+          setFlyingIngredients((prev) =>
+            prev.filter((ing) => ing.id !== newFlyingIngredient.id),
+          );
+        }, 1200);
+      },
+      [],
+    );
 
     // flatten sections into a single array with headers and items
     const flattenedData = React.useMemo(() => {
@@ -206,6 +254,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
                       isSelected={selectedValues.has(item.item.id)}
                       dispatch={dispatch}
                       themeColor={themeColor}
+                      onFlyingAnimation={triggerFlyingAnimation}
                     />
                   );
                 }
@@ -262,57 +311,154 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
             </Pressable>
           </View>
         </View>
+
+        {/* Flying ingredients overlay */}
+        {flyingIngredients.map((flyingIngredient) => (
+          <FlyingIngredientComponent
+            key={flyingIngredient.id}
+            ingredient={flyingIngredient}
+          />
+        ))}
       </BottomSheetModal>
     );
   },
 );
+
+BottomSheetSelect.displayName = "BottomSheetSelect";
+
+function FlyingIngredientComponent({
+  ingredient,
+}: {
+  ingredient: FlyingIngredient;
+}) {
+  const translateX = useSharedValue(ingredient.startPosition.x);
+  const translateY = useSharedValue(ingredient.startPosition.y);
+  const scale = useSharedValue(1);
+  const opacity = useSharedValue(1);
+
+  React.useEffect(() => {
+    // Target position: center-top of screen
+    const targetX = width / 2 - 25; // 25 = half of image width
+    const targetY = height * 0.25; // Quarter from top
+
+    translateX.value = withSpring(targetX, {
+      damping: 15,
+      stiffness: 100,
+    });
+
+    translateY.value = withSpring(targetY, {
+      damping: 15,
+      stiffness: 100,
+    });
+
+    scale.value = withTiming(
+      1.2,
+      {
+        duration: 600,
+        easing: Easing.out(Easing.ease),
+      },
+      () => {
+        scale.value = withTiming(0.8, {
+          duration: 400,
+          easing: Easing.in(Easing.ease),
+        });
+      },
+    );
+
+    opacity.value = withTiming(
+      0.9,
+      {
+        duration: 400,
+        easing: Easing.out(Easing.ease),
+      },
+      () => {
+        opacity.value = withTiming(0, {
+          duration: 400,
+          easing: Easing.in(Easing.ease),
+        });
+      },
+    );
+  }, []);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateX: translateX.value },
+      { translateY: translateY.value },
+      { scale: scale.value },
+    ],
+    opacity: opacity.value,
+  }));
+
+  return (
+    <Animated.View style={[styles.flyingIngredient, animatedStyle]}>
+      <Image
+        source={ingredient.image}
+        style={styles.flyingIngredientImage}
+        contentFit="contain"
+      />
+    </Animated.View>
+  );
+}
 
 function ItemComponent<T extends FoodItem>({
   item,
   isSelected,
   dispatch,
   themeColor,
+  onFlyingAnimation,
 }: {
   item: T;
   isSelected: boolean;
   dispatch: ActionDispatch<[ActionReducerFoodItems]>;
   themeColor: keyof typeof themeColors;
+  onFlyingAnimation: (item: FoodItem, startX: number, startY: number) => void;
 }) {
+  const itemRef = React.useRef<View>(null);
+
+  const handlePress = () => {
+    if (isSelected) {
+      dispatch({
+        type: "REMOVE",
+        item,
+      });
+    } else {
+      // Add ingredient immediately
+      dispatch({
+        type: "ADD",
+        item,
+      });
+      
+      // Trigger flying animation (purely visual) - random position from bottom
+      const randomX = Math.random() * (width * 0.8); // 0 to 80% of screen width
+      onFlyingAnimation(item, randomX, height);
+    }
+  };
+
   return (
-    <Pressable
-      key={item.id}
-      style={[
-        styles.itemContainer,
-        isSelected && {
-          backgroundColor: themeColors[themeColor].primary,
-        },
-      ]}
-      onPress={() => {
-        if (isSelected) {
-          dispatch({
-            type: "REMOVE",
-            item,
-          });
-        } else {
-          dispatch({
-            type: "ADD",
-            item,
-          });
-        }
-      }}
-    >
-      <Image
-        placeholder={require("@/assets/images/fridge.png")}
-        placeholderContentFit="contain"
-        style={styles.itemImage}
-        contentFit="contain"
-        source={item.image}
-        alt={item.label.FR}
-      />
-      <Text style={[styles.itemText, isSelected && styles.selectedItemText]}>
-        {item.label.FR}
-      </Text>
-    </Pressable>
+    <View ref={itemRef}>
+      <Pressable
+        key={item.id}
+        style={[
+          styles.itemContainer,
+          isSelected && {
+            backgroundColor: themeColors[themeColor].primary,
+          },
+        ]}
+        onPress={handlePress}
+      >
+        <Image
+          placeholder={require("@/assets/images/fridge.png")}
+          placeholderContentFit="contain"
+          style={styles.itemImage}
+          contentFit="contain"
+          source={item.image}
+          alt={item.label.FR}
+        />
+        <Text style={[styles.itemText, isSelected && styles.selectedItemText]}>
+          {item.label.FR}
+        </Text>
+      </Pressable>
+    </View>
   );
 }
 
@@ -394,5 +540,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500",
     paddingHorizontal: 15,
+  },
+  flyingIngredient: {
+    position: "absolute",
+    zIndex: 9999,
+    top: 0,
+    left: 0,
+    pointerEvents: "none",
+  },
+  flyingIngredientImage: {
+    width: 50,
+    height: 50,
   },
 });
