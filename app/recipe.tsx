@@ -76,6 +76,7 @@ export default function Page() {
         setSplashScreen(false);
         setStorageLimitedAction(getStorageLimitedAction() - 1);
       } catch (error) {
+        console.log(error);
         if (abortController.signal.aborted) return;
 
         Alert.alert(

@@ -848,7 +848,7 @@ const styles = StyleSheet.create({
   },
   arrowIndicator: {
     position: "absolute",
-    left: 60,
+    left: (width / 2) - 140, // Position to the left of centered fridge
     top: 95,
     transform: [{ translateY: 0 }],
     zIndex: 100,
