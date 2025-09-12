@@ -35,8 +35,6 @@ eas submit --platform ios --latest
 // register devices to test internally (use .ipa (Ad Hoc) for exemple on the device registered)
 eas device:create
 
-
-
 // test server,locally (api routes)
 npx expo serve
 

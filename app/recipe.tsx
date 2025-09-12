@@ -253,7 +253,7 @@ export default function Page() {
                         },
                         body: JSON.stringify({
                           username: getStorageName(),
-                          prompt: response,
+                          problem: response,
                         }),
                       },
                     );
