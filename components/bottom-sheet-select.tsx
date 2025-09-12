@@ -108,7 +108,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
       (item: FoodItem, startX: number, startY: number) => {
         // Check if we can add more animations
         if (flyingIngredients.length >= 5) return; // Max 5 concurrent animations
-        
+
         const newFlyingIngredient: FlyingIngredient = {
           id: `flying-${item.id}-${Date.now()}`,
           image: item.image,
@@ -232,7 +232,7 @@ export const BottomSheetSelect = forwardRef<BottomSheetModal, Props>(
               contentContainerStyle={{
                 paddingBottom: 75,
               }}
-              estimatedItemSize={52}
+              // estimatedItemSize={52}
               data={flattenedData}
               nestedScrollEnabled={true}
               overScrollMode="never"
@@ -344,8 +344,8 @@ function FlyingIngredientComponent({
     const imageWidth = 50; // From styles.flyingIngredientImage
     const targetX = (width - imageWidth) / 2; // True center
     const targetY = height * 0.25; // Quarter from top
-    
-    
+
+
     // Calculate the translation needed
     const moveX = targetX - ingredient.startPosition.x;
     const moveY = targetY - ingredient.startPosition.y;
@@ -399,9 +399,9 @@ function FlyingIngredientComponent({
   }));
 
   return (
-    <Animated.View 
+    <Animated.View
       style={[
-        styles.flyingIngredient, 
+        styles.flyingIngredient,
         {
           left: ingredient.startPosition.x - 25, // Center the image (50px / 2)
           top: ingredient.startPosition.y - 25,
@@ -445,10 +445,10 @@ function ItemComponent<T extends FoodItem>({
         type: "ADD",
         item,
       });
-      
+
       // Trigger flying animation (purely visual) - random position from bottom
       const minX = width * 0.15; // 15% from left
-      const maxX = width * 0.85; // 85% from left  
+      const maxX = width * 0.85; // 85% from left
       const randomX = minX + Math.random() * (maxX - minX); // Random between 15% and 85%
       onFlyingAnimation(item, randomX, height);
     }

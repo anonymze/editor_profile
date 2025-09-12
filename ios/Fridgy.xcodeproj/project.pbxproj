@@ -7,29 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		079B3698BEEAB4DAA354402E /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC43B56DF7E2649C9524077 /* ExpoModulesProvider.swift */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		28A4EF52939A18FC5D99054E /* libPods-Fridgy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 018B754B623BD72FF703B492 /* libPods-Fridgy.a */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		6EA340C80F4F4182541A8B4B /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B9C312D43034BF5234FA3 /* ExpoModulesProvider.swift */; };
-		9D1332CF03D34946284A4C46 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 088E685EB1226081C8ECC427 /* PrivacyInfo.xcprivacy */; };
+		7FFB520E0A07E66B9E9C107D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F91920E425C9C075CF10DA62 /* PrivacyInfo.xcprivacy */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		D45699BA22A956216D4AD58D /* libPods-Fridgy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1DA666324736D3B3BCD032 /* libPods-Fridgy.a */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		088E685EB1226081C8ECC427 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Fridgy/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		018B754B623BD72FF703B492 /* libPods-Fridgy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fridgy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D46B6F6050E8AE068D79DE9 /* Pods-Fridgy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fridgy.release.xcconfig"; path = "Target Support Files/Pods-Fridgy/Pods-Fridgy.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Fridgy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fridgy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Fridgy/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Fridgy/Info.plist; sourceTree = "<group>"; };
-		437E304E4B058C5B76C16616 /* Pods-Fridgy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fridgy.debug.xcconfig"; path = "Target Support Files/Pods-Fridgy/Pods-Fridgy.debug.xcconfig"; sourceTree = "<group>"; };
-		9F460F9A9ED3A02BEFF54468 /* Pods-Fridgy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fridgy.release.xcconfig"; path = "Target Support Files/Pods-Fridgy/Pods-Fridgy.release.xcconfig"; sourceTree = "<group>"; };
+		19FE3860D0626F295AF47F96 /* Pods-Fridgy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fridgy.debug.xcconfig"; path = "Target Support Files/Pods-Fridgy/Pods-Fridgy.debug.xcconfig"; sourceTree = "<group>"; };
+		6FC43B56DF7E2649C9524077 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Fridgy/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = Fridgy/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		BF1DA666324736D3B3BCD032 /* libPods-Fridgy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Fridgy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C08B9C312D43034BF5234FA3 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-Fridgy/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Fridgy/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* Fridgy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Fridgy-Bridging-Header.h"; path = "Fridgy/Fridgy-Bridging-Header.h"; sourceTree = "<group>"; };
+		F91920E425C9C075CF10DA62 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = Fridgy/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D45699BA22A956216D4AD58D /* libPods-Fridgy.a in Frameworks */,
+				28A4EF52939A18FC5D99054E /* libPods-Fridgy.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +53,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				088E685EB1226081C8ECC427 /* PrivacyInfo.xcprivacy */,
+				F91920E425C9C075CF10DA62 /* PrivacyInfo.xcprivacy */,
 			);
 			name = Fridgy;
 			sourceTree = "<group>";
@@ -62,27 +62,17 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				BF1DA666324736D3B3BCD032 /* libPods-Fridgy.a */,
+				018B754B623BD72FF703B492 /* libPods-Fridgy.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5E545F339B38828B0BE4F02E /* ExpoModulesProviders */ = {
+		8251F4DA04C17D9E76EC1EF6 /* Fridgy */ = {
 			isa = PBXGroup;
 			children = (
-				CDA1C65C3F4884611A8E9BB4 /* Fridgy */,
+				6FC43B56DF7E2649C9524077 /* ExpoModulesProvider.swift */,
 			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
-		7F5E293357A2ECB1CB4F4F98 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				437E304E4B058C5B76C16616 /* Pods-Fridgy.debug.xcconfig */,
-				9F460F9A9ED3A02BEFF54468 /* Pods-Fridgy.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
+			name = Fridgy;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -99,8 +89,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				7F5E293357A2ECB1CB4F4F98 /* Pods */,
-				5E545F339B38828B0BE4F02E /* ExpoModulesProviders */,
+				B12C5F09BDD021CAFB82E328 /* Pods */,
+				F8F40935B3690BBB1B048C9E /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -115,6 +105,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B12C5F09BDD021CAFB82E328 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				19FE3860D0626F295AF47F96 /* Pods-Fridgy.debug.xcconfig */,
+				0D46B6F6050E8AE068D79DE9 /* Pods-Fridgy.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,12 +124,12 @@
 			path = Fridgy/Supporting;
 			sourceTree = "<group>";
 		};
-		CDA1C65C3F4884611A8E9BB4 /* Fridgy */ = {
+		F8F40935B3690BBB1B048C9E /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				C08B9C312D43034BF5234FA3 /* ExpoModulesProvider.swift */,
+				8251F4DA04C17D9E76EC1EF6 /* Fridgy */,
 			);
-			name = Fridgy;
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Fridgy" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				E54F5D34397110E6EF9F6092 /* [Expo] Configure project */,
+				64AA68DB6EFAB9F8F2C6F552 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				AF4938F477B080D322633EDF /* [CP] Embed Pods Frameworks */,
+				AD790AABE0C599B3A39689AB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,7 +196,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				9D1332CF03D34946284A4C46 /* PrivacyInfo.xcprivacy in Resources */,
+				7FFB520E0A07E66B9E9C107D /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +210,8 @@
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/.xcode.env",
+				"$(SRCROOT)/.xcode.env.local",
 			);
 			name = "Bundle React Native code and images";
 			outputPaths = (
@@ -239,6 +241,25 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		64AA68DB6EFAB9F8F2C6F552 /* [Expo] Configure project */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "[Expo] Configure project";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-Fridgy/expo-configure-project.sh\"\n";
 		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -292,7 +313,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fridgy/Pods-Fridgy-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AF4938F477B080D322633EDF /* [CP] Embed Pods Frameworks */ = {
+		AD790AABE0C599B3A39689AB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -310,25 +331,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fridgy/Pods-Fridgy-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E54F5D34397110E6EF9F6092 /* [Expo] Configure project */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-Fridgy/expo-configure-project.sh\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -337,7 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				6EA340C80F4F4182541A8B4B /* ExpoModulesProvider.swift in Sources */,
+				079B3698BEEAB4DAA354402E /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +348,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 437E304E4B058C5B76C16616 /* Pods-Fridgy.debug.xcconfig */;
+			baseConfigurationReference = 19FE3860D0626F295AF47F96 /* Pods-Fridgy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -371,7 +373,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.anonymze.fridgy;
-				PRODUCT_NAME = Fridgy;
+				PRODUCT_NAME = "Fridgy";
 				SWIFT_OBJC_BRIDGING_HEADER = "Fridgy/Fridgy-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -382,7 +384,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F460F9A9ED3A02BEFF54468 /* Pods-Fridgy.release.xcconfig */;
+			baseConfigurationReference = 0D46B6F6050E8AE068D79DE9 /* Pods-Fridgy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -402,7 +404,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.anonymze.fridgy;
-				PRODUCT_NAME = Fridgy;
+				PRODUCT_NAME = "Fridgy";
 				SWIFT_OBJC_BRIDGING_HEADER = "Fridgy/Fridgy-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

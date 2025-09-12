@@ -59,7 +59,7 @@ module.exports = () => ({
     ],
     experiments: {
       typedRoutes: true,
-      buildCacheProvider: "eas",
+      // buildCacheProvider: "eas",
     },
     extra: {
       eas: {
