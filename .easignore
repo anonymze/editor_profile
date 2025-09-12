@@ -41,8 +41,9 @@ yarn-error.*
 .history
 
 x/
-.env.local
 
-/resources/
+resources/
 
-/recipe-api-vercel/
+recipe-api-vercel/
+
+.claude
