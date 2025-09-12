@@ -7,6 +7,7 @@ import LayoutBackground, { stylesLayout } from "@/layout/background";
 import {
   getStorageColor,
   getStorageLimitedAction,
+  setStorageLimitedAction,
   themeColors,
 } from "@/theme/theme-storage";
 import {
@@ -469,6 +470,7 @@ export default function Page() {
           <ButtonRadialGradient
             onPress={async () => {
               if (getStorageLimitedAction() < 1) {
+                setShowTooltip(true);
                 animateTooltip();
                 return;
               }
@@ -848,7 +850,7 @@ const styles = StyleSheet.create({
   },
   arrowIndicator: {
     position: "absolute",
-    left: (width / 2) - 140, // Position to the left of centered fridge
+    left: width / 2 - 140, // Position to the left of centered fridge
     top: 95,
     transform: [{ translateY: 0 }],
     zIndex: 100,

@@ -166,6 +166,7 @@ const generateRecipeWithOpenRouter = async (
 		- Tu dois indiquer si c'est une entrée, un plat ou un dessert.
 		- Tu dois au maximum proposer des recettes de saison si les ingrédients te le permettent.
 		- Tu dois retourner UNIQUEMENT l'objet en JSON, sans aucun texte supplémentaire, commentaire ou explication.
+		- Tu dois respecter absolument la structure du JSON demandée.
 		- NE PAS UTILISER DE BLOC DE CODE MARKDOWN pour le json (\`\`\`json ou autre markdown), tu dois retourner le json en format brut.
 		`,
             },
