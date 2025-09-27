@@ -129,14 +129,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       ingredients,
       DEFAULT_SERVINGS,
       bodyValidation.username || DEFAULT_USERNAME,
-      true
+      true,
     );
 
-      const recipeTryValidation = RecipeResponseSchema(recipeRetryText);
+    const recipeTryValidation = RecipeResponseSchema(recipeRetryText);
 
-      if (recipeTryValidation instanceof type.errors) {
-        return res.status(500).json({ error: "Invalid recipe format generated" });
-      }
+    if (recipeTryValidation instanceof type.errors) {
+      return res.status(500).json({ error: "Invalid recipe format generated" });
+    }
+
+    return res.status(200).json(recipeTryValidation);
   }
 
   return res.status(200).json(recipeValidation);
@@ -146,7 +148,7 @@ const generateRecipeWithOpenRouter = async (
   ingredients: string[],
   numberOfPeople: number,
   username: string,
-  retry: boolean = false
+  retry: boolean = false,
 ) => {
   return generateText({
     model: retryableModel,
