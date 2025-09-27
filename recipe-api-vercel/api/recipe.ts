@@ -176,42 +176,42 @@ export async function checkUserSubscription(
 
   return false;
 
-  try {
-    const response = await fetch(
-      `${REVENUECAT_API_URL}/subscribers/${userId}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${process.env.REVENUECAT_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-      },
-    );
+  // try {
+  //   const response = await fetch(
+  //     `${REVENUECAT_API_URL}/subscribers/${userId}`,
+  //     {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: `Bearer ${process.env.REVENUECAT_API_KEY}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //     },
+  //   );
 
-    if (!response.ok) {
-      console.error("RevenueCat API error:", response.statusText);
-      return false;
-    }
+  //   if (!response.ok) {
+  //     console.error("RevenueCat API error:", response.statusText);
+  //     return false;
+  //   }
 
-    const data = await response.json();
+  //   const data = await response.json();
 
-    const entitlements = data?.subscriber?.entitlements || {};
+  //   const entitlements = data?.subscriber?.entitlements || {};
 
-    const hasActiveSubscription = Object.keys(entitlements).some(
-      (key) =>
-        entitlements[key]?.expires_date === null ||
-        new Date(entitlements[key]?.expires_date) > new Date(),
-    );
+  //   const hasActiveSubscription = Object.keys(entitlements).some(
+  //     (key) =>
+  //       entitlements[key]?.expires_date === null ||
+  //       new Date(entitlements[key]?.expires_date) > new Date(),
+  //   );
 
-    subscriptionCache.set(userId, {
-      status: hasActiveSubscription,
-      timestamp: Date.now(),
-    });
-    return hasActiveSubscription;
-  } catch (error) {
-    console.error("Error checking subscription:", error);
-    return false;
-  }
+  //   subscriptionCache.set(userId, {
+  //     status: hasActiveSubscription,
+  //     timestamp: Date.now(),
+  //   });
+  //   return hasActiveSubscription;
+  // } catch (error) {
+  //   console.error("Error checking subscription:", error);
+  //   return false;
+  // }
 }
 
 const PROMPT = `# RÔLE
