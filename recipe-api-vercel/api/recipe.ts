@@ -1,48 +1,63 @@
+import { createOpenAI } from "@ai-sdk/openai";
 import { VercelRequest, VercelResponse } from "@vercel/node";
+import { generateText } from "ai";
+import { createRetryable } from "ai-retry";
 import { type } from "arktype";
 
 const REVENUECAT_API_URL = "https://api.revenuecat.com/v2";
 const DEFAULT_SERVINGS = 4;
 const DEFAULT_USERNAME = "Chef";
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 const subscriptionCache = new Map<
   string,
   { status: boolean; timestamp: number }
 >();
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+// OpenRouter instance
+const openai = createOpenAI({
+  baseURL: process.env.OPENROUTER_API_URL,
+  apiKey: process.env.OPENROUTER_API_KEY,
+});
+
+// OpenRouter Retry model
+const retryableModel = createRetryable({
+  model: openai("mistralai/mistral-small"),
+  retries: [openai("meta-llama/llama-3.1-8b-instruct")],
+});
 
 // Arktype schemas
 const RequestBodySchema = type({
   prompt: "string",
-  "username?": "string"
+  "username?": "string",
 });
 
 const RequestHeadersSchema = type({
   "x-origin": "string",
   "x-vendor-id": "string",
-  "x-customer-id?": "string"
+  "x-customer-id?": "string",
 });
 
 const LexiconItemSchema = type({
   term: "string",
-  definition: "string"
+  definition: "string",
 });
 
 const RecipeResponseSchema = type({
   presentation: "string",
   titleRecipe: "string",
-  "prepTime": "string | null",
-  "cookTime": "string | null",
+  prepTime: "string | null",
+  cookTime: "string | null",
   servings: "number",
   type: "'Entrée' | 'Plat' | 'Déssert'",
   ingredients: "string[]",
   instructions: "string[]",
   lexicon: LexiconItemSchema.array(),
-  footer: "string"
+  footer: "string",
 });
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // Handle warmup ping
+  // *** CONTROL REQUEST *** //
   if (req.query.warmup === "true") {
     console.log("warmup");
     return res.status(200).json({ status: "warm" });
@@ -68,89 +83,136 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  try {
-    // Validate request body
-    const bodyValidation = RequestBodySchema(req.body);
-    if (bodyValidation instanceof type.errors) {
-      return res.status(400).json({ error: "Invalid request body", details: bodyValidation.summary });
-    }
+  // **** VALIDATION BODY *** //
+  const bodyValidation = RequestBodySchema(req.body);
+  if (bodyValidation instanceof type.errors) {
+    return res.status(400).json({
+      error: "Invalid request body",
+      details: bodyValidation.summary,
+    });
+  }
 
-    // Validate headers
-    const headersValidation = RequestHeadersSchema(req.headers);
-    if (headersValidation instanceof type.errors) {
-      return res.status(401).json({ error: "Missing required headers", details: headersValidation.summary });
-    }
+  // **** VALIDATION HEADERS *** //
+  const headersValidation = RequestHeadersSchema(req.headers);
+  if (headersValidation instanceof type.errors) {
+    return res.status(401).json({
+      error: "Missing required headers",
+      details: headersValidation.summary,
+    });
+  }
 
-    const { prompt, username } = bodyValidation;
-    const { "x-origin": origin, "x-vendor-id": vendorId, "x-customer-id": customerId } = headersValidation;
+  // const {
+  //   "x-origin": origin,
+  //   "x-vendor-id": vendorId,
+  //   "x-customer-id": customerId,
+  // } = headersValidation;
 
-    if (origin !== process.env.EXPO_PUBLIC_ORIGIN_MOBILE) {
-      return res.status(401).json({ error: "Unauthorized" });
-    }
+  const ingredients = bodyValidation.prompt.split(",");
 
-    const ingredients = prompt.split(",").map(ingredient => ingredient.trim());
+  if (ingredients.length < 3) {
+    return res.status(400).json({ error: "Minimum 3 ingredients required" });
+  }
 
-    if (ingredients.length < 3) {
-      return res.status(400).json({ error: "Minimum 3 ingredients required" });
-    }
+  // const isSubscribed = await checkUserSubscription(customerId);
 
-    let isSubscribed = false;
-    if (customerId) {
-      isSubscribed = await checkUserSubscription(customerId);
-    }
+  const recipeText = await generateRecipeWithOpenRouter(
+    ingredients,
+    DEFAULT_SERVINGS,
+    bodyValidation.username || DEFAULT_USERNAME,
+  );
 
-    const result = await generateRecipe(
+  // Validate AI response
+  const recipeValidation = RecipeResponseSchema(recipeText);
+
+  if (recipeValidation instanceof type.errors) {
+    const recipeRetryText = await generateRecipeWithOpenRouter(
       ingredients,
       DEFAULT_SERVINGS,
-      username || DEFAULT_USERNAME,
+      bodyValidation.username || DEFAULT_USERNAME,
+      true
     );
 
-    // Validate AI response
-    const recipeValidation = RecipeResponseSchema(result);
-    if (recipeValidation instanceof type.errors) {
-      console.error("Invalid recipe format from AI:", recipeValidation.summary);
-      return res.status(500).json({ error: "Invalid recipe format generated" });
-    }
+      const recipeTryValidation = RecipeResponseSchema(recipeRetryText);
 
-    return res.status(200).json(recipeValidation);
-  } catch (error) {
-    console.error("Error in POST handler:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+      if (recipeTryValidation instanceof type.errors) {
+        return res.status(500).json({ error: "Invalid recipe format generated" });
+      }
   }
-}
 
-const generateRecipe = async (
-  ingredients: string[],
-  numberOfPeople: number,
-  username: string,
-) => {
-  return generateRecipeWithOpenRouter(ingredients, numberOfPeople, username);
-};
+  return res.status(200).json(recipeValidation);
+}
 
 const generateRecipeWithOpenRouter = async (
   ingredients: string[],
   numberOfPeople: number,
   username: string,
+  retry: boolean = false
 ) => {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 20000);
+  return generateText({
+    model: retryableModel,
+    messages: [
+      { role: "system", content: PROMPT },
+      {
+        role: "user",
+        content: `Voici les ingrédients : ${ingredients}. La recette sera pour ${numberOfPeople} personne(s) et le nom de l'utilisateur est ${username}`,
+      },
+    ],
+    temperature: !retry ? 0.6 : 0.3,
+    maxOutputTokens: 4000,
+  });
+};
+
+export async function checkUserSubscription(
+  userId: string | undefined,
+): Promise<boolean> {
+  if (!userId) return false;
+
+  const cached = subscriptionCache.get(userId);
+  if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
+    return cached.status;
+  }
+
+  return false;
 
   try {
     const response = await fetch(
-      "https://openrouter.ai/api/v1/chat/completions",
+      `${REVENUECAT_API_URL}/subscribers/${userId}`,
       {
-        method: "POST",
+        method: "GET",
         headers: {
-          Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          Authorization: `Bearer ${process.env.REVENUECAT_API_KEY}`,
           "Content-Type": "application/json",
         },
-        signal: controller.signal,
-        body: JSON.stringify({
-          model: "mistralai/mistral-7b-instruct",
-          messages: [
-            {
-              role: "system",
-              content: `Tu es sur une application mobile de type cuisine. Un utilisateur va chercher une recette avec le reste d'ingrédients
+      },
+    );
+
+    if (!response.ok) {
+      console.error("RevenueCat API error:", response.statusText);
+      return false;
+    }
+
+    const data = await response.json();
+
+    const entitlements = data?.subscriber?.entitlements || {};
+
+    const hasActiveSubscription = Object.keys(entitlements).some(
+      (key) =>
+        entitlements[key]?.expires_date === null ||
+        new Date(entitlements[key]?.expires_date) > new Date(),
+    );
+
+    subscriptionCache.set(userId, {
+      status: hasActiveSubscription,
+      timestamp: Date.now(),
+    });
+    return hasActiveSubscription;
+  } catch (error) {
+    console.error("Error checking subscription:", error);
+    return false;
+  }
+}
+
+const PROMPT = `Tu es sur une application mobile de type cuisine. Un utilisateur va chercher une recette avec le reste d'ingrédients
 		qu'il a dans son frigo, donc l'application va lui proposer de choisir et d'indiquer ses ingrédients.
 		Avec les ingrédients que tu recevras de la part de l'utilisateur tu devras lui proposer une recette, simple et originale si possible.
 
@@ -202,84 +264,4 @@ const generateRecipeWithOpenRouter = async (
 		- Tu dois retourner UNIQUEMENT l'objet en JSON, sans aucun texte supplémentaire, commentaire ou explication.
 		- Tu dois respecter absolument la structure du JSON demandée.
 		- NE PAS UTILISER DE BLOC DE CODE MARKDOWN pour le json (\`\`\`json ou autre markdown), tu dois retourner le json en format brut.
-		`,
-            },
-            {
-              role: "user",
-              content: `La recette sera pour ${numberOfPeople} personne(s). Voici les ingrédients que l'utilisateur a indiqué : ${ingredients} et le nom de l'utilisateur est ${username}`,
-            },
-          ],
-          temperature: 0.7,
-          max_tokens: 2000,
-        }),
-      },
-    );
-
-    clearTimeout(timeoutId);
-
-    if (!response.ok) {
-      throw new Error(`OpenRouter API error: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    const content = data.choices[0].message.content;
-
-    try {
-      return JSON.parse(content);
-    } catch (parseError) {
-      throw new Error("Invalid JSON response from AI");
-    }
-  } catch (error) {
-    clearTimeout(timeoutId);
-    if (error instanceof Error && error.name === "AbortError") {
-      throw new Error("Request timeout after 20 seconds");
-    }
-    throw error;
-  }
-};
-
-export async function checkUserSubscription(userId: string): Promise<boolean> {
-  const cached = subscriptionCache.get(userId);
-  if (cached && Date.now() - cached.timestamp < CACHE_DURATION) {
-    return cached.status;
-  }
-
-  return false;
-
-  try {
-    const response = await fetch(
-      `${REVENUECAT_API_URL}/subscribers/${userId}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${process.env.REVENUECAT_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-      },
-    );
-
-    if (!response.ok) {
-      console.error("RevenueCat API error:", response.statusText);
-      return false;
-    }
-
-    const data = await response.json();
-
-    const entitlements = data?.subscriber?.entitlements || {};
-
-    const hasActiveSubscription = Object.keys(entitlements).some(
-      (key) =>
-        entitlements[key]?.expires_date === null ||
-        new Date(entitlements[key]?.expires_date) > new Date(),
-    );
-
-    subscriptionCache.set(userId, {
-      status: hasActiveSubscription,
-      timestamp: Date.now(),
-    });
-    return hasActiveSubscription;
-  } catch (error) {
-    console.error("Error checking subscription:", error);
-    return false;
-  }
-}
+		`;
