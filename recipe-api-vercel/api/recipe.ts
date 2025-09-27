@@ -1,7 +1,7 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import { generateText } from "ai";
-import { createRetryable } from "ai-retry";
+import { createRetryable } from "../retry";
 import { type } from "arktype";
 
 const REVENUECAT_API_URL = "https://api.revenuecat.com/v2";

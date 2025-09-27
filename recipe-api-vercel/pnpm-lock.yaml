@@ -17,9 +17,6 @@ importers:
       ai:
         specifier: ^5.0.56
         version: 5.0.56(zod@4.1.11)
-      ai-retry:
-        specifier: ^0.0.2
-        version: 0.0.2(ai@5.0.56(zod@4.1.11))(zod@4.1.11)
       arktype:
         specifier: ^2.1.22
         version: 2.1.22
@@ -394,11 +391,6 @@ packages:
   agent-base@7.1.4:
     resolution: {integrity: sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ==}
     engines: {node: '>= 14'}
-
-  ai-retry@0.0.2:
-    resolution: {integrity: sha512-KwGju42+WgJxW3BmW9pwY/1r3PQbXWxRlZa14I+734DEKKlwB/j7ZUEXufaAozog5oNPQOSsTMUdjFjr/5KXSQ==}
-    peerDependencies:
-      ai: 5.x
 
   ai@5.0.56:
     resolution: {integrity: sha512-Rl++Ogg6DxzFkVHAOJZzhqcqvqtBLGOP9mMxJOGr2EJWj5HH5zjqDcnRh6x5vBoca5kj/Gd0rvUZFMnyI+sRiw==}
@@ -1860,14 +1852,6 @@ snapshots:
       - supports-color
 
   agent-base@7.1.4: {}
-
-  ai-retry@0.0.2(ai@5.0.56(zod@4.1.11))(zod@4.1.11):
-    dependencies:
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.10(zod@4.1.11)
-      ai: 5.0.56(zod@4.1.11)
-    transitivePeerDependencies:
-      - zod
 
   ai@5.0.56(zod@4.1.11):
     dependencies:
