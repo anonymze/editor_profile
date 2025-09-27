@@ -84,7 +84,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // **** VALIDATION BODY *** //
-  const bodyValidation = RequestBodySchema(req.body);
+  const bodyValidation = RequestBodySchema.parse(req.body);
   if (bodyValidation instanceof type.errors) {
     return res.status(400).json({
       error: "Invalid request body",
@@ -93,7 +93,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // **** VALIDATION HEADERS *** //
-  const headersValidation = RequestHeadersSchema(req.headers);
+  const headersValidation = RequestHeadersSchema.parse(req.headers);
   if (headersValidation instanceof type.errors) {
     return res.status(401).json({
       error: "Missing required headers",
@@ -120,6 +120,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     DEFAULT_SERVINGS,
     bodyValidation.username || DEFAULT_USERNAME,
   );
+
+  console.log(recipeText)
 
   // Validate AI response
   const recipeValidation = RecipeResponseSchema(recipeText);
