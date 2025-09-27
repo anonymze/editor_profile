@@ -57,7 +57,7 @@ export default function Page() {
         .onEnd((event) => {
           // swipe left only
           if (event.translationX > 50) {
-            runOnJS(router.replace)("/profile");
+            runOnJS(router.replace)("/");
           }
         }),
     [],
@@ -178,7 +178,7 @@ export default function Page() {
           >
             <Pressable
               onPress={() => {
-                router.replace("/profile");
+                router.replace("/");
               }}
               style={stylesLayout.paddingTopButtons}
             >

@@ -18,7 +18,7 @@ import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import * as Application from "expo-application";
 import { Image } from "expo-image";
 import { router, useFocusEffect } from "expo-router";
-import { BadgeInfoIcon, MinusIcon, UserRoundIcon } from "lucide-react-native";
+import { BadgeInfoIcon, MinusIcon, UserRoundPenIcon } from "lucide-react-native";
 import {
   Fragment,
   useCallback,
@@ -211,9 +211,9 @@ export default function Page() {
         >
           <Pressable
             style={stylesLayout.paddingTopButtons}
-            onPress={() => router.push("/profile")}
+            onPress={() => router.push("/profile-edit")}
           >
-            <UserRoundIcon size={24} color="#fff" />
+            <UserRoundPenIcon size={24} color="#fff" />
           </Pressable>
         </Animated.View>
 

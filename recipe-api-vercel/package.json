@@ -9,7 +9,11 @@
     "deploy": "vercel --prod"
   },
   "dependencies": {
-    "@vercel/node": "^3.2.29"
+    "@ai-sdk/openai": "^2.0.38",
+    "@vercel/node": "^3.2.29",
+    "ai": "^5.0.56",
+    "ai-retry": "^0.0.2",
+    "arktype": "^2.1.22"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

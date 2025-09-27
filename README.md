@@ -4,6 +4,9 @@ pnpm run android --device
 
 cd android && ./gradlew clean
 
+./gradlew bundleRelease
+
+eas build --platform android --local
 eas build:version:set
 
 // bundle .aab with already signed keystore

@@ -1,4 +1,5 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
+import { type } from "arktype";
 
 const REVENUECAT_API_URL = "https://api.revenuecat.com/v2";
 const DEFAULT_SERVINGS = 4;
@@ -9,6 +10,36 @@ const subscriptionCache = new Map<
   { status: boolean; timestamp: number }
 >();
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
+// Arktype schemas
+const RequestBodySchema = type({
+  prompt: "string",
+  "username?": "string"
+});
+
+const RequestHeadersSchema = type({
+  "x-origin": "string",
+  "x-vendor-id": "string",
+  "x-customer-id?": "string"
+});
+
+const LexiconItemSchema = type({
+  term: "string",
+  definition: "string"
+});
+
+const RecipeResponseSchema = type({
+  presentation: "string",
+  titleRecipe: "string",
+  "prepTime": "string | null",
+  "cookTime": "string | null",
+  servings: "number",
+  type: "'Entrée' | 'Plat' | 'Déssert'",
+  ingredients: "string[]",
+  instructions: "string[]",
+  lexicon: LexiconItemSchema.array(),
+  footer: "string"
+});
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Handle warmup ping
@@ -38,53 +69,57 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const data = req.body as { prompt: string; username: string } | undefined;
-    const origin = req.headers["x-origin"] as string;
-    const vendorId = req.headers["x-vendor-id"] as string;
-    const customerId = req.headers["x-customer-id"] as string;
-    let isSubscribed = false;
-
-    console.log(origin, vendorId, customerId);
-
-    if (!origin || !vendorId) {
-      return res.status(401).json({ error: "Unauthorized" });
+    // Validate request body
+    const bodyValidation = RequestBodySchema(req.body);
+    if (bodyValidation instanceof type.errors) {
+      return res.status(400).json({ error: "Invalid request body", details: bodyValidation.summary });
     }
+
+    // Validate headers
+    const headersValidation = RequestHeadersSchema(req.headers);
+    if (headersValidation instanceof type.errors) {
+      return res.status(401).json({ error: "Missing required headers", details: headersValidation.summary });
+    }
+
+    const { prompt, username } = bodyValidation;
+    const { "x-origin": origin, "x-vendor-id": vendorId, "x-customer-id": customerId } = headersValidation;
 
     if (origin !== process.env.EXPO_PUBLIC_ORIGIN_MOBILE) {
       return res.status(401).json({ error: "Unauthorized" });
     }
 
+    const ingredients = prompt.split(",").map(ingredient => ingredient.trim());
+
+    if (ingredients.length < 3) {
+      return res.status(400).json({ error: "Minimum 3 ingredients required" });
+    }
+
+    let isSubscribed = false;
     if (customerId) {
       isSubscribed = await checkUserSubscription(customerId);
     }
 
-    console.log("is sub ??");
-    console.log(isSubscribed);
-
-    if (!data?.prompt) {
-      return res.status(400).json({ error: "Bad Request" });
-    }
-
-    const arrayPrompt = data.prompt.split(",");
-
-    if (arrayPrompt.length < 3) {
-      return res.status(400).json({ error: "Bad Request" });
-    }
-
     const result = await generateRecipe(
-      arrayPrompt,
+      ingredients,
       DEFAULT_SERVINGS,
-      data.username || DEFAULT_USERNAME,
+      username || DEFAULT_USERNAME,
     );
 
-    return res.status(200).json(JSON.parse(result));
+    // Validate AI response
+    const recipeValidation = RecipeResponseSchema(result);
+    if (recipeValidation instanceof type.errors) {
+      console.error("Invalid recipe format from AI:", recipeValidation.summary);
+      return res.status(500).json({ error: "Invalid recipe format generated" });
+    }
+
+    return res.status(200).json(recipeValidation);
   } catch (error) {
     console.error("Error in POST handler:", error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 }
 
-const generateRecipe = (
+const generateRecipe = async (
   ingredients: string[],
   numberOfPeople: number,
   username: string,
@@ -111,7 +146,6 @@ const generateRecipeWithOpenRouter = async (
         },
         signal: controller.signal,
         body: JSON.stringify({
-          // model: "mistralai/mistral-7b-instruct",
           model: "mistralai/mistral-7b-instruct",
           messages: [
             {
@@ -188,8 +222,13 @@ const generateRecipeWithOpenRouter = async (
     }
 
     const data = await response.json();
-    // @ts-ignore
-    return data.choices[0].message.content;
+    const content = data.choices[0].message.content;
+
+    try {
+      return JSON.parse(content);
+    } catch (parseError) {
+      throw new Error("Invalid JSON response from AI");
+    }
   } catch (error) {
     clearTimeout(timeoutId);
     if (error instanceof Error && error.name === "AbortError") {
@@ -226,7 +265,6 @@ export async function checkUserSubscription(userId: string): Promise<boolean> {
 
     const data = await response.json();
 
-    // @ts-ignore
     const entitlements = data?.subscriber?.entitlements || {};
 
     const hasActiveSubscription = Object.keys(entitlements).some(
