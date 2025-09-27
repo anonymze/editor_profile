@@ -159,7 +159,7 @@ const generateRecipeWithOpenRouter = async (
         content: `Voici les ingrédients : ${ingredients}. La recette sera pour ${numberOfPeople} personne(s) et le nom de l'utilisateur est ${username}`,
       },
     ],
-    temperature: !retry ? 0.6 : 0.3,
+    temperature: !retry ? 0.7 : 0.4,
     maxOutputTokens: 4000,
   });
 };
