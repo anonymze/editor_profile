@@ -13,7 +13,7 @@
     "@ai-sdk/provider-utils": "^3.0.10",
     "@vercel/node": "^3.2.29",
     "ai": "^5.0.56",
-    "arktype": "^2.1.22"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

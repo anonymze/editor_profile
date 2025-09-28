@@ -2,7 +2,7 @@ import { createOpenAI } from "@ai-sdk/openai";
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import { generateText } from "ai";
 import { createRetryable } from "../retry";
-import { type } from "arktype";
+import * as z from "zod/mini";
 
 const REVENUECAT_API_URL = "https://api.revenuecat.com/v2";
 const DEFAULT_SERVINGS = 4;
@@ -26,34 +26,34 @@ const retryableModel = createRetryable({
   retries: [openai("meta-llama/llama-3.1-8b-instruct")],
 });
 
-// Arktype schemas
-const RequestBodySchema = type({
-  prompt: "string",
-  "username?": "string",
+// Zod mini schemas
+const RequestBodySchema = z.object({
+  prompt: z.string(),
+  username: z.optional(z.string()),
 });
 
-const RequestHeadersSchema = type({
-  "x-origin": "string",
-  "x-vendor-id": "string",
-  "x-customer-id?": "string",
+const RequestHeadersSchema = z.object({
+  "x-origin": z.string(),
+  "x-vendor-id": z.string(),
+  "x-customer-id": z.optional(z.string()),
 });
 
-const LexiconItemSchema = type({
-  term: "string",
-  definition: "string",
+const LexiconItemSchema = z.object({
+  term: z.string(),
+  definition: z.string(),
 });
 
-const RecipeResponseSchema = type({
-  presentation: "string",
-  titleRecipe: "string",
-  prepTime: "string | null",
-  cookTime: "string | null",
-  servings: "number",
-  type: "'Entrée' | 'Plat' | 'Déssert'",
-  ingredients: "string[]",
-  instructions: "string[]",
-  lexicon: LexiconItemSchema.array(),
-  footer: "string",
+const RecipeResponseSchema = z.object({
+  presentation: z.string(),
+  titleRecipe: z.string(),
+  prepTime: z.nullable(z.string()),
+  cookTime: z.nullable(z.string()),
+  servings: z.number(),
+  type: z.enum(["Entrée", "Plat", "Dessert"]),
+  ingredients: z.array(z.string()),
+  instructions: z.array(z.string()),
+  lexicon: z.array(LexiconItemSchema),
+  footer: z.string(),
 });
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -84,20 +84,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // **** VALIDATION BODY *** //
-  const bodyValidation = RequestBodySchema(req.body);
-  if (bodyValidation instanceof type.errors) {
+  const bodyValidation = RequestBodySchema.safeParse(req.body);
+  if (!bodyValidation.success) {
     return res.status(400).json({
       error: "Invalid request body",
-      details: bodyValidation.summary,
+      details: bodyValidation.error.message,
     });
   }
 
   // **** VALIDATION HEADERS *** //
-  const headersValidation = RequestHeadersSchema(req.headers);
-  if (headersValidation instanceof type.errors) {
+  const headersValidation = RequestHeadersSchema.safeParse(req.headers);
+  if (!headersValidation.success) {
     return res.status(401).json({
       error: "Missing required headers",
-      details: headersValidation.summary,
+      details: headersValidation.error.message,
     });
   }
 
@@ -107,7 +107,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   //   "x-customer-id": customerId,
   // } = headersValidation;
 
-  const ingredients = bodyValidation.prompt.split(",");
+  const ingredients = bodyValidation.data.prompt.split(",");
 
   if (ingredients.length < 3) {
     return res.status(400).json({ error: "Minimum 3 ingredients required" });
@@ -118,32 +118,48 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const recipeText = await generateRecipeWithOpenRouter(
     ingredients,
     DEFAULT_SERVINGS,
-    bodyValidation.username || DEFAULT_USERNAME,
+    bodyValidation.data.username || DEFAULT_USERNAME,
   );
 
   console.log(recipeText)
 
-  // Validate AI response
-  const recipeValidation = RecipeResponseSchema(recipeText);
+  // Parse JSON from AI response
+  let parsedRecipe;
+  try {
+    parsedRecipe = JSON.parse(recipeText.text);
+  } catch (parseError) {
+    return res.status(500).json({ error: "Invalid JSON response from AI" });
+  }
 
-  if (recipeValidation instanceof type.errors) {
+  // Validate AI response
+  const recipeValidation = RecipeResponseSchema.safeParse(parsedRecipe);
+
+  if (!recipeValidation.success) {
     const recipeRetryText = await generateRecipeWithOpenRouter(
       ingredients,
       DEFAULT_SERVINGS,
-      bodyValidation.username || DEFAULT_USERNAME,
+      bodyValidation.data.username || DEFAULT_USERNAME,
       true,
     );
 
-    const recipeTryValidation = RecipeResponseSchema(recipeRetryText);
+    // Parse retry JSON
+    let parsedRetryRecipe;
+    try {
+      parsedRetryRecipe = JSON.parse(recipeRetryText.text);
+    } catch (parseError) {
+      return res.status(500).json({ error: "Invalid JSON response from AI retry" });
+    }
 
-    if (recipeTryValidation instanceof type.errors) {
+    const recipeTryValidation = RecipeResponseSchema.safeParse(parsedRetryRecipe);
+
+    if (!recipeTryValidation.success) {
       return res.status(500).json({ error: "Invalid recipe format generated" });
     }
 
-    return res.status(200).json(recipeTryValidation);
+    return res.status(200).json(recipeTryValidation.data);
   }
 
-  return res.status(200).json(recipeValidation);
+  return res.status(200).json(recipeValidation.data);
 }
 
 const generateRecipeWithOpenRouter = async (
