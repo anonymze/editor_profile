@@ -16,11 +16,7 @@
     },
     "production": {
       "channel": "production",
-      "autoIncrement": true,
-      "android": {
-        "gradleCommand": ":app:bundleRelease"
-      },
-      "prebuildCommand": "echo 'Skipping prebuild - using committed android folder'"
+      "autoIncrement": true
     }
   },
   "submit": {
