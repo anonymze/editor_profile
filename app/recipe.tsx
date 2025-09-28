@@ -14,6 +14,7 @@ import { Image } from "expo-image";
 import { Redirect, router, useLocalSearchParams } from "expo-router";
 import {
   ArrowLeftIcon,
+  BadgeHelpIcon,
   BookAIcon,
   CarrotIcon,
   ChefHatIcon,
@@ -136,36 +137,20 @@ export default function Page() {
       <View collapsable={false} style={stylesLayout.flex}>
         <LayoutBackground color={themeColor} centeredContent={false}>
           <Animated.View
-            style={{
-              position: "absolute",
-              top: 30,
-              left: 30,
-              zIndex: 1000,
-              // backgroundColor: themeColors[themeColor].secondary,
-            }}
             entering={FadeInDown.duration(800).delay(200).springify()}
+            style={StyleSheet.flatten([
+              stylesLayout.topButtons,
+              stylesLayout.topLeftButton,
+              {
+                backgroundColor: themeColors[themeColor].secondary,
+                borderRadius: 99,
+                zIndex: 9,
+                // opacity: isTooltipAnimating ? 0.7 : 1,
+              },
+            ])}
           >
-            <Image
-              source={imageUri ?? DEFAULT_IMAGE_URI}
-              placeholder={{ uri: DEFAULT_IMAGE_URI }}
-              placeholderContentFit="cover"
-              contentPosition="center"
-              contentFit="cover"
-              style={{ width: 50, height: 50, borderRadius: 99 }}
-            />
-          </Animated.View>
-          <Animated.View
-            style={{
-              position: "absolute",
-              top: 34,
-              left: 0,
-              right: 0,
-              zIndex: 1000,
-              alignItems: "center",
-            }}
-            entering={FadeInDown.duration(800).delay(200).springify()}
-          >
-            <TouchableOpacity
+            <Pressable
+              style={stylesLayout.paddingTopButtons}
               onPress={() => {
                 if (!isTooltipAnimating) {
                   if (showTooltip) {
@@ -176,22 +161,9 @@ export default function Page() {
                   setShowTooltip(!showTooltip);
                 }
               }}
-              style={{
-                backgroundColor: themeColors[themeColor].secondary,
-                padding: 10,
-                borderRadius: 8,
-                borderWidth: 1,
-                borderColor: "white",
-              }}
             >
-              <Text
-                style={{
-                  color: "white",
-                }}
-              >
-                Un problème ?
-              </Text>
-            </TouchableOpacity>
+              <BadgeHelpIcon size={26} color="#fff" />
+            </Pressable>
           </Animated.View>
 
           {showTooltip && (
