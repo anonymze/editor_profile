@@ -1,8 +1,8 @@
-import { createOpenRouter } from '@openrouter/ai-sdk-provider';
+import { createOpenRouter } from "@openrouter/ai-sdk-provider";
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import { generateText } from "ai";
-import { createRetryable } from "../retry";
 import * as z from "zod/mini";
+import { createRetryable } from "../retry";
 
 const REVENUECAT_API_URL = "https://api.revenuecat.com/v2";
 const DEFAULT_SERVINGS = 4;
@@ -114,7 +114,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // const isSubscribed = await checkUserSubscription(customerId);
 
-  console.log(ingredients)
+  console.log(ingredients);
 
   const recipeText = await generateRecipeWithOpenRouter(
     ingredients,
@@ -122,9 +122,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     bodyValidation.data.username || DEFAULT_USERNAME,
   );
 
-  console.log("")
+  console.log(recipeText);
 
-  console.log(recipeText)
+   return res.status(500).json({ error: "Invalid recipe format generated" });
 
   // Validate AI response
   const recipeValidation = RecipeResponseSchema.safeParse(recipeText);
@@ -155,7 +155,7 @@ const generateRecipeWithOpenRouter = async (
   username: string,
   retry: boolean = false,
 ) => {
-  const result = await generateText({
+  return generateText({
     model: retryableModel,
     messages: [
       { role: "system", content: PROMPT },
@@ -167,8 +167,6 @@ const generateRecipeWithOpenRouter = async (
     temperature: !retry ? 0.7 : 0.4,
     maxOutputTokens: 4000,
   });
-
-  return JSON.parse(result.text);
 };
 
 export async function checkUserSubscription(
