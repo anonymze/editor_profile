@@ -120,33 +120,33 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     bodyValidation.data.username || DEFAULT_USERNAME,
   );
 
-  console.log("icicicicii")
+  console.log("icicicicii");
 
   console.log(recipeText);
 
-   return res.status(500).json({ error: "Invalid recipe format generated" });
+  return res.status(500).json({ error: "Invalid recipe format generated" });
 
   // Validate AI response
-  const recipeValidation = RecipeResponseSchema.safeParse(recipeText);
+  // const recipeValidation = RecipeResponseSchema.safeParse(recipeText);
 
-  if (!recipeValidation.success) {
-    const recipeRetryText = await generateRecipeWithOpenRouter(
-      ingredients,
-      DEFAULT_SERVINGS,
-      bodyValidation.data.username || DEFAULT_USERNAME,
-      true,
-    );
+  // if (!recipeValidation.success) {
+  //   const recipeRetryText = await generateRecipeWithOpenRouter(
+  //     ingredients,
+  //     DEFAULT_SERVINGS,
+  //     bodyValidation.data.username || DEFAULT_USERNAME,
+  //     true,
+  //   );
 
-    const recipeTryValidation = RecipeResponseSchema.safeParse(recipeRetryText);
+  //   const recipeTryValidation = RecipeResponseSchema.safeParse(recipeRetryText);
 
-    if (!recipeTryValidation.success) {
-      return res.status(500).json({ error: "Invalid recipe format generated" });
-    }
+  //   if (!recipeTryValidation.success) {
+  //     return res.status(500).json({ error: "Invalid recipe format generated" });
+  //   }
 
-    return res.status(200).json(recipeTryValidation.data);
-  }
+  //   return res.status(200).json(recipeTryValidation.data);
+  // }
 
-  return res.status(200).json(recipeValidation.data);
+  // return res.status(200).json(recipeValidation.data);
 }
 
 const generateRecipeWithOpenRouter = async (
@@ -155,8 +155,7 @@ const generateRecipeWithOpenRouter = async (
   username: string,
   retry: boolean = false,
 ) => {
-
-    console.log("ophgrthohortho")
+  console.log("ophgrthohortho");
   return generateText({
     model: retryableModel,
     messages: [
