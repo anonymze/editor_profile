@@ -6,7 +6,7 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath('com.android.tools.build:gradle')
+    classpath('com.android.tools.build:gradle:8.8.2')
     classpath('com.facebook.react:react-native-gradle-plugin')
     classpath('org.jetbrains.kotlin:kotlin-gradle-plugin')
   }
@@ -30,6 +30,18 @@ allprojects {
     google()
     mavenCentral()
     maven { url 'https://www.jitpack.io' }
+  }
+  
+  configurations.all {
+    resolutionStrategy {
+      force 'com.android.tools.build:gradle:8.8.2'
+      eachDependency { details ->
+        if (details.requested.group == 'com.android.tools.build' && details.requested.name == 'gradle') {
+          details.useVersion '8.8.2'
+          details.because 'Ensure consistent AGP version across all modules'
+        }
+      }
+    }
   }
 }
 
