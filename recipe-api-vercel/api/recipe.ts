@@ -114,13 +114,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // const isSubscribed = await checkUserSubscription(customerId);
 
-  console.log(ingredients);
-
   const recipeText = await generateRecipeWithOpenRouter(
     ingredients,
     DEFAULT_SERVINGS,
     bodyValidation.data.username || DEFAULT_USERNAME,
   );
+
+  console.log("icicicicii")
 
   console.log(recipeText);
 
@@ -155,6 +155,8 @@ const generateRecipeWithOpenRouter = async (
   username: string,
   retry: boolean = false,
 ) => {
+
+    console.log("ophgrthohortho")
   return generateText({
     model: retryableModel,
     messages: [
