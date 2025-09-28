@@ -122,7 +122,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   console.log("icicicicii");
 
-  console.log(recipeText);
+  console.log(recipeText.response);
+  console.log(recipeText.content);
+  console.log(recipeText.request);
 
   return res.status(500).json({ error: "Invalid recipe format generated" });
 
