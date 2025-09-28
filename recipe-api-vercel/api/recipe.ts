@@ -19,6 +19,10 @@ const openai = createOpenAI({
   // baseURL: process.env.OPENROUTER_API_URL,
   baseURL: "https://openrouter.ai/api/v1",
   apiKey: process.env.OPENROUTER_API_KEY,
+  headers: {
+    Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+    "Content-Type": "application/json",
+  },
 });
 
 // OpenRouter Retry model
