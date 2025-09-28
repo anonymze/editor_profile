@@ -155,7 +155,7 @@ const generateRecipeWithOpenRouter = async (
   username: string,
   retry: boolean = false,
 ) => {
-  return generateText({
+  const result = await generateText({
     model: retryableModel,
     messages: [
       { role: "system", content: PROMPT },
@@ -167,6 +167,8 @@ const generateRecipeWithOpenRouter = async (
     temperature: !retry ? 0.7 : 0.4,
     maxOutputTokens: 4000,
   });
+
+  return JSON.parse(result.text);
 };
 
 export async function checkUserSubscription(
