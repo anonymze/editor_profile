@@ -21,7 +21,7 @@ const openai = createOpenRouter({
 
 // OpenRouter Retry model
 const retryableModel = createRetryable({
-  model: openai("mistralai/mistral-small-3.2-24b-instruct"),
+  model: openai("anthropic/claude-3.5-haiku"),
   retries: [openai("meta-llama/llama-3.1-8b-instruct")],
 });
 
@@ -236,7 +236,7 @@ Génère UNE SEULE recette simple et originale en utilisant UNIQUEMENT les ingr�
 Retourne EXCLUSIVEMENT un objet JSON valide avec cette structure exacte (PAS de markdown, PAS de \`\`\`json) :
 
 {
-  "presentation": "[Nom utilisateur avec capitalisation exacte], voici votre recette :",
+  "presentation": "[Nom utilisateur], voici votre recette :",
   "titleRecipe": "Titre original de la recette",
   "prepTime": "X minutes",
   "cookTime": "X minutes",
@@ -268,8 +268,8 @@ Retourne EXCLUSIVEMENT un objet JSON valide avec cette structure exacte (PAS de 
 - Indique des quantités précises
 
 ## Contenu :
-- Écris en français et vouvoie l'utilisateur
-- Respecte EXACTEMENT la capitalisation du nom d'utilisateur fourni (Chef = Chef, chef = chef)
+- Écris tout en FRANÇAIS et vouvoie l'utilisateur
+- Respecte la capitalisation exacte du nom d'utilisateur fourni
 - Crée un titre original et accrocheur
 - Spécifie le type : "Entrée", "Plat" ou "Dessert"
 - Privilégie les recettes de saison quand possible
