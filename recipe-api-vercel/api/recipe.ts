@@ -22,7 +22,7 @@ const openai = createOpenAI({
 
 // OpenRouter Retry model
 const retryableModel = createRetryable({
-  model: openai("mistralai/mistral-small"),
+  model: openai("mistralai/mistral-small-3.1-24b-instruct-free"),
   retries: [openai("meta-llama/llama-3.1-8b-instruct")],
 });
 
