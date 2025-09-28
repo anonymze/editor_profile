@@ -360,7 +360,7 @@ const RecipeContent = ({
       "Un problème est survenu lors de la génération de la recette.",
       [{ text: "OK" }],
     );
-    <Redirect href="/" />;
+    return <Redirect href="/" />;
   }
 
   return (
