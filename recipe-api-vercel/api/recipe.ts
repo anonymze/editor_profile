@@ -22,7 +22,7 @@ const openai = createOpenRouter({
 // OpenRouter Retry model
 const retryableModel = createRetryable({
   model: openai("anthropic/claude-3.5-haiku"),
-  retries: [openai("meta-llama/llama-3.1-8b-instruct")],
+  retries: [openai("mistralai/mistral-small-3.2-24b-instruct")],
 });
 
 // Zod mini schemas
