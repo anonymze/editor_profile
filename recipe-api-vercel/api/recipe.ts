@@ -1,4 +1,4 @@
-import { createOpenAI } from "@ai-sdk/openai";
+import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import { VercelRequest, VercelResponse } from "@vercel/node";
 import { generateText } from "ai";
 import { createRetryable } from "../retry";
@@ -15,14 +15,8 @@ const subscriptionCache = new Map<
 >();
 
 // OpenRouter instance
-const openai = createOpenAI({
-  // baseURL: process.env.OPENROUTER_API_URL,
-  baseURL: "https://openrouter.ai/api/v1",
+const openai = createOpenRouter({
   apiKey: process.env.OPENROUTER_API_KEY,
-  headers: {
-    Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
-    "Content-Type": "application/json",
-  },
 });
 
 // OpenRouter Retry model
