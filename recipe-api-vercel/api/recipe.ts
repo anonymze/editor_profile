@@ -16,7 +16,8 @@ const subscriptionCache = new Map<
 
 // OpenRouter instance
 const openai = createOpenAI({
-  baseURL: process.env.OPENROUTER_API_URL,
+  // baseURL: process.env.OPENROUTER_API_URL,
+  baseURL: "https://openrouter.ai/api/v1",
   apiKey: process.env.OPENROUTER_API_KEY,
 });
 
@@ -122,6 +123,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     DEFAULT_SERVINGS,
     bodyValidation.data.username || DEFAULT_USERNAME,
   );
+
+  console.log("")
 
   console.log(recipeText)
 
