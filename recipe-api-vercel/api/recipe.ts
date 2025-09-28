@@ -115,6 +115,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   // const isSubscribed = await checkUserSubscription(customerId);
 
+  console.log(ingredients)
+
   const recipeText = await generateRecipeWithOpenRouter(
     ingredients,
     DEFAULT_SERVINGS,
@@ -123,16 +125,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   console.log(recipeText)
 
-  // Parse JSON from AI response
-  let parsedRecipe;
-  try {
-    parsedRecipe = JSON.parse(recipeText.text);
-  } catch (parseError) {
-    return res.status(500).json({ error: "Invalid JSON response from AI" });
-  }
-
   // Validate AI response
-  const recipeValidation = RecipeResponseSchema.safeParse(parsedRecipe);
+  const recipeValidation = RecipeResponseSchema.safeParse(recipeText);
 
   if (!recipeValidation.success) {
     const recipeRetryText = await generateRecipeWithOpenRouter(
@@ -142,15 +136,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       true,
     );
 
-    // Parse retry JSON
-    let parsedRetryRecipe;
-    try {
-      parsedRetryRecipe = JSON.parse(recipeRetryText.text);
-    } catch (parseError) {
-      return res.status(500).json({ error: "Invalid JSON response from AI retry" });
-    }
-
-    const recipeTryValidation = RecipeResponseSchema.safeParse(parsedRetryRecipe);
+    const recipeTryValidation = RecipeResponseSchema.safeParse(recipeRetryText);
 
     if (!recipeTryValidation.success) {
       return res.status(500).json({ error: "Invalid recipe format generated" });
